@@ -1,2 +1,2 @@
 # Klevar
-An education platform for game creators, teachers and students.
+An educational games platform for creators, teachers and students.
