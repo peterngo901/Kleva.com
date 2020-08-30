@@ -11,9 +11,9 @@ const authenticatedRoutes = require('./routes/authenticated');
 const notFoundController = require('./controllers/404');
 
 // Database
-const db = require('./data/database');
+// const db = require('./data/database');
 
-db.execute('// SQL Queries Go Here.'); 
+//db.execute('// SQL Queries Go Here.'); 
 
 const port = process.env.PORT || 3000;
 
