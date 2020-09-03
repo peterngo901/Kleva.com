@@ -1,15 +1,57 @@
-<header class="main-header">
-    <nav class="main-header-nav">
-        <ul class="main-header-nav-list">
-            <li class="main-header-nav-list-item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
-            </li>
-            <li class="main-header-nav-list-item">
-                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
-            </li>
-            <li class="main-header-nav-list-item">
-                <a class="<%= path === '/about' ? 'active' : '' %>" href="/about">About</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+    <div class="container">
+        <header class="header">
+            <!-- Logo -->
+            <img src="img/logo.png" alt="Kleva" class="logo">
+            <!-- Search Bar -->
+            <form action="/" class="search" method="POST">
+            <input type="text" class="search__input" placeholder="Search Games">
+                <button class="search__button">
+                    <svg class="search__icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-search"></use>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Mobile Menu  -->
+            <div class="mobile-navigation">
+                <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger">
+    
+                <label for="menu_burger" class="mobile-navigation__button">
+                    <svg class="mobile-navigation__button-icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
+                    </svg>
+                </label>
+    
+                <div class="mobile-navigation__background"></div>
+    
+                <nav class="mobile-navigation__nav">
+                    <ul class="mobile-navigation__list">
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Home</a>
+                        </li>
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Games</a>
+                        </li>
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Desktop and Tablet Menu -->
+            <nav class="user-nav">
+                <div class="user-nav__icon-box">
+                    <a href="/">
+                    <svg class="user-nav__icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-home"></use>
+                    </svg>
+                    </a>
+                </div>
+                <div class="user-nav__icon-box">
+                    <svg class="user-nav__icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
+                    </svg>
+                </div>
+            </nav>     
+        </header>
