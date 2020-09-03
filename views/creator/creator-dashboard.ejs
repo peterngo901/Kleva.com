@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/creator-dashboard.css">
+
+        <title>Kleva</title>
+    </head>
+
+    <body>
+        <!-- Dashboard Container -->
+        <div class="container">
+            <!-- Navigation Bar -->
+            <header class="header">
+                    <!-- Logo -->
+                    <img src="img/logo.png" alt="Kleva" class="logo">
+                    <!-- Search Bar -->
+                    <form action="/" class="search" method="POST">
+                    <input type="text" class="search__input" placeholder="Search Games">
+                        <button class="search__button">
+                            <svg class="search__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-search"></use>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Mobile Menu  -->
+                    <div class="mobile-navigation">
+                        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger">
+            
+                        <label for="menu_burger" class="mobile-navigation__button">
+                            <svg class="mobile-navigation__button-icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
+                            </svg>
+                        </label>
+            
+                        <div class="mobile-navigation__background"></div>
+            
+                        <nav class="mobile-navigation__nav">
+                            <ul class="mobile-navigation__list">
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Home</a>
+                                </li>
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Log Out</a>
+                                </li>
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Games</a>
+                                </li>
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Help</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Desktop and Tablet Menu -->
+                    <nav class="user-nav">
+                        <div class="user-nav__icon-box">
+                            <a href="/">
+                            <svg class="user-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-home"></use>
+                            </svg>
+                            </a>
+                        </div>
+                        <div class="user-nav__icon-box">
+                            <svg class="user-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
+                            </svg>
+                        </div>
+                        <div class="user-nav__user">
+                            <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo">
+                            <span class="user-name">Bobby</span>
+                        </div>
+                    </nav>     
+            </header>
+
+            
+            <div class="content">
+                <!-- Dashboard Side Bar -->
+                <nav class="side-bar">
+                    <!-- Dashboard Pages -->
+                    <ul class="side-nav">
+                        <!-- Active Styling with Plain JS Logic -->
+                        <li class="<%= path === '/creator-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                            <a href="/creator-dashboard" class="side-nav__link">
+                                <!-- Sidebar Icon -->
+                                <svg class="side-nav__icon">
+                                    <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
+                                </svg>
+                                <span>Upload</span>
+                            </a>
+                        </li>
+                        <li class="<%= path === '/under-review' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                            <a href="/" class="side-nav__link">
+                                <svg class="side-nav__icon">
+                                    <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
+                                </svg>
+                                <span>Under Review</span>
+                            </a>
+                        </li>
+                        <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                            <a href="/" class="side-nav__link">
+                                <svg class="side-nav__icon">
+                                    <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
+                                </svg>
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Legal Text -->
+                    <div class="legal">
+                        &copy; 2020 by Kleva Pty. Ltd.
+                    </div>
+                </nav>
+
+                <!-- Main Content Area -->
+                <main class="upload">
+                    <!-- Game Upload Form -->
+                    <div class="upload-form">
+                        <form action="/postUploadGames" class="upload-form__text" method="POST">
+                            <!-- Game Title -->
+                            <label class="upload-form__title" for="title">Game Title</label>
+                            <input class="upload-form__title-field" type="text" id="title" name="title" placeholder="Your Game Title"><br>
+
+                            <!-- School Curriculum and Game Category -->
+                            <div class="upload-form__checklist">
+
+                                <span class="upload-form__checklist-title">Education Category</span><br>
+                                <div class="upload-form__checklist-topics">
+                                    <input type="checkbox" name="maths" value="Maths">
+                                    <label for="maths"> Maths</label><br>
+
+                                    <input type="checkbox" name="Physics" value="Physics">
+                                    <label for="Physics"> Physics</label><br>
+                                </div>
+                                <div class="upload-form__checklist-topics">
+                                    <input type="checkbox" name="History" value="History">
+                                    <label for="History"> History</label><br>
+
+                                    <input type="checkbox" name="Chemistry" value="Chemistry">
+                                    <label for="Chemistry"> Chemistry</label><br>
+                                </div>
+                                <div class="upload-form__checklist-topics">
+                                    <input type="checkbox" name="IT" value="IT">
+                                    <label for="IT"> IT</label><br>
+
+                                    <input type="checkbox" name="Drama" value="Drama">
+                                    <label for="Drama"> Drama</label><br><br>
+                                </div>
+                                <div class="upload-form__checklist-topics">
+                                    <input type="checkbox" name="Art" value="Art">
+                                    <label for="Art"> Art</label><br>
+
+                                    <input type="checkbox" name="Religion" value="Religion">
+                                    <label for="Religion"> Religion</label><br><br>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Game Text Description -->
+                            <label class="upload-form__title" for="description">Game Description</label>
+                            <input class="upload-form__title-description"  type="text" id="description" name="description" placeholder="Your Game Description">
+                            
+                            <!-- Game File Upload -->
+                            <div class="upload-form__file">
+                                <label class="upload-form__title" for="gamefile">Upload Your Game</label>
+                                <input type="file" id="gamefile" name="gamefile">    
+                            </div>
+
+                            <!-- Submission Button -->
+                            <input class="upload-form__button" type="submit" value="Submit for Review">
+                        </form>
+                    </div>
+                </main>   
+            </div>
+        </div>
+    </body>
+</html>
