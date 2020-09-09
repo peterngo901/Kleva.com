@@ -10,10 +10,6 @@ const authenticatedRoutes = require('./routes/authenticated');
 // Controllers
 const notFoundController = require('./controllers/404');
 
-// Database
-// const db = require('./data/database');
-
-//db.execute('// SQL Queries Go Here.'); 
 
 const port = process.env.PORT || 3000;
 
@@ -27,11 +23,12 @@ app.set('views', 'views');
 // Serve CSS Statically
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Body Parser
+// By default req.body does not parse the incoming request body. We must use a body parser.
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// Routing
+// Mount the router on the app
 app.use(storeRoutes);
+// Mount the router on the app and add /logged_in before all paths.
 app.use('/logged_in', authenticatedRoutes);
 
 
