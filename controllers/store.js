@@ -1,23 +1,24 @@
 const Game = require('../models/game');
 
+
 exports.getIndex = (req, res, next) => {
-    Game.fetchAll(games => {
+    Game.listAll().then(games => {      
         res.render('home', {
-            games: games,
+            games: games.rows,
             pageTitle: 'Kleva',
             path: '/'
         });
-    });
+    }).catch(err => console.log(err))
 };
 
 exports.getGames = (req, res, next) => {
-    Game.fetchAll(games => {
+    Game.listAll().then().catch();
         res.render('store/games', {
             games: games,
             pageTitle: 'All Games',
             path: '/games'
         });
-    });
+    
 };
 
 exports.getGame = (req, res, next) => {
@@ -33,6 +34,7 @@ exports.getGame = (req, res, next) => {
 
 exports.getLogin = (req, res, next) => {
     res.render('login', {
+        error: '',
         path: '/login',
         pageTitle: 'Login'
     });
@@ -54,4 +56,22 @@ exports.postCart = (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
     
+}
+
+exports.getCreatorDashboard = (req, res, next) => {
+    res.render('creator/creator-dashboard', {
+        path: '/creator-dashboard',
+        pageTitle: 'Dashboard'
+    })
+}
+
+exports.postUploadGames = (req, res, next) => {
+    
+    const gameToUpload = {
+        title: req.body.title,
+        description: req.body.description,
+    }
+    const upload = new Game;
+    upload.create(gameToUpload);
+    res.redirect('/creator-dashboard');
 }
