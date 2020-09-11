@@ -32,6 +32,13 @@ exports.getGame = (req, res, next) => {
    })
 }
 
+exports.getHome = (req, res, next) => {
+    res.render('home', {
+        path: '/home',
+        pageTitle: 'Home'
+    });
+};
+
 exports.getLogin = (req, res, next) => {
     res.render('login', {
         error: '',
@@ -46,6 +53,7 @@ exports.getAbout = (req, res, next) => {
         pageTitle: 'About Us'
     });
 };
+
 
 exports.postCart = (req, res, next) => {
     const gameID = req.body.gameIdentity;

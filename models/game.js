@@ -17,8 +17,7 @@ module.exports = class Game {
       const description = gameObject.description
       const id = uuidv4();
       const values = [title, id, 'https://cdn.factorio.com/assets/img/blog/fff-310-factorio-cover-017-stable-squared.png', 4.99, description]
-      const text = ''
-      db.query(text, values).catch(err => console.log(err));
+      const text = '';
 
     }
 

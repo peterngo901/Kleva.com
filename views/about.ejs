@@ -1,13 +1,20 @@
-<%- include('reusables/head.ejs') %>
-        <link rel="stylesheet" href="/css/main.css">
-        <title><%= pageTitle %></title>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script language="javascript" src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/kleva-main-theme.css">
+</head>
+<body>
+<%- include('reusables/navbar-bootstrap.ejs');%>
 
-    <body>
-        <%- include('reusables/navigation.ejs') %>
-        <main>
+<div class="container">
+  <h1>My First Bootstrap Page</h1>
+  <p>This is some text.</p>
+</div>
 
-        </main>
-    </body>
-
+</body>
 </html>

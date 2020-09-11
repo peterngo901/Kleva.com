@@ -18,6 +18,8 @@ router.get('/login', storeController.getLogin);
 
 router.get('/about', storeController.getAbout);
 
+router.get('/Home', storeController.getHome);
+
 router.get('/cart', storeController.getCart);
 
 router.post('/cart', storeController.postCart);
