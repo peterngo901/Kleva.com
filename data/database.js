@@ -9,3 +9,12 @@ const pool = new Pool({
 })
 
 module.exports = pool;
+
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('postgres', 'postgres', 'royalelephants', {
+    dialect: 'postgres',
+    host: 'localhost'
+});
+
+module.exports = sequelize;
