@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.get('/', storeController.getIndex);
 
+router.get('/gamesgallery', storeController.getGamesGallery);
+
 router.get('/games', storeController.getGames);
 
 router.get('/games/:gameID', storeController.getGame);
@@ -19,6 +21,9 @@ router.get('/login', storeController.getLogin);
 router.get('/about', storeController.getAbout);
 
 router.get('/Home', storeController.getHome);
+
+//placeholder route for bridgebuilder game
+router.get('/Home2', storeController.getHome2);
 
 router.get('/cart', storeController.getCart);
 

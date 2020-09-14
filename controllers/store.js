@@ -32,9 +32,24 @@ exports.getGame = (req, res, next) => {
    })
 }
 
+exports.getGamesGallery = (req, res, next) => {
+    res.render('gamesgallery', {
+        path: '/gamesgallery',
+        pageTitle: 'GamesGallery'
+    });
+};
+
 exports.getHome = (req, res, next) => {
     res.render('home', {
         path: '/home',
+        pageTitle: 'Home'
+    });
+};
+
+//placeholder route for bridge builder game
+exports.getHome2 = (req, res, next) => {
+    res.render('home2', {
+        path: '/home2',
         pageTitle: 'Home'
     });
 };
