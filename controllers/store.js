@@ -47,9 +47,9 @@ exports.getHome = (req, res, next) => {
 };
 
 //placeholder route for bridge builder game
-exports.getHome2 = (req, res, next) => {
-    res.render('home2', {
-        path: '/home2',
+exports.getGamepage = (req, res, next) => {
+    res.render('gamepage', {
+        path: '/gamepage',
         pageTitle: 'Home'
     });
 };

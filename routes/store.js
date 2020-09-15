@@ -23,7 +23,7 @@ router.get('/about', storeController.getAbout);
 router.get('/Home', storeController.getHome);
 
 //placeholder route for bridgebuilder game
-router.get('/Home2', storeController.getHome2);
+router.get('/gamepage', storeController.getGamepage);
 
 router.get('/cart', storeController.getCart);
 
