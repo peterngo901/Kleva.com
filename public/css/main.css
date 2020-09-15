@@ -18,6 +18,16 @@ form {
     display: inline;
 }
 
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .main-header {
     align-items: center;
     background-color: #00ffb7;
