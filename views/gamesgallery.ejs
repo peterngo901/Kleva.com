@@ -2,8 +2,42 @@
 
 <body>
 	<%- include('reusables/navbar-bootstrap.ejs');%>
-	<%- include('reusables/carousel-search-bs.ejs');%>
 	<%- include('reusables/scripts-bootstrap.ejs');%>
-	<%- include('reusables/card.ejs');%>
+	<div class="container">
+    <div class="row pt-1 pb-1">
+        <div class="container">
+          <h1>Games Gallery</h1>
+          <p>Select from our catelogue of games</p>
+        </div>
+    </div>
+</div>
+<div class="card-columns">
+  <%- include('reusables/card.ejs');%>
+  <div class="card bg-warning">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the second card</p>
+    </div>
+  </div>
+  <div class="card bg-success">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the third card</p>
+    </div>
+  </div>
+  <div class="card bg-danger">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the fourth card</p>
+    </div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the fifth card</p>
+    </div>
+  </div>
+  <div class="card bg-info">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the sixth card</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
