@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "start-server": "node app.js"
   },
   "author": "",
@@ -28,7 +28,7 @@
     "uuid": "^8.3.0"
   },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/peterngo901/Kleva.com"
-}
+    "type": "git",
+    "url": "https://github.com/peterngo901/Kleva.com"
+  }
 }
