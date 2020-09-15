@@ -27,8 +27,8 @@ module.exports = class Game {
 
     // List All Games
     static listAll() {
-      const games  = db.query('')
-      return games
+      // const games  = db.query('')
+      // return games
     }
 
     static getByID(id) {
