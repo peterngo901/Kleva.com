@@ -24,6 +24,9 @@ exports.postTeacherSignup = (req, res, next) => {
     const email = req.body.username
     const school = req.body.school
     const password = req.body.password
+    const firstName = req.body.firstName
+    const lastName = req.body.lastName
+    const postcode = req.body.postcode
 
     // Form Validation errors defined in (../routes/authenticated) router.postTeacherSignup().
     const errors = validationResult(req);
@@ -41,14 +44,16 @@ exports.postTeacherSignup = (req, res, next) => {
         return bcrypt.hash(password, 12).then(hashedPassword => { // Hash the password
             req.session.isLoggedIn = true;
             req.session.user = email; // Set session data to include the teacher email, helps us persist login state.
+            
             Teacher.create({ // Create a new teacher in the teacher table.
                 email: email,
                 school: school,
-                password: hashedPassword
+                password: hashedPassword,
+                firstName: firstName,
+                lastName: lastName,
+                postcode: postcode
             }).then(() => { // Render the teacher dashboard.
-                res.status(202).render('teacher/teacher-dashboard', {
-                    path: 'teacher-dashboard'
-                })
+                res.status(202).redirect('/teacher-dashboard')
             }).catch(err => { // Error when inserting the teacher in the database.
                 console.log(err);
                 res.redirect('/');
@@ -83,9 +88,7 @@ exports.postTeacherSignin = (req, res, next) => {
                 // Set the Session
                 req.session.isLoggedIn = true;
                 req.session.user = email;
-                return res.render('teacher/teacher-dashboard', { // Render the teacher dashboard.
-                    path: '/teacher-dashboard'
-                })
+                return res.redirect('/teacher-dashboard')
             }
             // Incorrect Password
             return res.redirect('teacher/teacher-signin') // Redirect to the signin page.
@@ -136,3 +139,5 @@ exports.postSessionLogin = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////////
 
 // Student Authentication
+
+////////////////////////////////////////////////////////////////////////

@@ -20,6 +20,18 @@ const Teacher = sequelize.define('teacher', {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false
+    },
+    firstName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    lastName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    postcode: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 

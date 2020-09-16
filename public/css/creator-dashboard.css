@@ -255,10 +255,11 @@ body {
 }
 
 .upload-form {
-    background-color: whitesmoke;
+    background-color:var(--color-primary-yellow);
     box-shadow: 0 2rem 5rem rgba(0,0,0,.1);
     flex: 0 0 100%;
     margin: 5rem 3.8rem;
+    height: 80rem;
 }
 
 .upload-form__text {
@@ -439,6 +440,15 @@ body {
     font-size: 1rem;
     text-align: center;
     padding: 2rem;  
+}
+
+.classroom-title {
+    font-style: Quicksand;
+    font-size: 5rem;
+    font-weight: 500;
+    padding-left: 3rem;
+    padding-top: 3rem;
+    
 }
 
 @media only screen and (max-width: 37.4em) {

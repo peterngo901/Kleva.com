@@ -51,7 +51,7 @@
     width: 25%;
     align-self: center;
     background: white;
-    height: 75rem;
+    height: 85rem;
     margin-top: 5rem;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
@@ -194,4 +194,8 @@
         margin-left: 3rem;
     }
     
+}
+
+.footer-form {
+    height: 15rem;
 }

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/creator-dashboard.css">
+        <link rel="stylesheet" href="css/teacher-dashboard.css">
+        <script  src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
+        <title>Kleva </title>
+    </head>
+
+    <body>
+        <!-- Dashboard Container -->
+        <div class="container">
+            <!-- Navigation Bar -->
+            <header class="header">
+                    <!-- Logo -->
+                    <img src="img/logo.png" alt="Kleva" class="logo">
+                    <!-- Search Bar -->
+                    <form action="/" class="search" method="POST">
+                    <input type="text" class="search__input" placeholder="Search Games">
+                        <button class="search__button">
+                            <svg class="search__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-search"></use>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Mobile Menu  -->
+                    <div class="mobile-navigation">
+                        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger">
+            
+                        <label for="menu_burger" class="mobile-navigation__button">
+                            <svg class="mobile-navigation__button-icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
+                            </svg>
+                        </label>
+            
+                        <div class="mobile-navigation__background"></div>
+            
+                        <nav class="mobile-navigation__nav">
+                            <ul class="mobile-navigation__list">
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Home</a>
+                                </li>
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Log Out</a>
+                                </li>
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Games</a>
+                                </li>
+                                <li class="mobile-navigation__item">
+                                    <a href="" class="mobile-navigation__link">Help</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Desktop and Tablet Menu -->
+                    <nav class="user-nav">
+                        <div class="user-nav__icon-box">
+                            <a href="/">
+                            <svg class="user-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-home"></use>
+                            </svg>
+                            </a>
+                        </div>
+                        <div class="user-nav__icon-box">
+                            <svg class="user-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
+                            </svg>
+                        </div>
+                        <div class="user-nav__user">
+                            <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo">
+                            <span class="user-name">Bobby</span>
+                        </div>
+                    </nav>     
+            </header>
+
+            
+            <div class="content">
+                <!-- Dashboard Side Bar -->
+                <nav class="side-bar">
+                    <!-- Dashboard Pages -->
+                    <ul class="side-nav">
+                        <!-- Active Styling with Plain JS Logic -->
+                        <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                            <a href="/teacher-dashboard" class="side-nav__link">
+                                <!-- Sidebar Icon -->
+                                <svg class="side-nav__icon">
+                                    <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
+                                </svg>
+                                <span>Classroom</span>
+                            </a>
+                        </li>
+                        <li class="<%= path === '/teacher-students' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                            <a href="/" class="side-nav__link">
+                                <svg class="side-nav__icon">
+                                    <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
+                                </svg>
+                                <span>Students</span>
+                            </a>
+                        </li>
+                        <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                            <a href="/" class="side-nav__link">
+                                <svg class="side-nav__icon">
+                                    <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
+                                </svg>
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Legal Text -->
+                    <div class="legal">
+                        &copy; 2020 by Kleva Pty. Ltd.
+                    </div>
+                </nav>
+
+                <!-- Main Content Area -->
+                <main class="upload">
+                    <!-- Manage Students -->
+                    <div class="upload-form">
+                        <div class="create_your_classroom">
+                            <h2>
+                                Your Classrooms
+                            </h2>
+                                <form action="/add-classroom" method="POST">
+                                    <label for="title">Classroom Name</label>
+                                    <input type="text" id="title" name="title" placeholder="Give Your Class a Name">
+
+                                    <label for="yearLevel">Year Level</label>
+                                    <input type="text" id="yearLevel" name="yearLevel" placeholder="Enter Your Year Level">
+
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" name="subject" placeholder="Select a subject">
+                                    
+
+                                    <input class="authentication__form-button" type="submit" value="Add Classroom">
+                                </form>
+                        </div>
+                    </div>
+                </main>   
+            </div>
+        </div>
+    </body>
+</html>

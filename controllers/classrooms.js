@@ -1,42 +1,69 @@
 const Classroom = require('../models/classroom');
 const { v4: uuidv4 } = require('uuid');
 const firebaseAdmin = require('../authentication/firebase');
+const Teacher = require('../models/teacher');
+const generate = require('nanoid-generate');
+const dictionary = require('nanoid-dictionary');
 
 
 exports.postAddClassroom = (req, res, next) => {
-    const sessionCookie = req.cookies.session || '';
-    const user = firebaseAdmin.auth().currentUser;
-    const title = req.body.title;
-    const yearLevel = req.body.yearLevel;
-    const subject = req.body.subject;
-    const classCode = uuidv4();
-    const teacherID = user.uid;
-
+    const className = req.body.className
+    const yearLevel = req.body.yearLevel
+    const subject = req.body.subject
+    // Easy to Remember Single Classcode Signon for High Schoolers
+    const classCode = generate.english(8);
     
-    firebaseAdmin.auth().verifySessionCookie(sessionCookie, true).then(() => {
-        Classroom.create({
-            teacherID: teacherID,
-            classCode: classCode,
-            subject: subject,
-            yearLevel: yearLevel,
-            title: title
-       }).catch(err => {
-           console.log(err);
-           res.redirect('/');
-       })
+    Classroom.create({
+        teacherID: req.session.user,
+        classCode: classCode,
+        subject: subject,
+        yearLevel: yearLevel,
+        title: className
+    }).catch(err => {
+        console.log(err);
+        res.redirect('/');
+    }).then(() => {
+        res.redirect('/teacher-dashboard')
     })
+    
 }
 
 exports.getTeacherDashboard = (req, res, next) => {
-    const sessionCookie = req.cookies.session || '';
-    // Store the session cookie on the database.
-    
-    firebaseAdmin.auth().verifySessionCookie(sessionCookie, true)
-    .then((decodedClaims) => {
-        //return serveContentForUser('/profile', req, res, decodedClaims);
-        console.log(decodedClaims)
-        res.render('teacher/teacher-dashboard')
-    }).catch((err) => {
-        res.redirect('/login');
-    })
+    if(req.session.user){
+        const email = req.session.user;
+        // Also Search the Classroom Table with matching teacherID.
+        Classroom.findAll({
+            
+            where: {
+                teacherID: email
+            },
+            attributes: ['classCode', 'yearLevel', 'title', 'subject']
+        }).then((classrooms) => {
+            console.log(classrooms)
+            Teacher.findOne({ where: {email: email } })
+            .then(teacher => {
+                res.render('teacher/teacher-dashboard', {
+                    path: '/teacher-dashboard',
+                    name: teacher.firstName,
+                    classrooms: classrooms
+                })  
+            })
+        })
+        
+    } else {
+        res.redirect('/')
+    }
+}
+
+exports.getTeacherStudents = (req, res, next) => {
+    if(req.session.user){
+        const email = req.session.user;
+        // First find the teacherID from the teacher email on the Teacher Table.
+        // Return all students from the Student Table with the matching teacherID.
+        res.render('teacher/teacher-students', {
+            path: '/teacher-students'
+        })
+    } else {
+        res.redirect('/')
+    }
 }

@@ -111,7 +111,7 @@ Teacher.hasMany(Classroom); // Each Teacher has many Classrooms.
 ////////////////////////////////////////////////////////////////////////////
 
 // Sync the Tables/Models and Relations
-sequelize.sync(({ force: true }))
+sequelize.sync()
     .then(result => {
     app.listen(port)
     })
