@@ -29,6 +29,14 @@
     min-height: inherit;
 }
 
+.authentication__form-signup-text {
+    align-self: center;
+    font-size: 1.6rem;
+    margin-top: 4rem;
+}
+
+
+
 .authentication__form-box {
     width: 20%;
     align-self: center;
