@@ -33,17 +33,4 @@ router.get('/creator-dashboard', storeController.getCreatorDashboard);
 
 router.post('/uploadGames', storeController.postUploadGames);
 
-// router.get('/checkout', storeController.getCheckout);
-
-router.post('/signup', authController.postSignup);
-
-// Route Guarding
-firebaseAuth.auth().onAuthStateChanged((user) => {
-    if(user) {
-        console.log('Signed In');
-    } else {
-        console.log('Not Signed In');
-    }
-})
-
 module.exports = router;

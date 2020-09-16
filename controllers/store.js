@@ -2,34 +2,26 @@ const Game = require('../models/game');
 
 
 exports.getIndex = (req, res, next) => {
-    Game.listAll().then(games => {      
-        res.render('home', {
-            games: games.rows,
-            pageTitle: 'Kleva',
-            path: '/'
-        });
-    }).catch(err => console.log(err))
-};
-
-exports.getGames = (req, res, next) => {
-    Game.listAll().then().catch();
-        res.render('store/games', {
-            games: games,
-            pageTitle: 'All Games',
-            path: '/games'
-        });
+      
+    res.render('home', {
+        pageTitle: 'Kleva',
+        path: '/'
+    });
     
 };
 
+exports.getGames = (req, res, next) => {
+    res.render('store/games', {
+        pageTitle: 'All Games',
+        path: '/games'
+    });
+};
+
 exports.getGame = (req, res, next) => {
-   const gameID = req.params.gameID; 
-   Game.retrieveByID(gameID, game => {
-       res.render('store/game-details', {
-           game: game,
+    res.render('store/game-details', {
            pageTitle: game.title,
            path: '/games'
-       })
-   })
+    })
 }
 
 exports.getGamesGallery = (req, res, next) => {
@@ -71,14 +63,11 @@ exports.getAbout = (req, res, next) => {
 
 
 exports.postCart = (req, res, next) => {
-    const gameID = req.body.gameIdentity;
-    Game.retrieveByID(gameID, game => {
-        res.render('/cart');
-    })
+    res.render('/cart');
 }
 
 exports.getCart = (req, res, next) => {
-    
+    res.render('/cart');
 }
 
 exports.getCreatorDashboard = (req, res, next) => {
@@ -89,12 +78,5 @@ exports.getCreatorDashboard = (req, res, next) => {
 }
 
 exports.postUploadGames = (req, res, next) => {
-    
-    const gameToUpload = {
-        title: req.body.title,
-        description: req.body.description,
-    }
-    const upload = new Game;
-    upload.create(gameToUpload);
-    res.redirect('/creator-dashboard');
+        res.redirect('/creator-dashboard');
 }
