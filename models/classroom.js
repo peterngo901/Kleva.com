@@ -25,6 +25,9 @@ const Classroom = sequelize.define('classroom', {
     teacherID: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    games: {
+        type: Sequelize.STRING(50000),
     }
 });
 

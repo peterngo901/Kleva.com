@@ -67,3 +67,35 @@ exports.getTeacherStudents = (req, res, next) => {
         res.redirect('/')
     }
 }
+
+exports.getClassroom = (req, res, next) => {
+    
+    if(req.session.user) {
+        const classCode = req.params.classroomCode;
+        Classroom.findOne({classCode: classCode})
+        .then((classRoom) => {
+            console.log(classRoom)
+            res.render('teacher/teacher-classroom', {
+                games: classRoom,
+                path: '/teacher-dashboard'
+            })
+        })
+    } else {
+        res.redirect('/');
+    }
+}
+
+exports.postDeleteClassroom = (req, res, next) => {
+    if(req.session.user){
+        const classCode = req.body.classCode
+        Classroom.destroy({
+            where: {
+                classCode: classCode
+            }
+        }).then(() => {
+            res.redirect('/teacher-dashboard')
+        })
+    } else {
+        res.redirect('/');
+    }
+}

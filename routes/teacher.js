@@ -12,4 +12,8 @@ router.post('/add-classroom', classroomController.postAddClassroom);
 
 router.get('/teacher-students', classroomController.getTeacherStudents);
 
+router.get('/classroom/:classroomCode', classroomController.getClassroom);
+
+router.post('/classroom/:classroomCode/delete', classroomController.postDeleteClassroom);
+
 module.exports = router;

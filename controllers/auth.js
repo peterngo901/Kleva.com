@@ -79,7 +79,7 @@ exports.postTeacherSignin = (req, res, next) => {
     Teacher.findOne({ where: {email: email }}) // Check to see if the email exists in the teacher table.
     .then((teacher) => {
         if(!teacher){  // Email does not exist.
-            return res.redirect('teacher/teacher-signin')
+            return res.redirect('/teacher-signin')
         }
         // Email does exist.
         bcrypt.compare(password, teacher.password) // Compare the password entered in the form with our database hashed password.
@@ -91,7 +91,7 @@ exports.postTeacherSignin = (req, res, next) => {
                 return res.redirect('/teacher-dashboard')
             }
             // Incorrect Password
-            return res.redirect('teacher/teacher-signin') // Redirect to the signin page.
+            return res.redirect('/teacher-signin') // Redirect to the signin page.
         })
         .catch(err => {
             return res.redirect('teacher/teacher-signin') // Redirect to the signin page.
