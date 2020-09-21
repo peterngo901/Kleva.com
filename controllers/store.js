@@ -2,17 +2,17 @@ const Game = require('../models/game');
 
 
 exports.getIndex = (req, res, next) => {
-    Game.listAll().then(games => {      
+    // Game.listAll().then(games => {      
         res.render('home', {
-            games: games.rows,
+            
             pageTitle: 'Kleva',
             path: '/'
         });
-    }).catch(err => console.log(err))
+    // }).catch(err => console.log(err))
 };
 
 exports.getGames = (req, res, next) => {
-    Game.listAll().then().catch();
+    // Game.listAll().then().catch();
         res.render('store/games', {
             games: games,
             pageTitle: 'All Games',
@@ -23,13 +23,13 @@ exports.getGames = (req, res, next) => {
 
 exports.getGame = (req, res, next) => {
    const gameID = req.params.gameID; 
-   Game.retrieveByID(gameID, game => {
+//    Game.retrieveByID(gameID, game => {
        res.render('store/game-details', {
            game: game,
            pageTitle: game.title,
            path: '/games'
        })
-   })
+   
 }
 
 exports.getGamesGallery = (req, res, next) => {
