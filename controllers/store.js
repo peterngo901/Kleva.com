@@ -88,13 +88,6 @@ exports.getCreatorDashboard = (req, res, next) => {
     })
 }
 
-exports.getStudentDashboard = (req, res, next) => {
-    res.render('student/student-dashboard', {
-        path: '/student-dashboard',
-        pageTitle: 'Student-Dashboard'
-    })
-}
-
 exports.postUploadGames = (req, res, next) => {
     
     const gameToUpload = {
