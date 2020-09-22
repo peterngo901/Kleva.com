@@ -31,6 +31,9 @@ router.post('/cart', storeController.postCart);
 
 router.get('/creator-dashboard', storeController.getCreatorDashboard);
 
+router.get('/student-dashboard', storeController.getStudentDashboard);
+
+
 router.post('/uploadGames', storeController.postUploadGames);
 
 // router.get('/checkout', storeController.getCheckout);
