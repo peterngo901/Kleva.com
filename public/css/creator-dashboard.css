@@ -38,11 +38,11 @@ body {
 }
 
 .container {
-    max-width: 120rem;
     margin: 0 auto;
     background-color:#dbdbdb;
     box-shadow: var(--shadow-box);
     min-height: 50rem;
+    
 }
 
 @media only screen and (max-width: 75em) {
@@ -439,7 +439,7 @@ body {
 .legal {
     font-size: 1rem;
     text-align: center;
-    padding: 2rem;  
+    padding-bottom: 5rem;  
 }
 
 .classroom-title {

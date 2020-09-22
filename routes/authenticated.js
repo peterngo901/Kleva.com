@@ -25,12 +25,13 @@ router.post('/teacher-signin', authController.postTeacherSignin);
 
 
 // Creator Authentication
-
+router.get('/creator-signup', authController.getCreatorSignup)
+router.post('/creator-signup', authController.postCreatorSignup)
+router.get('/creator-signin', authController.getCreatorSignin)
+router.post('/creator-signin', authController.postCreatorSignin)
 
 // Student Authentication
 
 
-// Session (Firebase)
-router.post('/sessionLogin', authController.postSessionLogin);
 
 module.exports = router;

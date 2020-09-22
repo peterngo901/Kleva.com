@@ -70,12 +70,6 @@ exports.getCart = (req, res, next) => {
     res.render('/cart');
 }
 
-exports.getCreatorDashboard = (req, res, next) => {
-    res.render('creator/creator-dashboard', {
-        path: '/creator-dashboard',
-        pageTitle: 'Dashboard'
-    })
-}
 
 exports.postUploadGames = (req, res, next) => {
         res.redirect('/creator-dashboard');

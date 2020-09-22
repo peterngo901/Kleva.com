@@ -1,13 +1,12 @@
-const firebaseAdmin = require('../authentication/firebase');
-
 // Form Validation
 const { validationResult } = require('express-validator')
 
 // Password Encryption/Decryption
 const bcrypt = require('bcryptjs')
 
-// Teacher Model
+// Models
 const Teacher = require('../models/teacher');
+const Creator = require('../models/creator');
 /////////////////////////////////////////////////////////////////////////
 
 // Teacher Authentication
@@ -94,7 +93,7 @@ exports.postTeacherSignin = (req, res, next) => {
             return res.redirect('/teacher-signin') // Redirect to the signin page.
         })
         .catch(err => {
-            return res.redirect('teacher/teacher-signin') // Redirect to the signin page.
+            return res.redirect('/teacher-signin') // Redirect to the signin page.
         })
     })
 }
@@ -103,38 +102,90 @@ exports.postTeacherSignin = (req, res, next) => {
 
 // Creator Authentication
 
-exports.postSignin = (req, res, next) => {
+exports.getCreatorSignup = (req, res, next) => {
+    res.render('creator/creator-signup', { // Creator Signup Page.
+        error: '',
+        path: '/creator-signup',
+        pageTitle: 'Sign Up'
+    })
+}
+
+exports.postCreatorSignup = (req, res, next) => {
     const email = req.body.username
+    const companyName = req.body.companyName
     const password = req.body.password
-    firebaseAuth.auth().signInWithEmailAndPassword(email, password)
    
-    .then(() => {
-        res.render('creator/creator-dashboard', {
-            path: '/creator-dashboard'
-        });
-    }).catch(err => {
-        const errorMessage = err.message
-        res.render('login', {
-            error: errorMessage,
-            pageTitle: 'Login'
+
+    // Form Validation errors defined in (../routes/authenticated) router.postTeacherSignup().
+    const errors = validationResult(req);
+
+    const existingCreator = Creator.findOne({ where: {email: email } }) // Check if email exists in database, Teacher table.
+    .then(existingCreator => { 
+        if(existingCreator){ // Email already exists.
+            return res.status(422).render('creator/creator-signup', {
+                error: 'An account with this email already exists!',
+                path: '/creator-signup',
+                pageTitle: 'Sign Up'
+            })
+        }
+        // Email does not exist.
+        return bcrypt.hash(password, 12).then(hashedPassword => { // Hash the password
+            req.session.isLoggedIn = true;
+            req.session.user = email; // Set session data to include the teacher email, helps us persist login state.
+            
+            Creator.create({ // Create a new teacher in the teacher table.
+                email: email,
+                companyName: companyName,
+                password: hashedPassword
+            }).then(() => { // Render the teacher dashboard.
+                res.status(202).redirect('/creator-dashboard')
+            }).catch(err => { // Error when inserting the teacher in the database.
+                res.redirect('/');
+            })
+        })
+    }).catch(err => { // Error when trying to find the email in the database.
+        res.redirect('/');
+    })
+}
+
+
+exports.getCreatorSignin = (req, res, next) => {
+    res.render('creator/creator-signin', { // Creator Signin Page.
+        error: '',
+        path: '/creator-signin',
+        pageTitle: 'Sign In'
+    })
+}
+
+
+exports.postCreatorSignin = (req, res, next) => {
+    const email = req.body.username;
+    const password = req.body.password;
+    Creator.findOne({ where: {email: email }}) // Check to see if the email exists in the teacher table.
+    .then((creator) => {
+        if(!creator){  // Email does not exist.
+            return res.redirect('/creator-signin')
+        }
+        // Email does exist.
+        bcrypt.compare(password, creator.password) // Compare the password entered in the form with our database hashed password.
+        .then(passwordMatch => {
+            if(passwordMatch) { // Correct Password
+                // Set the Session
+                req.session.isLoggedIn = true;
+                req.session.user = email;
+                return res.redirect('/creator-dashboard')
+            }
+            // Incorrect Password
+            return res.redirect('/creator-signin') // Redirect to the signin page.
+        })
+        .catch(err => {
+            return res.redirect('/creator-signin') // Redirect to the signin page.
         })
     })
 }
 
-exports.postSessionLogin = (req, res, next) => {
-    const idToken = req.body.idToken.toString();
+/////////////////////////////////////////////////////////////////////////
 
-    const expiresIn = 60 * 60 * 24 * 1 * 1000;
-
-    firebaseAdmin.auth().createSessionCookie(idToken, {expiresIn})
-    .then((sessionCookie) => {
-        const options = { maxAge: expiresIn, httpOnly: true};
-        res.cookie('__session', sessionCookie, options);
-        res.end(JSON.stringify({ status: 'success'}));
-    }, (error) => {
-        res.status(401).send('UNAUTHORIZED REQUEST!');
-    })
-}
 
 /////////////////////////////////////////////////////////////////////////
 

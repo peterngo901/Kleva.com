@@ -48,16 +48,26 @@
 }
 
 .authentication__form-register {
-    width: 25%;
+    width: 35%;
     align-self: center;
     background: white;
     height: 85rem;
     margin-top: 5rem;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
+
 }
 
+.authentication__form-register-creator {
+    width: 35%;
+    align-self: center;
+    background: white;
+    height: 55rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
 
+}
 
 .authentication__form-container {
     margin-top: 2rem;

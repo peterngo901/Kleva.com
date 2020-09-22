@@ -20,8 +20,12 @@ const Game = sequelize.define('games', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  gameFile: {
-    type: Sequelize.BLOB('long'),
+  gameFileURL: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  gameImageURL: {
+    type: Sequelize.STRING,
     allowNull: false
   }
 });

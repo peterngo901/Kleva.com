@@ -1,10 +1,39 @@
 const Classroom = require('../models/classroom');
 const { v4: uuidv4 } = require('uuid');
-const firebaseAdmin = require('../authentication/firebase');
+
 const Teacher = require('../models/teacher');
 const generate = require('nanoid-generate');
 const dictionary = require('nanoid-dictionary');
 
+
+exports.getTeacherDashboard = (req, res, next) => {
+    if(req.session.user){
+        const email = req.session.user;
+        // Also Search the Classroom Table with matching teacherID.
+        Classroom.findAll({
+            
+            where: {
+                teacherID: email
+            },
+            attributes: ['classCode', 'yearLevel', 'title', 'subject']
+        }).then((classrooms) => {
+            console.log(classrooms)
+            Teacher.findOne({ where: {email: email } })
+            .then(teacher => {
+                res.render('teacher/teacher-dashboard', {
+                    path: '/teacher-dashboard',
+                    name: teacher.firstName,
+                    classrooms: classrooms
+                })  
+            })
+        }).catch((err) => {
+            res.redirect('/')
+        })
+        
+    } else {
+        res.redirect('/')
+    }
+}
 
 exports.postAddClassroom = (req, res, next) => {
     const className = req.body.className
@@ -28,32 +57,6 @@ exports.postAddClassroom = (req, res, next) => {
     
 }
 
-exports.getTeacherDashboard = (req, res, next) => {
-    if(req.session.user){
-        const email = req.session.user;
-        // Also Search the Classroom Table with matching teacherID.
-        Classroom.findAll({
-            
-            where: {
-                teacherID: email
-            },
-            attributes: ['classCode', 'yearLevel', 'title', 'subject']
-        }).then((classrooms) => {
-            console.log(classrooms)
-            Teacher.findOne({ where: {email: email } })
-            .then(teacher => {
-                res.render('teacher/teacher-dashboard', {
-                    path: '/teacher-dashboard',
-                    name: teacher.firstName,
-                    classrooms: classrooms
-                })  
-            })
-        })
-        
-    } else {
-        res.redirect('/')
-    }
-}
 
 exports.getTeacherStudents = (req, res, next) => {
     if(req.session.user){

@@ -1,5 +1,5 @@
 const express = require('express');
-const firebaseAuth = require('../authentication/firebase')
+
 
 // Import the store controller
 const storeController = require('../controllers/store');
@@ -29,7 +29,7 @@ router.get('/cart', storeController.getCart);
 
 router.post('/cart', storeController.postCart);
 
-router.get('/creator-dashboard', storeController.getCreatorDashboard);
+
 
 router.post('/uploadGames', storeController.postUploadGames);
 
