@@ -69,6 +69,16 @@
 
 }
 
+.authentication__form-box_student {
+    width: 35%;
+    align-self: center;
+    background: white;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
+    height: 50rem;
+}
+
 .authentication__form-container {
     margin-top: 2rem;
     display: flex;

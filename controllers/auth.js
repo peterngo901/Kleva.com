@@ -7,6 +7,8 @@ const bcrypt = require('bcryptjs')
 // Models
 const Teacher = require('../models/teacher');
 const Creator = require('../models/creator');
+const Student = require('../models/student');
+const Classroom = require('../models/classroom');
 /////////////////////////////////////////////////////////////////////////
 
 // Teacher Authentication
@@ -95,6 +97,9 @@ exports.postTeacherSignin = (req, res, next) => {
         .catch(err => {
             return res.redirect('/teacher-signin') // Redirect to the signin page.
         })
+    }).catch((err) => {
+        next(err)
+        res.redirect('/teacher-signin')
     })
 }
 
@@ -190,5 +195,43 @@ exports.postCreatorSignin = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////////
 
 // Student Authentication
+
+exports.getStudentSignin = (req, res, next) => {
+    res.render('student-signin', { // Creator Signin Page.
+        error: '',
+        path: '/student-signin',
+        pageTitle: 'Sign In'
+    })
+}
+
+exports.postStudentSignin = (req, res, next) => {
+    
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const classCode = req.body.classCode;
+
+    // Search the Classroom Table for Class Signon Code
+    Classroom.findOne({
+        where: { classCode: classCode }
+    }).then((existingClassroom) => {
+        if(existingClassroom) { // Classroom Exists
+            // Add them to the Student Table with firstName, lastName and classCode
+            Student.create({ // Create a new student in the student table.
+                firstName: firstName,
+                lastName: lastName,
+                classroomClassCode: classCode
+
+            }).then(() => {
+                req.session.user = classCode; // easily track all students belonging to a classroom
+                req.session.name = firstName + ' ' + lastName;
+                res.redirect('/student-dashboard')
+            })
+
+        } else {
+            res.redirect('/student-signin')
+        }
+    })
+
+}
 
 ////////////////////////////////////////////////////////////////////////

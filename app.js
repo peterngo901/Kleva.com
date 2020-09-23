@@ -13,6 +13,7 @@ const storeRoutes = require("./routes/store");
 const authenticatedRoutes = require("./routes/authenticated");
 const teacherRoutes = require("./routes/teacher");
 const creatorRoutes = require("./routes/creator");
+const studentRoutes = require("./routes/student");
 
 // Controllers
 const notFoundController = require("./controllers/404");
@@ -92,6 +93,7 @@ app.use(storeRoutes); // Mount the store routes on the app.
 app.use(teacherRoutes); // Mount the teacher routes on the app.
 app.use(authenticatedRoutes); // Mount the authenticated routes on the app.
 app.use("/creator-dashboard", creatorRoutes);
+app.use(studentRoutes);
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -118,7 +120,12 @@ Classroom.belongsTo(Teacher, {
 
 Teacher.hasMany(Classroom); // Each Teacher has many Classrooms.
 
-// TODO FOR SPRINT 4
+Student.belongsTo(Classroom, {
+  constraints: true,
+  onDelete: "CASCADE",
+})
+
+Classroom.hasMany(Student);
 
 ////////////////////////////////////////////////////////////////////////////
 
