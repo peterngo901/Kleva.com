@@ -70,13 +70,14 @@
 }
 
 .authentication__form-box_student {
-    width: 35%;
+    width: 15%;
     align-self: center;
     background: white;
+    height: 50rem;
     margin-top: 5rem;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
-    height: 50rem;
+    
 }
 
 .authentication__form-container {
@@ -156,6 +157,10 @@
     .authentication__logo {
         width: 20%;
     }
+
+    .authentication__form-box_student {
+        width: 20%;
+    }
 }
 
 @media only screen and (max-width: 80em) {
@@ -168,6 +173,11 @@
     .authentication__form-register {
         width: 35%;
     }
+
+    .authentication__form-box_student {
+        width: 30%;
+    }
+
 }
 
 @media only screen and (max-width: 50em) {
@@ -175,6 +185,11 @@
     .authentication__form-register {
         width: 55%;
     }
+    .authentication__form-box_student {
+        width: 70%;
+    }
+    
+    
 }
 
 @media only screen and (max-width: 40em) {
@@ -185,6 +200,10 @@
         width: 50%;
     }
     .authentication__form-register {
+        width: 90%;
+    }
+
+    .authentication__form-box_student {
         width: 90%;
     }
 }
