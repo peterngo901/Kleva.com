@@ -31,7 +31,8 @@ router.get('/creator-signin', authController.getCreatorSignin)
 router.post('/creator-signin', authController.postCreatorSignin)
 
 // Student Authentication
-
+router.get('/student-signin', authController.getStudentSignin)
+router.post('/student-signin', authController.postStudentSignin)
 
 
 module.exports = router;

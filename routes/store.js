@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 // Import the store controller
 const storeController = require('../controllers/store');
 // Import the firebase controller
@@ -28,8 +27,6 @@ router.get('/gamepage', storeController.getGamepage);
 router.get('/cart', storeController.getCart);
 
 router.post('/cart', storeController.postCart);
-
-
 
 router.post('/uploadGames', storeController.postUploadGames);
 

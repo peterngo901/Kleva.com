@@ -25,7 +25,7 @@ exports.getTeacherDashboard = (req, res, next) => {
                     name: teacher.firstName,
                     classrooms: classrooms
                 })  
-            })
+            }).catch(err => res.redirect('/teacher-signin'))
         }).catch((err) => {
             res.redirect('/')
         })
