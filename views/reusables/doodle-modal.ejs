@@ -1,0 +1,42 @@
+<div class="modal" tabindex="-1" id="doodleModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" >
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mt-3">
+            <form action="/add-classroom" method="POST" id="modalAddClassroom">
+                <div class="form-group">
+                  
+                    <h1 class="text-center mb-5">Select One Subject</h1>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadio1" name="maths" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio1"><img src="img/mathematics.png"> Maths</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadio2" name="science" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio2"><img src="img/science.png"> Science</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadio3" name="health" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadio3"><img src="img/healthphysed.png"> Health</label>
+                    </div>
+                  </div>
+                <button type="submit" class="btn w-100 mt-5" style="
+                background-color: #d9fff3;
+                font-size: 1.7rem;
+                font-weight: 500;
+              ">Continue to Questions ></button>
+        </div>
+                <div class="modal-footer">
+                    
+                    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+      </div>
+    </div>
+  </div>

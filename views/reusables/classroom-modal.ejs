@@ -1,0 +1,34 @@
+<div class="modal" tabindex="-1" id="exampleModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Classroom</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/add-classroom" method="POST" id="modalAddClassroom">
+                <div class="form-group">
+                <label for="className">Classroom Name</label>
+                <input class="form-control" type="text" id="className" name="className" placeholder="Give Your Class a Name">
+                </div>
+                <div class="form-group">
+                <label for="yearLevel">Year Level</label>
+                <input class="form-control" type="text" id="yearLevel" name="yearLevel" placeholder="Enter Your Year Level">
+                </div>
+                <div class="form-group">
+                <label for="subject">Subject</label>
+                <input  class="form-control" type="text" id="subject" name="subject" placeholder="Select a subject">
+                </div>
+                <button type="submit" class="btn btn-primary" >Add Classroom</button>
+        </div>
+                <div class="modal-footer">
+                    
+                    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+      </div>
+    </div>
+</div>

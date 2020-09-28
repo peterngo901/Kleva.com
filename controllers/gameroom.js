@@ -31,8 +31,21 @@ exports.getGameroom = (req, res, next) => {
 
 exports.getTeacherGameroom = (req, res, next) => {
   // Teacher will emit drawing game question to all students.
+  let socket_id = [];
+  const io = req.app.get('socketio');
+
+  io.on('connection', (socket) => {
+    console.log('Teacher has joined the Master Room!');
+  });
 };
 
 exports.postGameQuestion = (req, res, next) => {
   // Broadcast drawing question to all students in the room.
+  const io = req.app.get('socketio');
+
+  io.on('connection', (socket) => {
+    socket.on('broadcastQuestion', (Question) => {
+      socket.broadcast.emit('Draw the structure of Hydrogen.');
+    });
+  });
 };
