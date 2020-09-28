@@ -1,206 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/creator-dashboard.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <title>Kleva </title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/creator-dashboard.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <title>Kleva</title>
+  </head>
 
-    <body>
-        <!-- Dashboard Container -->
-        <div class="">
-            <!-- Navigation Bar -->
-            <header class="header">
-                    <!-- Logo -->
-                    <img src="img/logo.png" alt="Kleva" class="logo">
-                    <!-- Search Bar -->
-                    <form action="/" class="search" method="POST">
-                    <input type="text" class="search__input" placeholder="Search Games">
-                        <button class="search__button">
-                            <svg class="search__icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-search"></use>
-                            </svg>
-                        </button>
-                    </form>
+  <body>
+    <!-- Dashboard Container -->
+    <div class="">
+      <!-- Navigation Bar -->
+      <header class="header">
+        <!-- Logo -->
+        <img src="img/logo.png" alt="Kleva" class="logo" />
+        <!-- Search Bar -->
+        <form action="/" class="search" method="POST">
+          <input type="text" class="search__input" placeholder="Search Games" />
+          <button class="search__button">
+            <svg class="search__icon">
+              <use xlink:href="img/symbol-defs.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
 
-                    <!-- Mobile Menu  -->
-                    <div class="mobile-navigation">
-                        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger">
-            
-                        <label for="menu_burger" class="mobile-navigation__button">
-                            <svg class="mobile-navigation__button-icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
-                            </svg>
-                        </label>
-            
-                        <div class="mobile-navigation__background"></div>
-            
-                        <nav class="mobile-navigation__nav">
-                            <ul class="mobile-navigation__list">
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Home</a>
-                                </li>
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Log Out</a>
-                                </li>
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Games</a>
-                                </li>
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Help</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+        <!-- Mobile Menu  -->
+        <div class="mobile-navigation">
+          <input
+            type="checkbox"
+            class="mobile-navigation__checkbox"
+            id="menu_burger"
+          />
 
-                    <!-- Desktop and Tablet Menu -->
-                    <nav class="user-nav">
-                        <div class="user-nav__icon-box">
-                            <a href="/">
-                            <svg class="user-nav__icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-home"></use>
-                            </svg>
-                            </a>
-                        </div>
-                        <div class="user-nav__icon-box">
-                            <svg class="user-nav__icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
-                            </svg>
-                        </div>
-                        <div class="user-nav__user">
-                            <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo">
-                            <span class="user-name"><%= name %></span>
-                        </div>
-                    </nav>     
-            </header>
+          <label for="menu_burger" class="mobile-navigation__button">
+            <svg class="mobile-navigation__button-icon">
+              <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
+            </svg>
+          </label>
 
-            
-            <div class="content" >
-                <!-- Dashboard Side Bar -->
-                <nav class="side-bar " >
-                    <!-- Dashboard Pages -->
-                    <ul class="side-nav">
-                        <!-- Active Styling with Plain JS Logic -->
-                        <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                            <a href="/teacher-dashboard" class="side-nav__link">
-                                <!-- Sidebar Icon -->
-                                <svg class="side-nav__icon">
-                                    <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
-                                </svg>
-                                <span>Classroom</span>
-                            </a>
-                        </li>
-                        <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                            <a href="/teacher-students" class="side-nav__link">
-                                <svg class="side-nav__icon">
-                                    <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
-                                </svg>
-                                <span>Students</span>
-                            </a>
-                        </li>
-                        <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                            <a href="/" class="side-nav__link">
-                                <svg class="side-nav__icon">
-                                    <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
-                                </svg>
-                                <span>Help</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Legal Text -->
-                    <div class="legal">
-                        &copy; 2020 by Kleva Pty. Ltd.
-                    </div>
-                </nav>
+          <div class="mobile-navigation__background"></div>
 
-                <!-- Main Content Area -->
-                <main class="upload" >
-                    <!-- Manage Students -->
-                    <div class="upload-form" style="height: 88vh;">
-                        <div class="create_your_classroom">
-                            <h1 class="classroom-title">
-                                Your Classrooms
-                            </h1>
-                            
-                            
-                            <div class="modal" tabindex="-1" id="exampleModal">
-                                <div class="modal-dialog modal-dialog-centered">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title">Add Classroom</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/add-classroom" method="POST" id="modalAddClassroom">
-                                            <div class="form-group">
-                                            <label for="className">Classroom Name</label>
-                                            <input class="form-control" type="text" id="className" name="className" placeholder="Give Your Class a Name">
-                                            </div>
-                                            <div class="form-group">
-                                            <label for="yearLevel">Year Level</label>
-                                            <input class="form-control" type="text" id="yearLevel" name="yearLevel" placeholder="Enter Your Year Level">
-                                            </div>
-                                            <div class="form-group">
-                                            <label for="subject">Subject</label>
-                                            <input  class="form-control" type="text" id="subject" name="subject" placeholder="Select a subject">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary" >Add Classroom</button>
-                                    </div>
-                                            <div class="modal-footer">
-                                                
-                                                
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            </div>
-                                        </form>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
-                        <br/>
-                        <div class="row d-flex justify-content-center">
-                            <div class="card col-8 col-md-3  m-3">
-                                <div class="card-title text-center mt-3">
-                                    Add A Classroom
-                                </div>
-                                <div class="card-body">
-                                    
-                                    <img class="d-flex justify-content-center w-100 hover" src="/img/plusSign.png" role="button" data-toggle="modal" data-target="#exampleModal"> 
-                                </div>
-                                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mb-4 w-100">Add Classroom +</button>
-                            </div>
-                        <% if (classrooms.length > 0) { %>
-                                <% for (let classRoom of classrooms) { %>
-                                    <div class=" card col-8 col-md-3 m-3">
-                                        <div class="card-title text-center mt-3">
-                                            <%- classRoom.title %>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <h3>Year Level: <%- classRoom.yearLevel %> </h3>
-                                            
-                                            <p>Subject: <%- classRoom.subject %> </p>
-                                            <h1>Class Code: <%- classRoom.classCode %></h1>
-                                        </div>
-                                        <a href="/classroom/<%- classRoom.classCode %>" class="btn btn-primary mb-4 w-100">Visit Classroom ></a>
-                                    </div>
-                                <% } %>   
-                                
-                                
-                        <% } %>
-                            
-                    </div>
-                    </div>
-                </main>   
-            </div>
+          <nav class="mobile-navigation__nav">
+            <ul class="mobile-navigation__list">
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Home</a>
+              </li>
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Log Out</a>
+              </li>
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Games</a>
+              </li>
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Help</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-    </body>
-    <script></script>
+
+        <!-- Desktop and Tablet Menu -->
+        <nav class="user-nav">
+          <div class="user-nav__icon-box">
+            <a href="/">
+              <svg class="user-nav__icon">
+                <use xlink:href="img/symbol-defs.svg#icon-home"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="user-nav__icon-box">
+            <svg class="user-nav__icon">
+              <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
+            </svg>
+          </div>
+          <div class="user-nav__user">
+            <img
+              src="img/profile.png"
+              alt="User Photo"
+              class="user-nav__user-photo"
+            />
+            <span class="user-name"><%= name %></span>
+          </div>
+        </nav>
+      </header>
+
+      <div class="content">
+        <!-- Dashboard Side Bar -->
+        <nav class="side-bar">
+          <!-- Dashboard Pages -->
+          <ul class="side-nav">
+            <!-- Active Styling with Plain JS Logic -->
+            <li
+              class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %>"
+            >
+              <a href="/teacher-dashboard" class="side-nav__link">
+                <!-- Sidebar Icon -->
+                <svg class="side-nav__icon">
+                  <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
+                </svg>
+                <span>Classroom</span>
+              </a>
+            </li>
+            <li
+              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>"
+            >
+              <a href="/teacher-students" class="side-nav__link">
+                <svg class="side-nav__icon">
+                  <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
+                </svg>
+                <span>Students</span>
+              </a>
+            </li>
+            <li
+              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>"
+            >
+              <a href="/" class="side-nav__link">
+                <svg class="side-nav__icon">
+                  <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
+                </svg>
+                <span>Help</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Legal Text -->
+          <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="upload">
+          <!-- Manage Students -->
+          <div class="upload-form" style="height: 88vh">
+            <div class="create_your_classroom">
+              <h1 class="classroom-title">Your Classrooms</h1>
+
+              <%- include('../reusables/classroom-modal.ejs'); %> <%-
+              include('../reusables/doodle-modal.ejs'); %>
+            </div>
+            <br />
+            <div class="row d-flex justify-content-center">
+              <div class="card col-8 col-md-3 m-3 shadow-sm">
+                <div class="card-title text-center mt-3">Add A Classroom</div>
+                <div class="card-body">
+                  <img
+                    class="d-flex justify-content-center w-100 hover"
+                    src="/img/plusSign.png"
+                    role="button"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  />
+                </div>
+                <button
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  class="btn mb-4 w-100"
+                  style="
+                    background-color: #e0d9ff;
+                    font-size: 1.7rem;
+                    font-weight: 500;
+                  "
+                >
+                  Add Classroom +
+                </button>
+              </div>
+              <% if (classrooms.length > 0) { %> <% for (let classRoom of
+              classrooms) { %>
+              <div class="card col-8 col-md-3 m-3 shadow-sm">
+                <div class="card-title text-center mt-3">
+                  <%- classRoom.title %>
+                </div>
+                <div class="card-body text-center">
+                  <h3>Year Level: <%- classRoom.yearLevel %></h3>
+
+                  <p>Subject: <%- classRoom.subject %></p>
+                  <h1 class="mt-5">Class Code: <%- classRoom.classCode %></h1>
+                </div>
+                <a
+                  href="/classroom/<%- classRoom.classCode %>"
+                  class="btn mb-4 w-100"
+                  style="
+                    background-color: #e0d9ff;
+                    font-size: 1.7rem;
+                    font-weight: 500;
+                  "
+                  >Visit Classroom ></a
+                >
+                <button
+                  data-toggle="modal"
+                  data-target="#doodleModal"
+                  class="btn mb-4 w-100"
+                  style="
+                    background-color: #d9fff3;
+                    font-size: 1.7rem;
+                    font-weight: 500;
+                  "
+                >
+                  Create Live Game +
+                </button>
+              </div>
+              <% } %> <% } %>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <script></script>
 </html>
