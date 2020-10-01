@@ -6,15 +6,18 @@ const Game = sequelize.define('games', {
   gameID: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   title: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   category: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+  },
+  subCategory: {
+    type: Sequelize.STRING,
   },
   description: {
     type: Sequelize.STRING,
@@ -22,12 +25,12 @@ const Game = sequelize.define('games', {
   },
   gameFileURL: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   gameImageURL: {
     type: Sequelize.STRING,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
 
 module.exports = Game;

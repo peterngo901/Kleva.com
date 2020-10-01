@@ -238,24 +238,40 @@ exports.postStudentSignin = (req, res, next) => {
   // Search the Classroom Table for Class Signon Code
   Classroom.findOne({
     where: { classCode: classCode },
-  }).then((existingClassroom) => {
-    if (existingClassroom) {
-      // Classroom Exists
-      // Add them to the Student Table with firstName, lastName and classCode
-      Student.create({
-        // Create a new student in the student table.
-        firstName: firstName,
-        lastName: lastName,
-        classroomClassCode: classCode,
-      }).then(() => {
-        req.session.user = classCode; // easily track all students belonging to a classroom
-        req.session.name = firstName + ' ' + lastName;
-        res.redirect('/game-room');
+  })
+    .then((existingClassroom) => {
+      if (existingClassroom) {
+        // Classroom Exists
+        // Add them to the Student Table with firstName, lastName and classCode
+        Student.create({
+          // Create a new student in the student table.
+          firstName: firstName,
+          lastName: lastName,
+          classroomClassCode: classCode,
+        }).then((student) => {
+          console.log(student.studentID);
+          req.session.user = student.studentID;
+          req.session.type = 'student';
+          req.session.classCode = classCode; // easily track all students belonging to a classroom
+          req.session.firstName = firstName;
+          req.session.lastName = lastName;
+          res.redirect(`/game-room`);
+        });
+      } else {
+        return res.redirect('/student-signin');
+      }
+    })
+    .catch((err) => {
+      // Wrong ClassCode Entered.
+      res.render('/student-signin', {
+        error: 'Please enter a valid class code.',
       });
-    } else {
-      res.redirect('/student-signin');
-    }
-  });
+    });
 };
 
 ////////////////////////////////////////////////////////////////////////
+exports.postSignout = (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect('/');
+  });
+};

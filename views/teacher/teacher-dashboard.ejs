@@ -128,7 +128,7 @@
                 <svg class="side-nav__icon">
                   <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
                 </svg>
-                <span>Students</span>
+                <span>Statistics</span>
               </a>
             </li>
             <li
@@ -149,12 +149,14 @@
         <!-- Main Content Area -->
         <main class="upload">
           <!-- Manage Students -->
-          <div class="upload-form" style="height: 88vh">
+          <div
+            class="upload-form"
+            style="min-height: 88vh; height: fit-content"
+          >
             <div class="create_your_classroom">
               <h1 class="classroom-title">Your Classrooms</h1>
 
-              <%- include('../reusables/classroom-modal.ejs'); %> <%-
-              include('../reusables/doodle-modal.ejs'); %>
+              <%- include('../reusables/classroom-modal.ejs'); %>
             </div>
             <br />
             <div class="row d-flex justify-content-center">
@@ -216,6 +218,64 @@
                 >
                   Create Live Game +
                 </button>
+                
+              </div>
+              <!-- Doodle Questions Modal -->
+              <div class="modal" tabindex="-1" id="doodleModal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header" >
+                      
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mt-3">
+                        <form action="/create-questions" method="POST" id="modalAddClassroom">
+                            <div class="form-group">
+                              <input type="hidden" value="<%= classRoom.classCode %>" name="classCode">
+                                <h1 class="text-center mb-5">Select One Subject</h1>
+                                <div class="row">
+                                  <div class="col-3">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="topic" id="biology" value="biology">
+                                      <label class="form-check-label" for="biology"><img src="img/healthphysed.png">Biology</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="topic" id="chemistry" value="chemistry">
+                                      <label class="form-check-label" for="chemistry"><img src="img/science.png">Chemistry</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="topic" id="earthSpace" value="earthSpace">
+                                      <label class="form-check-label" for="earthSpace"><img src="img/mathematics.png">Earth and Space</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-3">
+                                    <div div class="form-check">
+                                      <input class="form-check-input" type="radio" name="topic" id="physics" value="physics">
+                                      <label class="form-check-label" for="physics"><img src="img/science.png">Physics</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <button type="submit" class="btn w-100 mt-5" style="
+                            background-color: #d9fff3;
+                            font-size: 1.7rem;
+                            font-weight: 500;
+                          ">Continue to Questions ></button>
+                    </div>
+                            <div class="modal-footer">
+                                
+                                
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                  </div>
+                </div>
               </div>
               <% } %> <% } %>
             </div>

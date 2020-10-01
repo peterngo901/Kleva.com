@@ -1,5 +1,8 @@
 const Game = require('../models/game');
 
+// Limit the number of games returned on a single page.
+const gamesPerPage = 3;
+
 exports.getIndex = (req, res, next) => {
   res.render('home', {
     pageTitle: 'Kleva',
@@ -21,11 +24,31 @@ exports.getGame = (req, res, next) => {
   });
 };
 
-exports.getGamesGallery = (req, res, next) => {
-  res.render('gamesgallery', {
-    path: '/gamesgallery',
-    pageTitle: 'GamesGallery',
-  });
+// Public Game Gallery with no specific recommendation ML algorithm.
+exports.getGamesGallery = async (req, res, next) => {
+  const page = req.query.page;
+
+  try {
+    // Skip games based on page.
+    var gameBatch = (page - 1) * gamesPerPage;
+    const games = await Game.findAndCountAll({
+      offset: gameBatch,
+      limit: gamesPerPage,
+    });
+    // Total Games Returned
+    const totalGames = games.count;
+    const gamesArray = games.rows;
+    res.render('gamesgallery', {
+      path: '/gamesgallery',
+      pageTitle: 'GamesGallery',
+      games: gamesArray,
+      pageNumber: page,
+      pageButtons: Math.ceil(totalGames / gamesPerPage),
+    });
+  } catch (err) {
+    // Error fetching games from the database.
+    res.redirect('/');
+  }
 };
 
 exports.getHome = (req, res, next) => {
