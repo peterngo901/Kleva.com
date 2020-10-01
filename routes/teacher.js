@@ -14,6 +14,11 @@ router.get('/teacher-students', classroomController.getTeacherStudents);
 
 router.get('/classroom/:classroomCode', classroomController.getClassroom);
 
-router.post('/classroom/:classroomCode/delete', classroomController.postDeleteClassroom);
+router.post(
+  '/classroom/:classroomCode/delete',
+  classroomController.postDeleteClassroom
+);
+
+router.post('/create-questions', classroomController.postCreateQuestions);
 
 module.exports = router;
