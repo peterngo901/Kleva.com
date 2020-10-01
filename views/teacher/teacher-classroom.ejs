@@ -99,7 +99,7 @@
               alt="User Photo"
               class="user-nav__user-photo"
             />
-            <span class="user-name"><%= games.classCode %></span>
+            <span class="user-name"><%= games.classCode; %></span>
           </div>
         </nav>
       </header>
@@ -111,7 +111,7 @@
           <ul class="side-nav">
             <!-- Active Styling with Plain JS Logic -->
             <li
-              class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %>"
+              class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/teacher-dashboard" class="side-nav__link">
                 <!-- Sidebar Icon -->
@@ -124,7 +124,7 @@
               </a>
             </li>
             <li
-              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>"
+              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/teacher-students" class="side-nav__link">
                 <svg class="side-nav__icon">
@@ -136,7 +136,7 @@
               </a>
             </li>
             <li
-              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>"
+              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/" class="side-nav__link">
                 <svg class="side-nav__icon">
@@ -154,34 +154,27 @@
         <main class="upload">
           <!-- Manage Students -->
           <div class="upload-form">
-            <div class="row">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
                     <a href="/teacher-dashboard">All Classrooms</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Class - <%= games.title %>
+                    Class - <%= games.title; %>
                   </li>
                 </ol>
               </nav>
-            </div>
-            <div class="row">
               <div class="col-12">
                 <h1>Class Single-Signon Code: <%= games.classCode %></h1>
                 <p>
                   <%= games.title%> <%= games.yearLevel %> <%= games.subject %>
                 </p>
               </div>
-            </div>
 
-            <div class="row">
               <button>
                 <a href="/gamesgallery/?page=1"> Discover Teaching Tools > </a>
               </button>
-            </div>
 
-            <div class="row">
               <h2>Installed Games</h2>
 
               <!-- Load all the installed games -->
@@ -193,7 +186,6 @@
                 </div>
               </div>
               <% } %>
-            </div>
 
             <!-- Delete the Classroom -->
             <div class="row d-flex justify-content-center">
