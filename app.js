@@ -26,6 +26,7 @@ const sequelize = require('./data/database');
 // Models (Tables in Database)
 const Teacher = require('./models/teacher');
 const Classroom = require('./models/classroom');
+const ClassroomStats = require('./models/classroomStats');
 const Creator = require('./models/creator');
 const Game = require('./models/game');
 const Student = require('./models/student');
@@ -131,6 +132,14 @@ Student.belongsTo(Classroom, {
 });
 
 Classroom.hasMany(Student);
+
+Game.hasOne(ClassroomStats, { foreignKey: 'gameID' });
+
+ClassroomStats.belongsTo(Classroom, {
+  constraints: true,
+  onDelete: 'CASCADE',
+})
+
 
 ////////////////////////////////////////////////////////////////////////////
 
