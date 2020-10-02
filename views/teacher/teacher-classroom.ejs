@@ -172,14 +172,14 @@
                     <a href="/teacher-dashboard">All Classrooms</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Class - <%= games.title; %>
+                    Class - <%= classRoom.title; %>
                   </li>
                 </ol>
               </nav>
               <div class="col-12">
-                <h1>Class Single-Signon Code: <%= games.classCode; %></h1>
+                <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
                 <p>
-                  <%= games.title%> <%= games.yearLevel %> <%= games.subject; %>
+                  <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
                 </p>
                 <button type="button" class="btn btn-light btn-lg">
                 <a href="/teacher-game-storepage"> Add Games > </a>
@@ -189,11 +189,11 @@
               </div>
 
               <!-- Load all the installed games -->
-              <% if (games.length > 0) { %>
+              <% if (classRoom.length > 0) { %>
               <div class="card col-3">
-                <div class="card title"><%= games.title %></div>
+                <div class="card title"><%= classRoom.title %></div>
                 <div class="card body">
-                  <%= games.yearLevel %> <%= games.subject %>
+                  <%= classRoom.yearLevel %> <%= classRoom.subject %>
                 </div>
               </div>
               <% }; %>
@@ -232,12 +232,12 @@
                       Deleting a classroom is permanent. Do you wish to
                       continue?
                       <form
-                        action="/classroom/<%= games.classCode %>/delete"
+                        action="/classroom/<%= classRoom.classCode %>/delete"
                         method="POST"
                       >
                         <input
                           type="hidden"
-                          value="<%= games.classCode %>"
+                          value="<%= classRoom.classCode %>"
                           name="classCode"
                         />
                         <button type="submit">Delete the Classroom</button>

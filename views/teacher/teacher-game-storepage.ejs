@@ -37,7 +37,7 @@
         <img src="../img/logo.png" alt="Kleva" class="logo" />
         <!-- Search Bar -->
         <form action="/" class="search" method="POST">
-          <input type="text" class="search__input" placeholder="Search Games" />
+          <input type="text" class="search__input" placeholder="Search classRoom" />
           <button class="search__button">
             <svg class="search__icon">
               <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
@@ -160,7 +160,7 @@
                     <a href="/teacher-dashboard">All Classrooms</a>
                   </li>
                   <li class="breadcrumb-item" aria-current="page">
-                    <a href="/classroom/<%- games.classCode; %>"> Class - <%= games.title; %></a>
+                    <a href="/classroom/<%- classRoom.classCode; %>"> Class - <%= classRoom.title; %></a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
                     Game Storepage
@@ -169,19 +169,24 @@
               </nav>
 
               <div class="col-12">
-                <h1>Class Single-Signon Code: <%= games.classCode; %></h1>
+                <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
                 <p>
-                  <%= games.title%> <%= games.yearLevel %> <%= games.subject; %>
+                  <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
                 </p>
                 <h2>Installed Games</h2>
+                <% if (games.length > 0 ) { %>
+                    <p>There are games in the database</p>
+                    <%} else { %>
+                    <p>There are no games in the database</p
+                    <% } %>
               </div>
 
               <!-- Load all the installed games -->
-              <% if (games.length > 0) { %>
+              <% if (classRoom.length > 0) { %>
               <div class="card col-3">
-                <div class="card title"><%= games.title %></div>
+                <div class="card title"><%= classRoom.title %></div>
                 <div class="card body">
-                  <%= games.yearLevel %> <%= games.subject %>
+                  <%= classRoom.yearLevel %> <%= classRoom.subject %>
                 </div>
               </div>
               <% }; %>
@@ -220,12 +225,12 @@
                       Deleting a classroom is permanent. Do you wish to
                       continue?
                       <form
-                        action="/classroom/<%= games.classCode %>/delete"
+                        action="/classroom/<%= classRoom.classCode %>/delete"
                         method="POST"
                       >
                         <input
                           type="hidden"
-                          value="<%= games.classCode %>"
+                          value="<%= classRoom.classCode %>"
                           name="classCode"
                         />
                         <button type="submit">Delete the Classroom</button>

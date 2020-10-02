@@ -110,13 +110,13 @@ app.use(notFoundController.get404);
 
 // Relations for Postgres using Sequelize
 
-Game.belongsTo(Creator, {
-  // Each Game belongs to a Creator.
-  constraints: true,
-  onDelete: 'CASCADE',
-});
+// Game.belongsTo(Creator, {
+//   // Each Game belongs to a Creator.
+//   constraints: true,
+//   onDelete: 'CASCADE',
+// });
 
-Creator.hasMany(Game); // Each Creator has many Games.
+//Creator.hasMany(Game); // Each Creator has many Games.
 
 Classroom.belongsTo(Teacher, {
   // Each Classroom belongs to a Teacher.
