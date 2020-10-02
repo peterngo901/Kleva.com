@@ -19,6 +19,7 @@ exports.getTeacherDashboard = (req, res, next) => {
         console.log(classrooms);
         Teacher.findOne({ where: { email: email } })
           .then((teacher) => {
+            req.session.userName = teacher.firstName; //Set name in session
             res.render('teacher/teacher-dashboard', {
               path: '/teacher-dashboard',
               name: teacher.firstName,
@@ -76,9 +77,10 @@ exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
     Classroom.findOne({ classCode: classCode }).then((classRoom) => {
-      console.log(classRoom);
+      console.log("===> Classroom = " + classRoom);
       res.render('teacher/teacher-classroom', {
         games: classRoom,
+        name: req.session.userName,
         path: '/teacher-dashboard',
       });
     });
@@ -113,4 +115,19 @@ exports.postCreateQuestions = (req, res, next) => {
     name: ' ',
     classCode: classCode,
   });
+};
+
+exports.getTeacherGameStorepage = (req, res, next) => {
+  if (req.session.user) {
+    const classCode = req.params.classroomCode;
+    Classroom.findOne({ classCode: classCode }).then((classRoom) => {
+      res.render('teacher/teacher-game-storepage', {
+        games: classRoom,
+        name: req.session.userName,
+        path: '/teacher-classroom',
+      });
+    });
+  } else {
+    res.redirect('/');
+  }
 };

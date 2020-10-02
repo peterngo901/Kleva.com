@@ -111,18 +111,6 @@
           <ul class="side-nav">
             <!-- Active Styling with Plain JS Logic -->
             <li
-              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>"
-            >
-              <a href="/teacher-game-storepage" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use
-                    xlink:href="../img/symbol-defs.svg#icon-click"
-                  ></use>
-                </svg>
-                <span>Add Games</span>
-              </a>
-            </li>
-            <li
               class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/teacher-dashboard" class="side-nav__link">
@@ -171,21 +159,21 @@
                   <li class="breadcrumb-item">
                     <a href="/teacher-dashboard">All Classrooms</a>
                   </li>
+                  <li class="breadcrumb-item" aria-current="page">
+                    <a href="/classroom/<%- games.classCode; %>"> Class - <%= games.title; %></a>
+                  </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Class - <%= games.title; %>
+                    Game Storepage
                   </li>
                 </ol>
               </nav>
+
               <div class="col-12">
                 <h1>Class Single-Signon Code: <%= games.classCode; %></h1>
                 <p>
                   <%= games.title%> <%= games.yearLevel %> <%= games.subject; %>
                 </p>
-                <button type="button" class="btn btn-light btn-lg">
-                <a href="/teacher-game-storepage"> Add Games > </a>
-              </button>
-
-              <h2>Installed Games</h2>
+                <h2>Installed Games</h2>
               </div>
 
               <!-- Load all the installed games -->
