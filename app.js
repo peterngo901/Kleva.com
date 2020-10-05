@@ -26,6 +26,7 @@ const sequelize = require('./data/database');
 // Models (Tables in Database)
 const Teacher = require('./models/teacher');
 const Classroom = require('./models/classroom');
+const ClassroomStats = require('./models/classroomStats');
 const Creator = require('./models/creator');
 const Game = require('./models/game');
 const Student = require('./models/student');
@@ -110,13 +111,13 @@ app.use(notFoundController.get404);
 
 // Relations for Postgres using Sequelize
 
-Game.belongsTo(Creator, {
-  // Each Game belongs to a Creator.
-  constraints: true,
-  onDelete: 'CASCADE',
-});
+// Game.belongsTo(Creator, {
+//   // Each Game belongs to a Creator.
+//   constraints: true,
+//   onDelete: 'CASCADE',
+// });
 
-Creator.hasMany(Game); // Each Creator has many Games.
+//Creator.hasMany(Game); // Each Creator has many Games.
 
 Classroom.belongsTo(Teacher, {
   // Each Classroom belongs to a Teacher.
@@ -132,6 +133,14 @@ Student.belongsTo(Classroom, {
 });
 
 Classroom.hasMany(Student);
+
+Game.hasOne(ClassroomStats, { foreignKey: 'gameID' });
+
+ClassroomStats.belongsTo(Classroom, {
+  constraints: true,
+  onDelete: 'CASCADE',
+})
+
 
 ////////////////////////////////////////////////////////////////////////////
 

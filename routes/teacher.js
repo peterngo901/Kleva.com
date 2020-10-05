@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/teacher-dashboard', classroomController.getTeacherDashboard);
 
+router.get('/teacher-game-storepage', classroomController.getTeacherGameStorepage);
+
 router.post('/add-classroom', classroomController.postAddClassroom);
 
 router.get('/teacher-students', classroomController.getTeacherStudents);

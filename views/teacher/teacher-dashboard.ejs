@@ -99,7 +99,7 @@
               alt="User Photo"
               class="user-nav__user-photo"
             />
-            <span class="user-name"><%= name %></span>
+            <span class="user-name"><%= name; %></span>
           </div>
         </nav>
       </header>
@@ -111,7 +111,7 @@
           <ul class="side-nav">
             <!-- Active Styling with Plain JS Logic -->
             <li
-              class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %>"
+              class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/teacher-dashboard" class="side-nav__link">
                 <!-- Sidebar Icon -->
@@ -122,7 +122,7 @@
               </a>
             </li>
             <li
-              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>"
+              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/teacher-students" class="side-nav__link">
                 <svg class="side-nav__icon">
@@ -132,7 +132,7 @@
               </a>
             </li>
             <li
-              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>"
+              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
               <a href="/" class="side-nav__link">
                 <svg class="side-nav__icon">

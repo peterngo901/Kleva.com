@@ -1,4 +1,6 @@
 const Classroom = require('../models/classroom');
+const ClassroomStats = require('../models/classroomStats');
+const Games = require('../models/game');
 const { v4: uuidv4 } = require('uuid');
 
 const Teacher = require('../models/teacher');
@@ -19,6 +21,7 @@ exports.getTeacherDashboard = (req, res, next) => {
         console.log(classrooms);
         Teacher.findOne({ where: { email: email } })
           .then((teacher) => {
+            req.session.userName = teacher.firstName; //Set name in session
             res.render('teacher/teacher-dashboard', {
               path: '/teacher-dashboard',
               name: teacher.firstName,
@@ -76,10 +79,18 @@ exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
     Classroom.findOne({ classCode: classCode }).then((classRoom) => {
-      console.log(classRoom);
-      res.render('teacher/teacher-classroom', {
-        games: classRoom,
-        path: '/teacher-dashboard',
+      ClassroomStats.findAll({
+      where: {
+        classroomClassCode: classCode,
+      },
+      attributes: ['gameID'],
+      }).then((games) => {
+        res.render('teacher/teacher-classroom', {
+          classRoom: classRoom,
+          games: games,
+          name: req.session.userName,
+          path: '/teacher-dashboard',
+        });
       });
     });
   } else {
@@ -114,4 +125,26 @@ exports.postCreateQuestions = (req, res, next) => {
     name: ' ',
     classCode: classCode,
   });
+};
+
+exports.getTeacherGameStorepage = (req, res, next) => {
+  if (req.session.user) {
+    const classCode = req.params.classroomCode;
+    Games.findAll({ // <---- Loads all Games (should make it load only)
+      // Several at a time
+      attributes: ['gameID', 'title', 'category', 'subCategory', 
+      'description','gameFileURL','gameImageURL'],
+    }).then((games) => { 
+      Classroom.findOne({ classCode: classCode }).then((classRoom) => {
+        res.render('teacher/teacher-game-storepage', {
+          classRoom: classRoom,
+          games: games,
+          name: req.session.userName,
+          path: '/teacher-classroom',
+        });
+      });
+    });
+  } else {
+    res.redirect('/');
+  }
 };
