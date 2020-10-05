@@ -30,6 +30,7 @@ const Creator = require('./models/creator');
 const Game = require('./models/game');
 const Student = require('./models/student');
 const Session = require('./models/session');
+const ClassroomStats = require('./models/classroomStats');
 
 // Session Storage on PostgreSQL Database with Sequelize ORM
 var SequelizeStore = require('connect-session-sequelize')(session.Store);

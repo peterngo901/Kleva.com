@@ -106,6 +106,7 @@ exports.postDeleteClassroom = (req, res, next) => {
 exports.postCreateQuestions = (req, res, next) => {
   const { topic } = req.body;
   const { classCode } = req.body;
+  req.session.classCode = classCode;
   // TODO: Create a Question Bank Model and Table.
   res.render('teacher/gameStaging', {
     questions: {},

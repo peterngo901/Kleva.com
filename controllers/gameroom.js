@@ -1,4 +1,6 @@
-const chance = require('chance');
+const Chance = require('chance');
+
+const users = [];
 
 exports.getGameroom = (req, res, next) => {
   if (req.session.user && req.session.type == 'student') {
@@ -13,8 +15,21 @@ exports.getGameroom = (req, res, next) => {
         // connections with the same ID
         io.removeAllListeners('connection');
       }
+      // Add the user to the global users variable.
+      const student = addUser({
+        id: socket.id,
+        firstName: req.session.firstName,
+        lastName: req.session.lastName,
+        room: req.session.classCode,
+      });
+      //console.log(student);
       // Student will join the waiting room with unique name = classCode.
       socket.join(`${req.session.classCode}`);
+      // Render Students in the List.
+      io.to(`${req.session.classCode}`).emit('studentsList', {
+        room: student.room,
+        students: users,
+      });
       // Check how many students are in the waiting room to assign breakout rooms.
       var room = io.sockets.adapter.rooms[`${req.session.classCode}`];
       console.log(room.length);
@@ -51,12 +66,37 @@ exports.getGameroom = (req, res, next) => {
 
 exports.getTeacherGameroom = (req, res, next) => {
   // Teacher will emit drawing game question to all students.
-  let socket_id = [];
+  let teacher_socket_id = [];
   const io = req.app.get('socketio');
 
   io.on('connection', (socket) => {
-    console.log('Teacher has joined the Master Room!');
+    // Removes any socket id duplications when client refreshes.
+    teacher_socket_id.push(teacher_socket_id);
+    if (teacher_socket_id[0] === teacher_socket_id) {
+      // remove the connection listener for any subsequent
+      // connections with the same ID
+      io.removeAllListeners('connection');
+    }
+    // Teacher will join the waiting room with unique name = classCode.
+    socket.join(`${req.session.classCode}`);
+    // Broadcast to everyone in the waiting room, another student has joined.
+    socket.broadcast
+      .to(`${req.session.classCode}`)
+      .emit('message', 'A teacher has joined the room!');
+
+    socket.on('join', () => {});
   });
+  res.render('teacher-gameroom', {
+    pageTitle: 'Kleva',
+    path: '/teacher-gameroom',
+    name: '',
+  });
+};
+
+exports.postTeacherGameroom = (req, res, next) => {
+  // TODO: Validate Questions.
+  // TODO: Add Questions to the Question Bank.
+  res.redirect('/teacher/game-room');
 };
 
 exports.postGameQuestion = (req, res, next) => {
@@ -71,7 +111,6 @@ exports.postGameQuestion = (req, res, next) => {
   });
 };
 
-const users = [];
 // Add User to Tracking List
 const addUser = ({ id, firstName, lastName, room }) => {
   // id parameter: unique id provided by socket.io
@@ -81,6 +120,7 @@ const addUser = ({ id, firstName, lastName, room }) => {
   const realName = firstName + ' ' + lastName;
 
   // Assign an random animal name to render in student view. Teacher will see real student names.
+  const chance = new Chance();
   const anonName = chance.animal();
   const displayName = 'Kleva ' + anonName;
 
@@ -89,11 +129,13 @@ const addUser = ({ id, firstName, lastName, room }) => {
   const purplePen = 'rgb(75,0,146)';
   const bluePen = 'rgb(0,90,181)';
 
+  const penColor = greenPen;
+
   // Define all the student properties.
   const user = { id, realName, displayName, penColor, room };
   // Store the student.
   users.push(user);
-  return { user };
+  return users;
 };
 
 // Remove Student from the List

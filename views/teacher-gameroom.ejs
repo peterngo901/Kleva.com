@@ -8,8 +8,8 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/creator-dashboard.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/creator-dashboard.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -34,13 +34,13 @@
       <!-- Navigation Bar -->
       <header class="header">
         <!-- Logo -->
-        <img src="img/logo.png" alt="Kleva" class="logo" />
+        <img src="../img/logo.png" alt="Kleva" class="logo" />
         <!-- Search Bar -->
         <form action="/" class="search" method="POST">
           <input type="text" class="search__input" placeholder="Search Games" />
           <button class="search__button">
             <svg class="search__icon">
-              <use xlink:href="img/symbol-defs.svg#icon-search"></use>
+              <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
             </svg>
           </button>
         </form>
@@ -55,7 +55,7 @@
 
           <label for="menu_burger" class="mobile-navigation__button">
             <svg class="mobile-navigation__button-icon">
-              <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
+              <use xlink:href="../img/symbol-defs.svg#icon-menu"></use>
             </svg>
           </label>
 
@@ -84,18 +84,18 @@
           <div class="user-nav__icon-box">
             <a href="/">
               <svg class="user-nav__icon">
-                <use xlink:href="img/symbol-defs.svg#icon-home"></use>
+                <use xlink:href="../img/symbol-defs.svg#icon-home"></use>
               </svg>
             </a>
           </div>
           <div class="user-nav__icon-box">
             <svg class="user-nav__icon">
-              <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
+              <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
             </svg>
           </div>
           <div class="user-nav__user">
             <img
-              src="img/profile.png"
+              src="../img/profile.png"
               alt="User Photo"
               class="user-nav__user-photo"
             />
@@ -116,7 +116,9 @@
               <a href="/teacher-dashboard" class="side-nav__link">
                 <!-- Sidebar Icon -->
                 <svg class="side-nav__icon">
-                  <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
+                  <use
+                    xlink:href="../img/symbol-defs.svg#icon-box-remove"
+                  ></use>
                 </svg>
                 <span>Gameroom</span>
               </a>
@@ -126,31 +128,15 @@
             >
               <a href="/teacher-students" class="side-nav__link">
                 <svg class="side-nav__icon">
-                  <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
+                  <use
+                    xlink:href="../img/symbol-defs.svg#icon-user-check"
+                  ></use>
                 </svg>
-                <span>Student 1</span>
+                <span>Teacher</span>
               </a>
             </li>
-            <li
-              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>"
-            >
-              <a href="/teacher-students" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
-                </svg>
-                <span>Student 2</span>
-              </a>
-            </li>
-            <li
-              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>"
-            >
-              <a href="/teacher-students" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
-                </svg>
-                <span>Student 3</span>
-              </a>
-            </li>
+
+            <div id="studentOutput"></div>
           </ul>
           <!-- Legal Text -->
           <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
@@ -178,4 +164,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/draw.js"></script>
   <script src="/js/p5.js"></script>
+  <script src="/js/teacherView.js"></script>
 </html>

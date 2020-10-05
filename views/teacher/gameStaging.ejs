@@ -149,98 +149,112 @@
           <!-- Manage Students -->
           <div
             class="upload-form"
-            style="min-height: 88vh; height: fit-content"
+            style="min-height: 120rem; height: fit-content"
           >
             <div class="row justify-content-center">
-              <div class="col-10 mt-5 text-center">
-                <h1>2 Questions in 5 Minutes</h1>
+              <div class="col-12 mt-5 text-center">
+                <img
+                  src="img/kleva_doodles_bw.png"
+                  class="img-fluid"
+                  height="180px"
+                  width="300px"
+                />
               </div>
               <div class="col-10 mt-5">
-                <form>
+              <form action="/teacher/game-room" method="POST">
+                
                   <!-- Question 1 -->
                   <div class="input-group mb-5">
                     <div class="input-group-prepend">
                       <label
                         class="input-group-text"
-                        for="inputGroupSelect01"
+                        for="doodle01"
                         style="font-size: 3rem"
                         >Doodle...</label
                       >
                     </div>
                     <select
                       class="custom-select"
-                      id="inputGroupSelect01"
+                      id="doodle01"
                       style="font-size: 3rem"
                     >
-                      <!-- Load from the Database -->
+                      <!-- Doodle Question Options 1 -->
                       <option selected>hydrogen structure</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option value="oxygen structure">oxygen structure</option>
+                      <option value="lithium structure">lithium structure</option>
+                      <option value="magnesium structure">magnesium structure</option>
                     </select>
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-success"
-                        type="button"
-                        style="font-size: 3rem"
+                    
+                      <div
+                        class="input-group col-12 justify-content-center mt-3"
                       >
-                        Done
-                      </button>
-                    </div>
+                        <button
+                          class="btn"
+                          type="button"
+                          style="font-size: 3rem"
+                        >
+                          <img
+                            src="img/add_question_button.png"
+                            class="img-fluid"
+                          />
+                        </button>
+                      </div>
+                      
+                    
                   </div>
+                
+              
                   <!-- Question 2 -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <label
                         class="input-group-text"
-                        for="inputGroupSelect01"
+                        for="doodle02"
                         style="font-size: 3rem"
                         >Doodle...</label
                       >
                     </div>
                     <select
                       class="custom-select"
-                      id="inputGroupSelect01"
+                      id="doodle02"
                       style="font-size: 3rem"
                     >
-                      <!-- Load from the Database -->
+                      <!-- Doodle Question Options 2 -->
                       <option selected>hydrogen structure</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option value="oxygen structure">oxygen structure</option>
+                      <option value="lithium structure">lithium structure</option>
+                      <option value="magnesium structure">magnesium structure</option>
                     </select>
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-success"
-                        type="button"
-                        style="font-size: 3rem"
-                      >
-                        Done
+                    <div class="input-group col-12 justify-content-center mt-3">
+                      <button class="btn" type="button" style="font-size: 3rem">
+                        <img
+                          src="img/add_question_button.png"
+                          class="img-fluid"
+                        />
                       </button>
                     </div>
                   </div>
-                </form>
+               
               </div>
             </div>
             <div class="row mt-5 justify-content-center">
-              <div class="col-10 mt-5 text-center outline-success">
+              <div class="col-10 mt-5 text-center">
                 <h1>Share this code with your students:</h1>
-                <h1 class="badge badge-warning" style="font-size: 8rem">
+                <h1 class="badge badge-warning" style="font-size: 5rem">
                   <%= classCode %>
                 </h1>
               </div>
               <div class="col-10 mt-5 text-center">
-                <button
-                  class="btn btn-success btn-block"
-                  style="font-size: 3rem"
-                >
-                  Open the Game Room>
+                <button class="btn btn-block" style="font-size: 3rem" type="submit">
+                  <img src="img/open_gameroom_bold.png" class="img-fluid" />
                 </button>
               </div>
             </div>
+          </form>
           </div>
         </main>
       </div>
     </div>
   </body>
+  
 </html>
