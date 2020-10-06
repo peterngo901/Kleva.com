@@ -12,9 +12,9 @@
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('Kleva', 'gabriel', '', {
-    dialect: 'postgres',
-    host: 'localhost'
+const sequelize = new Sequelize('postgres', 'postgres', 'royalelephants', {
+  dialect: 'postgres',
+  host: 'localhost',
 });
 
 module.exports = sequelize;

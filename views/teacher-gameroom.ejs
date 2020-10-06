@@ -143,18 +143,39 @@
         </nav>
 
         <!-- Main Content Area -->
+
         <main class="upload">
           <!-- Manage Students -->
           <div class="upload-form" style="height: 88vh">
             <div class="create_your_classroom">
-              <!-- <h1 class="classroom-title mb-5">Gameroom</h1> -->
-              <button id="send-question">
-                <h1 class="classroom-title mb-5">Submit Question</h1>
-              </button>
-            </div>
-            <div class="row">
-              <!-- Sketch Canvas Area -->
-              <div class="col-12" id="canvas-holder"></div>
+              <div class="container-fluid">
+                <div class="row justify-content-between">
+                  <!-- Begin Game Button -->
+                  <div class="col-3 text-center">
+                    <button
+                      id="send-question"
+                      class="btn-lg btn-success my-5"
+                      onclick="beginGame()"
+                    >
+                      Begin Game
+                    </button>
+                  </div>
+                  <!-- End Game Button -->
+                  <div class="col-3 text-center">
+                    <button
+                      id="send-question"
+                      class="btn-lg btn-danger my-5 text-center"
+                    >
+                      End Game
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Sketch Canvas Area -->
+                <div class="col-12" id="canvas-holder"></div>
+              </div>
             </div>
           </div>
         </main>

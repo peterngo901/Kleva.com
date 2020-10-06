@@ -16,3 +16,7 @@ socket.on('studentsList', (allStudents) => {
   //console.log(allStudents.students[0]);
   document.getElementById('studentOutput').innerHTML = studentNames;
 });
+
+function beginGame() {
+  socket.emit('beginGame');
+}

@@ -191,11 +191,13 @@
                         <button
                           class="btn"
                           type="button"
-                          style="font-size: 3rem"
+                          style="font-size: 3rem; box-shadow: none;"
                         >
                           <img
+                          id="questionButton1"
                             src="img/add_question_button.png"
                             class="img-fluid"
+                            onClick="changeImage1()"
                           />
                         </button>
                       </div>
@@ -218,6 +220,7 @@
                       class="custom-select"
                       id="doodle02"
                       style="font-size: 3rem"
+                      
                     >
                       <!-- Doodle Question Options 2 -->
                       <option selected>hydrogen structure</option>
@@ -226,15 +229,18 @@
                       <option value="magnesium structure">magnesium structure</option>
                     </select>
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn" type="button" style="font-size: 3rem">
+                      <button class="btn" type="button" style="font-size: 3rem;  box-shadow: none;">
                         <img
+                          id="questionButton2"
                           src="img/add_question_button.png"
                           class="img-fluid"
+                          onClick="changeImage()"
+                          
                         />
+                        
                       </button>
                     </div>
                   </div>
-               
               </div>
             </div>
             <div class="row mt-5 justify-content-center">
@@ -245,7 +251,7 @@
                 </h1>
               </div>
               <div class="col-10 mt-5 text-center">
-                <button class="btn btn-block" style="font-size: 3rem" type="submit">
+                <button class="btn btn-block" style="font-size: 3rem; box-shadow: none;" type="submit">
                   <img src="img/open_gameroom_bold.png" class="img-fluid" />
                 </button>
               </div>
@@ -256,5 +262,24 @@
       </div>
     </div>
   </body>
-  
+  <script language="javascript">
+    function changeImage() {
+      if (document.getElementById("questionButton2").src == "http://localhost:3000/img/add_question_button.png") {
+        document.getElementById("questionButton2").src = "http://localhost:3000/img/cancel_button.png";
+        $('#doodle02').prop('disabled', true);
+      } else {
+        document.getElementById("questionButton2").src = "http://localhost:3000/img/add_question_button.png";
+        $('#doodle02').prop('disabled', false);
+      }
+    };
+    function changeImage1() {
+      if (document.getElementById("questionButton1").src == "http://localhost:3000/img/add_question_button.png") {
+        document.getElementById("questionButton1").src = "http://localhost:3000/img/cancel_button.png";
+        $('#doodle01').prop('disabled', true);
+      } else {
+        document.getElementById("questionButton1").src = "http://localhost:3000/img/add_question_button.png";
+        $('#doodle01').prop('disabled', false);
+      }
+    };
+  </script>
 </html>

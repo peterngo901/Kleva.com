@@ -48,6 +48,10 @@ exports.getGameroom = (req, res, next) => {
         // Share the drawing data with every student in the room.
         socket.broadcast.to(`${req.session.classCode}`).emit('mousedata', data);
       });
+      // Timer has reached 0.
+      socket.on('beginQuestions', () => {
+        socket.broadcast.to(`${req.session.classCode}`).emit('displayQOne');
+      });
       socket.on('disconnect', () => {
         io.emit('message', 'A student has left the room!');
       });
@@ -77,8 +81,27 @@ exports.getTeacherGameroom = (req, res, next) => {
       // connections with the same ID
       io.removeAllListeners('connection');
     }
+
     // Teacher will join the waiting room with unique name = classCode.
-    socket.join(`${req.session.classCode}`);
+    socket.join(`${req.session.classCode}`, () => {
+      io.to(`${req.session.classCode}`).emit('studentsList', {
+        students: users,
+      });
+    });
+
+    // Teacher has begun the game via the Begin Game Button.
+    socket.on('beginGame', () => {
+      const questionOne = 'Doodle the structure of Hydrogen';
+      const questionTwo = 'Doodle the structure of Oxygen';
+      socket.broadcast
+        .to(`${req.session.classCode}`)
+        .emit('begin', { questionOne, questionTwo });
+    });
+
+    // // Render Students in the List.
+    // io.to(`${req.session.classCode}`).emit('studentsList', {
+    //   students: users,
+    // });
     // Broadcast to everyone in the waiting room, another student has joined.
     socket.broadcast
       .to(`${req.session.classCode}`)
