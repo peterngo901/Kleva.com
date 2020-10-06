@@ -136,6 +136,7 @@ Classroom.hasMany(Student);
 Game.hasOne(ClassroomStats, { foreignKey: 'gameID' });
 
 ClassroomStats.belongsTo(Classroom, {
+  foreignKey: 'classroomClassCode',
   constraints: true,
   onDelete: 'CASCADE',
 })

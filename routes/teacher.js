@@ -23,4 +23,6 @@ router.post(
 
 router.post('/create-questions', classroomController.postCreateQuestions);
 
+router.post('/add-game', classroomController.postAddGame);
+
 module.exports = router;

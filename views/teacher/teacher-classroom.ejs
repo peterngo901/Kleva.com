@@ -113,7 +113,7 @@
             <li
               class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>"
             >
-              <a href="/teacher-game-storepage" class="side-nav__link">
+              <a href="/teacher-game-storepage/?page=1" class="side-nav__link">
                 <svg class="side-nav__icon">
                   <use
                     xlink:href="../img/symbol-defs.svg#icon-click"
@@ -182,21 +182,49 @@
                   <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
                 </p>
                 <button type="button" class="btn btn-light btn-lg">
-                <a href="/teacher-game-storepage"> Add Games > </a>
+                <a href="/teacher-game-storepage/?page=1"> Add Games > </a>
               </button>
 
               <h2>Installed Games</h2>
               </div>
 
               <!-- Load all the installed games -->
-              <% if (classRoom.length > 0) { %>
-              <div class="card col-3">
-                <div class="card title"><%= classRoom.title %></div>
-                <div class="card body">
-                  <%= classRoom.yearLevel %> <%= classRoom.subject %>
+              <div class="col-12">
+                <div class="row mt-5">
+
+                  <!-- Game Loader -->
+                  <% if (games.length > 0) { %> <% for (let game of games) { %>
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <a href="#"
+                        ><img
+                          class="card-img-top"
+                          src="<%- game.gameImageURL %>"
+                          alt=""
+                      /></a>
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <a href="#"><%- game.title %></a>
+                        </h4>
+                        <p class="card-text"><%- game.description %></p>
+
+                        <!-- Add game -->
+                        <form class="testButton">
+                          <input type="hidden" name="gameID" value="<%- game.gameID%>" />
+                          <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
+                          <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                        </form>
+
+                        <div id="result"></div>
+                      </div>
+                      <div class="card-footer">
+                        <small><%- game.category %></small>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %> <% } %>
                 </div>
               </div>
-              <% }; %>
 
             <!-- Delete the Classroom -->
             <div class="row d-flex justify-content-center">

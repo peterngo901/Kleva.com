@@ -7,6 +7,8 @@ const Teacher = require('../models/teacher');
 const generate = require('nanoid-generate');
 const dictionary = require('nanoid-dictionary');
 
+const gamesPerPage = 3;
+
 exports.getTeacherDashboard = (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
@@ -83,7 +85,8 @@ exports.getClassroom = (req, res, next) => {
       where: {
         classroomClassCode: classCode,
       },
-      attributes: ['gameID'],
+      attributes: ['gameID'], //TODO: use gameIDs from Stats table to get game data from Game..
+      //...table. (Use a SQL join?)
       }).then((games) => {
         res.render('teacher/teacher-classroom', {
           classRoom: classRoom,
@@ -127,17 +130,25 @@ exports.postCreateQuestions = (req, res, next) => {
 };
 
 exports.getTeacherGameStorepage = (req, res, next) => {
+  const page = req.query.page;
+  console.log('PAGE  = '+page)
   if (req.session.user) {
     const classCode = req.params.classroomCode;
-    Games.findAll({ // <---- Loads all Games (should make it load only)
-      // Several at a time
-      attributes: ['gameID', 'title', 'category', 'subCategory', 
-      'description','gameFileURL','gameImageURL'],
-    }).then((games) => { 
+    // Skip games based on page.
+    var gameBatch = (page - 1) * gamesPerPage;
+    console.log('GameBATCH = '+gameBatch)
+    Games.findAndCountAll({
+        offset: gameBatch,
+        limit: gamesPerPage,
+    }).then((games) => {
+      const totalGames = games.count;
+      const gamesArray = games.rows;
       Classroom.findOne({ classCode: classCode }).then((classRoom) => {
         res.render('teacher/teacher-game-storepage', {
           classRoom: classRoom,
-          games: games,
+          games: gamesArray,
+          pageNumber: page,
+          pageButtons: Math.ceil(totalGames / gamesPerPage),
           name: req.session.userName,
           path: '/teacher-classroom',
         });
@@ -146,4 +157,25 @@ exports.getTeacherGameStorepage = (req, res, next) => {
   } else {
     res.redirect('/');
   }
+};
+
+exports.postAddGame = (req, res, next) => {
+  const gameID = req.body.gameID;
+  const classCode = req.body.classCode;
+  const time = new Date().getTime();
+
+  ClassroomStats.create({
+    AverageStudentActivity: 0,
+    gameID: gameID,
+    createdAt: time,
+    updatedAt: time,
+    classroomClassCode: classCode
+  })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    })
+    .then(() => {
+      res.sendStatus(200);;
+    });
 };
