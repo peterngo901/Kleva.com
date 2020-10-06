@@ -6,4 +6,8 @@ const router = express.Router();
 
 router.get('/game-room', gameroomController.getGameroom);
 
+router.get('/teacher/game-room', gameroomController.getTeacherGameroom);
+
+router.post('/teacher/game-room', gameroomController.postTeacherGameroom);
+
 module.exports = router;
