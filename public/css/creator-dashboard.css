@@ -38,11 +38,11 @@ body {
 }
 
 .container {
-    max-width: 120rem;
     margin: 0 auto;
     background-color:#dbdbdb;
     box-shadow: var(--shadow-box);
     min-height: 50rem;
+    
 }
 
 @media only screen and (max-width: 75em) {
@@ -142,6 +142,31 @@ body {
          display: none;
      }
 
+}
+
+/*Gamepage Education Cirriculum selection modal*/
+.modal-dialog-full-width {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width:none !important;
+
+}
+
+.modal-content-full-width  {
+    height: auto !important;
+    min-height: 100% !important;
+    border-radius: 0 !important;
+    background-color: #ececec !important 
+}
+
+.modal-header-full-width  {
+    border-bottom: 1px solid #9ea2a2 !important;
+}
+
+.modal-footer-full-width  {
+    border-top: 1px solid #9ea2a2 !important;
 }
 
 .mobile-navigation {
@@ -248,6 +273,14 @@ body {
     margin-right: 1.1rem;
 }
 
+.bg-game {
+    background-color: #fff;
+}
+
+.no-margin {
+    margin: 0;
+}
+
 .upload {
     background-color: #E0D9FF;
     flex: 1;
@@ -255,10 +288,11 @@ body {
 }
 
 .upload-form {
-    background-color: whitesmoke;
+    background-color:var(--color-primary-yellow);
     box-shadow: 0 2rem 5rem rgba(0,0,0,.1);
     flex: 0 0 100%;
     margin: 5rem 3.8rem;
+    height: 80rem;
 }
 
 .upload-form__text {
@@ -438,7 +472,16 @@ body {
 .legal {
     font-size: 1rem;
     text-align: center;
-    padding: 2rem;  
+    padding-bottom: 5rem;  
+}
+
+.classroom-title {
+    font-style: Quicksand;
+    font-size: 5rem;
+    font-weight: 500;
+    padding-left: 3rem;
+    padding-top: 3rem;
+    
 }
 
 @media only screen and (max-width: 37.4em) {

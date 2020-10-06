@@ -1,0 +1,35 @@
+<nav class="side-bar">
+    <!-- Dashboard Pages -->
+    <ul class="side-nav">
+        <!-- Active Styling with Plain JS Logic -->
+        <li class="<%= path === '/creator-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %> ">
+            <a href="/creator-dashboard" class="side-nav__link">
+                <!-- Sidebar Icon -->
+                <svg class="side-nav__icon">
+                    <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
+                </svg>
+                <span>Upload</span>
+            </a>
+        </li>
+        <li class="<%= path === '/under-review' ? 'side-nav__item--active' : 'side-nav__item'; %> ">
+            <a href="/" class="side-nav__link">
+                <svg class="side-nav__icon">
+                    <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
+                </svg>
+                <span>Under Review</span>
+            </a>
+        </li>
+        <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %> ">
+            <a href="/" class="side-nav__link">
+                <svg class="side-nav__icon">
+                    <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
+                </svg>
+                <span>Help</span>
+            </a>
+        </li>
+    </ul>
+    <!-- Legal Text -->
+    <div class="legal">
+        &copy; 2020 by Kleva Pty. Ltd.
+    </div>
+</nav>

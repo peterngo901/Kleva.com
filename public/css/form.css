@@ -1,0 +1,240 @@
+.content {
+    display: flex;
+    align-content: center;
+
+}
+
+.authentication {
+    width: 100%;
+    min-height: 85rem;
+    align-content: center;
+}
+
+.authentication__logo {
+    width: 20%;
+    align-self: center;
+    margin-top: 10rem;
+}
+
+.authentication__logo-image {
+    width: 100%;
+}
+
+.authentication__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    
+    min-height: inherit;
+}
+
+.authentication__form-signup-text {
+    align-self: center;
+    font-size: 1.6rem;
+    margin-top: 4rem;
+}
+
+
+
+.authentication__form-box {
+    width: 20%;
+    align-self: center;
+    background: white;
+    height: 40rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
+}
+
+.authentication__form-register {
+    width: 35%;
+    align-self: center;
+    background: white;
+    height: 85rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
+
+}
+
+.authentication__form-register-creator {
+    width: 35%;
+    align-self: center;
+    background: white;
+    height: 55rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
+
+}
+
+.authentication__form-box_student {
+    width: 15%;
+    align-self: center;
+    background: white;
+    height: 50rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.3);
+    
+}
+
+.authentication__form-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.authentication__form-maintitle {
+    display: flex;
+    flex-direction: column;
+    font-size: 2.2rem;
+    margin-left: 5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.authentication__form-title {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.7rem;
+    align-self: flex-start;
+    margin-left: 5rem;
+}
+
+.authentication__form-password-title {
+    text-align: right;
+    font-size: 1.7rem;
+    margin-left: 5rem;
+    
+}
+
+.authentication__form-password {
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+    margin-right: 5rem;
+}
+
+.authentication__form-input {
+    display: inherit;
+    align-self: center;
+    margin-top: .4rem;
+    border: none;
+    background-color: #ECECEC;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    font-family: inherit;
+    width: 80%;
+    border-radius: .5rem;
+    border-bottom: .2rem solid transparent;
+}
+
+.authentication__form-input:focus{
+    outline: none;
+    border-bottom: .2rem solid rgb(252, 181, 202);
+    
+}
+
+.authentication__form-button {
+    margin: 3rem 2rem;
+    font-size: 2rem;
+    font-family: inherit;
+    font-weight: 800;
+    background-color: #B2FFCC;
+    border: none;
+    border-radius: .5rem;
+    padding: 1rem 1.5rem;
+    width: 80%;
+    align-self: center;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 120em) {
+    .authentication__form-box{
+        width: 30%;
+    }
+    .authentication__logo {
+        width: 20%;
+    }
+
+    .authentication__form-box_student {
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 80em) {
+    .authentication__form-box{
+        width: 50%;
+    }
+    .authentication__logo {
+        width: 30%;
+    }
+    .authentication__form-register {
+        width: 35%;
+    }
+
+    .authentication__form-box_student {
+        width: 30%;
+    }
+
+}
+
+@media only screen and (max-width: 50em) {
+    
+    .authentication__form-register {
+        width: 55%;
+    }
+    .authentication__form-box_student {
+        width: 70%;
+    }
+    
+    
+}
+
+@media only screen and (max-width: 40em) {
+    .authentication__form-box{
+        width: 80%;
+    }
+    .authentication__logo {
+        width: 50%;
+    }
+    .authentication__form-register {
+        width: 90%;
+    }
+
+    .authentication__form-box_student {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 22em) {
+    .authentication__form-box{
+        width: 90%;
+    }
+    .authentication__logo {
+        width: 60%;
+    }
+
+    .authentication__form-maintitle {
+        font-size: 1.8rem;
+        margin-left: 3rem;
+    }
+
+    .authentication__form-password {
+        margin-right: 2rem;
+    }
+
+    .authentication__form-password-title {
+        margin-left: 3rem;
+    }
+
+    .authentication__form-title {
+        margin-left: 3rem;
+    }
+    
+}
+
+.footer-form {
+    height: 15rem;
+}

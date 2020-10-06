@@ -1,100 +1,94 @@
 const Game = require('../models/game');
 
+// Limit the number of games returned on a single page.
+const gamesPerPage = 3;
 
 exports.getIndex = (req, res, next) => {
-    Game.listAll().then(games => {      
-        res.render('home', {
-            games: games.rows,
-            pageTitle: 'Kleva',
-            path: '/'
-        });
-    }).catch(err => console.log(err))
+  res.render('home', {
+    pageTitle: 'Kleva',
+    path: '/',
+  });
 };
 
 exports.getGames = (req, res, next) => {
-    Game.listAll().then().catch();
-        res.render('store/games', {
-            games: games,
-            pageTitle: 'All Games',
-            path: '/games'
-        });
-    
+  res.render('store/games', {
+    pageTitle: 'All Games',
+    path: '/games',
+  });
 };
 
 exports.getGame = (req, res, next) => {
-   const gameID = req.params.gameID; 
-   Game.retrieveByID(gameID, game => {
-       res.render('store/game-details', {
-           game: game,
-           pageTitle: game.title,
-           path: '/games'
-       })
-   })
-}
+  res.render('store/game-details', {
+    pageTitle: game.title,
+    path: '/games',
+  });
+};
 
-exports.getGamesGallery = (req, res, next) => {
-    res.render('gamesgallery', {
-        path: '/gamesgallery',
-        pageTitle: 'GamesGallery'
+// Public Game Gallery with no specific recommendation ML algorithm.
+exports.getGamesGallery = async (req, res, next) => {
+  const page = req.query.page;
+
+  try {
+    // Skip games based on page.
+    var gameBatch = (page - 1) * gamesPerPage;
+    const games = await Game.findAndCountAll({
+      offset: gameBatch,
+      limit: gamesPerPage,
     });
+    // Total Games Returned
+    const totalGames = games.count;
+    const gamesArray = games.rows;
+    res.render('gamesgallery', {
+      path: '/gamesgallery',
+      pageTitle: 'GamesGallery',
+      games: gamesArray,
+      pageNumber: page,
+      pageButtons: Math.ceil(totalGames / gamesPerPage),
+    });
+  } catch (err) {
+    // Error fetching games from the database.
+    res.redirect('/');
+  }
 };
 
 exports.getHome = (req, res, next) => {
-    res.render('home', {
-        path: '/home',
-        pageTitle: 'Home'
-    });
+  res.render('home', {
+    path: '/home',
+    pageTitle: 'Home',
+  });
 };
 
 //placeholder route for bridge builder game
 exports.getGamepage = (req, res, next) => {
-    res.render('gamepage', {
-        path: '/gamepage',
-        pageTitle: 'Home'
-    });
+  res.render('gamepage', {
+    path: '/gamepage',
+    pageTitle: 'Home',
+  });
 };
 
 exports.getLogin = (req, res, next) => {
-    res.render('login', {
-        error: '',
-        path: '/login',
-        pageTitle: 'Login'
-    });
+  res.render('login', {
+    error: '',
+    path: '/login',
+    pageTitle: 'Login',
+  });
 };
 
 exports.getAbout = (req, res, next) => {
-    res.render('about', {
-        path: '/about',
-        pageTitle: 'About Us'
-    });
+  res.render('about', {
+    path: '/about',
+    pageTitle: 'About Us',
+  });
 };
 
-
 exports.postCart = (req, res, next) => {
-    const gameID = req.body.gameIdentity;
-    Game.retrieveByID(gameID, game => {
-        res.render('/cart');
-    })
-}
+  res.render('/cart');
+};
 
 exports.getCart = (req, res, next) => {
-    
-}
-
-exports.getCreatorDashboard = (req, res, next) => {
-    res.render('creator/creator-dashboard', {
-        path: '/creator-dashboard',
-        pageTitle: 'Dashboard'
-    })
-}
+  res.render('/cart');
+};
 
 exports.postUploadGames = (req, res, next) => {
-    
-    const gameToUpload = {
-        title: req.body.title,
-        description: req.body.description,
-    }
-    const upload = new Game;
-    upload.create(gameToUpload);
-    res.redirect('/creator-dashboard');
-}
+  res.redirect('/creator-dashboard');
+};

@@ -1,0 +1,423 @@
+<!-- Author: Gabriel -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/creator-dashboard.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <title>Kleva</title>
+  </head>
+
+  <body>
+    <!-- Modal -->
+    <div id="curicculum" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content ">
+                <div class=" modal-header-full-width   modal-header text-center">
+                    <h5 class="modal-title w-100" id="exampleModalPreviewLabel">Please Select Your Subjects From The Australian Cirriculum</h5>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Button container -->
+                    <div class="container-fluid" style="height: 40rem;">
+                      <div class="row form-group h-50">
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 btn-outline-primary"><h1>English</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 btn-outline-secondary"><h1>Mathematics</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-primary"><h1>Science</h1></button>
+                          </div>
+                      </div>
+                      <div class="row form-group h-50">
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-danger"><h1>Humanities and Social Sciences</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-warning"><h1>The Arts</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-info"><h1>Technologies</h1></button>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer-full-width  modal-footer">
+                    <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-md btn-rounded">Save changes</button>
+                </div>
+              </div>
+          </div>
+      </div> 
+
+
+    <!-- Dashboard Container -->
+    <div class="">
+      <!-- Navigation Bar -->
+      <header class="header">
+        <!-- Logo -->
+        <img src="../img/logo.png" alt="Kleva" class="logo" />
+        <!-- Search Bar -->
+        <form action="/" class="search" method="POST">
+          <input type="text" class="search__input" placeholder="Search classRoom" />
+          <button class="search__button">
+            <svg class="search__icon">
+              <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-navigation">
+          <input
+            type="checkbox"
+            class="mobile-navigation__checkbox"
+            id="menu_burger"
+          />
+
+          <label for="menu_burger" class="mobile-navigation__button">
+            <svg class="mobile-navigation__button-icon">
+              <use xlink:href="../img/symbol-defs.svg#icon-menu"></use>
+            </svg>
+          </label>
+
+          <div class="mobile-navigation__background"></div>
+
+          <nav class="mobile-navigation__nav">
+            <ul class="mobile-navigation__list">
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Home</a>
+              </li>
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Log Out</a>
+              </li>
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Games</a>
+              </li>
+              <li class="mobile-navigation__item">
+                <a href="" class="mobile-navigation__link">Help</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Desktop and Tablet Menu -->
+        <nav class="user-nav">
+          <div class="user-nav__icon-box">
+            <a href="/">
+              <svg class="user-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-home"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="user-nav__icon-box">
+            <svg class="user-nav__icon">
+              <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
+            </svg>
+          </div>
+          <div class="user-nav__user">
+            <img
+              src="../img/profile.png"
+              alt="User Photo"
+              class="user-nav__user-photo"
+            />
+            <span class="user-name"><%= name; %></span>
+          </div>
+        </nav>
+      </header>
+
+      <div class="content">
+        <!-- Dashboard Side Bar -->
+        <nav class="side-bar">
+          <!-- Dashboard Pages -->
+          <ul class="side-nav">
+            <!-- Active Styling with Plain JS Logic -->
+            <li
+              class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>"
+            >
+              <a href="/teacher-dashboard" class="side-nav__link">
+                <!-- Sidebar Icon -->
+                <svg class="side-nav__icon">
+                  <use
+                    xlink:href="../img/symbol-defs.svg#icon-box-remove"
+                  ></use>
+                </svg>
+                <span>Classroom</span>
+              </a>
+            </li>
+            <li
+              class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>"
+            >
+              <a href="/teacher-students" class="side-nav__link">
+                <svg class="side-nav__icon">
+                  <use
+                    xlink:href="../img/symbol-defs.svg#icon-user-check"
+                  ></use>
+                </svg>
+                <span>Students</span>
+              </a>
+            </li>
+            <li
+              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>"
+            >
+              <a href="/" class="side-nav__link">
+                <svg class="side-nav__icon">
+                  <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
+                </svg>
+                <span>Help</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Legal Text -->
+          <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="upload">
+          <!-- Manage Students -->
+          <div class="upload-form">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="/teacher-dashboard">All Classrooms</a>
+                  </li>
+                  <li class="breadcrumb-item" aria-current="page">
+                    <a href="/classroom/<%- classRoom.classCode; %>"> Class - <%= classRoom.title; %></a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Game Storepage
+                  </li>
+                </ol>
+              </nav>
+
+            <!--Featured Button-->
+            <div class="col-xs-1 my-2">
+              <button type="button" class="btn btn-outline-secondary btn-sm">
+                Featured
+              </button>
+            </div>
+
+            <!--Game Banner-->
+            <div class="row justify-content-center rounded bg-game no-margin">
+              <div class="col-lg-5">
+                <a href="/gamepage"
+                  ><img
+                    src="../img/bridgeConFeatureSplash.png"
+                    class="img-fluid mx-auto d-block"
+                    alt="Bridge Constructor Splash"
+                /></a>
+              </div>
+              <div class="col-lg-7">
+                <h3>Bridge Constructor</h3>
+                <p>Build a bridge, get over it. Highly Educational</p>
+                <div class="row">
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen1.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 1"
+                    />
+                  </div>
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen2.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 2"
+                    />
+                  </div>
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen3.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 3"
+                    />
+                  </div>
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen4.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 4"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <h4 class="h-100 align-self-end cost">A$ 14.99</h4>
+                  <div class="windows-logo h-100 align-self-end">
+                    <img
+                      src="../img/windowsPlatform.png"
+                      class="img-fluid"
+                      alt="Windows Platform"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Category Filter -->
+            <div class="row m-4 justify-content-center">
+              <a href="#" class="list-group-item">English</a>
+              <a href="#" class="list-group-item">Maths</a>
+              <a href="#" class="list-group-item">Science</a>
+            </div>
+
+            <div class="col-12">
+              <div class="row mt-5">
+
+                <!-- Game Loader -->
+                <% if (games.length > 0) { %> <% for (let game of games) { %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card h-100">
+                    <a href="#"
+                      ><img
+                        class="card-img-top"
+                        src="<%- game.gameImageURL %>"
+                        alt=""
+                    /></a>
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <a href="#"><%- game.title %></a>
+                      </h4>
+                      <p class="card-text"><%- game.description %></p>
+
+                      <!-- Add game -->
+                      <form class="testButton">
+                        <input type="hidden" name="gameID" value="<%- game.gameID%>" />
+                        <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
+                        <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                      </form>
+
+                      <div id="result"></div>
+                    </div>
+                    <div class="card-footer">
+                      <small><%- game.category %></small>
+                    </div>
+                  </div>
+                </div>
+                <% } %> <% } %>
+                <!-- /.row -->
+              </div>
+              <!-- Game Page Buttons -->
+              <div class="row mt-3 justify-content-center">
+                <% if (pageButtons => 1) { %>
+                  <nav aria-label="Game Results Pages">
+                  <ul class="pagination">
+                    <% for(i=0; i < pageButtons; i++) { %>
+                      <li class="page-item">
+                      <a
+                        class="page-link <%= pageNumber === i + 1 ? 'active' : '' %>"
+                        href="/teacher-game-storepage/?page=<%- i+1 %>"
+                        ><%- i+1 %></a>
+                      </li>
+                    <% } %>
+                  </ul>
+                </nav>
+                <% } %>
+              </div>
+
+            <!-- Delete the Classroom -->
+            <div class="row d-flex justify-content-center">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Delete the Classroom
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Deleting a classroom is permanent. Do you wish to
+                      continue?
+                      <form
+                        action="/classroom/<%= classRoom.classCode %>/delete"
+                        method="POST"
+                      >
+                        <input
+                          type="hidden"
+                          value="<%= classRoom.classCode %>"
+                          name="classCode"
+                        />
+                        <button type="submit">Delete the Classroom</button>
+                      </form>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    //Load modal at start
+    $(window).on('load',function(){
+        $('#curicculum').modal('show');
+    });
+  </script>
+  <script>
+    //AJAX post for Add Game+ Button
+    $(document).on("submit", ".testButton", function(e){
+      e.preventDefault();
+      $.post("/add-game",
+      $(this).serialize(),
+      function(data, status){
+        console.log("Data: " + data + "\nStatus: " + status);
+      });
+    });
+  </script>
+</html>
