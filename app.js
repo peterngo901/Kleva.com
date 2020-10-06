@@ -145,7 +145,7 @@ ClassroomStats.belongsTo(Classroom, {
 
 // Sync the Tables/Models and Relations
 sequelize
-  .sync()
+  .sync({force: true})
   .then((result) => {
     server.listen(port);
   })
