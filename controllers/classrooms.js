@@ -180,3 +180,14 @@ exports.postAddGame = (req, res, next) => {
       res.sendStatus(200);;
     });
 };
+
+
+exports.getUserProfile = (req, res, next) => {
+  console.log('GETUSER PROFIEL IS WORKING');
+  res.render('user-profile', {
+    path: '/user-profile',
+    pageTitle: 'About Us',
+  });
+};
+
+

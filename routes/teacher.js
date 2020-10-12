@@ -25,4 +25,6 @@ router.post('/create-questions', classroomController.postCreateQuestions);
 
 router.post('/add-game', classroomController.postAddGame);
 
+router.get('/user-profile', classroomController.getUserProfile);
+
 module.exports = router;

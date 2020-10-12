@@ -12,7 +12,7 @@
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('postgres', 'postgres', 'royalelephants', {
+const sequelize = new Sequelize('postgres', 'postgres', '123', {
   dialect: 'postgres',
   host: 'localhost',
 });
