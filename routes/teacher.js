@@ -16,6 +16,8 @@ router.get('/teacher-students', classroomController.getTeacherStudents);
 
 router.get('/classroom/:classroomCode', classroomController.getClassroom);
 
+router.get('/user-profile', classroomController.getUserProfile);
+
 router.post(
   '/classroom/:classroomCode/delete',
   classroomController.postDeleteClassroom

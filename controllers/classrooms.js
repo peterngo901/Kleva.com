@@ -85,9 +85,13 @@ exports.getClassroom = (req, res, next) => {
       where: {
         classroomClassCode: classCode,
       },
-      attributes: ['gameID'], //TODO: use gameIDs from Stats table to get game data from Game..
-      //...table. (Use a SQL join?)
-      }).then((games) => {
+      include: Games
+      })
+      .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+      })
+      .then((games) => {
         res.render('teacher/teacher-classroom', {
           classRoom: classRoom,
           games: games,
@@ -142,6 +146,7 @@ exports.getTeacherGameStorepage = (req, res, next) => {
         offset: gameBatch,
         limit: gamesPerPage,
     }).then((games) => {
+      console.log('games.length = '+games.length)
       const totalGames = games.count;
       const gamesArray = games.rows;
       Classroom.findOne({ classCode: classCode }).then((classRoom) => {
@@ -154,6 +159,9 @@ exports.getTeacherGameStorepage = (req, res, next) => {
           path: '/teacher-classroom',
         });
       });
+    })
+    Games.findAll().then((lames) => {
+    console.log('Whats in lames = '+lames)
     });
   } else {
     res.redirect('/');
@@ -180,3 +188,12 @@ exports.postAddGame = (req, res, next) => {
       res.sendStatus(200);;
     });
 };
+
+
+exports.getUserProfile = (req, res, next) => {
+    res.render('/user-profile', { //name of page
+    pageTitle: 'Profile',
+    path: '/user-profile',
+  });
+};
+

@@ -133,7 +133,7 @@ Student.belongsTo(Classroom, {
 
 Classroom.hasMany(Student);
 
-Game.hasOne(ClassroomStats, { foreignKey: 'gameID' });
+Game.hasMany(ClassroomStats, { foreignKey: 'gameID'});
 
 ClassroomStats.belongsTo(Classroom, {
   foreignKey: 'classroomClassCode',
