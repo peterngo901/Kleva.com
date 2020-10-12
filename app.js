@@ -141,6 +141,12 @@ ClassroomStats.belongsTo(Classroom, {
   onDelete: 'CASCADE',
 });
 
+ClassroomStats.belongsTo(Game, {
+  foreignKey: 'gameID',
+  constraints: true,
+  onDelete: 'CASCADE',
+});
+
 ////////////////////////////////////////////////////////////////////////////
 
 // Sync the Tables/Models and Relations

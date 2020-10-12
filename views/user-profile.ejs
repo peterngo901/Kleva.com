@@ -1,0 +1,49 @@
+
+<!-- Head -->
+<%- include('reusables/head.ejs');%>
+
+</head>
+<body>
+    <%- include('reusables/navbar-bootstrap.ejs');%>
+  
+  <!-- Bootstrap core JavaScript -->
+
+    <!-- Optional JavaScript -->
+    <%- include('reusables/scripts-bootstrap.ejs');%>
+    <div class="profile-container">
+      <div id="picture">
+        <img src="img/ys2.jpg" width="700" height="300">
+      </div>
+      <div class="details">
+      <div class="user-detail">
+        <h2>Nickname: </h2>
+        <div id="content"><h2>Juno</h2></div>
+      </div>  
+      <div class="user-detail">
+        <h2>Full name: </h2>
+        <div id="content"><h2>jiang</h2></div>
+      </div> 
+      <div class="user-detail">
+        <h2>id:  </h2>
+        <div id="content"><h2>4508234</h2></div>
+      </div> 
+      <div class="user-detail">
+        <h2>School:  </h2>
+        <div id="content"><h2>No.1 primary school</h2></div>
+      </div> 
+
+    </div>
+</body>
+ <!-- Footer -->
+ <footer class="py-5 bg-dark">
+  <div class="container">
+    
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+  </div>
+  
+  <!-- /.container -->
+</footer>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/draw.js"></script>
+</html>

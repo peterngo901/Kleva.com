@@ -196,4 +196,3 @@ exports.getUserProfile = (req, res, next) => {
     path: '/user-profile',
   });
 };
-
