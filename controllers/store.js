@@ -1,7 +1,7 @@
 const Game = require('../models/game');
 
 // Limit the number of games returned on a single page.
-const gamesPerPage = 3;
+const gamesPerPage = 9;
 
 exports.getIndex = (req, res, next) => {
   res.locals.user = req.session.sessionType;
@@ -44,7 +44,7 @@ exports.getGamesGallery = async (req, res, next) => {
       path: '/gamesgallery',
       pageTitle: 'GamesGallery',
       games: gamesArray,
-      pageNumber: page,
+      pageNumber: parseInt(page),
       pageButtons: Math.ceil(totalGames / gamesPerPage),
     });
   } catch (err) {
@@ -98,4 +98,3 @@ exports.getCart = (req, res, next) => {
 exports.postUploadGames = (req, res, next) => {
   res.redirect('/creator-dashboard');
 };
-

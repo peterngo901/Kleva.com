@@ -168,13 +168,24 @@ Main Navbar
 
     <!-- Page Content -->
     <div class="container">
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="list-group mt-3">
-            <a href="#" class="list-group-item">English</a>
-            <a href="#" class="list-group-item">Maths</a>
-            <a href="#" class="list-group-item">Science</a>
+      <!-- Category Badges -->
+      <div class="row text-center">
+        <div class="col-12 ">
+          <div class="list-group list-group-horizontal mt-3">
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">English</a>
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Maths</a>
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Science</a>
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Humanities</a>
           </div>
+        </div>
+        <div class="col-12">
+          <div class="list-group list-group-horizontal mt-3">
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Digital Technologies</a>
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Arts</a>
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Languages</a>
+            <a href="#" class="list-group-item flex-fill" style="width: 10rem;">Health Education</a>
+          </div>
+
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -183,31 +194,36 @@ Main Navbar
         <!-- Game Loader -->
         <% if (games.length > 0) { %> <% for (let game of games) { %>
         <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="<%- game.gameImageURL %>" alt="" /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#"><%- game.title %></a>
-              </h4>
-              <p class="card-text"><%- game.description %></p>
+          <div class="card rounded shadow">
+            <a href="#"><img class="card-img-top" style="width: 100%; height: 300px; object-fit: cover;"
+                src="<%- game.gameImageURL %>" alt="" /></a>
+
+          </div>
+          <div class="container-fluid my-auto">
+            <h4 class="mt-3">
+              <a href="#" style="color: #5F5360;"><%- game.title %></a>
+            </h4>
+            <div style="height: 5rem; overflow: hidden; ">
+              <p style=" color: #7E6E80;"><%- game.description %></p>
             </div>
-            <div class="card-footer">
-              <small><%- game.category %></small>
+            <div>
+              <small class=" badge badge-pill" style="background-color: #fcddffff; "><%- game.category %></small>
             </div>
           </div>
+
         </div>
         <% } %> <% } %>
         <!-- /.row -->
       </div>
+
       <!-- Game Page Buttons -->
       <div class="row mt-3 justify-content-center">
         <% if (pageButtons => 1) { %>
         <nav aria-label="Game Results Pages">
           <ul class="pagination">
             <% for(i=0; i < pageButtons; i++) { %>
-            <li class="page-item">
-              <a class="page-link <%= pageNumber === i + 1 ? 'active' : '' %>"
-                href="/gamesgallery/?page=<%- i+1 %>"><%- i+1 %></a>
+            <li class="<%= pageNumber === i+1 ? 'page-item active' : 'page-item'; %>">
+              <a class="page-link" href="/gamesgallery/?page=<%- i+1 %>"><%- i+1 %></a>
             </li>
             <% } %>
           </ul>
