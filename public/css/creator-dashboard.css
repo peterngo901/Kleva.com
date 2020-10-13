@@ -39,11 +39,36 @@ body {
 
 .container {
     margin: 0 auto;
-    background-color:#dbdbdb;
     box-shadow: var(--shadow-box);
     min-height: 50rem;
-    
 }
+
+.carousel-wrapper{
+    display: block;
+    width:100%;
+    padding-top: 20px;
+    text-align:center;
+}
+
+.carousel{
+    display: block;
+  width:90%;
+  margin:0px auto;
+}
+
+
+.slick-slide{
+  margin:10px;
+}
+.slick-slide img{
+  width:100%;
+  border: 2px solid #fff;
+}
+
+/*.basic > * {
+    width: 100px;
+    height: 100px;
+}*/
 
 @media only screen and (max-width: 75em) {
     .container {
@@ -292,7 +317,7 @@ body {
 .upload-form {
     background-color:var(--color-primary-yellow);
     box-shadow: 0 2rem 5rem rgba(0,0,0,.1);
-    flex: 0 0 100%;
+    flex: 1 1 100%;
     margin: 5rem 3.8rem;
     height: 80rem;
 }
