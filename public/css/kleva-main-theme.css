@@ -47,6 +47,41 @@
   height: calc(3rem + 2px) !important;
   border-radius: 0;
 }
+
+/* user profile */
+#picture{
+
+}
+.profile-container{
+  background-color: wheat;
+  display: list-item;
+  text-align: center;
+  flex-wrap: wrap;
+  
+}
+.details{
+  display: -moz-inline-grid;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.user-detail{
+  display: flex;
+  text-align: left;
+  padding: 2em;
+  justify-content: center;
+}
+.user-detail #content{
+  background-color: plum;
+  opacity: 0.5;
+  display: inline;
+  text-align: left;
+  justify-content: space-around;
+
+
+
+}
+
 @media (min-width: 992px) {
   .search-sec {
     position: relative;

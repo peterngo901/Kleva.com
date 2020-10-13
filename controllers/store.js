@@ -98,3 +98,4 @@ exports.getCart = (req, res, next) => {
 exports.postUploadGames = (req, res, next) => {
   res.redirect('/creator-dashboard');
 };
+

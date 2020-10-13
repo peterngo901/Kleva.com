@@ -1,3 +1,4 @@
+<!-- Author: Gabriel -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,13 +9,14 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/creator-dashboard.css" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/creator-dashboard.css" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -29,6 +31,52 @@
   </head>
 
   <body>
+    <!-- Modal -->
+    <div id="curicculum" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content ">
+                <div class=" modal-header-full-width   modal-header text-center">
+                    <h5 class="modal-title w-100" id="exampleModalPreviewLabel">Please Select Your Subjects From The Australian Cirriculum</h5>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Button container -->
+                    <div class="container-fluid" style="height: 40rem;">
+                      <div class="row form-group h-50">
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 btn-outline-primary"><h1>English</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 btn-outline-secondary"><h1>Mathematics</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-primary"><h1>Science</h1></button>
+                          </div>
+                      </div>
+                      <div class="row form-group h-50">
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-danger"><h1>Humanities and Social Sciences</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-warning"><h1>The Arts</h1></button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-block h-100 mt-0 btn-outline-info"><h1>Technologies</h1></button>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer-full-width  modal-footer">
+                    <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-md btn-rounded">Save changes</button>
+                </div>
+              </div>
+          </div>
+      </div> 
+
+
     <!-- Dashboard Container -->
     <div class="">
       <!-- Navigation Bar -->
@@ -172,28 +220,128 @@
                 </ol>
               </nav>
 
-              <div class="col-12">
-                <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
-                <p>
-                  <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
-                </p>
-                <h2>Installed Games</h2>
-                <% if (games.length > 0 ) { %>
-                    <p>There are games in the database</p>
-                    <%} else { %>
-                    <p>There are no games in the database</p
-                    <% } %>
-              </div>
+            <!--Featured Button-->
+            <div class="col-xs-1 my-2">
+              <button type="button" class="btn btn-outline-secondary btn-sm">
+                Featured
+              </button>
+            </div>
 
-              <!-- Load all the installed games -->
-              <% if (classRoom.length > 0) { %>
-              <div class="card col-3">
-                <div class="card title"><%= classRoom.title %></div>
-                <div class="card body">
-                  <%= classRoom.yearLevel %> <%= classRoom.subject %>
+            <!--Game Banner-->
+            <div class="row justify-content-center rounded bg-game no-margin">
+              <div class="col-lg-5">
+                <a href="/gamepage"
+                  ><img
+                    src="../img/bridgeConFeatureSplash.png"
+                    class="img-fluid mx-auto d-block"
+                    alt="Bridge Constructor Splash"
+                /></a>
+              </div>
+              <div class="col-lg-7">
+                <h3>Bridge Constructor</h3>
+                <p>Build a bridge, get over it. Highly Educational</p>
+                <div class="row">
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen1.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 1"
+                    />
+                  </div>
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen2.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 2"
+                    />
+                  </div>
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen3.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 3"
+                    />
+                  </div>
+                  <div class="col">
+                    <img
+                      src="../img/bridgeConScreen4.png"
+                      class="img-fluid"
+                      alt="Bridge Constructor 4"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <h4 class="h-100 align-self-end cost">A$ 14.99</h4>
+                  <div class="windows-logo h-100 align-self-end">
+                    <img
+                      src="../img/windowsPlatform.png"
+                      class="img-fluid"
+                      alt="Windows Platform"
+                    />
+                  </div>
                 </div>
               </div>
-              <% }; %>
+            </div>
+            <!-- Category Filter -->
+            <div class="row m-4 justify-content-center">
+              <a href="#" class="list-group-item">English</a>
+              <a href="#" class="list-group-item">Maths</a>
+              <a href="#" class="list-group-item">Science</a>
+            </div>
+
+            <div class="col-12">
+              <div class="row mt-5">
+
+                <!-- Game Loader -->
+                <% if (games.length > 0) { %> <% for (let game of games) { %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card h-100">
+                    <a href="#"
+                      ><img
+                        class="card-img-top"
+                        src="<%- game.gameImageURL %>"
+                        alt=""
+                    /></a>
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <a href="#"><%- game.title %></a>
+                      </h4>
+                      <p class="card-text"><%- game.description %></p>
+
+                      <!-- Add game -->
+                      <form class="testButton">
+                        <input type="hidden" name="gameID" value="<%- game.gameID%>" />
+                        <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
+                        <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                      </form>
+
+                      <div id="result"></div>
+                    </div>
+                    <div class="card-footer">
+                      <small><%- game.category %></small>
+                    </div>
+                  </div>
+                </div>
+                <% } %> <% } %>
+                <!-- /.row -->
+              </div>
+              <!-- Game Page Buttons -->
+              <div class="row mt-3 justify-content-center">
+                <% if (pageButtons => 1) { %>
+                  <nav aria-label="Game Results Pages">
+                  <ul class="pagination">
+                    <% for(i=0; i < pageButtons; i++) { %>
+                      <li class="page-item">
+                      <a
+                        class="page-link <%= pageNumber === i + 1 ? 'active' : '' %>"
+                        href="/teacher-game-storepage/?page=<%- i+1 %>"
+                        ><%- i+1 %></a>
+                      </li>
+                    <% } %>
+                  </ul>
+                </nav>
+                <% } %>
+              </div>
 
             <!-- Delete the Classroom -->
             <div class="row d-flex justify-content-center">
@@ -259,5 +407,21 @@
       </div>
     </div>
   </body>
-  <script></script>
+  <script type="text/javascript">
+    //Load modal at start
+    $(window).on('load',function(){
+        $('#curicculum').modal('show');
+    });
+  </script>
+  <script>
+    //AJAX post for Add Game+ Button
+    $(document).on("submit", ".testButton", function(e){
+      e.preventDefault();
+      $.post("/add-game",
+      $(this).serialize(),
+      function(data, status){
+        console.log("Data: " + data + "\nStatus: " + status);
+      });
+    });
+  </script>
 </html>
