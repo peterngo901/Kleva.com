@@ -4,6 +4,7 @@ const express = require('express');
 const storeController = require('../controllers/store');
 // Import the firebase controller
 const authController = require('../controllers/auth');
+const gameController = require('../controllers/games');
 
 const router = express.Router();
 
@@ -29,5 +30,7 @@ router.get('/cart', storeController.getCart);
 router.post('/cart', storeController.postCart);
 
 router.post('/uploadGames', storeController.postUploadGames);
+
+router.get('/gamepage/:gameID', gameController.getGamepageGameID);
 
 module.exports = router;

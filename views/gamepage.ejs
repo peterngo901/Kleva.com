@@ -1,6 +1,194 @@
-<%- include('reusables/head.ejs');%></head>
+<!-- Head -->
+<!DOCTYPE html>
+<html lang="en">
 
-<body>
-	<%- include('reusables/navbar-bootstrap.ejs', {sessionType: user});%>
-	<%- include('reusables/carousel-bootstrap.ejs');%>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/kleva-main-theme.css" />
+	<title>Kleva Games</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</head>
+
+<body style="min-height: 100vh">
+	<!-- 
+Main Navbar
+- Users who haven't signed in
+-->
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-custom py-3 mb-3 shadow-sm"
+		style="background-color: #FFF3FC; font-weight: 600;">
+		<!-- Kleva Logo -->
+		<a href="/home"><img src="../img/logo.png" alt="Kleva" class="logo navbar-brand" /></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto ml-2 mt-2 mr-3">
+
+				<% if (user === 'teacher') { %>
+				<li class="nav-item active">
+					<a class="nav-link" href="/teacher-dashboard">Dashboard<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<form method="POST" action="/sign-out"><button class="nav-link" type="submit"
+							style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
+							Out<span class="sr-only">(current)</span></button></form>
+				</li>
+				<% } else if(user === 'student') { %>
+				<li class="nav-item active">
+					<a class="nav-link" href="/student-dashboard">Dashboard<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<form method="POST" action="/sign-out"><button class="nav-link" type="submit"
+							style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
+							Out<span class="sr-only">(current)</span></button></form>
+				</li>
+				<% } else if(user === 'creator'){ %>
+				<li class="nav-item active">
+					<a class="nav-link" href="/creator-dashboard">Dashboard<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<form method="POST" action="/sign-out"><button class="nav-link" type="submit"
+							style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
+							Out<span class="sr-only">(current)</span></button></form>
+				</li>
+				<% } else { %>
+				<li class=" nav-item dropdown mr-3">
+					<a class="btn px-3 nav-link dropdown-toggle shadow-sm rounded" href="#" id="navbarDropdownMenuLink"
+						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+						style="background-color: #C9D5FF; border: none; font-weight: 600;">
+						Log In As
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+						style="background-color: #C9D5FF; border: none; font-weight: 600;">
+						<a class="dropdown-item" href="/teacher-signin">Teacher</a>
+						<a class="dropdown-item" href="/student-signin">Student</a>
+						<a class="dropdown-item" href="/creator-signin">Game Creator</a>
+					</div>
+				</li>
+				<% } %>
+				<li class="nav-item active">
+					<a class="nav-link" href="../../../gamesgallery/?page=1">Games Gallery<span
+							class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/about">About<span class="sr-only">(current)</span></a>
+				</li>
+
+
+
+				<!-- Other Types of Navbar Elements
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>  -->
+			</ul>
+		</div>
+	</nav>
+
+	<div class="wrapper">
+
+
+		<!-- Page Content -->
+		<div class="container">
+
+			<!-- Game Container -->
+			<div class="container-lg">
+				<button class="btn btn-outline-primary btn-sm my-2 mx-0" onclick=rewind()>Back to Game Gallery</button>
+				<div class="row d-flex text-center my-5" style="background-color: #FFF3FC;">
+					<div class="col-12 justify-content-center">
+						<button type="submit" class="btn btn-success btn-lg text-center px-5 my-5" id="gameLoader"
+							onclick=loader() style="z-index: 25000;">Play
+							Game
+						</button>
+						<div>
+							<div class="embed-responsive embed-responsive-16by9" id="gameHolder">
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<h1><%- game.title %></h1>
+				<h3><%- game.description %></h3>
+				<h2><%- game.category %></h2>
+			</div>
+
+			<!-- Category Badges -->
+			<div class="row text-center my-5">
+				<div class="col-12">
+					<div class="list-group list-group-horizontal mt-3">
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">English</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Maths</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Science</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Humanities</a>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="list-group list-group-horizontal mt-3">
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Digital Technologies</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Arts</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Languages</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Health Education</a>
+					</div>
+
+				</div>
+			</div>
+			<!-- /.col-lg-3 -->
+
+
+
+			<!-- /.container -->
+		</div>
+	</div>
 </body>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="text-center text-white m-0">
+			Copyright &copy; Your Website 2020
+		</p>
+		<!-- /.container -->
+	</div>
+</footer>
+<script>
+
+	function loader() {
+		document.getElementById("gameLoader").innerHTML = 'Refresh Game'
+		document.getElementById("gameHolder").innerHTML = "<iframe class=\"embed-responsive-item\" id=\"gameIframe\" src=\"<%- game.gameFileURL %>\"></iframe>";
+	}
+
+	function rewind() {
+		window.history.back();
+	}
+</script>
+
+</html>
