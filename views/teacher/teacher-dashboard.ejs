@@ -176,7 +176,7 @@
                     font-size: 1.7rem;
                     font-weight: 500;
                   ">Visit Classroom ></a>
-                <button data-toggle="modal" data-target="#doodleModal" class="btn mb-4 w-100" style="
+                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>" class="btn mb-4 w-100" style="
                     background-color: #d9fff3;
                     font-size: 1.7rem;
                     font-weight: 500;
@@ -185,75 +185,31 @@
                 </button>
 
               </div>
-              <!-- Doodle Questions Modal -->
-              <div class="modal" tabindex="-1" id="doodleModal">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+              <!-- Dynamic Doodle Questions Modal -->
 
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body mt-3">
-                      <form action="/create-questions" method="POST" id="modalAddClassroom">
-                        <div class="form-group">
-                          <input type="hidden" value="<%= classRoom.classCode %>" name="classCode">
-                          <h1 class="text-center mb-5">Select One Subject</h1>
-                          <div class="row">
-                            <div class="col-3">
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="topic" id="biology" value="biology">
-                                <label class="form-check-label" for="biology"><img
-                                    src="img/healthphysed.png">Biology</label>
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="topic" id="chemistry"
-                                  value="chemistry">
-                                <label class="form-check-label" for="chemistry"><img
-                                    src="img/science.png">Chemistry</label>
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="topic" id="earthSpace"
-                                  value="earthSpace">
-                                <label class="form-check-label" for="earthSpace"><img src="img/mathematics.png">Earth
-                                  and
-                                  Space</label>
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div div class="form-check">
-                                <input class="form-check-input" type="radio" name="topic" id="physics" value="physics">
-                                <label class="form-check-label" for="physics"><img src="img/science.png">Physics</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <button type="submit" class="btn w-100 mt-5" style="
+              <%- include('../reusables/doodle-modal.ejs', {subject:  classRoom.subject, classRoom: classRoom }) %>
+            </div>
+            <button type="submit" class="btn w-100 mt-5" style="
                             background-color: #d9fff3;
                             font-size: 1.7rem;
                             font-weight: 500;
                           ">Continue to Questions ></button>
-                    </div>
-                    <div class="modal-footer">
-
-
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <% } %> <% } %>
-            </div>
           </div>
+          <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+          </form>
         </div>
       </div>
     </div>
+    <% } %> <% } %>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
   </div>
   </div>
 </body>
