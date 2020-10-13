@@ -3,7 +3,8 @@ Main Navbar
 - Users who haven't signed in
 -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom py-3 shadow-sm"
+  style="background-color: #FFF3FC; font-weight: 600; z-index: 10000;">
   <!-- Kleva Logo -->
   <a href="./home"><img src="img/logo.png" alt="Kleva" class="logo navbar-brand" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -42,12 +43,14 @@ Main Navbar
             Out<span class="sr-only">(current)</span></button></form>
       </li>
       <% } else { %>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+      <li class=" nav-item dropdown mr-3">
+        <a class="btn px-3 nav-link dropdown-toggle shadow-sm rounded" href="#" id="navbarDropdownMenuLink"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="background-color: #C9D5FF; border: none; font-weight: 600;">
           Log In As
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+          style="background-color: #C9D5FF; border: none; font-weight: 600;">
           <a class="dropdown-item" href="/teacher-signin">Teacher</a>
           <a class="dropdown-item" href="/student-signin">Student</a>
           <a class="dropdown-item" href="/creator-signin">Game Creator</a>
