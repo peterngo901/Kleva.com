@@ -11,15 +11,29 @@
             <form action="/add-classroom" method="POST" id="modalAddClassroom">
                 <div class="form-group">
                 <label for="className">Classroom Name</label>
-                <input class="form-control" type="text" id="className" name="className" placeholder="Give Your Class a Name">
+                <input class="form-control" type="text" id="className" name="className" placeholder="Example: 9AM Monday Maths">
                 </div>
                 <div class="form-group">
                 <label for="yearLevel">Year Level</label>
-                <input class="form-control" type="text" id="yearLevel" name="yearLevel" placeholder="Enter Your Year Level">
+                <select class="form-control"  id="yearLevel" name="yearLevel" required>
+                  <option selected>Year Level</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                </select>
                 </div>
                 <div class="form-group">
-                <label for="subject">Subject</label>
-                <input  class="form-control" type="text" id="subject" name="subject" placeholder="Select a subject">
+                <label for="subject">ACARA Subjects</label>
+                <select  class="form-control"  id="subject" name="subject" required>
+                  <option selected>ACARA Subjects</option>
+                  <option value="english">English</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="science">Science</option>
+                  <option value="hass">Hass</option>
+                  <option value="history">History</option>
+                  <option value="geography">Geography</option>
+                  <option value="digitalTechnologies">Digital Technologies</option>
+                </select>
                 </div>
                 <button type="submit" class="btn btn-primary" >Add Classroom</button>
         </div>
@@ -32,3 +46,19 @@
       </div>
     </div>
 </div>
+
+<!-- <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Subjects</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option selected>ACARA Subjects</option>
+    <option value="english">English</option>
+    <option value="mathematics">Mathematics</option>
+    <option value="science">Science</option>
+    <option value="hass">Hass</option>
+    <option value="history">History</option>
+    <option value="geography">Geography</option>
+    <option value="digitalTechnologies">Digital Technologies</option>
+  </select>
+</div> -->

@@ -1,4 +1,7 @@
 const Classroom = require('../models/classroom');
+const Curriculum = require('../models/curriculum');
+const AcaraTerms = require('../models/acara');
+const AcaraRelations = require('../models/acaraRelations');
 const ClassroomStats = require('../models/classroomStats');
 const Games = require('../models/game');
 const { v4: uuidv4 } = require('uuid');
@@ -43,7 +46,7 @@ exports.postAddClassroom = (req, res, next) => {
   const yearLevel = req.body.yearLevel;
   const subject = req.body.subject;
   // Easy to Remember Single Classcode Signon for High Schoolers
-  const classCode = generate.english(8);
+  const classCode = generate.english(6);
 
   Classroom.create({
     teacherID: req.session.user,
@@ -80,10 +83,10 @@ exports.getClassroom = (req, res, next) => {
     const classCode = req.params.classroomCode;
     Classroom.findOne({ classCode: classCode }).then((classRoom) => {
       ClassroomStats.findAll({
-      where: {
-        classroomClassCode: classCode,
-      },
-      attributes: ['gameID'],
+        where: {
+          classroomClassCode: classCode,
+        },
+        attributes: ['gameID'],
       }).then((games) => {
         res.render('teacher/teacher-classroom', {
           classRoom: classRoom,
@@ -130,11 +133,19 @@ exports.postCreateQuestions = (req, res, next) => {
 exports.getTeacherGameStorepage = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
-    Games.findAll({ // <---- Loads all Games (should make it load only)
+    Games.findAll({
+      // <---- Loads all Games (should make it load only)
       // Several at a time
-      attributes: ['gameID', 'title', 'category', 'subCategory', 
-      'description','gameFileURL','gameImageURL'],
-    }).then((games) => { 
+      attributes: [
+        'gameID',
+        'title',
+        'category',
+        'subCategory',
+        'description',
+        'gameFileURL',
+        'gameImageURL',
+      ],
+    }).then((games) => {
       Classroom.findOne({ classCode: classCode }).then((classRoom) => {
         res.render('teacher/teacher-game-storepage', {
           classRoom: classRoom,

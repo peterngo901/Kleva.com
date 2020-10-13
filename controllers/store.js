@@ -4,6 +4,7 @@ const Game = require('../models/game');
 const gamesPerPage = 3;
 
 exports.getIndex = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('home', {
     pageTitle: 'Kleva',
     path: '/',
@@ -18,6 +19,7 @@ exports.getGames = (req, res, next) => {
 };
 
 exports.getGame = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('store/game-details', {
     pageTitle: game.title,
     path: '/games',
@@ -27,7 +29,7 @@ exports.getGame = (req, res, next) => {
 // Public Game Gallery with no specific recommendation ML algorithm.
 exports.getGamesGallery = async (req, res, next) => {
   const page = req.query.page;
-
+  res.locals.user = req.session.sessionType;
   try {
     // Skip games based on page.
     var gameBatch = (page - 1) * gamesPerPage;
@@ -52,6 +54,7 @@ exports.getGamesGallery = async (req, res, next) => {
 };
 
 exports.getHome = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('home', {
     path: '/home',
     pageTitle: 'Home',
@@ -60,6 +63,7 @@ exports.getHome = (req, res, next) => {
 
 //placeholder route for bridge builder game
 exports.getGamepage = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('gamepage', {
     path: '/gamepage',
     pageTitle: 'Home',
@@ -67,6 +71,7 @@ exports.getGamepage = (req, res, next) => {
 };
 
 exports.getLogin = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('login', {
     error: '',
     path: '/login',
@@ -75,6 +80,7 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.getAbout = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('about', {
     path: '/about',
     pageTitle: 'About Us',

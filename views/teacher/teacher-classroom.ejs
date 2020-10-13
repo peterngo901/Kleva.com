@@ -89,9 +89,16 @@
             </a>
           </div>
           <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
-            </svg>
+            <form action="/sign-out" method="POST">
+              <button
+                type="submit"
+                style="border: none; background-color: inherit"
+              >
+                <svg class="user-nav__icon">
+                  <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
+                </svg>
+              </button>
+            </form>
           </div>
           <div class="user-nav__user">
             <img
@@ -115,9 +122,7 @@
             >
               <a href="/teacher-game-storepage" class="side-nav__link">
                 <svg class="side-nav__icon">
-                  <use
-                    xlink:href="../img/symbol-defs.svg#icon-click"
-                  ></use>
+                  <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
                 </svg>
                 <span>Add Games</span>
               </a>
@@ -166,37 +171,38 @@
         <main class="upload">
           <!-- Manage Students -->
           <div class="upload-form">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="/teacher-dashboard">All Classrooms</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Class - <%= classRoom.title; %>
-                  </li>
-                </ol>
-              </nav>
-              <div class="col-12">
-                <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
-                <p>
-                  <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
-                </p>
-                <button type="button" class="btn btn-light btn-lg">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/teacher-dashboard">All Classrooms</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Class - <%= classRoom.title; %>
+                </li>
+              </ol>
+            </nav>
+            <div class="col-12">
+              <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
+              <p>
+                <%= classRoom.title%> <%= classRoom.yearLevel %> <%=
+                classRoom.subject; %>
+              </p>
+              <button type="button" class="btn btn-light btn-lg">
                 <a href="/teacher-game-storepage"> Add Games > </a>
               </button>
 
               <h2>Installed Games</h2>
-              </div>
+            </div>
 
-              <!-- Load all the installed games -->
-              <% if (classRoom.length > 0) { %>
-              <div class="card col-3">
-                <div class="card title"><%= classRoom.title %></div>
-                <div class="card body">
-                  <%= classRoom.yearLevel %> <%= classRoom.subject %>
-                </div>
+            <!-- Load all the installed games -->
+            <% if (classRoom.length > 0) { %>
+            <div class="card col-3">
+              <div class="card title"><%= classRoom.title %></div>
+              <div class="card body">
+                <%= classRoom.yearLevel %> <%= classRoom.subject %>
               </div>
-              <% }; %>
+            </div>
+            <% }; %>
 
             <!-- Delete the Classroom -->
             <div class="row d-flex justify-content-center">
