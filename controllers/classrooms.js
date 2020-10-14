@@ -10,7 +10,7 @@ const Teacher = require('../models/teacher');
 const generate = require('nanoid-generate');
 const dictionary = require('nanoid-dictionary');
 
-const gamesPerPage = 3;
+const gamesPerPage = 9;
 
 exports.getTeacherDashboard = (req, res, next) => {
   if (req.session.user) {
@@ -156,7 +156,7 @@ exports.getTeacherGameStorepage = (req, res, next) => {
         res.render('teacher/teacher-game-storepage', {
           classRoom: classRoom,
           games: gamesArray,
-          pageNumber: page,
+          pageNumber: parseInt(page),
           pageButtons: Math.ceil(totalGames / gamesPerPage),
           name: req.session.userName,
           path: '/teacher-classroom',
