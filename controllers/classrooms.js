@@ -10,7 +10,7 @@ const Teacher = require('../models/teacher');
 const generate = require('nanoid-generate');
 const dictionary = require('nanoid-dictionary');
 
-const gamesPerPage = 9;
+const gamesPerPage = 3;
 
 exports.getTeacherDashboard = (req, res, next) => {
   if (req.session.user) {
