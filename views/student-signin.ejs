@@ -1,58 +1,62 @@
 <%- include('./reusables/head.ejs') %>
-        <link rel="stylesheet" href="css/creator-dashboard.css">
-        <link rel="stylesheet" href="css/form.css" >
-        <title>Kleva: <%= pageTitle %></title>
-        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js" defer></script>
-        <script  src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js" defer></script>
-        <script  src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
+<link rel="stylesheet" href="css/creator-dashboard.css">
+<link rel="stylesheet" href="css/form.css">
+<title>Kleva: <%= pageTitle %></title>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
 </head>
 
 <body>
-        
-        <div class="content">
-            <!-- Main Content Area -->
-            <main class="authentication">
-                <!-- Student Single Code Signon -->
-                <div class="authentication__form" id="login">
-                    <a href="/" class="authentication__logo"><img src="img/logosmall.png" alt="Kleva" class="authentication__logo-image"></a>
-                    <form action="/student-signin" class="authentication__form-box_student" method="POST">
-                        
-                        <div class="authentication__form-container">
-                            <h3 class="authentication__form-maintitle">Sign in to your classroom</h3>
 
-                            <!-- Class Code -->
-                            <label class="authentication__form-title" for="classCode">Class Code</label>
-                            <input class="authentication__form-input" type="text" id="classCode" name="classCode" placeholder="Enter Your Signon Code" autofocus required/><br>
+    <div class="content">
+        <!-- Main Content Area -->
+        <main class="authentication">
+            <!-- Student Single Code Signon -->
+            <div class="authentication__form" id="login">
+                <a href="/" class="authentication__logo"><img src="img/logosmall.png" alt="Kleva"
+                        class="authentication__logo-image"></a>
+                <form action="/student-signin" class="authentication__form-box_student" method="POST">
 
-                            <!-- First Name -->
-                            <label class="authentication__form-title" for="firstName">First Name</label>
-                            <input class="authentication__form-input" type="text" id="firstName" name="firstName" placeholder="First Name" required/><br>
+                    <div class="authentication__form-container">
+                        <h3 class="authentication__form-maintitle">Sign in to your classroom</h3>
 
-                            <!-- Last Name -->
-                            <label class="authentication__form-title" for="lastName">Last Name</label>
-                            <input class="authentication__form-input" type="text" id="lastName" name="lastName" placeholder="Last Name" required/><br>
+                        <!-- Class Code -->
+                        <label class="authentication__form-title" for="classCode">Class Code</label>
+                        <input class="authentication__form-input" type="text" id="classCode" name="classCode"
+                            placeholder="Enter Your Signon Code" autofocus required /><br>
 
-                            <!-- Submission Button -->
-                            <input class="authentication__form-button" type="submit" value="Login">
+                        <!-- First Name -->
+                        <label class="authentication__form-title" for="firstName">First Name</label>
+                        <input class="authentication__form-input" type="text" id="firstName" name="firstName"
+                            placeholder="First Name" required /><br>
 
-                        </div>
-                    </form>
-                    
-                    
-                    
-                </div>
-            </main>   
-        </div>
+                        <!-- Last Name -->
+                        <label class="authentication__form-title" for="lastName">Last Name</label>
+                        <input class="authentication__form-input" type="text" id="lastName" name="lastName"
+                            placeholder="Last Name" required /><br>
 
-        <!-- Signin Error -->
-        
-        <% if (error) { %>
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <%= error %>
+                        <!-- Submission Button -->
+                        <input class="authentication__form-button" type="submit" value="Login"
+                            style="background-color: bisque;">
+
+                    </div>
+                </form>
+
+
+
             </div>
-        <% } %>
-        
+        </main>
+    </div>
+
+    <!-- Signin Error -->
+
+    <% if (error) { %>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <%= error %>
+    </div>
+    <% } %>
+
     </div>
 </body>
-    
