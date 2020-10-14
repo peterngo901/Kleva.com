@@ -2,8 +2,12 @@ const express = require('express');
 
 const gameroomController = require('../controllers/gameroom');
 const questionController = require('../controllers/questions');
+const authController = require('../controllers/auth');
 
 const router = express.Router();
+
+router.get('/quick-join', authController.getStudentGameSignin);
+router.post('/quick-join', authController.postStudentGameSignin);
 
 router.get('/game-room', gameroomController.getGameroom);
 

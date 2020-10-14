@@ -259,6 +259,55 @@ exports.postStudentSignin = (req, res, next) => {
           req.session.firstName = firstName;
           req.session.lastName = lastName;
           req.session.sessionType = 'student';
+          res.redirect(`/student-dashboard`);
+        });
+      } else {
+        return res.redirect('/student-signin');
+      }
+    })
+    .catch((err) => {
+      // Wrong ClassCode Entered.
+      res.render('/student-signin', {
+        error: 'Please enter a valid class code.',
+      });
+    });
+};
+
+exports.getStudentGameSignin = (req, res, next) => {
+  res.render('quickjoin', {
+    // Creator Signin Page.
+    error: '',
+    path: '/student-signin',
+    pageTitle: 'Sign In',
+  });
+};
+
+exports.postStudentGameSignin = (req, res, next) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const classCode = req.body.classCode;
+
+  // Search the Classroom Table for Class Signon Code
+  Classroom.findOne({
+    where: { classCode: classCode },
+  })
+    .then((existingClassroom) => {
+      if (existingClassroom) {
+        // Classroom Exists
+        // Add them to the Student Table with firstName, lastName and classCode
+        Student.create({
+          // Create a new student in the student table.
+          firstName: firstName,
+          lastName: lastName,
+          classroomClassCode: classCode,
+        }).then((student) => {
+          console.log(student.studentID);
+          req.session.user = student.studentID;
+          req.session.type = 'student';
+          req.session.classCode = classCode; // easily track all students belonging to a classroom
+          req.session.firstName = firstName;
+          req.session.lastName = lastName;
+          req.session.sessionType = 'student';
           res.redirect(`/game-room`);
         });
       } else {

@@ -13,6 +13,7 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
@@ -115,7 +116,10 @@ Main Navbar
 
 	<div class="wrapper">
 
+		<% if(user === 'student') { %>
 
+		<body onload=studentTracker()></body>
+		<% } %>
 		<!-- Page Content -->
 		<div class="container">
 
@@ -146,7 +150,7 @@ Main Navbar
 			<div class="row text-center my-5">
 				<div class="col-12">
 					<div class="list-group list-group-horizontal mt-3">
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">English</a>
+						<a href="#" class="list-group-item flex-fill" style="width: 25%;" id="testTime">English</a>
 						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Maths</a>
 						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Science</a>
 						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Humanities</a>
@@ -169,6 +173,7 @@ Main Navbar
 			<!-- /.container -->
 		</div>
 	</div>
+
 </body>
 <!-- Footer -->
 <footer class="py-5 bg-dark">
@@ -179,6 +184,7 @@ Main Navbar
 		<!-- /.container -->
 	</div>
 </footer>
+<script src="/js/timeme.js"></script>
 <script>
 
 	function loader() {
@@ -189,6 +195,35 @@ Main Navbar
 	function rewind() {
 		window.history.back();
 	}
+
+	// Initialize library on Game Initiation and start tracking time.
+	function studentTracker() {
+		TimeMe.initialize({
+			currentPageName: "game-page", // current page
+			idleTimeoutInSeconds: 20 // If the student's mouse is not inside the game-frame stop.
+		});
+	}
+
+
+	// Post the time to the classroomStats table.
+	function checkTimeSpent() {
+		console.log(TimeMe.getTimeOnCurrentPageInSeconds())
+
+	}
+
+	//AJAX post for Tracking Student Activity
+	$(window).on("beforeunload", function (e) {
+		TimeMe.stopTimer();
+		const totalTime = TimeMe.getTimeOnCurrentPageInSeconds();
+		$.post("/add-time",
+			{
+				gameID: '<%- game.gameID %>',
+				time: totalTime,
+			},
+		);
+	});
 </script>
+
+
 
 </html>
