@@ -32,7 +32,26 @@ const Game = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+      // totalPopularity: {
+      //   type: Sequelize.FLOAT
+      // },
+      // teacherPopularity: {
+      //   type: Sequelize.FLOAT
+      // },
+      // totalStudentPopularity: {
+      //   type: Sequelize.FLOAT
+      // },
+      // year7Popularity: {
+      //   type: Sequelize.FLOAT
+      // },
+      // year8Popularity: {
+      //   type: Sequelize.FLOAT
+      // },
+      // year9Popularity: {
+      //   type: Sequelize.FLOAT
+      // },
   },
+});
   { timestamps: false }
 );
 
