@@ -1,60 +1,65 @@
 <%- include('../reusables/head.ejs') %>
-        <link rel="stylesheet" href="css/creator-dashboard.css">
-        <link rel="stylesheet" href="css/form.css" >
-        <title>Kleva: <%= pageTitle %></title>
-        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js" defer></script>
-        <script  src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js" defer></script>
-        <script  src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
+<link rel="stylesheet" href="css/creator-dashboard.css">
+<link rel="stylesheet" href="css/form.css">
+<title>Kleva: <%= pageTitle %></title>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
 </head>
 
 <body>
-        
-        <div class="content">
-            <!-- Main Content Area -->
-            <main class="authentication">
-                 <!-- Signin Error -->
-                 <% if (error) { %>
-                    <div class="row justify-content-center mt-5" style="position: absolute; width: 100%; margin-left: auto; margin-right: auto;">
-                        <div class="col-10 col-md-8 col-lg-5 alert alert-warning alert-dismissible fade show" style="z-index: 1500; position: relative" role="alert">
-                            <%= error %>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                <% } %>
-                <!-- Game Upload Form -->
-                <div class="authentication__form" id="login">
-                    <a href="/" class="authentication__logo"><img src="img/logosmall.png" alt="Kleva" class="authentication__logo-image"></a>
-                    <form action="/creator-signin" class="authentication__form-box" method="POST">
-                        
-                        <div class="authentication__form-container">
-                            <h3 class="authentication__form-maintitle">Sign in to your account</h3>
-                            <!-- Username -->
-                            <label class="authentication__form-title" for="username">Email Username</label>
-                            <input class="authentication__form-input" type="email" id="username" name="username" placeholder="Username" autofocus/><br>
-                            
-                            <!-- Password -->
-                            <div class="authentication__form-password-title">
-                                <span style="float:left">Password</span>
-                                    <a class="authentication__form-password" href="/reset">Forgot Your Password?</a>
-                            </div>
-                            
-                            <input class="authentication__form-input" type="password" id="password" name="password" placeholder="Password"/><br>
-                            
-                            <!-- Submission Button -->
-                            
-                            <input class="authentication__form-button" type="submit" value="Login">
-                            <span class="authentication__form-signup-text">Don't have an account? <a href="/creator-signup" style="text-decoration: none;">Sign up</a></span>
 
-                        </div>
-                    </form>
-                    
-                    
-                    
+    <div class="content">
+        <!-- Main Content Area -->
+        <main class="authentication">
+            <!-- Signin Error -->
+            <% if (error) { %>
+            <div class="row justify-content-center mt-5"
+                style="position: absolute; width: 100%; margin-left: auto; margin-right: auto;">
+                <div class="col-10 col-md-8 col-lg-5 alert alert-warning alert-dismissible fade show"
+                    style="z-index: 1500; position: relative" role="alert">
+                    <%= error %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </main>   
-        </div>
+            </div>
+            <% } %>
+            <!-- Game Upload Form -->
+            <div class="authentication__form" id="login">
+                <a href="/" class="authentication__logo"><img src="img/logosmall.png" alt="Kleva"
+                        class="authentication__logo-image"></a>
+                <form action="/creator-signin" class="authentication__form-box" method="POST">
+
+                    <div class="authentication__form-container">
+                        <h3 class="authentication__form-maintitle">Sign in to your account</h3>
+                        <!-- Username -->
+                        <label class="authentication__form-title" for="username">Email Username</label>
+                        <input class="authentication__form-input" type="email" id="username" name="username"
+                            placeholder="Username" autofocus /><br>
+
+                        <!-- Password -->
+                        <div class="authentication__form-password-title">
+                            <span style="float:left">Password</span>
+                            <a class="authentication__form-password" href="/reset">Forgot Your Password?</a>
+                        </div>
+
+                        <input class="authentication__form-input" type="password" id="password" name="password"
+                            placeholder="Password" /><br>
+
+                        <!-- Submission Button -->
+
+                        <input class="authentication__form-button klevabtn" type="submit" value="Login">
+                        <span class="authentication__form-signup-text">Don't have an account? <a href="/creator-signup"
+                                style="text-decoration: none;">Sign up</a></span>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+        </main>
+    </div>
     </div>
 </body>
-    

@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+require('dotenv').config();
 
 // Server-side cookies for login persistence.
 const session = require('express-session');
@@ -151,7 +152,7 @@ ClassroomStats.belongsTo(Game, {
 
 // Sync the Tables/Models and Relations
 sequelize
-  .sync()
+  .sync({ force: false })
   .then((result) => {
     server.listen(port);
   })

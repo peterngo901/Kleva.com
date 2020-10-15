@@ -1,9 +1,10 @@
 const Game = require('../models/game');
 
 // Limit the number of games returned on a single page.
-const gamesPerPage = 3;
+const gamesPerPage = 9;
 
 exports.getIndex = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('home', {
     pageTitle: 'Kleva',
     path: '/',
@@ -18,6 +19,7 @@ exports.getGames = (req, res, next) => {
 };
 
 exports.getGame = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('store/game-details', {
     pageTitle: game.title,
     path: '/games',
@@ -27,7 +29,7 @@ exports.getGame = (req, res, next) => {
 // Public Game Gallery with no specific recommendation ML algorithm.
 exports.getGamesGallery = async (req, res, next) => {
   const page = req.query.page;
-
+  res.locals.user = req.session.sessionType;
   try {
     // Skip games based on page.
     var gameBatch = (page - 1) * gamesPerPage;
@@ -42,7 +44,7 @@ exports.getGamesGallery = async (req, res, next) => {
       path: '/gamesgallery',
       pageTitle: 'GamesGallery',
       games: gamesArray,
-      pageNumber: page,
+      pageNumber: parseInt(page),
       pageButtons: Math.ceil(totalGames / gamesPerPage),
     });
   } catch (err) {
@@ -52,6 +54,7 @@ exports.getGamesGallery = async (req, res, next) => {
 };
 
 exports.getHome = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('home', {
     path: '/home',
     pageTitle: 'Home',
@@ -60,6 +63,7 @@ exports.getHome = (req, res, next) => {
 
 //placeholder route for bridge builder game
 exports.getGamepage = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('gamepage', {
     path: '/gamepage',
     pageTitle: 'Home',
@@ -67,6 +71,7 @@ exports.getGamepage = (req, res, next) => {
 };
 
 exports.getLogin = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('login', {
     error: '',
     path: '/login',
@@ -75,6 +80,7 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.getAbout = (req, res, next) => {
+  res.locals.user = req.session.sessionType;
   res.render('about', {
     path: '/about',
     pageTitle: 'About Us',
@@ -92,4 +98,3 @@ exports.getCart = (req, res, next) => {
 exports.postUploadGames = (req, res, next) => {
   res.redirect('/creator-dashboard');
 };
-

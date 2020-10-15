@@ -49,37 +49,32 @@
 }
 
 /* user profile */
-#picture{
-
+#picture {
 }
-.profile-container{
+.profile-container {
   background-color: wheat;
   display: list-item;
   text-align: center;
   flex-wrap: wrap;
-  
 }
-.details{
+.details {
   display: -moz-inline-grid;
   text-align: center;
   flex-wrap: wrap;
   justify-content: center;
 }
-.user-detail{
+.user-detail {
   display: flex;
   text-align: left;
   padding: 2em;
   justify-content: center;
 }
-.user-detail #content{
+.user-detail #content {
   background-color: plum;
   opacity: 0.5;
   display: inline;
   text-align: left;
   justify-content: space-around;
-
-
-
 }
 
 @media (min-width: 992px) {
@@ -97,3 +92,13 @@
 }
 
 /*End carousel css*/
+
+.klevabtn {
+  background-color: #c9d5ff !important;
+  border: none;
+  font-weight: 600;
+}
+
+.klevabtn:hover {
+  background-color: bisque !important;
+}

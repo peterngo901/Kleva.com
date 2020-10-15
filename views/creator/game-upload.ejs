@@ -1,305 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/creator-dashboard.css" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/kleva-main-theme.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <title>Kleva</title>
-  </head>
 
-  <body style="overflow-y: scroll">
-    <!-- Dashboard Container -->
-    <div class="container-fluid pr-0 pl-0">
-      <!-- Navigation Bar -->
-      <header class="header">
-        <!-- Logo -->
-        <img src="../img/logo.png" alt="Kleva" class="logo" />
-        <!-- Search Bar -->
-        <form action="/" class="search" method="POST">
-          <input type="text" class="search__input" placeholder="Search Games" />
-          <button class="search__button">
-            <svg class="search__icon">
-              <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
-            </svg>
-          </button>
-        </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/creator-dashboard.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/kleva-main-theme.css" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <title>Kleva</title>
+</head>
 
-        <!-- Mobile Menu  -->
-        <div class="mobile-navigation">
-          <input
-            type="checkbox"
-            class="mobile-navigation__checkbox"
-            id="menu_burger"
-          />
+<body style="overflow-y: scroll">
+  <!-- Dashboard Container -->
+  <div class="container-fluid pr-0 pl-0">
+    <!-- Navigation Bar -->
+    <header class="header">
+      <!-- Logo -->
+      <img src="../img/logo.png" alt="Kleva" class="logo" />
+      <!-- Search Bar -->
+      <form action="/" class="search" method="POST">
+        <input type="text" class="search__input" placeholder="Search Games" />
+        <button class="search__button">
+          <svg class="search__icon">
+            <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
 
-          <label for="menu_burger" class="mobile-navigation__button">
-            <svg class="mobile-navigation__button-icon">
-              <use xlink:href="../img/symbol-defs.svg#icon-menu"></use>
-            </svg>
-          </label>
+      <!-- Mobile Menu  -->
+      <div class="mobile-navigation">
+        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger" />
 
-          <div class="mobile-navigation__background"></div>
+        <label for="menu_burger" class="mobile-navigation__button">
+          <svg class="mobile-navigation__button-icon">
+            <use xlink:href="../img/symbol-defs.svg#icon-menu"></use>
+          </svg>
+        </label>
 
-          <nav class="mobile-navigation__nav">
-            <ul class="mobile-navigation__list">
-              <li class="mobile-navigation__item">
-                <a href="" class="mobile-navigation__link">Home</a>
-              </li>
-              <li class="mobile-navigation__item">
-                <a href="" class="mobile-navigation__link">Log Out</a>
-              </li>
-              <li class="mobile-navigation__item">
-                <a href="" class="mobile-navigation__link">Games</a>
-              </li>
-              <li class="mobile-navigation__item">
-                <a href="" class="mobile-navigation__link">Help</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <div class="mobile-navigation__background"></div>
 
-        <!-- Desktop and Tablet Menu -->
-        <nav class="user-nav">
-          <div class="user-nav__icon-box">
-            <a href="/">
-              <svg class="user-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#icon-home"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
-            </svg>
-          </div>
-          <div class="user-nav__user">
-            <img
-              src="../img/profile.png"
-              alt="User Photo"
-              class="user-nav__user-photo"
-            />
-            <span class="user-name">Bobby</span>
-          </div>
-        </nav>
-      </header>
-
-      <div class="content">
-        <!-- Dashboard Side Bar -->
-        <nav class="side-bar">
-          <!-- Dashboard Pages -->
-          <ul class="side-nav">
-            <!-- Active Styling with Plain JS Logic -->
-            <li
-              class="<%= path === '/creator-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %>"
-            >
-              <a href="/creator-dashboard" class="side-nav__link">
-                <!-- Sidebar Icon -->
-                <svg class="side-nav__icon">
-                  <use
-                    xlink:href="../img/symbol-defs.svg#icon-box-remove"
-                  ></use>
-                </svg>
-                <span>Upload</span>
-              </a>
+        <nav class="mobile-navigation__nav">
+          <ul class="mobile-navigation__list">
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Home</a>
             </li>
-            <li
-              class="<%= path === '/under-review' ? 'side-nav__item--active' : 'side-nav__item' %>"
-            >
-              <a href="/" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use
-                    xlink:href="../img/symbol-defs.svg#icon-user-check"
-                  ></use>
-                </svg>
-                <span>Under Review</span>
-              </a>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Log Out</a>
             </li>
-            <li
-              class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>"
-            >
-              <a href="/" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
-                </svg>
-                <span>Help</span>
-              </a>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Games</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Help</a>
             </li>
           </ul>
-          <!-- Legal Text -->
-          <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
         </nav>
+      </div>
 
-        <div class="container-fluid">
-          <div class="row w-75 mx-auto justify-content-center">
-            <div class="col-12 col-xl-6">
-              <form
-                id="game-upload-form"
-                action="./game-upload"
-                method="POST"
-                enctype="multipart/form-data"
-              >
-                <!-- Game Title and Description -->
-                <div class="card mt-5 px-5 py-5 shadow rounded">
-                  <div class="row">
-                    <!-- Game Title -->
-                    <div class="form-group col-12">
-                      <label for="title">Game Title</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="title"
-                        name="title"
-                        placeholder="Example: Bridge Builder"
-                      />
+      <!-- Desktop and Tablet Menu -->
+      <nav class="user-nav">
+        <div class="user-nav__icon-box">
+          <a href="/">
+            <svg class="user-nav__icon">
+              <use xlink:href="../img/symbol-defs.svg#icon-home"></use>
+            </svg>
+          </a>
+        </div>
+        <div class="user-nav__icon-box">
+          <form action="/sign-out" method="POST">
+            <button type="submit" style="border: none; background-color: inherit; ">
+              <svg class="user-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="user-nav__user">
+          <img src="../img/profile.png" alt="User Photo" class="user-nav__user-photo" />
+          <span class="user-name">Bobby</span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content">
+      <!-- Dashboard Side Bar -->
+      <nav class="side-bar">
+        <!-- Dashboard Pages -->
+        <ul class="side-nav">
+          <!-- Active Styling with Plain JS Logic -->
+          <li class="<%= path === '/creator-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %>">
+            <a href="/creator-dashboard" class="side-nav__link">
+              <!-- Sidebar Icon -->
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
+              </svg>
+              <span>Upload</span>
+            </a>
+          </li>
+          <li class="<%= path === '/under-review' ? 'side-nav__item--active' : 'side-nav__item' %>">
+            <a href="/" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
+              </svg>
+              <span>Under Review</span>
+            </a>
+          </li>
+          <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>">
+            <a href="/" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
+              </svg>
+              <span>Help</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Legal Text -->
+        <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
+      </nav>
+
+      <div class="container-fluid pr-0 pl-0" style="height: 96vh;">
+        <div class="px-5 py-5">
+          <div class="ml-5 mr-5 container-md mx-auto">
+            <form id="game-upload-form" action="./game-upload" method="POST" enctype="multipart/form-data"
+              style="font-size: 2rem;">
+              <!-- Game Title and Description -->
+              <div class="card mt-5 px-5 py-5 shadow rounded">
+                <div class="row">
+                  <!-- Game Title -->
+                  <div class="form-group col-12">
+                    <label for="title">Game Title</label>
+                    <input type="text" class="form-control" id="title" name="title"
+                      placeholder="Example: Bridge Builder" />
+                  </div>
+                  <!-- Game Description -->
+                  <div class="form-group col-12">
+                    <label for="exampleFormControlTextarea1">Description
+                    </label>
+                    <textarea class="form-control" id="description" rows="5" name="description"
+                      placeholder="Describe your game in 90 words."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Game Title and Description -->
+              <div class="card mt-5 px-5 py-5 shadow rounded">
+                <div class="row">
+                  <!-- Game File -->
+                  <label for="inputGroupFile01">Upload Your Game</label>
+                  <div class="custom-file col-12">
+                    <input type="file" class="custom-file-input" id="gameFile" name="gameFile"
+                      aria-describedby="inputGroupFileAddon01" />
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                  <!-- Game Images -->
+                  <label for="inputGroupFile01">Upload Your Game Hero Images</label>
+                  <div class="custom-file col-12">
+                    <input type="file" class="custom-file-input" id="gameImage" name="gameImage"
+                      aria-describedby="inputGroupFileAddon01" multiple="multiple" />
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Game Title and Description -->
+              <div class="card mt-5 px-5 py-5 shadow rounded">
+                <div class="row">
+                  <!-- Game Title -->
+                  <div class="form-group col-12">
+                    <label for="category">Category</label>
+                    <select class="custom-select" id="category" name="category">
+                      <option selected>Choose...</option>
+                      <option value="Maths">Maths</option>
+                      <option value="Science">Science</option>
+                      <option value="English">English</option>
+                    </select>
+                  </div>
+                  <!-- Game Description -->
+                  <div class="form-group col-12">
+                    <label for="exampleFormControlTextarea1">Subcategory
+                    </label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                        class="custom-control-input" />
+                      <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
                     </div>
-                    <!-- Game Description -->
-                    <div class="form-group col-12">
-                      <label for="exampleFormControlTextarea1"
-                        >Description
-                      </label>
-                      <textarea
-                        class="form-control"
-                        id="description"
-                        rows="5"
-                        name="description"
-                        placeholder="Describe your game in 90 words."
-                      ></textarea>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                        class="custom-control-input" />
+                      <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom
+                        radio</label>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Game Title and Description -->
-                <div class="card mt-5 px-5 py-5 shadow rounded">
-                  <div class="row">
-                    <!-- Game File -->
-                    <label for="inputGroupFile01">Upload Your Game</label>
-                    <div class="custom-file col-12">
-                      <input
-                        type="file"
-                        class="custom-file-input"
-                        id="gameFile"
-                        name="gameFile"
-                        aria-describedby="inputGroupFileAddon01"
-                      />
-                      <label class="custom-file-label" for="inputGroupFile01"
-                        >Choose file</label
-                      >
-                    </div>
-                    <!-- Game Images -->
-                    <label for="inputGroupFile01"
-                      >Upload Your Game Hero Images</label
-                    >
-                    <div class="custom-file col-12">
-                      <input
-                        type="file"
-                        class="custom-file-input"
-                        id="gameImage"
-                        name="gameImage"
-                        aria-describedby="inputGroupFileAddon01"
-                        multiple="multiple"
-                      />
-                      <label class="custom-file-label" for="inputGroupFile01"
-                        >Choose file</label
-                      >
-                    </div>
-                  </div>
+              <!-- Submit Button -->
+              <div class="card mt-5 px-5 py-5 shadow rounded">
+                <div class="row">
+                  <!-- Upload -->
+                  <div class="col align-self-end"></div>
+
+                  <button type="submit" class="btn btn-success">
+                    Upload
+                  </button>
                 </div>
-
-                <!-- Game Title and Description -->
-                <div class="card mt-5 px-5 py-5 shadow rounded">
-                  <div class="row">
-                    <!-- Game Title -->
-                    <div class="form-group col-12">
-                      <label for="category">Category</label>
-                      <select
-                        class="custom-select"
-                        id="category"
-                        name="category"
-                      >
-                        <option selected>Choose...</option>
-                        <option value="Maths">Maths</option>
-                        <option value="Science">Science</option>
-                        <option value="English">English</option>
-                      </select>
-                    </div>
-                    <!-- Game Description -->
-                    <div class="form-group col-12">
-                      <label for="exampleFormControlTextarea1"
-                        >Subcategory
-                      </label>
-                      <br />
-                      <div
-                        class="custom-control custom-radio custom-control-inline"
-                      >
-                        <input
-                          type="radio"
-                          id="customRadioInline1"
-                          name="customRadioInline1"
-                          class="custom-control-input"
-                        />
-                        <label
-                          class="custom-control-label"
-                          for="customRadioInline1"
-                          >Toggle this custom radio</label
-                        >
-                      </div>
-                      <div
-                        class="custom-control custom-radio custom-control-inline"
-                      >
-                        <input
-                          type="radio"
-                          id="customRadioInline2"
-                          name="customRadioInline1"
-                          class="custom-control-input"
-                        />
-                        <label
-                          class="custom-control-label"
-                          for="customRadioInline2"
-                          >Or toggle this other custom radio</label
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="card mt-5 px-5 py-5 shadow rounded">
-                  <div class="row">
-                    <!-- Upload -->
-                    <div class="col align-self-end"></div>
-
-                    <button type="submit" class="btn btn-success">
-                      Upload
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

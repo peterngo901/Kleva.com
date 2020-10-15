@@ -134,6 +134,12 @@ exports.postGameQuestion = (req, res, next) => {
   });
 };
 
+// AI Doodle Prediction - Feed Doodle to the Classifier on GCP.
+// Return the Probability - If it passes 80% threshold, assign a tick.
+// Classification labels scraped from ACARA scotTerm SparQL Endpoint.
+// Students create training images by doodling.
+// Teachers label the images by assigning yes or no classification.
+
 // Add User to Tracking List
 const addUser = ({ id, firstName, lastName, room }) => {
   // id parameter: unique id provided by socket.io

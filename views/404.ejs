@@ -1,9 +1,10 @@
 <%- include('reusables/head.ejs'); %></head>
+
 <body>
-    <%- include('reusables/navbar-bootstrap.ejs'); %>
-        <main>
-            <h1>Sorry there's nothing here!</h1>
-        </main>
-    </body>
+    <%- include('reusables/navbar-bootstrap.ejs', {sessionType: user});%>
+    <main>
+        <h1>Sorry there's nothing here!</h1>
+    </main>
+</body>
 
 </html>

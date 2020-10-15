@@ -48,7 +48,7 @@ exports.postTeacherSignup = (req, res, next) => {
         // Hash the password
         req.session.isLoggedIn = true;
         req.session.user = email; // Set session data to include the teacher email, helps us persist login state.
-
+        req.session.sessionType = 'teacher';
         Teacher.create({
           // Create a new teacher in the teacher table.
           email: email,
@@ -103,17 +103,19 @@ exports.postTeacherSignin = (req, res, next) => {
             // Set the Session
             req.session.isLoggedIn = true;
             req.session.user = email;
-            return res.redirect('/teacher-dashboard');
+            req.session.sessionType = 'teacher';
+
+            res.status(202).redirect('/teacher-dashboard');
+          } else {
+            // Incorrect Password
+            return res.redirect('/teacher-signin'); // Redirect to the signin page.
           }
-          // Incorrect Password
-          return res.redirect('/teacher-signin'); // Redirect to the signin page.
         })
         .catch((err) => {
           return res.redirect('/teacher-signin'); // Redirect to the signin page.
         });
     })
     .catch((err) => {
-      next(err);
       res.redirect('/teacher-signin');
     });
 };
@@ -154,7 +156,7 @@ exports.postCreatorSignup = (req, res, next) => {
         // Hash the password
         req.session.isLoggedIn = true;
         req.session.user = email; // Set session data to include the teacher email, helps us persist login state.
-
+        req.session.sessionType = 'creator';
         Creator.create({
           // Create a new teacher in the teacher table.
           email: email,
@@ -204,6 +206,7 @@ exports.postCreatorSignin = (req, res, next) => {
             // Set the Session
             req.session.isLoggedIn = true;
             req.session.user = email;
+            req.session.sessionType = 'creator';
             return res.redirect('/creator-dashboard');
           }
           // Incorrect Password
@@ -255,6 +258,56 @@ exports.postStudentSignin = (req, res, next) => {
           req.session.classCode = classCode; // easily track all students belonging to a classroom
           req.session.firstName = firstName;
           req.session.lastName = lastName;
+          req.session.sessionType = 'student';
+          res.redirect(`/student-dashboard`);
+        });
+      } else {
+        return res.redirect('/student-signin');
+      }
+    })
+    .catch((err) => {
+      // Wrong ClassCode Entered.
+      res.render('/student-signin', {
+        error: 'Please enter a valid class code.',
+      });
+    });
+};
+
+exports.getStudentGameSignin = (req, res, next) => {
+  res.render('quickjoin', {
+    // Creator Signin Page.
+    error: '',
+    path: '/student-signin',
+    pageTitle: 'Sign In',
+  });
+};
+
+exports.postStudentGameSignin = (req, res, next) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const classCode = req.body.classCode;
+
+  // Search the Classroom Table for Class Signon Code
+  Classroom.findOne({
+    where: { classCode: classCode },
+  })
+    .then((existingClassroom) => {
+      if (existingClassroom) {
+        // Classroom Exists
+        // Add them to the Student Table with firstName, lastName and classCode
+        Student.create({
+          // Create a new student in the student table.
+          firstName: firstName,
+          lastName: lastName,
+          classroomClassCode: classCode,
+        }).then((student) => {
+          console.log(student.studentID);
+          req.session.user = student.studentID;
+          req.session.type = 'student';
+          req.session.classCode = classCode; // easily track all students belonging to a classroom
+          req.session.firstName = firstName;
+          req.session.lastName = lastName;
+          req.session.sessionType = 'student';
           res.redirect(`/game-room`);
         });
       } else {
