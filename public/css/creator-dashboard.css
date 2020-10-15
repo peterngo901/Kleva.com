@@ -42,16 +42,10 @@ body {
 }
 
 .container {
-<<<<<<< HEAD
-    margin: 0 auto;
-    box-shadow: var(--shadow-box);
-    min-height: 50rem;
-=======
   margin: 0 auto;
   background-color: #dbdbdb;
   box-shadow: var(--shadow-box);
   min-height: 50rem;
->>>>>>> d3b2824c8124ca90597878e6386184ba954ca541
 }
 
 .carousel-wrapper{
