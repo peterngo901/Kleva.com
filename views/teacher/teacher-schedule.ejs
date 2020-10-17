@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/creator-dashboard.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/calendar.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+      /*  className colors
+    
+      className: default(transparent), important(red), chill(pink), success(green), info(blue)
+    
+      */
+      /* initialize the external events
+      -----------------------------------------------------------------*/
+      $('#external-events div.external-event').each(function() {
+        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+        // it doesn't need to have a start or end
+        var eventObject = {
+          title: $.trim($(this).text()) // use the element's text as the event title
+        };
+        // store the Event Object in the DOM element so we can get to it later
+        $(this).data('eventObject', eventObject);
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+          zIndex: 999,
+          revert: true, // will cause the event to go back to its
+          revertDuration: 0 //  original position after the drag
+        });
+      });
+      /* initialize the calendar
+      -----------------------------------------------------------------*/
+      var calendar = $('#calendar').fullCalendar({
+        header: {
+          left: 'title',
+          center: 'agendaDay,agendaWeek,month',
+          right: 'prev,next today'
+        },
+        editable: true,
+        firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+        selectable: true,
+        defaultView: 'month',
+        axisFormat: 'h:mm',
+        columnFormat: {
+          month: 'ddd', // Mon
+          week: 'ddd d', // Mon 7
+          day: 'dddd M/d', // Monday 9/7
+          agendaDay: 'dddd d'
+        },
+        titleFormat: {
+          month: 'MMMM yyyy', // September 2009
+          week: "MMMM yyyy", // September 2009
+          day: 'MMMM yyyy' // Tuesday, Sep 8, 2009
+        },
+        allDaySlot: false,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+          var title = prompt('Event Title:');
+          if (title) {
+            calendar.fullCalendar('renderEvent', {
+                title: title,
+                start: start,
+                end: end,
+                allDay: allDay
+              },
+              true // make the event "stick"
+            );
+          }
+          calendar.fullCalendar('unselect');
+        },
+        droppable: true, // this allows things to be dropped onto the calendar !!!
+        drop: function(date, allDay) { // this function is called when something is dropped
+          // retrieve the dropped element's stored Event Object
+          var originalEventObject = $(this).data('eventObject');
+          // we need to copy it, so that multiple events don't have a reference to the same object
+          var copiedEventObject = $.extend({}, originalEventObject);
+          // assign it the date that was reported
+          copiedEventObject.start = date;
+          copiedEventObject.allDay = allDay;
+          // render the event on the calendar
+          // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+          $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+          // is the "remove after drop" checkbox checked?
+          if ($('#drop-remove').is(':checked')) {
+            // if so, remove the element from the "Draggable Events" list
+            $(this).remove();
+          }
+        },
+        events: [{
+            title: 'All Day Event',
+            start: new Date(y, m, 1)
+          },
+          {
+            id: 999,
+            title: 'Repeating Event',
+            start: new Date(y, m, d - 3, 16, 0),
+            allDay: false,
+            className: 'info'
+          },
+          {
+            id: 999,
+            title: 'Repeating Event',
+            start: new Date(y, m, d + 4, 16, 0),
+            allDay: false,
+            className: 'info'
+          },
+          {
+            title: 'Meeting',
+            start: new Date(y, m, d, 10, 30),
+            allDay: false,
+            className: 'important'
+          },
+          {
+            title: 'Lunch',
+            start: new Date(y, m, d, 12, 0),
+            end: new Date(y, m, d, 14, 0),
+            allDay: false,
+            className: 'important'
+          },
+          {
+            title: 'Birthday Party',
+            start: new Date(y, m, d + 1, 19, 0),
+            end: new Date(y, m, d + 1, 22, 30),
+            allDay: false,
+          },
+          {
+            title: 'Click for Google',
+            start: new Date(y, m, 28),
+            end: new Date(y, m, 29),
+            url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
+            className: 'success'
+          }
+        ],
+      });
+    });
+  </script>
+  <style>
+    body {
+      margin-bottom: 40px;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      font-family: "Open Sans", sans-serif;
+      background: url(http://www.digiphotohub.com/wp-content/uploads/2015/09/bigstock-Abstract-Blurred-Background-Of-92820527.jpg);
+    }
+
+    #wrap {
+      width: 1100px;
+      margin: 0 auto;
+    }
+
+    #external-events {
+      float: left;
+      width: 150px;
+      padding: 0 10px;
+      text-align: left;
+    }
+
+    #external-events h4 {
+      font-size: 16px;
+      margin-top: 0;
+      padding-top: 1em;
+    }
+
+    .external-event {
+      /* try to mimick the look of a real event */
+      margin: 10px 0;
+      padding: 2px 4px;
+      background: #3366CC;
+      color: #fff;
+      font-size: .85em;
+      cursor: pointer;
+    }
+
+    #external-events p {
+      margin: 1.5em 0;
+      font-size: 11px;
+      color: #666;
+    }
+
+    #external-events p input {
+      margin: 0;
+      vertical-align: middle;
+    }
+
+    #calendar {
+      /*    float: right; */
+      margin: 0 auto;
+      width: 900px;
+      background-color: #FFFFFF;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px #C3C3C3;
+      -webkit-box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+      -moz-box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+      box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+    }
+  </style>
+
+  <title>Kleva</title>
+
+</head>
+
+<body>
+  <!-- Dashboard Container -->
+  <div class="">
+    <!-- Navigation Bar -->
+    <header class="header">
+      <!-- Logo -->
+      <img src="../img/logo.png" alt="Kleva" class="logo" />
+      <!-- Search Bar -->
+      <form action="/" class="search" method="POST">
+        <input type="text" class="search__input" placeholder="Search Games" />
+        <button class="search__button">
+          <svg class="search__icon">
+            <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Mobile Menu  -->
+      <div class="mobile-navigation">
+        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger" />
+
+        <label for="menu_burger" class="mobile-navigation__button">
+          <svg class="mobile-navigation__button-icon">
+            <use xlink:href="../img/symbol-defs.svg#icon-menu"></use>
+          </svg>
+        </label>
+
+        <div class="mobile-navigation__background"></div>
+
+        <nav class="mobile-navigation__nav">
+          <ul class="mobile-navigation__list">
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Home</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Log Out</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Games</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Help</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Desktop and Tablet Menu -->
+      <nav class="user-nav">
+        <div class="user-nav__icon-box">
+          <a href="/">
+            <svg class="user-nav__icon">
+              <use xlink:href="../img/symbol-defs.svg#icon-home"></use>
+            </svg>
+          </a>
+        </div>
+        <div class="user-nav__icon-box">
+          <form action="/sign-out" method="POST">
+            <button type="submit" style="border: none; background-color: inherit">
+              <svg class="user-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="user-nav__user">
+          <img src="../img/profile.png" alt="User Photo" class="user-nav__user-photo" />
+          <span class="user-name"><%= name; %></span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content">
+      <!-- Dashboard Side Bar -->
+      <nav class="side-bar">
+        <!-- Dashboard Pages -->
+        <ul class="side-nav">
+          <!-- Active Styling with Plain JS Logic -->
+          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/teacher-game-storepage/<%- classRoom.classCode%>?page=1" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
+              </svg>
+              <span>Add Games</span>
+            </a>
+          </li>
+          <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/teacher-dashboard" class="side-nav__link">
+              <!-- Sidebar Icon -->
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
+              </svg>
+              <span>Classroom</span>
+            </a>
+          </li>
+          <li class="side-nav__item">
+            <a href="/teacher-dashboard" class="side-nav__link">
+              <!-- Sidebar Icon -->
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#calendar"></use>
+              </svg>
+              <span>Schedule Calendar</span>
+            </a>
+          </li>
+          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/teacher-students" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
+              </svg>
+              <span>Students</span>
+            </a>
+          </li>
+          <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
+              </svg>
+              <span>Help</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Legal Text -->
+        <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <div class="container-fluid pr-0 pl-0 py-5">
+        <div class="px-5 py-5">
+          <div class="ml-5 mr-5 container-md mx-auto ">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/teacher-dashboard">All Classrooms</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Class - <%= classRoom.title; %>
+                </li>
+              </ol>
+            </nav>
+            <div class="col-12">
+              <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
+              <p>
+                <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
+              </p>
+              <!-- Calendar -->
+              <div class="conatiner">
+                  <div id='wrap'>
+
+                    <div id='calendar'></div>
+
+                    <div style='clear:both'></div>
+
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<script src="/js/calendar.js"></script>
+<script></script>
+
+</html>

@@ -100,7 +100,7 @@
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/teacher-game-storepage/<%- classRoom.classCode%>?page=1" class="side-nav__link">
+            <a href="/teacher-game-storepage/?page=1" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
               </svg>
@@ -116,11 +116,11 @@
               <span>Classroom</span>
             </a>
           </li>
-          <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/teacher-dashboard" class="side-nav__link">
+          <li class="side-nav__item">
+            <a href="/teacher-schedule" class="side-nav__link">
               <!-- Sidebar Icon -->
               <svg class="side-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
+                <use xlink:href="../img/symbol-defs.svg#calendar"></use>
               </svg>
               <span>Schedule Calendar</span>
             </a>
@@ -166,7 +166,7 @@
                 <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
               </p>
               <button type="button" class="btn btn-light btn-lg">
-                <a href="/teacher-game-storepage/<%-classRoom.classCode%>?page=1"> Add Games > </a>
+                <a href="/teacher-game-storepage/?page=1"> Add Games > </a>
               </button>
 
               <h2>Installed Games</h2>

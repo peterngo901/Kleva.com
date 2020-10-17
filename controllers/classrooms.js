@@ -14,6 +14,7 @@ const gamesPerPage = 3;
 
 exports.getTeacherDashboard = (req, res, next) => {
   if (req.session.user) {
+    req.session.classRoom = "none";
     const email = req.session.user;
     // Also Search the Classroom Table with matching teacherID.
     Classroom.findAll({
@@ -23,7 +24,6 @@ exports.getTeacherDashboard = (req, res, next) => {
       attributes: ['classCode', 'yearLevel', 'title', 'subject'],
     })
       .then((classrooms) => {
-        console.log(classrooms);
         Teacher.findOne({ where: { email: email } })
           .then((teacher) => {
             req.session.userName = teacher.firstName; //Set name in session
@@ -84,6 +84,7 @@ exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
     Classroom.findOne({ where: {classCode: classCode} }).then((classRoom) => {
+      req.session.classRoom = classRoom;
       ClassroomStats.findAll({
         where: {
           classroomClassCode: classCode,
@@ -140,7 +141,7 @@ exports.postCreateQuestions = (req, res, next) => {
 exports.getTeacherGameStorepage = (req, res, next) => {
   const page = req.query.page;
   if (req.session.user) {
-    const classCode = req.params.classroomCode;
+    const classCode = req.session.classRoom.classCode;
     // Skip games based on page.
     var gameBatch = (page - 1) * gamesPerPage;
     console.log('Classroomcode  = ' + classCode);
@@ -197,3 +198,12 @@ exports.getUserProfile = (req, res, next) => {
     path: '/user-profile',
   });
 };
+
+exports.getTeacherSchedule = (req, res, next) => {
+    res.render('teacher/teacher-schedule', {
+    pageTitle: 'Schedule',
+    name: req.session.userName,
+    classRoom: req.session.classRoom,
+    path: '/teacher-schedule',
+  });
+}
