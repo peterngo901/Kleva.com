@@ -587,3 +587,40 @@ body {
     color: #5259f7;
   }
 }
+
+.add_classroom_modal {
+  font-size: 2.5rem !important;
+  border-radius: 1.5rem !important;
+}
+
+.add_classroom_modal_label {
+  color: #727272 !important;
+}
+
+.add_classroom_modal_input {
+  font-size: 1.5rem !important;
+  border-radius: 3.7rem !important;
+  padding: 0.9rem 1.5rem !important;
+  height: 4.5rem !important;
+  margin-bottom: 2rem !important;
+  background-color: #c2c2c223 !important;
+}
+
+.add_classroom_modal_button {
+  font-size: 1.5rem !important;
+  background-color: bisque !important;
+  width: 25rem !important;
+  border-radius: 3.7rem !important;
+  padding: 2rem 0 2rem 0 !important;
+  font-weight: 500 !important;
+  width: 100% !important;
+  text-transform: uppercase;
+}
+
+.add_classroom_modal_button:hover {
+  background-color: #c9d5ff !important;
+}
+
+.show {
+  padding-right: 0px !important;
+}
