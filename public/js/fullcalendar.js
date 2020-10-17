@@ -12,6 +12,9 @@
  
 (function($, undefined) {
 
+
+;;
+
 var defaults = {
 
 	// display
@@ -43,7 +46,7 @@ var defaults = {
 	// time formats
 	titleFormat: {
 		month: 'MMMM yyyy',
-		week: "MMM d[ yyyy]{ '—'[ MMM] d yyyy}",
+		week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
 		day: 'dddd, MMM d, yyyy'
 	},
 	columnFormat: {
@@ -63,10 +66,10 @@ var defaults = {
 	dayNames: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
 	dayNamesShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
 	buttonText: {
-		prev: "<span class='fc-text-arrow'>‹</span>",
-		next: "<span class='fc-text-arrow'>›</span>",
-		prevYear: "<span class='fc-text-arrow'>«</span>",
-		nextYear: "<span class='fc-text-arrow'>»</span>",
+		prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
+		next: "<span class='fc-text-arrow'>&rsaquo;</span>",
+		prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
+		nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
 		today: 'today',
 		month: 'month',
 		week: 'week',
@@ -97,10 +100,10 @@ var rtlDefaults = {
 		right: 'title'
 	},
 	buttonText: {
-		prev: "<span class='fc-text-arrow'>›</span>",
-		next: "<span class='fc-text-arrow'>‹</span>",
-		prevYear: "<span class='fc-text-arrow'>»</span>",
-		nextYear: "<span class='fc-text-arrow'>«</span>"
+		prev: "<span class='fc-text-arrow'>&rsaquo;</span>",
+		next: "<span class='fc-text-arrow'>&lsaquo;</span>",
+		prevYear: "<span class='fc-text-arrow'>&raquo;</span>",
+		nextYear: "<span class='fc-text-arrow'>&laquo;</span>"
 	},
 	buttonIcons: {
 		prev: 'circle-triangle-e',
@@ -108,6 +111,9 @@ var rtlDefaults = {
 	}
 };
 
+
+
+;;
 
 var fc = $.fullCalendar = { version: "1.6.4" };
 var fcViews = fc.views = {};
@@ -174,6 +180,9 @@ function setDefaults(d) {
 	$.extend(true, defaults, d);
 }
 
+
+
+;;
 
  
 function Calendar(element, options, eventSources) {
@@ -711,6 +720,8 @@ function Calendar(element, options, eventSources) {
 
 }
 
+;;
+
 function Header(calendar, options) {
 	var t = this;
 	
@@ -738,7 +749,6 @@ function Header(calendar, options) {
 			element = $("<table class='fc-header' style='width:100%'/>")
 				.append(
 					$("<tr/>")
-            .append(renderSection('top-center'))
 						.append(renderSection('left'))
 						.append(renderSection('center'))
 						.append(renderSection('right'))
@@ -746,6 +756,7 @@ function Header(calendar, options) {
 			return element;
 		}
 	}
+	
 	
 	function destroy() {
 		element.remove();
@@ -763,7 +774,7 @@ function Header(calendar, options) {
 				var prevButton;
 				$.each(this.split(','), function(j, buttonName) {
 					if (buttonName == 'title') {
-						e.append("<span class='fc-header-title'><h2> </h2></span>");
+						e.append("<span class='fc-header-title'><h2>&nbsp;</h2></span>");
 						if (prevButton) {
 							prevButton.addClass(tm + '-corner-right');
 						}
@@ -783,14 +794,14 @@ function Header(calendar, options) {
 							var icon = options.theme ? smartProperty(options.buttonIcons, buttonName) : null; // why are we using smartProperty here?
 							var text = smartProperty(options.buttonText, buttonName); // why are we using smartProperty here?
 							var button = $(
-								"<div class='fc-button-wrap'><span class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
+								"<span class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
 									(icon ?
 										"<span class='fc-icon-wrap'>" +
 											"<span class='ui-icon ui-icon-" + icon + "'/>" +
 										"</span>" :
 										text
 										) +
-								"</span></div>"
+								"</span>"
 								)
 								.click(function() {
 									if (!button.hasClass(tm + '-state-disabled')) {
@@ -843,26 +854,33 @@ function Header(calendar, options) {
 	}
 	
 	
-  function activateButton(buttonName) {
+	function activateButton(buttonName) {
 		element.find('span.fc-button-' + buttonName)
 			.addClass(tm + '-state-active');
 	}
+	
 	
 	function deactivateButton(buttonName) {
 		element.find('span.fc-button-' + buttonName)
 			.removeClass(tm + '-state-active');
 	}
 	
+	
 	function disableButton(buttonName) {
 		element.find('span.fc-button-' + buttonName)
 			.addClass(tm + '-state-disabled');
 	}
 	
+	
 	function enableButton(buttonName) {
 		element.find('span.fc-button-' + buttonName)
 			.removeClass(tm + '-state-disabled');
 	}
+
+
 }
+
+;;
 
 fc.sourceNormalizers = [];
 fc.sourceFetchers = [];
@@ -1274,7 +1292,12 @@ function EventManager(options, _sources) {
 	function getSourcePrimitive(source) {
 		return ((typeof source == 'object') ? (source.events || source.url) : '') || source;
 	}
+
+
 }
+
+;;
+
 
 fc.addDays = addDays;
 fc.cloneDate = cloneDate;
@@ -1650,6 +1673,9 @@ function iso8601Week(date) {
 	return Math.floor(Math.round((time - checkDate) / 86400000) / 7) + 1;
 }
 
+
+;;
+
 fc.applyAll = applyAll;
 
 
@@ -1808,11 +1834,11 @@ function smartProperty(obj, name) { // get a camel-cased/namespaced property of 
 
 
 function htmlEscape(s) {
-	return s.replace(/&/g, '&')
-		.replace(/</g, '<')
-		.replace(/>/g, '>')
-		.replace(/'/g, '\'')
-		.replace(/"/g, '"')
+	return s.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/'/g, '&#039;')
+		.replace(/"/g, '&quot;')
 		.replace(/\n/g, '<br />');
 }
 
@@ -1914,6 +1940,9 @@ function firstDefined() {
 	}
 }
 
+
+;;
+
 fcViews.month = MonthView;
 
 function MonthView(element, calendar) {
@@ -1976,6 +2005,8 @@ function MonthView(element, calendar) {
 	
 }
 
+;;
+
 fcViews.basicWeek = BasicWeekView;
 
 function BasicWeekView(element, calendar) {
@@ -2025,7 +2056,11 @@ function BasicWeekView(element, calendar) {
 
 		renderBasic(1, colCnt, false);
 	}
+	
+	
 }
+
+;;
 
 fcViews.basicDay = BasicDayView;
 
@@ -2043,7 +2078,7 @@ function BasicDayView(element, calendar) {
 	var opt = t.opt;
 	var renderBasic = t.renderBasic;
 	var skipHiddenDays = t.skipHiddenDays;
-	var formatDate = calendar.formatDate;fc-header
+	var formatDate = calendar.formatDate;
 	
 	
 	function render(date, delta) {
@@ -2066,6 +2101,8 @@ function BasicDayView(element, calendar) {
 	
 	
 }
+
+;;
 
 setDefaults({
 	weekMode: 'fixed'
@@ -2351,7 +2388,7 @@ function BasicView(element, calendar, viewName) {
 
 		html +=
 			"<div class='fc-day-content'>" +
-			"<div style='position:relative'> </div>" +
+			"<div style='position:relative'>&nbsp;</div>" +
 			"</div>" +
 			"</div>" +
 			"</td>";
@@ -2586,7 +2623,9 @@ function BasicView(element, calendar, viewName) {
 	}
 	
 }
-  
+
+;;
+
 function BasicEventRenderer() {
 	var t = this;
 	
@@ -2613,6 +2652,8 @@ function BasicEventRenderer() {
 	// TODO: have this class (and AgendaEventRenderer) be responsible for creating the event container div
 
 }
+
+;;
 
 fcViews.agendaWeek = AgendaWeekView;
 
@@ -2666,6 +2707,8 @@ function AgendaWeekView(element, calendar) {
 
 }
 
+;;
+
 fcViews.agendaDay = AgendaDayView;
 
 
@@ -2705,6 +2748,8 @@ function AgendaDayView(element, calendar) {
 	
 
 }
+
+;;
 
 setDefaults({
 	allDaySlot: true,
@@ -2912,7 +2957,7 @@ function AgendaView(element, calendar, viewName) {
 				"<td>" +
 				"<div class='fc-day-content'><div style='position:relative'/></div>" +
 				"</td>" +
-				"<th class='" + headerClass + " fc-agenda-gutter'> </th>" +
+				"<th class='" + headerClass + " fc-agenda-gutter'>&nbsp;</th>" +
 				"</tr>" +
 				"</table>";
 			allDayTable = $(s).appendTo(slotLayer);
@@ -2956,10 +3001,10 @@ function AgendaView(element, calendar, viewName) {
 			s +=
 				"<tr class='fc-slot" + i + ' ' + (!minutes ? '' : 'fc-minor') + "'>" +
 				"<th class='fc-agenda-axis " + headerClass + "'>" +
-				((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : ' ') +
+				((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : '&nbsp;') +
 				"</th>" +
 				"<td class='" + contentClass + "'>" +
-				"<div style='position:relative'> </div>" +
+				"<div style='position:relative'>&nbsp;</div>" +
 				"</td>" +
 				"</tr>";
 			addMinutes(d, opt('slotMinutes'));
@@ -3041,7 +3086,7 @@ function AgendaView(element, calendar, viewName) {
 				"</th>";
 		}
 		else {
-			html += "<th class='fc-agenda-axis " + headerClass + "'> </th>";
+			html += "<th class='fc-agenda-axis " + headerClass + "'>&nbsp;</th>";
 		}
 
 		for (col=0; col<colCnt; col++) {
@@ -3053,7 +3098,7 @@ function AgendaView(element, calendar, viewName) {
 		}
 
 		html +=
-			"<th class='fc-agenda-gutter " + headerClass + "'> </th>" +
+			"<th class='fc-agenda-gutter " + headerClass + "'>&nbsp;</th>" +
 			"</tr>" +
 			"</thead>";
 
@@ -3075,7 +3120,7 @@ function AgendaView(element, calendar, viewName) {
 		html +=
 			"<tbody>" +
 			"<tr>" +
-			"<th class='fc-agenda-axis " + headerClass + "'> </th>";
+			"<th class='fc-agenda-axis " + headerClass + "'>&nbsp;</th>";
 
 		cellsHTML = '';
 
@@ -3105,7 +3150,7 @@ function AgendaView(element, calendar, viewName) {
 				"<td class='" + classNames.join(' ') + "'>" +
 				"<div>" +
 				"<div class='fc-day-content'>" +
-				"<div style='position:relative'> </div>" +
+				"<div style='position:relative'>&nbsp;</div>" +
 				"</div>" +
 				"</div>" +
 				"</td>";
@@ -3115,7 +3160,7 @@ function AgendaView(element, calendar, viewName) {
 
 		html += cellsHTML;
 		html +=
-			"<td class='fc-agenda-gutter " + contentClass + "'> </td>" +
+			"<td class='fc-agenda-gutter " + contentClass + "'>&nbsp;</td>" +
 			"</tr>" +
 			"</tbody>";
 
@@ -3599,6 +3644,8 @@ function AgendaView(element, calendar, viewName) {
 	
 
 }
+
+;;
 
 function AgendaEventRenderer() {
 	var t = this;
@@ -4487,6 +4534,9 @@ function compareSlotSegs(seg1, seg2) {
 }
 
 
+;;
+
+
 function View(element, calendar, viewName) {
 	var t = this;
 	
@@ -5026,6 +5076,8 @@ function View(element, calendar, viewName) {
 
 }
 
+;;
+
 function DayEventRenderer() {
 	var t = this;
 
@@ -5315,7 +5367,7 @@ function DayEventRenderer() {
 		if (segment.isEnd && isEventResizable(event)) {
 			html +=
 				"<div class='ui-resizable-handle ui-resizable-" + (isRTL ? 'w' : 'e') + "'>" +
-				"   " + // makes hit area a lot better for IE6/7
+				"&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
 				"</div>";
 		}
 		html += "</" + (url ? "a" : "div") + ">";
@@ -5776,6 +5828,9 @@ function compareDaySegments(a, b) {
 		(a.event.title || '').localeCompare(b.event.title) // if a tie, sort by event title
 }
 
+
+;;
+
 //BUG: unselect needs to be triggered when events are dragged+dropped
 
 function SelectionManager() {
@@ -5874,6 +5929,8 @@ function SelectionManager() {
 
 }
 
+;;
+ 
 function OverlayManager() {
 	var t = this;
 	
@@ -5910,6 +5967,8 @@ function OverlayManager() {
 
 
 }
+
+;;
 
 function CoordinateGrid(buildFunc) {
 
@@ -5956,6 +6015,8 @@ function CoordinateGrid(buildFunc) {
 	};
 
 }
+
+;;
 
 function HoverListener(coordinateGrid) {
 
@@ -6015,6 +6076,7 @@ function _fixUIEvent(event) { // for issue 1168
 		event.pageY = event.originalEvent.pageY;
 	}
 }
+;;
 
 function HorizontalPositionCache(getElement) {
 
@@ -6035,12 +6097,14 @@ function HorizontalPositionCache(getElement) {
 		return rights[i] = rights[i] === undefined ? t.left(i) + e(i).width() : rights[i];
 	};
 	
-	t.clear = function () {
+	t.clear = function() {
 		elements = {};
 		lefts = {};
 		rights = {};
 	};
 	
 }
+
+;;
 
 })(jQuery);
