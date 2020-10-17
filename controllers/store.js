@@ -5,6 +5,7 @@ const gamesPerPage = 9;
 
 exports.getIndex = (req, res, next) => {
   res.locals.user = req.session.sessionType;
+  res.set('Cache-control', 'public, max-age=86400');
   res.render('home', {
     pageTitle: 'Kleva',
     path: '/',

@@ -13,6 +13,7 @@ socket.on('begin', async (data) => {
   var timer = await setInterval(function () {
     if (timeleft < 0) {
       clearInterval(timer);
+      setup();
       document.getElementById('gameCountdownTimerText').innerHTML =
         data.questionOne;
       document.getElementById('gameCountdownTimer').value = 0;
@@ -20,6 +21,7 @@ socket.on('begin', async (data) => {
       var qOneTimer = setInterval(function () {
         if (questionOneTimeLeft < 0) {
           document.getElementById('gameCountdownTimer').value = 0;
+          setup();
           clearInterval(qOneTimer);
           document.getElementById('gameCountdownTimerText').innerHTML =
             data.questionTwo;

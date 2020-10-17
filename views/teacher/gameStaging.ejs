@@ -78,9 +78,13 @@
           </a>
         </div>
         <div class="user-nav__icon-box">
-          <svg class="user-nav__icon">
-            <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
-          </svg>
+          <form action="/sign-out" method="POST">
+            <button type="submit" style="border: none; background-color: inherit; ">
+              <svg class="user-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
+              </svg>
+            </button>
+          </form>
         </div>
         <div class="user-nav__user">
           <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo" />
@@ -150,8 +154,9 @@
 
                     <div class="input-group col-12 justify-content-center mt-3">
                       <button class="btn" type="button" style="font-size: 3rem; box-shadow: none;">
-                        <img id="questionButton1" src="img/add_question_button.png" class="img-fluid"
-                          onClick="changeImage1()" />
+                        <img id="questionButton1"
+                          src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
+                          class="img-fluid" onClick="changeImage1()" />
                       </button>
                     </div>
 
@@ -173,8 +178,9 @@
                     </select>
                     <div class="input-group col-12 justify-content-center mt-3">
                       <button class="btn" type="button" style="font-size: 3rem;  box-shadow: none;">
-                        <img id="questionButton2" src="img/add_question_button.png" class="img-fluid"
-                          onClick="changeImage()" />
+                        <img id="questionButton2"
+                          src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
+                          class="img-fluid" onClick="changeImage()" />
 
                       </button>
                     </div>
@@ -203,20 +209,20 @@
 </body>
 <script language="javascript">
   function changeImage() {
-    if (document.getElementById("questionButton2").src == "http://localhost:3000/img/add_question_button.png") {
-      document.getElementById("questionButton2").src = "http://localhost:3000/img/cancel_button.png";
+    if (document.getElementById("questionButton2").src == "https://storage.googleapis.com/kleva_assets/add_question_button-min.png") {
+      document.getElementById("questionButton2").src = "https://storage.googleapis.com/kleva_assets/cancel_button-min.png";
       $('#doodle02').prop('disabled', true);
     } else {
-      document.getElementById("questionButton2").src = "http://localhost:3000/img/add_question_button.png";
+      document.getElementById("questionButton2").src = "https://storage.googleapis.com/kleva_assets/add_question_button-min.png";
       $('#doodle02').prop('disabled', false);
     }
   };
   function changeImage1() {
-    if (document.getElementById("questionButton1").src == "http://localhost:3000/img/add_question_button.png") {
-      document.getElementById("questionButton1").src = "http://localhost:3000/img/cancel_button.png";
+    if (document.getElementById("questionButton1").src == "https://storage.googleapis.com/kleva_assets/add_question_button-min.png") {
+      document.getElementById("questionButton1").src = "https://storage.googleapis.com/kleva_assets/cancel_button-min.png";
       $('#doodle01').prop('disabled', true);
     } else {
-      document.getElementById("questionButton1").src = "http://localhost:3000/img/add_question_button.png";
+      document.getElementById("questionButton1").src = "https://storage.googleapis.com/kleva_assets/add_question_button-min.png";
       $('#doodle01').prop('disabled', false);
     }
   };

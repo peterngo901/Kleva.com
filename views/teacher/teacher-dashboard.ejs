@@ -147,8 +147,9 @@
               <div class="card col-8 col-md-3 m-3 shadow-sm rounded">
                 <div class="card-title text-center mt-3">Add A Classroom</div>
                 <div class="card-body">
-                  <img class="d-flex justify-content-center w-100 hover img-fluid" src="/img/addClassroom.png"
-                    role="button" data-toggle="modal" data-target="#exampleModal" />
+                  <img class="d-flex justify-content-center w-100 hover img-fluid"
+                    src="https://storage.googleapis.com/kleva_assets/addClassroom.png" role="button" data-toggle="modal"
+                    data-target="#exampleModal" />
                 </div>
                 <button data-toggle="modal" data-target="#exampleModal" class="btn mb-4 w-100" style="
                     background-color: #e0d9ff;
@@ -189,17 +190,9 @@
 
               <%- include('../reusables/doodle-modal.ejs', {subject:  classRoom.subject, classRoom: classRoom }) %>
             </div>
-            <button type="submit" class="btn w-100 mt-5" style="
-                            background-color: #d9fff3;
-                            font-size: 1.7rem;
-                            font-weight: 500;
-                          ">Continue to Questions ></button>
+            <button type="submit" class="btn w-100 my-5 add_classroom_modal_button">Continue to Questions ></button>
           </div>
-          <div class="modal-footer">
 
-
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          </div>
           </form>
         </div>
       </div>

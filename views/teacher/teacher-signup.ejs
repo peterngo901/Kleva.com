@@ -1,83 +1,100 @@
 <%- include('../reusables/head.ejs') %>
-        <link rel="stylesheet" href="css/creator-dashboard.css">
-        <link rel="stylesheet" href="css/form.css" >
-        <script language="javascript" src="js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <title>Kleva: <%= pageTitle %></title>
-    </head>
+<link rel="stylesheet" href="css/creator-dashboard.css">
+<link rel="stylesheet" href="css/form.css">
+<script language="javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+<title>Kleva: <%= pageTitle %></title>
+</head>
 
-    <body>
-            
-            <div class="content">
-                
-                <!-- Main Content Area -->
-                <main class="authentication">
-                    <!-- Signin Error -->
-                    <% if (error) { %>
-                        <div class="row justify-content-center mt-5" style="position: absolute; width: 100%; margin-left: auto; margin-right: auto;">
-                            <div class="col-10 col-md-8 col-lg-5 alert alert-warning alert-dismissible fade show" style="z-index: 1500; position: relative" role="alert">
-                                <%= error %>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    <% } %>
-                    <!-- Game Upload Form -->
-                    <div class="authentication__form">
-                        <a href="/" class="authentication__logo"><img src="img/logosmall.png" alt="Kleva" class="authentication__logo-image"></a>
-                        
-                        <form action="/teacher-signup" class="authentication__form-register" method="POST">
-                            
-                            <div class="authentication__form-container">
-                                <h3 class="authentication__form-maintitle">Create Your Account</h3>
-                                <!-- Username -->
-                                <label class="authentication__form-title" for="username">Email Username</label>
-                                <input class="authentication__form-input" type="email" id="username" name="username" placeholder="Username" autofocus><br>
-                                
-                                <!-- First Name -->
-                                <label class="authentication__form-title" for="firstName">First Name</label>
-                                <input class="authentication__form-input" type="text" id="firstName" name="firstName" placeholder="First Name"><br>
+<body>
 
-                                <!-- Last Name -->
-                                <label class="authentication__form-title" for="lastName">Last Name</label>
-                                <input class="authentication__form-input" type="text" id="lastName" name="lastName" placeholder="Last Name"><br>
-                                
-                                <!-- School Name -->
-                                <label class="authentication__form-title" for="username">Name of School</label>
-                                <input class="authentication__form-input" type="text" id="school" name="school" placeholder="School"><br>
+    <div class="content">
 
-                                <!-- Suburb -->
-                                <label class="authentication__form-title" for="postcode">Postcode</label>
-                                <input class="authentication__form-input" type="text" id="postcode" name="postcode" placeholder="Postcode"><br>
-                                
-
-                                <!-- Password -->
-                                <div class="authentication__form-password-title">
-                                    <span style="float:left">Password</span>
-                                </div>
-                                <input class="authentication__form-input" type="password" id="password" name="password" placeholder="Password"><br>
-
-                                <!-- Confirm Password -->
-                                <div class="authentication__form-password-title">
-                                    <span style="float:left">Confirm Password</span>
-                                </div>
-                                <input class="authentication__form-input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Password"><br>
-                                
-                                <!-- Submission Button -->
-                                <input class="authentication__form-button" type="submit" value="Register Account">
-                            </div>
-                        </form>
-                        
-                    </div>
-                </main>   
+        <!-- Main Content Area -->
+        <main class="authentication">
+            <!-- Signin Error -->
+            <% if (error) { %>
+            <div class="row justify-content-center mt-5"
+                style="position: absolute; width: 100%; margin-left: auto; margin-right: auto;">
+                <div class="col-10 col-md-8 col-lg-5 alert alert-warning alert-dismissible fade show"
+                    style="z-index: 1500; position: relative" role="alert">
+                    <%= error %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
-        </div>
-    </body>
-    <footer class="footer-form">
-        
-    </footer>
+            <% } %>
+            <!-- Game Upload Form -->
+            <div class="authentication__form">
+                <a href="/" class="authentication__logo"><img src="https://storage.googleapis.com/kleva_assets/logo.png"
+                        alt="Kleva" class="authentication__logo-image"></a>
+
+                <form action="/teacher-signup" class="authentication__form-register" method="POST">
+
+                    <div class="authentication__form-container">
+                        <h3 class="authentication__form-maintitle">Create Your Account</h3>
+                        <!-- Username -->
+                        <label class="authentication__form-title" for="username">Email Username</label>
+                        <input class="authentication__form-input" type="email" id="username" name="username"
+                            placeholder="Username" autofocus><br>
+
+                        <!-- First Name -->
+                        <label class="authentication__form-title" for="firstName">First Name</label>
+                        <input class="authentication__form-input" type="text" id="firstName" name="firstName"
+                            placeholder="First Name"><br>
+
+                        <!-- Last Name -->
+                        <label class="authentication__form-title" for="lastName">Last Name</label>
+                        <input class="authentication__form-input" type="text" id="lastName" name="lastName"
+                            placeholder="Last Name"><br>
+
+                        <!-- School Name -->
+                        <label class="authentication__form-title" for="username">Name of School</label>
+                        <input class="authentication__form-input" type="text" id="school" name="school"
+                            placeholder="School"><br>
+
+                        <!-- Suburb -->
+                        <label class="authentication__form-title" for="postcode">Postcode</label>
+                        <input class="authentication__form-input" type="text" id="postcode" name="postcode"
+                            placeholder="Postcode"><br>
+
+
+                        <!-- Password -->
+                        <div class="authentication__form-password-title">
+                            <span style="float:left">Password</span>
+                        </div>
+                        <input class="authentication__form-input" type="password" id="password" name="password"
+                            placeholder="Password"><br>
+
+                        <!-- Confirm Password -->
+                        <div class="authentication__form-password-title">
+                            <span style="float:left">Confirm Password</span>
+                        </div>
+                        <input class="authentication__form-input" type="password" id="confirmPassword"
+                            name="confirmPassword" placeholder="Password"><br>
+
+                        <!-- Submission Button -->
+                        <input class="authentication__form-button" type="submit" value="Register Account">
+                    </div>
+                </form>
+
+            </div>
+        </main>
+    </div>
+    </div>
+</body>
+<footer class="footer-form">
+
+</footer>
+
 </html>

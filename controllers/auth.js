@@ -114,9 +114,6 @@ exports.postTeacherSignin = (req, res, next) => {
         .catch((err) => {
           return res.redirect('/teacher-signin'); // Redirect to the signin page.
         });
-    })
-    .catch((err) => {
-      res.redirect('/teacher-signin');
     });
 };
 
@@ -311,12 +308,12 @@ exports.postStudentGameSignin = (req, res, next) => {
           res.redirect(`/game-room`);
         });
       } else {
-        return res.redirect('/student-signin');
+        return res.redirect('/quick-join');
       }
     })
     .catch((err) => {
       // Wrong ClassCode Entered.
-      res.render('/student-signin', {
+      res.render('/quick-join', {
         error: 'Please enter a valid class code.',
       });
     });
