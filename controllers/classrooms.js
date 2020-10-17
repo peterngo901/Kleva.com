@@ -83,7 +83,7 @@ exports.getTeacherStudents = (req, res, next) => {
 exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
-    Classroom.findOne({ classCode: classCode }).then((classRoom) => {
+    Classroom.findOne({ where: {classCode: classCode} }).then((classRoom) => {
       ClassroomStats.findAll({
         where: {
           classroomClassCode: classCode,
@@ -139,20 +139,18 @@ exports.postCreateQuestions = (req, res, next) => {
 
 exports.getTeacherGameStorepage = (req, res, next) => {
   const page = req.query.page;
-  console.log('PAGE  = ' + page);
   if (req.session.user) {
     const classCode = req.params.classroomCode;
     // Skip games based on page.
     var gameBatch = (page - 1) * gamesPerPage;
-    console.log('GameBATCH = ' + gameBatch);
+    console.log('Classroomcode  = ' + classCode);
     Games.findAndCountAll({
       offset: gameBatch,
       limit: gamesPerPage,
     }).then((games) => {
-      console.log('games.length = ' + games.length);
       const totalGames = games.count;
       const gamesArray = games.rows;
-      Classroom.findOne({ classCode: classCode }).then((classRoom) => {
+      Classroom.findOne({ where: {classCode: classCode }}).then((classRoom) => {
         res.render('teacher/teacher-game-storepage', {
           classRoom: classRoom,
           games: gamesArray,
