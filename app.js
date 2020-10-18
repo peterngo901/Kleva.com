@@ -32,6 +32,7 @@ const Creator = require('./models/creator');
 const Game = require('./models/game');
 const Student = require('./models/student');
 const Session = require('./models/session');
+const Schedules = require('./models/gameSchedules');
 
 // Session Storage on PostgreSQL Database with Sequelize ORM
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -144,6 +145,12 @@ ClassroomStats.belongsTo(Classroom, {
 
 ClassroomStats.belongsTo(Game, {
   foreignKey: 'gameID',
+  constraints: true,
+  onDelete: 'CASCADE',
+});
+
+Schedules.belongsTo(Classroom, {
+  foreignKey: 'classroomClassCode',
   constraints: true,
   onDelete: 'CASCADE',
 });

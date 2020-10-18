@@ -1,0 +1,620 @@
+<!-- Author: Gabriel -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/creator-dashboard.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <title>Kleva</title>
+</head>
+
+<body>
+  <!-- Modal -->
+  <div id="curicculum" class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog-full-width modal-dialog momodel modal-lg" role="document">
+      <div class="modal-content-full-width modal-content ">
+        <div class=" modal-header-full-width   modal-header text-center">
+          <h5 class="modal-title w-100" id="exampleModalPreviewLabel">Please Select Your Subjects From The Australian
+            Cirriculum</h5>
+          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Button container -->
+          <div class="container-fluid" style="height: 40rem;">
+            <div class="row form-group h-50">
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-block h-100 btn-outline-primary">
+                  <h1>English</h1>
+                </button>
+              </div>
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-block h-100 btn-outline-secondary">
+                  <h1>Maths</h1>
+                </button>
+              </div>
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-block h-100 mt-0 btn-outline-primary">
+                  <h1>Science</h1>
+                </button>
+              </div>
+            </div>
+            <div class="row form-group h-50">
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-block h-100 mt-0 btn-outline-danger">
+                  <h1>Humanities and Social Science</h1>
+                </button>
+              </div>
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-block h-100 mt-0 btn-outline-warning">
+                  <h1>The Arts</h1>
+                </button>
+              </div>
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-block h-100 mt-0 btn-outline-info">
+                  <h1>Digital Technologies</h1>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer-full-width  modal-footer">
+          <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-md btn-rounded">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Dashboard Container -->
+  <div class="">
+    <!-- Navigation Bar -->
+    <header class="header">
+      <!-- Logo -->
+      <img src="../img/logo.png" alt="Kleva" class="logo" />
+      <!-- Search Bar -->
+      <form action="/" class="search" method="POST">
+        <input type="text" class="search__input" placeholder="Search classRoom" />
+        <button class="search__button">
+          <svg class="search__icon">
+            <use xlink:href="../img/symbol-defs.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Mobile Menu  -->
+      <div class="mobile-navigation">
+        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger" />
+
+        <label for="menu_burger" class="mobile-navigation__button">
+          <svg class="mobile-navigation__button-icon">
+            <use xlink:href="../img/symbol-defs.svg#icon-menu"></use>
+          </svg>
+        </label>
+
+        <div class="mobile-navigation__background"></div>
+
+        <nav class="mobile-navigation__nav">
+          <ul class="mobile-navigation__list">
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Home</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Log Out</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Games</a>
+            </li>
+            <li class="mobile-navigation__item">
+              <a href="" class="mobile-navigation__link">Help</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Desktop and Tablet Menu -->
+      <nav class="user-nav">
+        <div class="user-nav__icon-box">
+          <a href="/">
+            <svg class="user-nav__icon">
+              <use xlink:href="../img/symbol-defs.svg#icon-home"></use>
+            </svg>
+          </a>
+        </div>
+        <div class="user-nav__icon-box">
+          <form action="/sign-out" method="POST">
+            <button type="submit" style="border: none; background-color: inherit; ">
+              <svg class="user-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="user-nav__user">
+          <img src="../img/profile.png" alt="User Photo" class="user-nav__user-photo" />
+          <span class="user-name"><%= name; %></span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content">
+      <!-- Dashboard Side Bar -->
+      <nav class="side-bar">
+        <!-- Dashboard Pages -->
+        <ul class="side-nav">
+          <!-- Active Styling with Plain JS Logic -->
+          <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/teacher-dashboard" class="side-nav__link">
+              <!-- Sidebar Icon -->
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
+              </svg>
+              <span>Classroom</span>
+            </a>
+          </li>
+          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/teacher-students" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
+              </svg>
+              <span>Students</span>
+            </a>
+          </li>
+          <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
+              </svg>
+              <span>Help</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Legal Text -->
+        <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <div class="container-fluid pr-0 pl-0 py-5">
+        <div class="px-5 py-5">
+          <div class="ml-5 mr-5 container-xl mx-auto ">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/teacher-dashboard">All Classrooms</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">
+                  <a href="/classroom/<%- classRoom.classCode; %>"> Class - <%= classRoom.title; %></a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">
+                  <a href="/teacher-schedule">Schedule Games</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Schedule Game Selection
+                </li>
+              </ol>
+            </nav>
+
+            <!--Featured Button-->
+            <div class="col-xs-1 my-2">
+              <button type="button" class="btn btn-secondary btn-sm">
+                Game of the Month
+              </button>
+            </div>
+            <!--Game Banner-->
+            <div class="row justify-content-center rounded no-margin">
+              <div class="col-lg-5">
+                <a href="/gamepage"><img src="../img/bridgeConFeatureSplash.png" class="img-fluid mx-auto d-block"
+                    alt="Bridge Constructor Splash" /></a>
+              </div>
+              <div class="col-lg-7">
+                <h3>Bridge Constructor</h3>
+                <p>Build a bridge, get over it. Highly Educational</p>
+                <div class="row">
+                  <div class="col">
+                    <img src="../img/bridgeConScreen1.png" class="img-fluid" alt="Bridge Constructor 1" />
+                  </div>
+                  <div class="col">
+                    <img src="../img/bridgeConScreen2.png" class="img-fluid" alt="Bridge Constructor 2" />
+                  </div>
+                  <div class="col">
+                    <img src="../img/bridgeConScreen3.png" class="img-fluid" alt="Bridge Constructor 3" />
+                  </div>
+                  <div class="col">
+                    <img src="../img/bridgeConScreen4.png" class="img-fluid" alt="Bridge Constructor 4" />
+                  </div>
+                </div>
+                <div class="row mt-5  justify-content-between align-items-center">
+                  <div class="col-6 order-1 text-left">
+                    <h2 class="h-100"><span class="badge badge-primary">Science</span></h2>
+                    <h3 class="h-100"><span class="badge badge-info">Physical Sciences</span></h3>
+                  </div>
+                  <div class="col-6 order-2 text-right">
+                    <h5 class=" "><span class="badge badge-secondary">ACARA Code: HLG650</span></h5>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Similar Teachers Liked -->
+<!--Carousel Wrapper-->
+<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+  <!--Controls-->
+  <div class="controls-top">
+    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
+        class="fas fa-chevron-right"></i></a>
+  </div>
+  <!--/.Controls-->
+
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+    <li data-target="#multi-item-example" data-slide-to="1"></li>
+    <li data-target="#multi-item-example" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+
+    <!--First slide-->
+    <div class="carousel-item active">
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+            alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+            alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+            alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/.First slide-->
+
+    <!--Second slide-->
+    <div class="carousel-item">
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Second slide-->
+
+    <!--Third slide-->
+    <div class="carousel-item">
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Third slide-->
+
+  </div>
+  <!--/.Slides-->
+
+</div>
+<!--/.Carousel Wrapper-->
+            <!-- Popular Among Students -->
+            <div>
+              <h2>Popular Among Students Liked</h2>
+            </div>
+            <!-- Popular  -->
+            <div>
+              <h2>Popular In You Area</h2>
+            </div>
+            <!-- Category Filter -->
+            <div class="row m-4 justify-content-center">
+              <a href="#" class="list-group-item">English</a>
+              <a href="#" class="list-group-item">Maths</a>
+              <a href="#" class="list-group-item">Science</a>
+            </div>
+
+            <div class="col-12">
+              <div class="row mt-5">
+                <div class="col-12 text-center mb-3">
+                  <h1 class="display-4" style="font-weight: 600;">
+                    <%- (classRoom.subject).charAt(0).toUpperCase() + (classRoom.subject).slice(1) %> Teachers Like You
+                  </h1>
+                  <h4>Teachers similar to you are adding these games.</h4>
+                  <button class="btn btn-primary btn-lg my-2 px-5">View All</button>
+                </div>
+                <!-- Teacher Games Recommendation Algorithm Game Loader -->
+                <% if (games.length > 0) { %> <% for (let game of games) { %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card round shadow">
+                    <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
+                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
+                        alt="" /></a>
+                  </div>
+                  <div class="container-fluid my-auto">
+                    <div class="d-flex justify-content-between mt-3">
+                      <h4>
+                        <a href="../gamepage/<%= game.gameID %>"><%- game.title %></a>
+                      </h4>
+                      <div>
+                        <small class="text-right badge badge-pill"
+                          style="background-color: #fcddffff; font-size: 1.25rem;"><%- game.category %></small>
+                      </div>
+                    </div>
+
+
+                    <div style="height: 6.5rem; overflow: hidden; ">
+                      <p style=" color: #7E6E80; font-size: 1.25rem;"><%- game.description %></p>
+                    </div>
+
+
+                    <!-- Add game -->
+                    <form class="testButton mt-3">
+                      <input type="hidden" name="gameID" value="<%- game.gameID%>" />
+                      <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
+                      <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                    </form>
+
+                    <div id="result"></div>
+
+                  </div>
+
+
+                </div>
+                <% } %> <% } %>
+                <!-- /.row -->
+                <div class="col-12 text-center mb-3 mt-5">
+
+                  <h1 class="display-4" style="font-weight: 600;">
+                    Explore All <%- (classRoom.subject).charAt(0).toUpperCase() + (classRoom.subject).slice(1) %>
+                    Games
+                  </h1>
+                  <h4>Australian Curriculum Based Educational Games</h4>
+                  <button class="btn btn-primary btn-lg my-2 px-5">View All</button>
+                </div>
+                <!-- 'Popular with Year X Students' Games Recommendation Algorithm Game Loader -->
+                <% if (games.length > 0) { %> <% for (let game of games) { %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card round shadow">
+                    <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
+                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
+                        alt="" /></a>
+                  </div>
+                  <div class="container-fluid my-auto">
+                    <div class="d-flex justify-content-between mt-3">
+                      <h4>
+                        <a href="../gamepage/<%= game.gameID %>"><%- game.title %></a>
+                      </h4>
+                      <div>
+                        <small class="text-right badge badge-pill"
+                          style="background-color: #fcddffff; font-size: 1.25rem;"><%- game.category %></small>
+                      </div>
+                    </div>
+
+
+                    <div style="height: 6.5rem; overflow: hidden; ">
+                      <p style=" color: #7E6E80; font-size: 1.25rem;"><%- game.description %></p>
+                    </div>
+
+
+                    <!-- Add game -->
+                    <form class="testButton mt-3">
+                      <input type="hidden" name="gameID" value="<%- game.gameID%>" />
+                      <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
+                      <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                    </form>
+
+                    <div id="result"></div>
+
+                  </div>
+
+
+                </div>
+                <% } %> <% } %>
+                <div class="col-12 text-center mb-3 mt-5">
+                  <h1 class="display-4" style="font-weight: 600;">
+                    Popular with Year <%- (classRoom.yearLevel) %> Students
+                  </h1>
+                  <h4>Explore the games students are engaging with.</h4>
+                  <button class="btn btn-primary btn-lg my-2 px-5">View All</button>
+                </div>
+                <!-- 'Popular with Year X Students' Games Recommendation Algorithm Game Loader -->
+                <% if (games.length > 0) { %> <% for (let game of games) { %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card round shadow">
+                    <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
+                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
+                        alt="" /></a>
+                  </div>
+                  <div class="container-fluid my-auto">
+                    <div class="d-flex justify-content-between mt-3">
+                      <h4>
+                        <a href="../gamepage/<%= game.gameID %>"><%- game.title %></a>
+                      </h4>
+                      <div>
+                        <small class="text-right badge badge-pill"
+                          style="background-color: #fcddffff; font-size: 1.25rem;"><%- game.category %></small>
+                      </div>
+                    </div>
+
+
+                    <div style="height: 6.5rem; overflow: hidden; ">
+                      <p style=" color: #7E6E80; font-size: 1.25rem;"><%- game.description %></p>
+                    </div>
+
+
+                    <!-- Add game -->
+                    <form class="testButton mt-3">
+                      <input type="hidden" name="gameID" value="<%- game.gameID%>" />
+                      <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
+                      <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                    </form>
+
+                    <div id="result"></div>
+
+                  </div>
+
+
+                </div>
+                <% } %> <% } %>
+
+              </div>
+              <!-- Game Page Buttons -->
+              <div class="row mt-3 justify-content-center">
+                <% if (pageButtons => 1) { %>
+                <nav aria-label="Game Results Pages">
+                  <ul class="pagination">
+                    <% for(i=0; i < pageButtons; i++) { %>
+                    <li class="<%= pageNumber === i+1 ? 'page-item active' : 'page-item'; %>">
+                      <a class="page-link" href="/teacher-game-storepage/?page=<%- i+1 %>"><%- i+1 %></a>
+                    </li>
+                    <% } %>
+                  </ul>
+                </nav>
+                <% } %>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<script type="text/javascript">
+  //Load modal at start
+  // $(window).on('load', function () {
+    // $('#curicculum').modal('show');
+  // });
+</script>
+<script>
+  //AJAX post for Add Game+ Button
+  $(document).on("submit", ".testButton", function (e) {
+    e.preventDefault();
+    $.post("/add-game-schedule",
+      $(this).serialize(),
+      function (data, status) {
+      });
+  });
+</script>
+
+</html>
