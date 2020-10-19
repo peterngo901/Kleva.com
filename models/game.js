@@ -18,7 +18,7 @@ const Game = sequelize.define(
       allowNull: false,
     },
     subCategory: {
-      type: Sequelize.STRING,
+      type: Sequelize.ARRAY(Sequelize.TEXT),
     },
     description: {
       type: Sequelize.STRING(1000),

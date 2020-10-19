@@ -72,16 +72,18 @@ exports.getGameUpload = (req, res, next) => {
   }
 };
 
-exports.postUploadGame = (req, res, next) => {
+exports.postUploadGame = async (req, res, next) => {
   const title = req.body.title;
   const description = req.body.description;
   const category = req.body.category;
+  const { subCategories } = req.body;
+  var subCategory = [];
 
-  // Validate all form fields (TODO)
-
-  // Validate that images are smaller than 1MB (TODO)
-
-  // Validate that game file is smaller than 100MB (TODO)
+  if (Array.isArray(subCategories) && subCategories.length > 1) {
+    subCategories.forEach((subcategory) => subCategory.push(subcategory));
+  } else {
+    subCategory.push(subCategories);
+  }
 
   // Store Files on Firebase Storage + gameID
   const newImageName = uuidv1() + '.png';
@@ -91,16 +93,21 @@ exports.postUploadGame = (req, res, next) => {
   });
 
   blobStream.on('error', (err) => console.log(err));
+  var { count } = await Games.findAndCountAll({});
 
-  blobStream.on('finish', () => {
+  var gameID = parseInt(count) + 2;
+
+  blobStream.on('finish', async () => {
     const imageURL = `https://storage.googleapis.com/${process.env.GCS_BUCKET}/${blob.name}`;
     // .index html file from Unity Web Games and HTML5 Games.
     const gameHTML = '//v6p9d9t4.ssl.hwcdn.net/html/2655271/index.html';
-    const subcategory = 'testing the waters';
-    Games.create({
+
+    console.log(subCategory);
+    await Games.create({
+      gameID: gameID,
       title: title,
       category: category,
-      subcategory: subcategory,
+      subCategory: subCategory,
       description: description,
       gameFileURL: gameHTML,
       gameImageURL: imageURL,
