@@ -9,6 +9,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="../css/creator-dashboard.css" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/calendar.css" />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -18,7 +19,17 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
+
+  <!-- DatePicker Scripts -->
+  <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet" href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.css" />
+    <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet" href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.date.css" />
+    <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet" href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.time.css" />
+     <script data-require="pickadate.js@*" data-semver="3.3.0" src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.js"></script>
+    <script data-require="pickadate.js@*" data-semver="3.3.0" src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.date.js"></script>
+    <script data-require="pickadate.js@*" data-semver="3.3.0" src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.time.js"></script>
+  
   <title>Kleva</title>
+
 </head>
 
 <body>
@@ -100,7 +111,7 @@
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/teacher-game-storepage/?page=1" class="side-nav__link">
+            <a href="/teacher-game-storepage/<%- classRoom.classCode%>?page=1" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
               </svg>
@@ -117,7 +128,7 @@
             </a>
           </li>
           <li class="side-nav__item">
-            <a href="/teacher-schedule" class="side-nav__link">
+            <a href="/teacher-dashboard" class="side-nav__link">
               <!-- Sidebar Icon -->
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#calendar"></use>
@@ -148,96 +159,83 @@
 
       <!-- Main Content Area -->
       <div class="container-fluid pr-0 pl-0 py-5">
-        <div class="px-5 py-5">
+        <div class="py-5">
           <div class="ml-5 mr-5 container-md mx-auto ">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="/teacher-dashboard">All Classrooms</a>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/teacher-dashboard">All Classrooms</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">
+                  <a href="/classroom/<%- classRoom.classCode; %>"> Class - <%= classRoom.title; %></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Class - <%= classRoom.title; %>
-                </li>
-              </ol>
-            </nav>
-            <div class="col-12">
-              <h1>Class Single-Signon Code: <%= classRoom.classCode; %></h1>
+              <li class="breadcrumb-item active" aria-current="page">
+                Schedule Games
+              </li>
+            </ol>
+          </nav>
+          <div class="col-12">
+            <form class="rounded border-primary shadow-lg bg-light col-12 p-5 text-dark" action="/game-schedule-upload" method="POST">
+              <h1>Schedule Games</h1>
               <p>
                 <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
               </p>
-              <button type="button" class="btn btn-light btn-lg">
-                <a href="/teacher-game-storepage/?page=1"> Add Games > </a>
-              </button>
+              <h3>You can preselect games for upcoming days of the week</h3>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Pick a date:</span>
+                </div>
+                <input type="text" id="date" name="date" data-type="date" aria-label="Date" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <button type="button" class="btn bg-primary">
+                  <a class="text-white" href="/teacher-game-storepage-schedule/?page=1">Select Games to Schedule</a>
+                </button>
+              </div>
+              <div class="input-group mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
 
-              <h2>Installed Games</h2>
-            </div>
+              <!-- Load all the installed games  (Set the games to session so as not confuse
+                posting to the database)-->
+              <div class="rounded border-primary shadow-lg bg-light col-12">
+                <h1 class="col-xs-1 mt-3 pt-5" align="center">Selected Games for Scheduling</h1>
+                <div class="row mt-5">
 
-            <!-- Load all the installed games -->
-            <div class="col-12">
-              <div class="row mt-5">
+                  <!-- Game Loader -->
+                  <% if (games.length > 0) { %> <% for (let game of games) { %>
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
+                          style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
+                          alt="" /></a>
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <a href="#"><%- game.title %></a>
+                        </h4>
+                        <p class="card-text"><%- game.description %></p>
 
-                <!-- Game Loader -->
-                <% if (games.length > 0) { %> <% for (let game of games) { %>
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card h-100">
-                    <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
-                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.game.gameImageURL %>"
-                        alt="" /></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#"><%- game.game.title %></a>
-                      </h4>
-                      <p class="card-text"><%- game.game.description %></p>
-
-                      <div id="result"></div>
-                    </div>
-                    <div class="card-footer">
-                      <small><%- game.game.category %></small>
+                        <div id="result"></div>
+                      </div>
+                      <div class="card-footer">
+                        <small><%- game.category %></small>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <% } %> <% } %>
-              </div>
-            </div>
-
-            <!-- Delete the Classroom -->
-            <div class="row d-flex justify-content-center">
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                Delete the Classroom
-              </button>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Deleting a classroom is permanent. Do you wish to
-                      continue?
-                      <form action="/classroom/<%= classRoom.classCode %>/delete" method="POST">
-                        <input type="hidden" value="<%= classRoom.classCode %>" name="classCode" />
-                        <button type="submit">Delete the Classroom</button>
-                      </form>
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
+                  <% } %> <% } %>
                 </div>
               </div>
-            </div>
+            <script>
+                $('input[data-type="date"]').pickadate();
+            </script>
+          </div>
+          <div id="events-accordion">
           </div>
         </div>
       </div>
     </div>
 </body>
+<script src="/js/calendar.js"></script>
 <script></script>
-
 </html>

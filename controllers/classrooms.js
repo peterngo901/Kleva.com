@@ -3,6 +3,7 @@ const Curriculum = require('../models/curriculum');
 const AcaraTerms = require('../models/acara');
 const AcaraRelations = require('../models/acaraRelations');
 const ClassroomStats = require('../models/classroomStats');
+const Schedules = require('../models/gameSchedules');
 const Games = require('../models/game');
 const { v4: uuidv4 } = require('uuid');
 
@@ -16,6 +17,7 @@ const gamesPerPage = 3;
 
 exports.getTeacherDashboard = async (req, res, next) => {
   if (req.session.user) {
+    req.session.classRoom = 'none';
     const email = req.session.user;
     // Also Search the Classroom Table with matching teacherID.
     await Classroom.findAll({
@@ -25,7 +27,6 @@ exports.getTeacherDashboard = async (req, res, next) => {
       attributes: ['classCode', 'yearLevel', 'title', 'subject'],
     })
       .then((classrooms) => {
-        console.log(classrooms);
         Teacher.findOne({ where: { email: email } })
           .then((teacher) => {
             req.session.userName = teacher.firstName; //Set name in session
@@ -179,6 +180,7 @@ exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
     Classroom.findOne({ where: { classCode: classCode } }).then((classRoom) => {
+      req.session.classRoom = classRoom;
       ClassroomStats.findAll({
         where: {
           classroomClassCode: classCode,
@@ -235,7 +237,7 @@ exports.postCreateQuestions = (req, res, next) => {
 exports.getTeacherGameStorepage = (req, res, next) => {
   const page = req.query.page;
   if (req.session.user) {
-    const classCode = req.params.classroomCode;
+    const classCode = req.session.classRoom.classCode;
     // Skip games based on page.
     var gameBatch = (page - 1) * gamesPerPage;
     console.log('Classroomcode  = ' + classCode);
@@ -254,6 +256,41 @@ exports.getTeacherGameStorepage = (req, res, next) => {
             pageButtons: Math.ceil(totalGames / gamesPerPage),
             name: req.session.userName,
             path: '/teacher-classroom',
+          });
+        }
+      );
+    });
+    Games.findAll().then((lames) => {
+      console.log('Whats in lames = ' + lames);
+    });
+  } else {
+    res.redirect('/');
+  }
+};
+
+exports.getTeacherGameStorepageSchedule = (req, res, next) => {
+  const page = req.query.page;
+  req.session.scheduleGames = req.session.scheduleGames || [];
+  if (req.session.user) {
+    const classCode = req.session.classRoom.classCode;
+    // Skip games based on page.
+    var gameBatch = (page - 1) * gamesPerPage;
+    console.log(req.session);
+    Games.findAndCountAll({
+      offset: gameBatch,
+      limit: gamesPerPage,
+    }).then((games) => {
+      const totalGames = games.count;
+      const gamesArray = games.rows;
+      Classroom.findOne({ where: { classCode: classCode } }).then(
+        (classRoom) => {
+          res.render('teacher/teacher-game-schedule', {
+            classRoom: classRoom,
+            games: gamesArray,
+            pageNumber: parseInt(page),
+            pageButtons: Math.ceil(totalGames / gamesPerPage),
+            name: req.session.userName,
+            path: '/teacher-schedule',
           });
         }
       );
@@ -287,10 +324,73 @@ exports.postAddGame = (req, res, next) => {
     });
 };
 
+exports.postAddGameSchedule = (req, res, next) => {
+  const gameID = req.body.gameID;
+  var cart = req.session.scheduleGames || [];
+  if (!cart.includes(gameID)) {
+    cart.push(req.body.gameID);
+  }
+  console.log('cart contains: ' + req.session.scheduleGames);
+  res.redirect('/');
+};
+
+exports.postGameScheduleUpload = (req, res, next) => {
+  const code = req.session.classRoom.classCode;
+  if (req.session.scheduleGames.length > 0) {
+    //if games exist
+    Schedules.create({
+      classCode: code,
+      gameList: req.session.scheduleGames,
+      date: req.body.date,
+    })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      })
+      .then(() => {
+        req.session.scheduleGames = [];
+        res.redirect('/classRoom/' + code);
+      });
+  } else {
+    res.redirect('/teacher-dashboard');
+  }
+};
+
 exports.getUserProfile = (req, res, next) => {
   res.render('/user-profile', {
     //name of page
     pageTitle: 'Profile',
     path: '/user-profile',
   });
+};
+
+exports.getTeacherSchedule = (req, res, next) => {
+  if (req.session.scheduleGames) {
+    const scheduleGames = req.session.scheduleGames;
+    const classCode = req.params.classroomCode;
+    Games.findAll({ where: { gameID: scheduleGames } })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      })
+      .then((games) => {
+        res.render('teacher/teacher-schedule', {
+          pageTitle: 'Schedule',
+          name: req.session.userName,
+          classRoom: req.session.classRoom,
+          path: '/teacher-schedule',
+          games: games,
+          scheduleGames: scheduleGames,
+        });
+      });
+  } else {
+    res.render('teacher/teacher-schedule', {
+      pageTitle: 'Schedule',
+      name: req.session.userName,
+      classRoom: req.session.classRoom,
+      path: '/teacher-schedule',
+      games: {},
+      scheduleGames: [],
+    });
+  }
 };

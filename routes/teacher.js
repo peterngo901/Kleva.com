@@ -8,7 +8,11 @@ const router = express.Router();
 
 router.get('/teacher-dashboard', classroomController.getTeacherDashboard);
 
-router.get('/teacher-game-storepage/:classroomCode', classroomController.getTeacherGameStorepage);
+router.get('/teacher-game-storepage/', classroomController.getTeacherGameStorepage);
+
+router.get('/teacher-game-storepage-schedule/', classroomController.getTeacherGameStorepageSchedule);
+
+router.get('/teacher-schedule', classroomController.getTeacherSchedule);
 
 router.post('/add-classroom', classroomController.postAddClassroom);
 
@@ -26,6 +30,10 @@ router.post(
 router.post('/create-questions', classroomController.postCreateQuestions);
 
 router.post('/add-game', classroomController.postAddGame);
+
+router.post('/add-game-schedule', classroomController.postAddGameSchedule);
+
+router.post('/game-schedule-upload', classroomController.postGameScheduleUpload);
 
 router.get('/user-profile', classroomController.getUserProfile);
 
