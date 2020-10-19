@@ -3,8 +3,7 @@ Main Navbar
 - Users who haven't signed in
 -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-custom py-3 shadow-sm"
-  style="background-color: #FFF3FC; font-weight: 600; z-index: 10000;">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom py-3 shadow-sm nav"
   <!-- Kleva Logo -->
   <a href="./home"><img src="https://storage.googleapis.com/kleva_assets/logo.png" alt="Kleva"
       class="logo navbar-brand"></a>
@@ -21,27 +20,21 @@ Main Navbar
         <a class="nav-link" href="/teacher-dashboard">Dashboard<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <form method="POST" action="/sign-out"><button class="nav-link" type="submit"
-            style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
-            Out<span class="sr-only">(current)</span></button></form>
+        <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
       </li>
       <% } else if(sessionType === 'student') { %>
       <li class="nav-item active">
         <a class="nav-link" href="/student-dashboard">Dashboard<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <form method="POST" action="/sign-out"><button class="nav-link" type="submit"
-            style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
-            Out<span class="sr-only">(current)</span></button></form>
+        <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
       </li>
       <% } else if(sessionType === 'creator'){ %>
       <li class="nav-item active">
         <a class="nav-link" href="/creator-dashboard">Dashboard<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <form method="POST" action="/sign-out"><button class="nav-link" type="submit"
-            style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
-            Out<span class="sr-only">(current)</span></button></form>
+        <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
       </li>
       <% } else { %>
       <li class=" nav-item dropdown mr-3">
@@ -49,8 +42,7 @@ Main Navbar
           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Log In As
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
-          style="background-color: #C9D5FF; border: none; font-weight: 600;">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/teacher-signin">Teacher</a>
           <a class="dropdown-item" href="/student-signin">Student</a>
           <a class="dropdown-item" href="/creator-signin">Game Creator</a>
