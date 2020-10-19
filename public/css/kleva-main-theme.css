@@ -50,19 +50,33 @@
   border-radius: 0;
 }
 
-/* about page */
-.breadcrumb {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
-}
+/* teacher dashboard*/
 
+.user-nav__icon-box{
+  border: none; 
+  background-color: transparent;
+}
+.display-3{
+  font-weight: 600;
+}
+.card col-8 col-md-3 m-3 shadow-sm{
+  min-height: 35rem;
+}
+.btn mb-4 w-100{
+  background-color: #e0d9ff;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.btn mb-4 w-100{
+  background-color: #e0d9ff;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.btn mb-4 w-100{
+  background-color: #d9fff3;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
 
 /* user profile */
 #picture {

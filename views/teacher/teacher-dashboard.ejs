@@ -82,7 +82,7 @@
 
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" style="border: none; background-color: transparent; ">
+            <button type="submit">
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -138,7 +138,7 @@
         <div class="px-5 py-5">
           <div class="ml-5 mr-5 container-md mx-auto ">
 
-            <h1 class="display-3" style="font-weight: 600;">Your Classrooms</h1>
+            <h1 class="display-3" >Your Classrooms</h1>
 
             <%- include('../reusables/classroom-modal.ejs'); %>
 
@@ -151,17 +151,14 @@
                     src="https://storage.googleapis.com/kleva_assets/addClassroom.png" role="button" data-toggle="modal"
                     data-target="#exampleModal" />
                 </div>
-                <button data-toggle="modal" data-target="#exampleModal" class="btn mb-4 w-100" style="
-                    background-color: #e0d9ff;
-                    font-size: 1.7rem;
-                    font-weight: 500;
-                  ">
+                <button data-toggle="modal" data-target="#exampleModal" class="btn mb-4 w-100" 
+                  >
                   Add Classroom +
                 </button>
               </div>
               <% if (classrooms.length > 0) { %> <% for (let classRoom of
               classrooms) { %>
-              <div class="card col-8 col-md-3 m-3 shadow-sm " style="min-height: 35rem;">
+              <div class="card col-8 col-md-3 m-3 shadow-sm " >
                 <div class="card-title text-center mt-3">
                   <%- classRoom.title %>
                 </div>
@@ -172,16 +169,8 @@
                   <h1 class="mt-5">Class Code: </h1>
                   <p class="display-4"><%- classRoom.classCode %></p>
                 </div>
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100" style="
-                    background-color: #e0d9ff;
-                    font-size: 1.7rem;
-                    font-weight: 500;
-                  ">Visit Classroom ></a>
-                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>" class="btn mb-4 w-100" style="
-                    background-color: #d9fff3;
-                    font-size: 1.7rem;
-                    font-weight: 500;
-                  ">
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100" >Visit Classroom ></a>
+                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>" class="btn mb-4 w-100" >
                   Create Live Game +
                 </button>
 
