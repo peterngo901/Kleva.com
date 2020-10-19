@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 .footer {
   margin: 0 !important;
 }
@@ -101,4 +103,14 @@
 
 .klevabtn:hover {
   background-color: bisque !important;
+}
+
+.category {
+  border: none;
+  border-radius: 2.5rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.category:hover {
+  background-color: rgb(255, 255, 255) !important;
 }

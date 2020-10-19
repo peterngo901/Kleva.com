@@ -29,28 +29,55 @@ exports.getGame = (req, res, next) => {
 
 // Public Game Gallery with no specific recommendation ML algorithm.
 exports.getGamesGallery = async (req, res, next) => {
+  res.set('Cache-control', 'public, max-age=86400');
   const page = req.query.page;
+  const gameCategory = req.query.gameCategory;
   res.locals.user = req.session.sessionType;
-  try {
-    // Skip games based on page.
-    var gameBatch = (page - 1) * gamesPerPage;
-    const games = await Game.findAndCountAll({
-      offset: gameBatch,
-      limit: gamesPerPage,
-    });
-    // Total Games Returned
-    const totalGames = games.count;
-    const gamesArray = games.rows;
-    res.render('gamesgallery', {
-      path: '/gamesgallery',
-      pageTitle: 'GamesGallery',
-      games: gamesArray,
-      pageNumber: parseInt(page),
-      pageButtons: Math.ceil(totalGames / gamesPerPage),
-    });
-  } catch (err) {
-    // Error fetching games from the database.
-    res.redirect('/');
+  if (gameCategory === undefined) {
+    try {
+      var gameBatch = (page - 1) * gamesPerPage;
+      const games = await Game.findAndCountAll({
+        offset: gameBatch,
+        limit: gamesPerPage,
+      });
+      // Total Games Returned
+      const totalGames = games.count;
+      const gamesArray = games.rows;
+      res.render('gamesgallery', {
+        path: '/gamesgallery',
+        pageTitle: 'GamesGallery',
+        games: gamesArray,
+        pageNumber: parseInt(page),
+        pageButtons: Math.ceil(totalGames / gamesPerPage),
+      });
+    } catch (err) {
+      // Error fetching games from the database.
+      res.redirect('/');
+    }
+  } else {
+    try {
+      var gameBatch = (page - 1) * gamesPerPage;
+      const games = await Game.findAndCountAll({
+        where: {
+          category: gameCategory,
+        },
+        offset: gameBatch,
+        limit: gamesPerPage,
+      });
+      // Total Games Returned
+      const totalGames = games.count;
+      const gamesArray = games.rows;
+      res.render('gamesgallery', {
+        path: '/gamesgallery',
+        pageTitle: 'GamesGallery',
+        games: gamesArray,
+        pageNumber: parseInt(page),
+        pageButtons: Math.ceil(totalGames / gamesPerPage),
+      });
+    } catch (err) {
+      // Error fetching games from the database.
+      res.redirect('/');
+    }
   }
 };
 

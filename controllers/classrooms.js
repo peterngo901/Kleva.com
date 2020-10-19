@@ -6,17 +6,19 @@ const ClassroomStats = require('../models/classroomStats');
 const Games = require('../models/game');
 const { v4: uuidv4 } = require('uuid');
 
+const { Op } = require('sequelize');
+
 const Teacher = require('../models/teacher');
 const generate = require('nanoid-generate');
 const dictionary = require('nanoid-dictionary');
 
 const gamesPerPage = 3;
 
-exports.getTeacherDashboard = (req, res, next) => {
+exports.getTeacherDashboard = async (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
     // Also Search the Classroom Table with matching teacherID.
-    Classroom.findAll({
+    await Classroom.findAll({
       where: {
         teacherID: email,
       },
@@ -67,14 +69,107 @@ exports.postAddClassroom = (req, res, next) => {
     });
 };
 
-exports.getTeacherStudents = (req, res, next) => {
+exports.getTeacherStudents = async (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
-    // First find the teacherID from the teacher email on the Teacher Table.
-    // Return all students from the Student Table with the matching teacherID.
-    res.render('teacher/teacher-students', {
-      path: '/teacher-students',
-    });
+    try {
+      const classrooms = await Classroom.findAll({
+        where: {
+          teacherID: email,
+        },
+        attributes: ['classCode', 'yearLevel', 'title', 'subject'],
+      });
+
+      // Return all the classroom classcodes.
+      var classcodeTracker = [];
+      for (let i = 0; i < classrooms.length; i++) {
+        classcodeTracker.push(classrooms[i].classCode);
+      }
+
+      try {
+        const gamesStatisticsAndDetails = await ClassroomStats.findAll({
+          where: {
+            classroomClassCode: { [Op.like]: { [Op.any]: classcodeTracker } },
+          },
+          include: [
+            {
+              model: Games,
+            },
+          ],
+        });
+        res.render('teacher/teacher-students', {
+          path: '/teacher-students',
+          classrooms: classrooms,
+          games: gamesStatisticsAndDetails,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
+      // try {
+      //   var classroomGameDetailTracker = [];
+      //   classrooms.forEach(async (classroom) => {
+      //     // Return all the games and statistics for the given classCode.
+      //     const gameDetails = await ClassroomStats.findAll({
+      //       where: {
+      //         classroomClassCode: classroom.classCode,
+      //       },
+      //       attributes: ['gameID', 'AverageStudentActivity'],
+      //     });
+      //     console.log(gameDetails);
+      //     console.log(classroomGameDetailTracker);
+      //     return classroomGameDetailTracker.concat(gameDetails.dataValues);
+      //   });
+
+      //   res.render('teacher/teacher-students', {
+      //     path: '/teacher-students',
+      //     classrooms: classrooms,
+      //   });
+      // } catch (err) {
+      //   res.redirect('/teacher-dashboard');
+      // }
+
+      // try {
+      //   // If more than one classroom is returned.
+
+      //   classrooms.forEach((classroom) => {
+      //     const classroomGames = ClassroomStats.findAll({
+      //       where: {
+      //         classroomClassCode: classroom.classCode,
+      //       },
+      //       attributes: ['gameID', 'AverageStudentActivity'],
+      //     });
+      //     classroomGames.map(() => classroom.classCode,dataValues);
+      //   });
+      //   try {
+      //     // Do an full join to retrieve matching ACARA codes and game titles.
+      //     classroomTracker.map(async (classroomGame) => {
+      //       const classroomGameDetails = await Games.findAll({
+      //         where: {
+      //           gameID: classroomGame.gameID,
+      //         },
+      //         attributes: ['title', 'category'],
+      //       });
+      //       classroomGameDetailTracker.push(classroomGameDetails);
+      //       console.log(classroomGameDetails);
+      //     });
+      //     const croomTracker = classroomTracker;
+      //     const croomDetailTracker = classroomGameDetailTracker;
+      //     res.render('teacher/teacher-students', {
+      //       path: '/teacher-students',
+      //       classrooms: classrooms,
+      //       classroomTracker: cd,
+      //       classroomDetails: croomDetailTracker,
+      //     });
+      //   } catch (err) {
+      //     res.redirect('/teacher-dashboard');
+      //   }
+      // } catch (err) {
+      //   res.redirect('/teacher-dashboard');
+      // }
+    } catch (err) {
+      res.redirect('/');
+    }
   } else {
     res.redirect('/');
   }
@@ -83,7 +178,7 @@ exports.getTeacherStudents = (req, res, next) => {
 exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
-    Classroom.findOne({ where: {classCode: classCode} }).then((classRoom) => {
+    Classroom.findOne({ where: { classCode: classCode } }).then((classRoom) => {
       ClassroomStats.findAll({
         where: {
           classroomClassCode: classCode,
@@ -150,16 +245,18 @@ exports.getTeacherGameStorepage = (req, res, next) => {
     }).then((games) => {
       const totalGames = games.count;
       const gamesArray = games.rows;
-      Classroom.findOne({ where: {classCode: classCode }}).then((classRoom) => {
-        res.render('teacher/teacher-game-storepage', {
-          classRoom: classRoom,
-          games: gamesArray,
-          pageNumber: parseInt(page),
-          pageButtons: Math.ceil(totalGames / gamesPerPage),
-          name: req.session.userName,
-          path: '/teacher-classroom',
-        });
-      });
+      Classroom.findOne({ where: { classCode: classCode } }).then(
+        (classRoom) => {
+          res.render('teacher/teacher-game-storepage', {
+            classRoom: classRoom,
+            games: gamesArray,
+            pageNumber: parseInt(page),
+            pageButtons: Math.ceil(totalGames / gamesPerPage),
+            name: req.session.userName,
+            path: '/teacher-classroom',
+          });
+        }
+      );
     });
     Games.findAll().then((lames) => {
       console.log('Whats in lames = ' + lames);

@@ -1,148 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/creator-dashboard.css">
-        <link rel="stylesheet" href="css/teacher-dashboard.css">
-        <script  src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
-        <title>Kleva </title>
-    </head>
 
-    <body>
-        <!-- Dashboard Container -->
-        <div class="container">
-            <!-- Navigation Bar -->
-            <header class="header">
-                    <!-- Logo -->
-                    <img src="img/logo.png" alt="Kleva" class="logo">
-                    <!-- Search Bar -->
-                    <form action="/" class="search" method="POST">
-                    <input type="text" class="search__input" placeholder="Search Games">
-                        <button class="search__button">
-                            <svg class="search__icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-search"></use>
-                            </svg>
-                        </button>
-                    </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/creator-dashboard.css">
 
-                    <!-- Mobile Menu  -->
-                    <div class="mobile-navigation">
-                        <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger">
-            
-                        <label for="menu_burger" class="mobile-navigation__button">
-                            <svg class="mobile-navigation__button-icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
-                            </svg>
-                        </label>
-            
-                        <div class="mobile-navigation__background"></div>
-            
-                        <nav class="mobile-navigation__nav">
-                            <ul class="mobile-navigation__list">
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Home</a>
-                                </li>
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Log Out</a>
-                                </li>
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Games</a>
-                                </li>
-                                <li class="mobile-navigation__item">
-                                    <a href="" class="mobile-navigation__link">Help</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <title>Kleva </title>
+</head>
 
-                    <!-- Desktop and Tablet Menu -->
-                    <nav class="user-nav">
-                        <div class="user-nav__icon-box">
-                            <a href="/">
-                            <svg class="user-nav__icon">
-                                <use xlink:href="img/symbol-defs.svg#icon-home"></use>
-                            </svg>
-                            </a>
-                        </div>
-                        <div class="user-nav__icon-box">
+<body>
+    <!-- Dashboard Container -->
+    <div class="">
+        <!-- Navigation Bar -->
+        <header class="header">
+            <!-- Logo -->
+            <img src="img/logo.png" alt="Kleva" class="logo">
+            <!-- Search Bar -->
+            <form action="/" class="search" method="POST">
+                <input type="text" class="search__input" placeholder="Search Games">
+                <button class="search__button">
+                    <svg class="search__icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-search"></use>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Mobile Menu  -->
+            <div class="mobile-navigation">
+                <input type="checkbox" class="mobile-navigation__checkbox" id="menu_burger">
+
+                <label for="menu_burger" class="mobile-navigation__button">
+                    <svg class="mobile-navigation__button-icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-menu"></use>
+                    </svg>
+                </label>
+
+                <div class="mobile-navigation__background"></div>
+
+                <nav class="mobile-navigation__nav">
+                    <ul class="mobile-navigation__list">
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Home</a>
+                        </li>
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Log Out</a>
+                        </li>
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Games</a>
+                        </li>
+                        <li class="mobile-navigation__item">
+                            <a href="" class="mobile-navigation__link">Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Desktop and Tablet Menu -->
+            <nav class="user-nav">
+                <div class="user-nav__icon-box">
+                    <a href="/">
+                        <svg class="user-nav__icon">
+                            <use xlink:href="img/symbol-defs.svg#icon-home"></use>
+                        </svg>
+                    </a>
+                </div>
+                <div class="user-nav__icon-box">
+                    <form action="/sign-out" method="POST">
+                        <button type="submit" style="border: none; background-color: transparent; ">
                             <svg class="user-nav__icon">
                                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
                             </svg>
-                        </div>
-                        <div class="user-nav__user">
-                            <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo">
-                            <span class="user-name">Bobby</span>
-                        </div>
-                    </nav>     
-            </header>
+                        </button>
+                    </form>
+                </div>
+                <div class="user-nav__user">
+                    <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo">
+                    <span class="user-name">Bobby</span>
+                </div>
+            </nav>
+        </header>
 
-            
-            <div class="content">
-                <!-- Dashboard Side Bar -->
-                <nav class="side-bar">
-                    <!-- Dashboard Pages -->
-                    <ul class="side-nav">
-                        <!-- Active Styling with Plain JS Logic -->
-                        <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                            <a href="/teacher-dashboard" class="side-nav__link">
-                                <!-- Sidebar Icon -->
-                                <svg class="side-nav__icon">
-                                    <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
-                                </svg>
-                                <span>Classroom</span>
-                            </a>
-                        </li>
-                        <li class="<%= path === '/teacher-students' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                            <a href="/" class="side-nav__link">
-                                <svg class="side-nav__icon">
-                                    <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
-                                </svg>
-                                <span>Students</span>
-                            </a>
-                        </li>
-                        <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                            <a href="/" class="side-nav__link">
-                                <svg class="side-nav__icon">
-                                    <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
-                                </svg>
-                                <span>Help</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Legal Text -->
-                    <div class="legal">
-                        &copy; 2020 by Kleva Pty. Ltd.
+
+        <div class="content">
+            <!-- Dashboard Side Bar -->
+            <nav class="side-bar">
+                <!-- Dashboard Pages -->
+                <ul class="side-nav">
+                    <!-- Active Styling with Plain JS Logic -->
+                    <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                        <a href="/teacher-dashboard" class="side-nav__link">
+                            <!-- Sidebar Icon -->
+                            <svg class="side-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
+                            </svg>
+                            <span>Classroom</span>
+                        </a>
+                    </li>
+                    <li class="<%= path === '/teacher-students' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                        <a href="/" class="side-nav__link">
+                            <svg class="side-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
+                            </svg>
+                            <span>Students</span>
+                        </a>
+                    </li>
+                    <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+                        <a href="/" class="side-nav__link">
+                            <svg class="side-nav__icon">
+                                <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
+                            </svg>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Legal Text -->
+                <div class="legal">
+                    &copy; 2020 by Kleva Pty. Ltd.
+                </div>
+            </nav>
+
+            <div class="container-fluid pr-0 pl-0 py-5">
+                <div class="px-5 py-5">
+                    <div class="ml-5 mr-5 container-lg mx-auto">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <h1 class="display-3" style="font-weight: 600;">Statistics Dashboard</h1>
+                            </div>
+
+                            <!-- Statistics (Avg.Game Activity - Number of Students) -->
+
+                            <% if(classrooms.length > 0) { %>
+                            <% for (let classRoom of classrooms) { %>
+                            <div class="col-12 col-lg-6 mt-5">
+                                <div class="card shadow mb-4" style="border-radius: 3rem;">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class=" card-header px-5 py-5 d-flex flex-row align-items-center
+                                    justify-content-between"
+                                        style="border-radius: 3rem 3rem 0 0; background-color: transparent;">
+                                        <h6 class="m-0 font-weight-bold " style="font-size: 2rem; color:darkslateblue">
+                                            <%- classRoom.title %>
+                                        </h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Generate Report</div>
+                                                <a class="dropdown-item" href="#">Mail Head of Department</a>
+
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Open Full Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <table class="table table-borderless"
+                                            style="overflow: hidden; table-layout:fixed;">
+                                            <thead style="font-size:1.6rem;">
+                                                <tr>
+                                                    <th scope="col" style="width: 40%">Game Name</th>
+                                                    <th scope="col" style="white-space: nowrap">Student Activity
+                                                    </th>
+                                                    <th scope="col" style="width: 25%">Category</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <% if(games.length > 0) { %>
+                                                <% for (let game of games) { %>
+                                                <tr>
+
+                                                    <% if(game.dataValues.classroomClassCode === classRoom.classCode) { %>
+
+
+
+                                                    <th scope="row" class="d-flex align-self-center">
+                                                        <img class="dot mr-3"
+                                                            src="<%- game.dataValues.game.gameImageURL %>" />
+                                                        <span class="d-flex align-self-center "
+                                                            style="font-size: 1.8rem; letter-spacing: .03rem;"><%- game.dataValues.game.title %></span>
+                                                    </th>
+                                                    <td class="pt-4"
+                                                        style="font-size: 1.7rem; letter-spacing: .03rem; ">
+                                                        <%- game.dataValues.AverageStudentActivity %> Minutes</td>
+                                                    <td class="pt-4"
+                                                        style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
+                                                        <%- game.dataValues.game.category %></td>
+
+                                                </tr>
+                                                <% } %>
+
+                                                <% } %>
+                                                <% } %>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- <div class="chart-area">
+                                                <canvas id="myAreaChart"></canvas>
+                                            </div> -->
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <% } %>
+                            <% }%>
+
+
+                        </div>
                     </div>
-                </nav>
+                </div>
 
-                <!-- Main Content Area -->
-                <main class="upload">
-                    <!-- Manage Students -->
-                    <div class="upload-form">
-                        <div class="create_your_classroom">
-                            <h2>
-                                Your Classrooms
-                            </h2>
-                                <form action="/add-classroom" method="POST">
-                                    <label for="title">Classroom Name</label>
-                                    <input type="text" id="title" name="title" placeholder="Give Your Class a Name">
-
-                                    <label for="yearLevel">Year Level</label>
-                                    <input type="text" id="yearLevel" name="yearLevel" placeholder="Enter Your Year Level">
-
-                                    <label for="subject">Subject</label>
-                                    <input type="text" id="subject" name="subject" placeholder="Select a subject">
-                                    
-
-                                    <input class="authentication__form-button" type="submit" value="Add Classroom">
-                                </form>
-                        </div>
-                    </div>
-                </main>   
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
+
 </html>

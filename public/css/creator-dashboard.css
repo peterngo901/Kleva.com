@@ -624,3 +624,22 @@ body {
 .show {
   padding-right: 0px !important;
 }
+
+.dot {
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.category {
+  border: none;
+  background-color: #554163;
+  border-radius: 2.5rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.category:hover {
+  background-color: #c9d5ff !important;
+}
