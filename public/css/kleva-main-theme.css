@@ -50,34 +50,6 @@
   border-radius: 0;
 }
 
-/* teacher dashboard*/
-
-.user-nav__icon-box{
-  border: none; 
-  background-color: transparent;
-}
-.display-3{
-  font-weight: 600;
-}
-.card col-8 col-md-3 m-3 shadow-sm{
-  min-height: 35rem;
-}
-.btn mb-4 w-100{
-  background-color: #e0d9ff;
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-.btn mb-4 w-100{
-  background-color: #e0d9ff;
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-.btn mb-4 w-100{
-  background-color: #d9fff3;
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-
 /* user profile */
 #picture {
 }
@@ -182,6 +154,30 @@ nav {
   background-color:#e9bede;
 }
 
+.card1 {
+  background-color: #554163;
+}
+
+.card2 {
+  background-color: #647887;
+}
+
+.card3 {
+  background-color: #85f7ff;
+}
+
+.card4 {
+  background-color: #b8ffc9;
+}
+
+.card5 {
+  background-color: #ff8c8c;
+}
+
+.card6 {
+  background-color:#ffe0a1;
+}
+
 .navbar {
   background-color: #FFF3FC; 
   font-weight: 600;
@@ -238,6 +234,11 @@ nav {
 
 .description {
   height: 5rem;
+  overflow: hidden;
+}
+
+.description-gamepage {
+  height: 3rem;
   overflow: hidden;
 }
 
