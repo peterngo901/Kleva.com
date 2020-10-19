@@ -27,7 +27,9 @@
     <!-- Navigation Bar -->
     <header class="header">
       <!-- Logo -->
-      <img src="img/logo.png" alt="Kleva" class="logo" />
+      <a href="/">
+        <img src="img/logo.png" alt="Kleva" class="logo" />
+      </a>
       <!-- Search Bar -->
       <form action="/" class="search" method="POST">
         <input type="text" class="search__input" placeholder="Search Games" />
@@ -92,8 +94,10 @@
 
 
         <div class="user-nav__user">
+          <a href="/user-profile">
           <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo" />
           <span class="user-name"><%= name; %></span>
+          </a>
         </div>
       </nav>
     </header>
