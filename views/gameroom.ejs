@@ -23,7 +23,7 @@
 
 <body>
   <!-- Dashboard Container -->
-  <div class="" style="overflow-x: hidden">
+  <div class="gameroom-container">
     <!-- Navigation Bar -->
     <header class="header">
       <!-- Logo -->
@@ -79,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" style="border: none; background-color: inherit; ">
+            <button class="user-signout" type="submit">
               <svg class="user-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -148,10 +148,10 @@
               <!-- Countdown Timer -->
               <div class="row justify-content-center mb-5">
                 <div class="col-12 text-center">
-                  <p id="gameQuestionDisplay" style="font-size: 3rem"></p>
+                  <p class="countdown" id="gameQuestionDisplay"></p>
                 </div>
                 <div class="col-12 text-center">
-                  <p id="gameCountdownTimerText" style="font-size: 3rem"></p>
+                  <p class="countdown" id="gameCountdownTimerText" ></p>
                 </div>
                 <div class="col-12 text-center">
                   <progress id="gameCountdownTimer" value="0" max="10" class="progress-bar-success"></progress>

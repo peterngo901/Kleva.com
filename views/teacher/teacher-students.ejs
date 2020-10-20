@@ -29,7 +29,9 @@
         <!-- Navigation Bar -->
         <header class="header">
             <!-- Logo -->
-            <img src="img/logo.png" alt="Kleva" class="logo">
+            <a href="/">
+              <img src="img/logo.png" alt="Kleva" class="logo">
+            </a>
             <!-- Search Bar -->
             <form action="/" class="search" method="POST">
                 <input type="text" class="search__input" placeholder="Search Games">
@@ -102,6 +104,14 @@
                 <!-- Dashboard Pages -->
                 <ul class="side-nav">
                     <!-- Active Styling with Plain JS Logic -->
+                    <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+                        <a href="/teacher-game-storepage/?page=1" class="side-nav__link">
+                          <svg class="side-nav__icon">
+                            <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
+                          </svg>
+                          <span>Add Games</span>
+                        </a>
+                    </li>
                     <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
                         <a href="/teacher-dashboard" class="side-nav__link">
                             <!-- Sidebar Icon -->
@@ -111,6 +121,15 @@
                             <span>Classroom</span>
                         </a>
                     </li>
+                    <li class="side-nav__item">
+                        <a href="/teacher-schedule" class="side-nav__link">
+                          <!-- Sidebar Icon -->
+                          <svg class="side-nav__icon">
+                            <use xlink:href="../img/symbol-defs.svg#calendar"></use>
+                          </svg>
+                          <span>Schedule Calendar</span>
+                        </a>
+                      </li>
                     <li class="<%= path === '/teacher-students' ? 'side-nav__item--active' : 'side-nav__item' %> ">
                         <a href="/" class="side-nav__link">
                             <svg class="side-nav__icon">

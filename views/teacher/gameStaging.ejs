@@ -79,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" style="border: none; background-color: inherit; ">
+            <button type="submit user-signout">
               <svg class="user-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -142,9 +142,9 @@
                   <!-- Question 1 -->
                   <div class="input-group mb-5">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="doodle01" style="font-size: 3rem">Doodle...</label>
+                      <label class="input-group-text doodle01" for="doodle01">Doodle...</label>
                     </div>
-                    <select class="custom-select" id="doodle01" style="font-size: 3rem">
+                    <select class="custom-select doodle01" id="doodle01">
                       <!-- Doodle Question Options 1 -->
                       <option selected>hydrogen structure</option>
                       <option value="oxygen structure">oxygen structure</option>
@@ -153,7 +153,7 @@
                     </select>
 
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn" type="button" style="font-size: 3rem; box-shadow: none;">
+                      <button class="btn questionButton" type="button">
                         <img id="questionButton1"
                           src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
                           class="img-fluid" onClick="changeImage1()" />
@@ -167,9 +167,9 @@
                   <!-- Question 2 -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="doodle02" style="font-size: 3rem">Doodle...</label>
+                      <label class="input-group-text doodle01" for="doodle02">Doodle...</label>
                     </div>
-                    <select class="custom-select" id="doodle02" style="font-size: 3rem">
+                    <select class="custom-select doodle01" id="doodle02">
                       <!-- Doodle Question Options 2 -->
                       <option selected>hydrogen structure</option>
                       <option value="oxygen structure">oxygen structure</option>
@@ -177,7 +177,7 @@
                       <option value="magnesium structure">magnesium structure</option>
                     </select>
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn" type="button" style="font-size: 3rem;  box-shadow: none;">
+                      <button class="btn questionButton" type="button">
                         <img id="questionButton2"
                           src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
                           class="img-fluid" onClick="changeImage()" />
@@ -190,12 +190,12 @@
             <div class="row mt-5 justify-content-center">
               <div class="col-10 mt-5 text-center">
                 <h1>Share this code with your students:</h1>
-                <h1 class="badge badge-warning" style="font-size: 5rem">
+                <h1 class="badge badge-warning" >
                   <%= classCode %>
                 </h1>
               </div>
               <div class="col-10 mt-5 text-center">
-                <button class="btn btn-block" style="font-size: 3rem; box-shadow: none;" type="submit">
+                <button class="btn btn-block questionButton" type="submit">
                   <img src="img/open_gameroom_bold.png" class="img-fluid" />
                 </button>
               </div>
