@@ -18,6 +18,9 @@ const ClassroomStats = sequelize.define('classroomStats', {
   AverageStudentActivity: {
     type: Sequelize.INTEGER,
   },
+  studentVisits: {
+    type: Sequelize.INTEGER,
+  },
 });
 
 module.exports = ClassroomStats;

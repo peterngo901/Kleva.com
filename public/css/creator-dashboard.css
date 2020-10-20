@@ -159,7 +159,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  overflow-y: scroll
+  overflow-y: scroll;
 }
 
 .container {
@@ -622,8 +622,8 @@ body {
 }
 
 .borderless {
-    border: none; 
-    background-color: inherit;
+  border: none;
+  background-color: inherit;
 }
 
 .legal {
@@ -780,4 +780,83 @@ body {
 
 .category:hover {
   background-color: #c9d5ff !important;
+}
+
+.classroomMuttons {
+  background-color: #554163;
+  border-radius: 1rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem;
+  font-weight: 600 !important;
+}
+
+.classroomMuttons:hover {
+  background-color: #c9d5ff !important;
+}
+
+.classroomAddClassroomButton {
+  background-color: #ff8abb !important;
+  border-radius: 1rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+.classroomAddClassroomButton:hover {
+  background-color: #c9d5ff !important;
+}
+
+.classroomAddGameButton {
+  background-color: #f5adff !important;
+  border-radius: 1rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+.classroomAddGameButton:hover {
+  background-color: #c9d5ff !important;
+}
+
+.gameroomPen {
+  background-image: url('https://storage.googleapis.com/kleva_assets/pen.png');
+  height: 64px;
+  width: 64px;
+  background-size: 64px 64px;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 1.5rem;
+  border: none;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.gameroomEraser {
+  background-image: url('https://storage.googleapis.com/kleva_assets/eraser.png');
+  height: 64px;
+  width: 64px;
+  background-size: 64px 64px;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 1.5rem;
+  border: none;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+  margin-left: 2rem;
+}
+
+.gameroomPen:hover {
+  background-color: #c9d5ff;
+}
+
+.gameroomEraser:hover {
+  background-color: #c9d5ff;
+}
+
+.gameroomPen:focus {
+  outline: none;
+  background-color: #c9d5ff;
+}
+
+.gameroomEraser:focus {
+  outline: none;
+  background-color: #c9d5ff;
 }

@@ -41,4 +41,7 @@ router.post('/student-signin', authController.postStudentSignin);
 // Signout
 router.post('/sign-out', authController.postSignout);
 
+// User Profile
+router.get('/profile', authController.getProfile);
+
 module.exports = router;

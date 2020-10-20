@@ -43,21 +43,24 @@ Main Navbar
           <a class="nav-link" href="/teacher-dashboard">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
+          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span
+                class="sr-only">(current)</span></button></form>
         </li>
         <% } else if(user === 'student') { %>
         <li class="nav-item active">
           <a class="nav-link" href="/student-dashboard">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
+          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span
+                class="sr-only">(current)</span></button></form>
         </li>
         <% } else if(user === 'creator'){ %>
         <li class="nav-item active">
           <a class="nav-link" href="/creator-dashboard">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
+          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span
+                class="sr-only">(current)</span></button></form>
         </li>
         <% } else { %>
         <li class=" nav-item dropdown mr-3">
@@ -177,7 +180,7 @@ Main Navbar
         <div class="col-lg-4 mb-5">
           <div class="card p-3 category card1">
             <a href="/gamesgallery/?page=1&gameCategory=English"><img
-                src='https://storage.googleapis.com/kleva_assets/english.png' class="img-fluid img-fluid1"/></a>
+                src='https://storage.googleapis.com/kleva_assets/english.png' class="img-fluid img-fluid1" /></a>
             <div class="card-footer card-footer1">
               ENGLISH
             </div>
@@ -186,7 +189,7 @@ Main Navbar
         <div class="col-lg-4 mb-5">
           <div class="card p-3 category card2">
             <a href="/gamesgallery/?page=1&gameCategory=Maths"><img
-                src='https://storage.googleapis.com/kleva_assets/mathematics.png' class="img-fluid img-fluid1"/></a>
+                src='https://storage.googleapis.com/kleva_assets/mathematics.png' class="img-fluid img-fluid1" /></a>
             <div class="card-footer card-footer2">
               MATHS</div>
           </div>
@@ -194,7 +197,7 @@ Main Navbar
         <div class="col-lg-4 mb-5">
           <div class="card p-3 category card3">
             <a href="/gamesgallery/?page=1&gameCategory=Technology"><img
-                src='https://storage.googleapis.com/kleva_assets/technologies.png' class="img-fluid img-fluid1"/></a>
+                src='https://storage.googleapis.com/kleva_assets/technologies.png' class="img-fluid img-fluid1" /></a>
             <div class="card-footer card-footer3">
               TECH
             </div>
@@ -203,7 +206,7 @@ Main Navbar
         <div class="col-lg-4 mb-5">
           <div class="card p-3 category card4">
             <a href="/gamesgallery/?page=1&gameCategory=Arts"><img
-                src='https://storage.googleapis.com/kleva_assets/theArts.png' class="img-fluid img-fluid1"/></a>
+                src='https://storage.googleapis.com/kleva_assets/theArts.png' class="img-fluid img-fluid1" /></a>
             <div class="card-footer card-footer4">
               ARTS</div>
           </div>
@@ -211,7 +214,7 @@ Main Navbar
         <div class="col-lg-4 mb-5">
           <div class="card p-3 category card5">
             <a href="/gamesgallery/?page=1&gameCategory=Science"><img
-                src='https://storage.googleapis.com/kleva_assets/science.png' class="img-fluid img-fluid1"/></a>
+                src='https://storage.googleapis.com/kleva_assets/science.png' class="img-fluid img-fluid1" /></a>
             <div class="card-footer card-footer5">
               SCIENCE</div>
           </div>
@@ -219,7 +222,8 @@ Main Navbar
         <div class="col-lg-4 mb-5">
           <div class="card p-3 category card6">
             <a href="/gamesgallery/?page=1&gameCategory=Humanities"><img
-                src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png' class="img-fluid img-fluid1"/></a>
+                src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png'
+                class="img-fluid img-fluid1" /></a>
             <div class="card-footer card-footer6">
               HUMANITIES
             </div>
@@ -234,8 +238,7 @@ Main Navbar
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card rounded shadow">
             <a href="/gamepage/<%= game.gameID %>"><img class="card-img-top card-img-top1"
-                src="<%- game.gameImageURL %>" alt=""
-                loading="lazy" /></a>
+                src="<%- game.gameImageURL %>" alt="" loading="lazy" /></a>
 
           </div>
           <div class="container-fluid my-auto">
@@ -258,7 +261,7 @@ Main Navbar
       <!-- Game Page Buttons -->
       <div class="row mt-3 justify-content-center">
         <% if (pageButtons => 1) { %>
-        <nav aria-label="Game Results Pages">
+        <nav aria-label="Game Results Pages" class="my-5" style="background-color: transparent;">
           <ul class="pagination">
             <% for(i=0; i < pageButtons; i++) { %>
             <li class="<%= pageNumber === i+1 ? 'page-item active' : 'page-item'; %>">

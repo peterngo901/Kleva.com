@@ -17,6 +17,33 @@ socket.on('studentsList', (allStudents) => {
   document.getElementById('studentOutput').innerHTML = studentNames;
 });
 
+var gameStarted = false;
+
 function beginGame() {
+  gameStarted = true;
   socket.emit('beginGame');
+  console.log(gameStarted);
+  watchQuestions();
+}
+var questionTimeTracker = 0;
+function watchQuestions() {
+  if (gameStarted) {
+    setInterval(function () {
+      console.log(questionTimeTracker);
+      questionTimeTracker += 1;
+      if (questionTimeTracker === 12) {
+        clear();
+        setup();
+      }
+      if (questionTimeTracker === 45) {
+        clear();
+        setup();
+      }
+      if (questionTimeTracker === 77) {
+        clearInterval();
+        //TODO REDIRECT TO STATISTICS DASHBOARD TO VIEW ALL DRAWINGS
+        return (window.location.href = '/teacher-students');
+      }
+    }, 1000);
+  }
 }

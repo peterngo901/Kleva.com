@@ -1,6 +1,7 @@
 const Students = require('../models/student');
 const ClassroomStats = require('../models/classroomStats');
 const Games = require('../models/game');
+const { Op } = require('sequelize');
 
 exports.getStudentDashboard = async (req, res, next) => {
   const name = req.session.name;
@@ -37,7 +38,10 @@ exports.postAddTime = async (req, res, next) => {
   try {
     await ClassroomStats.increment('AverageStudentActivity', {
       by: parseInt(time),
-      where: { gameID: gameID },
+      where: { [Op.and]: { gameID: gameID, classroomClassCode: classCode } },
+    });
+    await ClassroomStats.increment('studentVisits', {
+      where: { gameID: gameID, classroomClassCode: classCode },
     });
   } catch (err) {
     res.redirect('/student-dashboard');
