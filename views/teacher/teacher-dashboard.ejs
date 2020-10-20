@@ -94,7 +94,7 @@
 
 
         <div class="user-nav__user">
-          <a href="/user-profile">
+          <a href="/profile">
             <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo" />
             <span class="user-name"><%= name; %></span>
           </a>
@@ -155,7 +155,8 @@
                     src="https://storage.googleapis.com/kleva_assets/addClassroom.png" role="button" data-toggle="modal"
                     data-target="#exampleModal" />
                 </div>
-                <button data-toggle="modal" data-target="#exampleModal" class="btn mb-4 w-100">
+                <button data-toggle="modal" data-target="#exampleModal"
+                  class="btn mb-4 w-100 classroomAddClassroomButton">
                   Add Classroom +
                 </button>
               </div>
@@ -172,8 +173,10 @@
                   <h1 class="mt-5">Class Code: </h1>
                   <p class="display-4"><%- classRoom.classCode %></p>
                 </div>
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100">Visit Classroom ></a>
-                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>" class="btn mb-4 w-100">
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
+                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a>
+                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>"
+                  class="btn mb-4 w-100 classroomAddGameButton">
                   Create Live Game +
                 </button>
 

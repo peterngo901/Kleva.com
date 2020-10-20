@@ -329,3 +329,11 @@ exports.postSignout = (req, res, next) => {
     res.redirect('/');
   });
 };
+
+exports.getProfile = async (req, res, next) => {
+  res.locals.user = req.session.sessionType;
+  res.redirect('/teacher-students');
+  // res.render('user-profile', {
+  //   pageTitle: 'Your Profile',
+  // });
+};
