@@ -93,9 +93,10 @@ exports.getTeacherGameroom = (req, res, next) => {
     socket.on('beginGame', () => {
       const questionOne = 'Doodle the structure of Hydrogen';
       const questionTwo = 'Doodle the structure of Oxygen';
+      const doodleGameRoomName = `${req.session.classCode}`;
       socket.broadcast
         .to(`${req.session.classCode}`)
-        .emit('begin', { questionOne, questionTwo });
+        .emit('begin', { questionOne, questionTwo, doodleGameRoomName });
     });
 
     // // Render Students in the List.

@@ -84,7 +84,7 @@
 
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit">
+            <button type="submit" style="border: none; background-color: inherit">
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -94,9 +94,9 @@
 
 
         <div class="user-nav__user">
-          <a href="/user-profile">
-          <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo" />
-          <span class="user-name"><%= name; %></span>
+          <a href="/profile">
+            <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo" />
+            <span class="user-name"><%= name; %></span>
           </a>
         </div>
       </nav>
@@ -142,7 +142,7 @@
         <div class="px-5 py-5">
           <div class="ml-5 mr-5 container-md mx-auto ">
 
-            <h1 class="display-3" >Your Classrooms</h1>
+            <h1 class="display-3">Your Classrooms</h1>
 
             <%- include('../reusables/classroom-modal.ejs'); %>
 
@@ -155,14 +155,14 @@
                     src="https://storage.googleapis.com/kleva_assets/addClassroom.png" role="button" data-toggle="modal"
                     data-target="#exampleModal" />
                 </div>
-                <button data-toggle="modal" data-target="#exampleModal" class="btn mb-4 w-100" 
-                  >
+                <button data-toggle="modal" data-target="#exampleModal"
+                  class="btn mb-4 w-100 classroomAddClassroomButton">
                   Add Classroom +
                 </button>
               </div>
               <% if (classrooms.length > 0) { %> <% for (let classRoom of
               classrooms) { %>
-              <div class="card col-8 col-md-3 m-3 shadow-sm " >
+              <div class="card col-8 col-md-3 m-3 shadow-sm ">
                 <div class="card-title text-center mt-3">
                   <%- classRoom.title %>
                 </div>
@@ -173,8 +173,10 @@
                   <h1 class="mt-5">Class Code: </h1>
                   <p class="display-4"><%- classRoom.classCode %></p>
                 </div>
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100" >Visit Classroom ></a>
-                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>" class="btn mb-4 w-100" >
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
+                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a>
+                <button data-toggle="modal" data-target="#<%- classRoom.classCode %>"
+                  class="btn mb-4 w-100 classroomAddGameButton">
                   Create Live Game +
                 </button>
 

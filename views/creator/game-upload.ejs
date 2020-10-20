@@ -140,16 +140,21 @@
                   <div class="form-group col-12">
                     <label class="game-upload-form__title" for="title">Game Title</label>
                     <input type="text" class="game-upload-form__placeholder-text form-control" id="title" name="title"
-                      placeholder="Example: Bridge Builder"/>
+                      placeholder="Example: Bridge Builder" />
                   </div>
                   <!-- Game Description -->
                   <div class="form-group col-12">
-                    <label class="game-upload-form__title" for="exampleFormControlTextarea1">Description</label>
-                    <textarea class="game-upload-form__placeholder-text form-control" id="description" rows="5" name="description"
-                      placeholder="Describe your game in 90 words."></textarea>
+                    <label for="exampleFormControlTextarea1">Description
+                    </label>
+                    <textarea class="form-control" id="description" rows="5" name="description"
+                      placeholder="Describe your game in 90 words. &#10;Use keyword nouns to help our AI match your game with the Australian Curriculum. &#10;Example: Solve architecture and civil engineering problems as you build bridges."
+                      style="font-size: 1.9rem;"></textarea>
                   </div>
                 </div>
               </div>
+
+
+
 
               <!-- Game Title and Description -->
               <div class="card mt-5 px-5 py-5 shadow rounded">
@@ -158,7 +163,7 @@
                   <label class="game-upload-form__title" for="gameFile">Upload Your Game</label>
                   <div class="custom-file col-12 game-upload-form__placeholder-text">
                     <input type="file" class="custom-file-input" id="gameFile" name="gameFile"
-                      aria-describedby="gameFile"/>
+                      aria-describedby="gameFile" />
                     <label class="custom-file-label" for="gameFile">File Size Limit: 1GB</label>
                   </div>
 
@@ -196,7 +201,8 @@
                     <div class="card borderless">
                       <div class="card-img text-center">
                         <button class="borderless" onclick="selectSubStrands()" value="science" type="button">
-                          <img src='https://storage.googleapis.com/kleva_assets/science.png' class='img-fluid' /></button>
+                          <img src='https://storage.googleapis.com/kleva_assets/science.png'
+                            class='img-fluid' /></button>
                       </div>
                       <div class="card-footer text-center game-upload-cat__title">
                         <h3>Science</h3>
@@ -208,7 +214,8 @@
                     <div class="card borderless">
                       <div class="card-img text-center">
                         <button class="borderless" onclick="selectSubStrands()" value="english" type="button">
-                          <img src='https://storage.googleapis.com/kleva_assets/english.png' class='img-fluid' /></button>
+                          <img src='https://storage.googleapis.com/kleva_assets/english.png'
+                            class='img-fluid' /></button>
                       </div>
                       <div class="card-footer text-center game-upload-cat__title">
                         <h3>English</h3>
@@ -219,7 +226,8 @@
                   <div class="col-6 col-lg-2">
                     <div class="card borderless">
                       <div class="card-img text-center">
-                        <button class="borderless" onclick="selectSubStrands()" value="digital technologies" type="button">
+                        <button class="borderless" onclick="selectSubStrands()" value="digital technologies"
+                          type="button">
                           <img src='https://storage.googleapis.com/kleva_assets/technologies.png'
                             class='img-fluid' /></button>
                       </div>
@@ -233,7 +241,8 @@
                     <div class="card borderless">
                       <div class="card-img text-center">
                         <button class="borderless" onclick="selectSubStrands()" value="arts" type="button">
-                          <img src='https://storage.googleapis.com/kleva_assets/theArts.png' class='img-fluid' /></button>
+                          <img src='https://storage.googleapis.com/kleva_assets/theArts.png'
+                            class='img-fluid' /></button>
                       </div>
                       <div class="card-footer text-center game-upload-cat__titles">
                         <h3>Arts</h3>
@@ -263,7 +272,8 @@
                   <div class="col-12 mb-4">
                     <h1>Sub-Categories</h1>
                   </div>
-                  <div class="col-12 mb-4" id="subcategories">
+                  <div class="form-group col-12 mb-4 pl-5" id="subcat">
+
 
                   </div>
                 </div>
@@ -274,7 +284,8 @@
                 <div class="row">
                   <!-- Upload -->
                   <div class="col align-self-end"></div>
-                  <button type="submit" class="btn btn-success">
+                  <button type="submit" class="btn btn-success btn-block py-5 mx-3"
+                    style="font-size: 4rem; border-radius: 2rem;">
                     Upload
                   </button>
                 </div>
@@ -287,186 +298,192 @@
   </div>
 </body>
 <script>
-  $("button").click(function () {
+  $("button").click(function selectSubStrands() {
     var fired_button = $(this).val();
     if (fired_button === 'maths') {
-      document.getElementById('subcategories').innerHTML = '<h1>Maths</h1> \
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"Number and place value\">\
+      return document.getElementById('subcat').innerHTML = '<h1>Maths</h1> \
+      <input type=\"hidden\" name=\"category\" id=\"category\" value=\"maths\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"Number and place value\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox1\">Number and place value</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"Real numbers\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox2\" value=\"Real numbers\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox2\">Real numbers</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"Money and financial mathematics\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox3\" value=\"Money and financial mathematics\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox3\">Money and financial mathematics</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox4\" value=\"Patterns and algebra\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox4\" value=\"Patterns and algebra\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox4\">Patterns and algebra</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox5\" value=\"Using units of measurement\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox5\" value=\"Using units of measurement\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox5\">Using units of measurement</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox6\" value=\"Chance\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox6\" value=\"Chance\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox6\">Chance</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox7\" value=\"Data representation and interpretation\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox7\" value=\"Data representation and interpretation\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox7\">Data representation and interpretation</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox8\" value=\"Geometric reasoning\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox8\" value=\"Geometric reasoning\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox8\">Geometric reasoning</label>\
       </div>'
     } else if (fired_button === 'science') {
-      document.getElementById('subcategories').innerHTML = '<h1>Science</h1>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"Biological sciences\">\
+      return document.getElementById('subcat').innerHTML = '<h1>Science</h1>\
+      <input type=\"hidden\" name=\"category\" id=\"category\" value=\"science\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"Biological sciences\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox1\">Biological sciences</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"Earth and space sciences\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox2\" value=\"Earth and space sciences\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox2\">Earth and space sciences</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"Chemical sciences\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox3\" value=\"Chemical sciences\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox3\">Chemical sciences</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox4\" value=\"Physical sciences\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox4\" value=\"Physical sciences\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox4\">Physical sciences</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox5\" value=\"Nature and development  of science\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox5\" value=\"Nature and development  of science\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox5\">Nature and development  of science</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox6\" value=\"Use and influence of science\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox6\" value=\"Use and influence of science\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox6\">Use and influence of science</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox7\" value=\"Questioning and predicting\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox7\" value=\"Questioning and predicting\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox7\">Questioning and predicting</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox8\" value=\"Planning and conducting\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox8\" value=\"Planning and conducting\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox8\">Planning and conducting</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox9\" value=\"Processing and analysing data and information\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox9\" value=\"Processing and analysing data and information\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox9\">Processing and analysing data and information</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox10\" value=\"Evaluating\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox10\" value=\"Evaluating\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox10\">Evaluating</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox11\" value=\"Communicating\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox11\" value=\"Communicating\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox11\">Communicating</label>\
       </div>'
     } else if (fired_button === 'english') {
-      document.getElementById('subcategories').innerHTML = '<h1>English</h1>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"Text structure and organisation\">\
+      return document.getElementById('subcat').innerHTML = '<h1>English</h1>\
+      <input type=\"hidden\" name=\"category\" id=\"category\" value=\"english\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"Text structure and organisation\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox1\">Text structure and organisation</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"Language variation and change\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox2\" value=\"Language variation and change\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox2\">Language variation and change</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"Language for interaction\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox3\" value=\"Language for interaction\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox3\">Language for interaction</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox4\" value=\"Expressing and developing ideas\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox4\" value=\"Expressing and developing ideas\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox4\">Expressing and developing ideas</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox5\" value=\"Literature and context\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox5\" value=\"Literature and context\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox5\">Literature and context</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox6\" value=\"Responding to literature\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox6\" value=\"Responding to literature\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox6\">Responding to literature</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox7\" value=\"Examining literature\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox7\" value=\"Examining literature\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox7\">Examining literature</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox8\" value=\"Creating literature\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox8\" value=\"Creating literature\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox8\">Creating literature</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox9\" value=\"Texts in context\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox9\" value=\"Texts in context\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox9\">Texts in context</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox10\" value=\"Interacting with others\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox10\" value=\"Interacting with others\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox10\">Interacting with others</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox11\" value=\"Interpreting, analysing, evaluating\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox11\" value=\"Interpreting, analysing, evaluating\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox11\">Interpreting, analysing, evaluating</label>\
       </div>'
     } else if (fired_button === 'digital technologies') {
-      document.getElementById('subcategories').innerHTML = '<h1>Digital Technologies</h1>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"Design and Technologies Knowledge and Understanding\">\
+      return document.getElementById('subcat').innerHTML = '<h1>Digital Technologies</h1>\
+      <input type=\"hidden\" name=\"category\" id=\"category\" value=\"digitalTechnology\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"Design and Technologies Knowledge and Understanding\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox1\">Design and Technologies Knowledge and Understanding</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"Design and Technologies Processes and Production Skills\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox2\" value=\"Design and Technologies Processes and Production Skills\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox2\">Design and Technologies Processes and Production Skills</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"Digital Technologies Knowledge and Understanding\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox3\" value=\"Digital Technologies Knowledge and Understanding\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox3\">Digital Technologies Knowledge and Understanding</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox4\" value=\"Digital Technologies Processes and Production Skills\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox4\" value=\"Digital Technologies Processes and Production Skills\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox4\">Digital Technologies Processes and Production Skills</label>\
       </div>'
     } else if (fired_button === 'arts') {
-      document.getElementById('subcategories').innerHTML = '<h1>Arts</h1>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"Dance\">\
+      return document.getElementById('subcat').innerHTML = '<h1>Arts</h1>\
+      <input type=\"hidden\" name=\"category\" id=\"category\" value=\"arts\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"Dance\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox1\">Dance</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"Drama\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox2\" value=\"Drama\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox2\">Drama</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"Media Artworks\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox3\" value=\"Media Artworks\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox3\">Media Artworks</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox4\" value=\"Music\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox4\" value=\"Music\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox4\">Music</label>\
       </div>'
-    } else {
-      document.getElementById('subcategories').innerHTML = '<h1>Humanities</h1>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"History\">\
+    } else if (fired_button === 'hass') {
+      return document.getElementById('subcat').innerHTML = '<h1>Humanities</h1>\
+      <input type=\"hidden\" name=\"category\" id=\"category\" value=\"hass\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"History\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox1\">History</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"Geography\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox2\" value=\"Geography\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox2\">Geography</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"Civics and Citizenship\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox3\" value=\"Civics and Citizenship\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox3\">Civics and Citizenship</label>\
       </div>\
-      <div class=\"form-check form-check-inline\">\
-        <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox4\" value=\"Economics and Business\">\
+      <div class=\"checkbox-inline\">\
+        <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox4\" value=\"Economics and Business\">\
           <label class=\"form-check-label\" for=\"inlineCheckbox4\">Economics and Business</label>\
       </div>'
     }

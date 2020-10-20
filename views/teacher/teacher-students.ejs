@@ -146,7 +146,7 @@
 
                             <% if(classrooms.length > 0) { %>
                             <% for (let classRoom of classrooms) { %>
-                            <div class="col-12 col-lg-6 mt-5">
+                            <div class="col-12 col-lg-12 mt-5">
                                 <div class="card shadow mb-4" style="border-radius: 3rem;">
                                     <!-- Card Header - Dropdown -->
                                     <div class=" card-header px-5 py-5 d-flex flex-row align-items-center
@@ -178,9 +178,10 @@
                                             <thead style="font-size:1.6rem;">
                                                 <tr>
                                                     <th scope="col" style="width: 40%">Game Name</th>
-                                                    <th scope="col" style="white-space: nowrap">Student Activity
+                                                    <th scope="col" style="white-space: nowrap">Student Engagement
                                                     </th>
-                                                    <th scope="col" style="width: 25%">Category</th>
+                                                    <th scope="col" style="width: 15%">Visits</th>
+                                                    <th scope="col" style="width: 15%">Category</th>
 
                                                 </tr>
                                             </thead>
@@ -202,7 +203,11 @@
                                                     </th>
                                                     <td class="pt-4"
                                                         style="font-size: 1.7rem; letter-spacing: .03rem; ">
-                                                        <%- game.dataValues.AverageStudentActivity %> Minutes</td>
+                                                        <%- Math.ceil(game.dataValues.AverageStudentActivity/60) %>
+                                                        Minutes</td>
+                                                    <td class="pt-4"
+                                                        style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
+                                                        <%- game.dataValues.studentVisits %></td>
                                                     <td class="pt-4"
                                                         style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
                                                         <%- game.dataValues.game.category %></td>
