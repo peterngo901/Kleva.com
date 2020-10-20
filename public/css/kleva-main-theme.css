@@ -50,34 +50,6 @@
   border-radius: 0;
 }
 
-/* teacher dashboard*/
-
-.user-nav__icon-box{
-  border: none; 
-  background-color: transparent;
-}
-.display-3{
-  font-weight: 600;
-}
-.card col-8 col-md-3 m-3 shadow-sm{
-  min-height: 35rem;
-}
-.btn mb-4 w-100{
-  background-color: #e0d9ff;
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-.btn mb-4 w-100{
-  background-color: #e0d9ff;
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-.btn mb-4 w-100{
-  background-color: #d9fff3;
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-
 /* user profile */
 #picture {
 }
@@ -141,4 +113,156 @@
 
 .category:hover {
   background-color: rgb(255, 255, 255) !important;
+}
+
+nav {
+  background-color: #FFF3FC; 
+  font-weight: 600;
+  z-index: 10000;
+}
+
+.button {
+  outline: none; 
+  border: none; 
+  background-color: transparent; 
+  font-weight: 600; 
+  color: inherit;
+}
+
+.dropdown-menu {
+  background-color: #C9D5FF; 
+  border: none; 
+  font-weight: 600;
+}
+
+.carousel-item {
+  background-image: url('https://storage.googleapis.com/kleva_assets/home-banner-min.png'); 
+  background-color: #252525;
+}
+
+.carousel-item1 {
+  background-image: url('https://storage.googleapis.com/kleva_assets/home-banner2-min.png'); 
+  background-color: #252525;
+}
+
+.btn {
+  background-color: #d659d6;
+  color: white
+}
+
+.card {
+  background-color:#e9bede;
+}
+
+.card1 {
+  background-color: #554163;
+}
+
+.card2 {
+  background-color: #647887;
+}
+
+.card3 {
+  background-color: #85f7ff;
+}
+
+.card4 {
+  background-color: #b8ffc9;
+}
+
+.card5 {
+  background-color: #ff8c8c;
+}
+
+.card6 {
+  background-color:#ffe0a1;
+}
+
+.navbar {
+  background-color: #FFF3FC; 
+  font-weight: 600;
+}
+
+.img-fluid1 {
+  width: 128px; 
+  height: 128px;
+}
+.card-footer {
+  border: none; 
+  background-color: transparent; 
+  font-size: 1.8rem; 
+  font-family: 'Fredoka One', cursive;
+}
+
+.card-footer1 {
+  color: #7962b5;
+}
+
+.card-footer2 {
+  color:#333333;
+}
+
+.card-footer3 {
+  color: #008da3;
+}
+
+.card-footer4 {
+  color: #4ed97c;
+}
+
+.card-footer5 {
+  color: #c95044;
+}
+
+.card-footer6 {
+  color: #bd8a00;
+}
+
+.footer {
+  background-color: #fcb0ff21;
+}
+
+.card-img-top1 {
+  width: 100%;
+  height: 300px; 
+  object-fit: cover;
+}
+
+.game-title {
+  color: #5F5360;
+}
+
+.description {
+  height: 5rem;
+  overflow: hidden;
+}
+
+.description-gamepage {
+  height: 3rem;
+  overflow: hidden;
+}
+
+.game-description {
+  color: #7E6E80;
+}
+
+.game-category {
+  background-color: #fcddffff;
+}
+
+.game-category-gamepage {
+  font-size: large;
+}
+
+.login-selection {
+  z-index: 10000; 
+  margin-top: 5rem;
+}
+
+.gamepage-back {
+  background-color: #FFF3FC;
+}
+
+.gameLoader {
+  z-index: 25000;
 }

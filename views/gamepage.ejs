@@ -22,14 +22,13 @@
 		crossorigin="anonymous"></script>
 </head>
 
-<body style="min-height: 100vh">
+<body>
 	<!-- 
 Main Navbar
 - Users who haven't signed in
 -->
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-custom py-3 mb-3 shadow-sm"
-		style="background-color: #FFF3FC; font-weight: 600;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-custom py-3 mb-3 shadow-sm">
 		<!-- Kleva Logo -->
 		<a href="/home"><img src="../img/logo.png" alt="Kleva" class="logo navbar-brand" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -45,37 +44,29 @@ Main Navbar
 					<a class="nav-link" href="/teacher-dashboard">Dashboard<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active">
-					<form method="POST" action="/sign-out"><button class="nav-link" type="submit"
-							style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
-							Out<span class="sr-only">(current)</span></button></form>
+					<form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
 				</li>
 				<% } else if(user === 'student') { %>
 				<li class="nav-item active">
 					<a class="nav-link" href="/student-dashboard">Dashboard<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active">
-					<form method="POST" action="/sign-out"><button class="nav-link" type="submit"
-							style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
-							Out<span class="sr-only">(current)</span></button></form>
+					<form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
 				</li>
 				<% } else if(user === 'creator'){ %>
 				<li class="nav-item active">
 					<a class="nav-link" href="/creator-dashboard">Dashboard<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active">
-					<form method="POST" action="/sign-out"><button class="nav-link" type="submit"
-							style="outline: none; border: none; background-color: transparent; font-weight: 600; color: inherit;">Log
-							Out<span class="sr-only">(current)</span></button></form>
+					<form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span class="sr-only">(current)</span></button></form>
 				</li>
 				<% } else { %>
 				<li class=" nav-item dropdown mr-3">
-					<a class="btn px-3 nav-link dropdown-toggle shadow-sm rounded" href="#" id="navbarDropdownMenuLink"
-						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						style="background-color: #C9D5FF; border: none; font-weight: 600;">
-						Log In As
+					<a class="klevabtn px-3 nav-link dropdown-toggle shadow-sm rounded" href="#" id="navbarDropdownMenuLink"
+					 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					 Log In As
 					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
-						style="background-color: #C9D5FF; border: none; font-weight: 600;">
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="/teacher-signin">Teacher</a>
 						<a class="dropdown-item" href="/student-signin">Student</a>
 						<a class="dropdown-item" href="/creator-signin">Game Creator</a>
@@ -126,11 +117,13 @@ Main Navbar
 			<!-- Game Container -->
 			<div class="container-lg">
 				<button class="btn btn-outline-primary btn-sm my-2 mx-0" onclick=rewind()>Back to Game Gallery</button>
-				<div class="row d-flex text-center my-5" style="background-color: #FFF3FC;">
+				<h1 class="game-title"><%- game.title %></h1>
+				<p class="description-gamepage"><%- game.description %></p>
+				<h3 class="badge badge-pill game-category"><%- game.category %></h3>
+				<div class="row d-flex text-center my-5 gamepage-back">
 					<div class="col-12 justify-content-center">
-						<button type="submit" class="btn btn-success btn-lg text-center px-5 my-5" id="gameLoader"
-							onclick=loader() style="z-index: 25000;">Play
-							Game
+						<button type="submit" class="btn btn-success btn-lg text-center px-5 my-5 gameLoader" id="gameLoader"
+							onclick=loader()>Play Game
 						</button>
 						<div>
 							<div class="embed-responsive embed-responsive-16by9" id="gameHolder">
@@ -141,31 +134,64 @@ Main Navbar
 					</div>
 
 				</div>
-				<h1><%- game.title %></h1>
-				<h3><%- game.description %></h3>
-				<h2><%- game.category %></h2>
 			</div>
 
 			<!-- Category Badges -->
-			<div class="row text-center my-5">
-				<div class="col-12">
-					<div class="list-group list-group-horizontal mt-3">
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;" id="testTime">English</a>
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Maths</a>
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Science</a>
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Humanities</a>
+			<div class="container">
+				<!-- Category Badges -->
+				<div class="row text-center mt-3 mb-5">
+				  <div class="col-lg-4 mb-5">
+					<div class="card p-3 category">
+					  <a href="/gamesgallery/?page=1&gameCategory=English"><img
+						  src='https://storage.googleapis.com/kleva_assets/english.png' class="img-fluid img-fluid1"/></a>
+					  <div class="card-footer card-footer1">
+						ENGLISH
+					  </div>
 					</div>
-				</div>
-				<div class="col-12">
-					<div class="list-group list-group-horizontal mt-3">
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Digital Technologies</a>
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Arts</a>
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Languages</a>
-						<a href="#" class="list-group-item flex-fill" style="width: 25%;">Health Education</a>
+				  </div>
+				  <div class="col-lg-4 mb-5">
+					<div class="card p-3 category card2">
+					  <a href="/gamesgallery/?page=1&gameCategory=Maths"><img
+						  src='https://storage.googleapis.com/kleva_assets/mathematics.png' class="img-fluid img-fluid1"/></a>
+					  <div class="card-footer card-footer2">
+						MATHS</div>
 					</div>
-
+				  </div>
+				  <div class="col-lg-4 mb-5">
+					<div class="card p-3 category card3">
+					  <a href="/gamesgallery/?page=1&gameCategory=Technology"><img
+						  src='https://storage.googleapis.com/kleva_assets/technologies.png' class="img-fluid img-fluid1"/></a>
+					  <div class="card-footer card-footer3">
+						TECH
+					  </div>
+					</div>
+				  </div>
+				  <div class="col-lg-4 mb-5">
+					<div class="card p-3 category card4">
+					  <a href="/gamesgallery/?page=1&gameCategory=Arts"><img
+						  src='https://storage.googleapis.com/kleva_assets/theArts.png' class="img-fluid img-fluid1"/></a>
+					  <div class="card-footer card-footer4">
+						ARTS</div>
+					</div>
+				  </div>
+				  <div class="col-lg-4 mb-5">
+					<div class="card p-3 category card5">
+					  <a href="/gamesgallery/?page=1&gameCategory=Science"><img
+						  src='https://storage.googleapis.com/kleva_assets/science.png' class="img-fluid img-fluid1"/></a>
+					  <div class="card-footer card-footer5">
+						SCIENCE</div>
+					</div>
+				  </div>
+				  <div class="col-lg-4 mb-5">
+					<div class="card p-3 category card6">
+					  <a href="/gamesgallery/?page=1&gameCategory=Humanities"><img
+						  src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png' class="img-fluid img-fluid1"/></a>
+					  <div class="card-footer card-footer6">
+						HUMANITIES
+					  </div>
+					</div>
+				  </div>
 				</div>
-			</div>
 			<!-- /.col-lg-3 -->
 
 
@@ -176,7 +202,7 @@ Main Navbar
 
 </body>
 <!-- Footer -->
-<footer class="py-5 bg-custom mt-5" style="background-color: #fcb0ff21;">
+<footer class="py-5 bg-custom mt-5 footer">
 	<div class="container">
 		<p class="text-center m-0">
 			Copyright &copy; Kleva 2020
