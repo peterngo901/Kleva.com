@@ -266,3 +266,33 @@ nav {
 .gameLoader {
   z-index: 25000;
 }
+
+.gameroom-container {
+  overflow-x: hidden;
+}
+
+.user-signout {
+  border: none; 
+  background-color: inherit;
+}
+
+.countdown {
+  font-size: 3rem;
+}
+
+.subject-font {
+  font-size: 1.5rem;
+}
+
+.doodle01 {
+  font-size: 3rem;
+}
+
+.questionButton {
+  font-size: 3rem; 
+  box-shadow: none;
+}
+
+.badge-fontsize {
+  font-size: 5rem;
+}
