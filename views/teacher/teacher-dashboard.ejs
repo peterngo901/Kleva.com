@@ -82,14 +82,15 @@
         <!-- Logout Button -->
 
 
+    
         <div class="user-nav__icon-box">
-          <form action="/sign-out" method="POST">
-            <button type="submit">
-              <svg class="user-nav__icon">
-                <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
-              </svg>
-            </button>
-          </form>
+            <form action="/sign-out" method="POST">
+                <button type="submit" style="border: none; background-color: transparent; ">
+                    <svg class="user-nav__icon">
+                        <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
+                    </svg>
+                </button>
+            </form>
         </div>
 
 
@@ -108,6 +109,17 @@
         <!-- Dashboard Pages -->
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
+          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
+            <a href="/teacher-game-storepage/?page=1" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
+              </svg>
+              <span>Add Games</span>
+            </a>
+          </li>
+
+
+
           <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>">
             <a href="/teacher-dashboard" class="side-nav__link">
               <!-- Sidebar Icon -->
@@ -115,6 +127,15 @@
                 <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
               <span>Classroom</span>
+            </a>
+          </li>
+          <li class="side-nav__item">
+            <a href="/teacher-schedule" class="side-nav__link">
+              <!-- Sidebar Icon -->
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#calendar"></use>
+              </svg>
+              <span>Schedule Calendar</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
