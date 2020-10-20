@@ -1,5 +1,125 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/*** IMPORTED FROM KLEVA MAIN THEME BEGINNING ***/
+.footer {
+  margin: 0 !important;
+}
+
+.logo {
+  height: 3.25rem;
+  margin-left: 1.9rem;
+}
+
+/*Carousel + search box*/
+.search-sec {
+  padding: 2rem;
+}
+
+/*Home page carousel*/
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.search-slt {
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  height: calc(3rem + 2px) !important;
+  border-radius: 0;
+}
+.wrn-btn {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  height: calc(3rem + 2px) !important;
+  border-radius: 0;
+}
+
+/* user profile */
+#picture {
+}
+.profile-container {
+  background-color: wheat;
+  display: list-item;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.details {
+  display: -moz-inline-grid;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.user-detail {
+  display: flex;
+  text-align: left;
+  padding: 2em;
+  justify-content: center;
+}
+.user-detail #content {
+  background-color: plum;
+  opacity: 0.5;
+  display: inline;
+  text-align: left;
+  justify-content: space-around;
+}
+
+@media (min-width: 992px) {
+  .search-sec {
+    position: relative;
+    top: -114px;
+    background: rgba(26, 70, 104, 0.51);
+  }
+}
+
+@media (max-width: 992px) {
+  .search-sec {
+    background: #1a4668;
+  }
+}
+
+/*End carousel css*/
+
+.klevabtn {
+  background-color: #c9d5ff !important;
+  border: none;
+  font-weight: 600;
+}
+
+.klevabtn:hover {
+  background-color: bisque !important;
+}
+
+.category {
+  border: none;
+  border-radius: 2.5rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.category:hover {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+/*** IMPORTED FROM KLEVA MAIN THEME END ***/
+
 :root {
   --color-primary-blue: #d9e5ffff;
   --color-secondary-blue: #c5e0ffff;
@@ -39,6 +159,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+  overflow-y: scroll;
 }
 
 .container {
@@ -67,6 +188,18 @@ body {
 .slick-slide img {
   width: 100%;
   border: 2px solid #fff;
+}
+
+.game-upload-form__title {
+  font-size: 2rem;
+}
+
+.game-upload-form__placeholder-text {
+  font-size: 1.9rem;
+}
+
+.game-upload-cat__title {
+  border: none;
 }
 
 /*.basic > * {
@@ -488,6 +621,11 @@ body {
   margin-right: 0.6rem;
 }
 
+.borderless {
+  border: none;
+  background-color: inherit;
+}
+
 .legal {
   font-size: 1rem;
   text-align: center;
@@ -642,4 +780,47 @@ body {
 
 .category:hover {
   background-color: #c9d5ff !important;
+}
+
+.gameroomPen {
+  background-image: url('https://storage.googleapis.com/kleva_assets/pen.png');
+  height: 64px;
+  width: 64px;
+  background-size: 64px 64px;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 1.5rem;
+  border: none;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.gameroomEraser {
+  background-image: url('https://storage.googleapis.com/kleva_assets/eraser.png');
+  height: 64px;
+  width: 64px;
+  background-size: 64px 64px;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 1.5rem;
+  border: none;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+  margin-left: 2rem;
+}
+
+.gameroomPen:hover {
+  background-color: #c9d5ff;
+}
+
+.gameroomEraser:hover {
+  background-color: #c9d5ff;
+}
+
+.gameroomPen:focus {
+  outline: none;
+  background-color: #c9d5ff;
+}
+
+.gameroomEraser:focus {
+  outline: none;
+  background-color: #c9d5ff;
 }

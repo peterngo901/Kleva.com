@@ -274,7 +274,7 @@ exports.getStudentGameSignin = (req, res, next) => {
   res.render('quickjoin', {
     // Creator Signin Page.
     error: '',
-    path: '/student-signin',
+    path: '/quickjoin',
     pageTitle: 'Sign In',
   });
 };
@@ -308,13 +308,17 @@ exports.postStudentGameSignin = (req, res, next) => {
           res.redirect(`/game-room`);
         });
       } else {
-        return res.redirect('/quick-join');
+        res.render('quickjoin', {
+          error: 'Please enter a valid class code.',
+          pageTitle: 'Join Game',
+        });
       }
     })
     .catch((err) => {
       // Wrong ClassCode Entered.
-      res.render('/quick-join', {
+      res.render('quickjoin', {
         error: 'Please enter a valid class code.',
+        pageTitle: 'Join Game',
       });
     });
 };

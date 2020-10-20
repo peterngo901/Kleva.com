@@ -9,7 +9,6 @@
     rel="stylesheet">
   <link rel="stylesheet" href="css/creator-dashboard.css">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/kleva-main-theme.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -19,10 +18,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <title>Kleva</title>
+  <title>Creator Dashboard</title>
 </head>
 
-<body style="overflow-y: scroll">
+<body>
   <!-- Dashboard Container -->
   <div class="container-fluid pr-0 pl-0">
     <!-- Navigation Bar -->
@@ -80,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" style="border: none; background-color: inherit; ">
+            <button type="submit" class="user-nav__exit">
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -133,12 +132,12 @@
         </div>
       </nav>
       <!-- Begin Page Content -->
-      <div class="container-fluid pr-0 pl-0" style="height: 96vh;">
+      <div class="container-fluid pr-0 pl-0">
         <div class="px-5 py-5">
           <div class="ml-5 mr-5 text-center container-md mx-auto">
             <!-- Page Heading -->
             <div class="d-flex align-items-center justify-content-between mb-4 mt-5 ">
-              <h1 class="h3 mb-0 text-gray-800 display-4" style="font-weight: 700;">Creator Dashboard
+              <h1 class="h3 mb-0 text-gray-800 display-4 font-weight-bold">Creator Dashboard
               </h1>
 
             </div>
@@ -179,7 +178,7 @@
                           </div>
                           <div class="col">
                             <div class="progress progress-sm mr-2">
-                              <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
+                              <div class="progress-bar bg-info w-50" role="progressbar" aria-valuenow="50"
                                 aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>

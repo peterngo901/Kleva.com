@@ -7,9 +7,8 @@
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="../css/creator-dashboard.css" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../css/kleva-main-theme.css" />
+  <link rel="stylesheet" href="../css/creator-dashboard.css" />
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -19,10 +18,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <title>Kleva</title>
+  <title>Game Upload</title>
 </head>
 
-<body style="overflow-y: scroll">
+<body>
   <!-- Dashboard Container -->
   <div class="container-fluid pr-0 pl-0">
     <!-- Navigation Bar -->
@@ -80,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" style="border: none; background-color: inherit; ">
+            <button type="submit" class="borderless">
               <svg class="user-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -133,16 +132,15 @@
       <div class="container-fluid pr-0 pl-0">
         <div class="px-5 py-5">
           <div class="ml-5 mr-5 container-md mx-auto">
-            <form id="game-upload-form" action="./game-upload" method="POST" enctype="multipart/form-data"
-              style="font-size: 2rem;">
+            <form id="game-upload-form" action="./game-upload" method="POST" enctype="multipart/form-data">
               <!-- Game Title and Description -->
               <div class="card mt-5 px-5 py-5 shadow rounded">
                 <div class="row">
                   <!-- Game Title -->
                   <div class="form-group col-12">
-                    <label for="title">Game Title</label>
-                    <input type="text" class="form-control" id="title" name="title"
-                      placeholder="Example: Bridge Builder" style="font-size: 1.9rem;" />
+                    <label class="game-upload-form__title" for="title">Game Title</label>
+                    <input type="text" class="game-upload-form__placeholder-text form-control" id="title" name="title"
+                      placeholder="Example: Bridge Builder" />
                   </div>
                   <!-- Game Description -->
                   <div class="form-group col-12">
@@ -162,21 +160,19 @@
               <div class="card mt-5 px-5 py-5 shadow rounded">
                 <div class="row">
                   <!-- Game File -->
-                  <label for="gameFile">Upload Your Game</label>
-
-                  <div class="custom-file col-12">
+                  <label class="game-upload-form__title" for="gameFile">Upload Your Game</label>
+                  <div class="custom-file col-12 game-upload-form__placeholder-text">
                     <input type="file" class="custom-file-input" id="gameFile" name="gameFile"
                       aria-describedby="gameFile" />
-                    <label class="custom-file-label" for="gameFile">File
-                      Size Limit: 1GB</label>
+                    <label class="custom-file-label" for="gameFile">File Size Limit: 1GB</label>
                   </div>
 
                   <!-- Game Images -->
-                  <label for="gameImage" class="mt-5">Upload Your Game Hero Images</label>
-                  <div class="col-12">
+                  <label class="game-upload-form__title" for="gameImage">Upload Your Game Hero Images</label>
+                  <div class="col-12 game-upload-form__placeholder-text">
                     <input type="file" class="custom-file-input" id="gameImage" name="gameImage"
                       aria-describedby="gameImage" multiple="multiple" />
-                    <label class=" custom-file-label" for="gameImage">Minimum 256 x 256px</label>
+                    <label class="custom-file-label" for="gameImage">Minimum 256 x 256px</label>
                   </div>
                 </div>
               </div>
@@ -189,81 +185,79 @@
                   </div>
                   <!-- Maths -->
                   <div class="col-6 col-lg-2">
-                    <div class="card" style="border: none;">
+                    <div class="card borderless">
                       <div class="card-img text-center">
-                        <button onclick="selectSubStrands()" value="maths" type="button"
-                          style="border: none; background-color: inherit; "><img
-                            src='https://storage.googleapis.com/kleva_assets/mathematics.png'
+                        <button class="borderless" onclick="selectSubStrands()" value="maths" type="button">
+                          <img src='https://storage.googleapis.com/kleva_assets/mathematics.png'
                             class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center" style="border: none;">
+                      <div class="card-footer text-center game-upload-cat__title">
                         <h3>Maths</h3>
                       </div>
                     </div>
                   </div>
                   <!-- Science -->
                   <div class="col-6 col-lg-2">
-                    <div class="card" style="border: none;">
+                    <div class="card borderless">
                       <div class="card-img text-center">
-                        <button onclick="selectSubStrands()" value="science" type="button"
-                          style="border: none; background-color: inherit; "><img
-                            src='https://storage.googleapis.com/kleva_assets/science.png' class='img-fluid' /></button>
+                        <button class="borderless" onclick="selectSubStrands()" value="science" type="button">
+                          <img src='https://storage.googleapis.com/kleva_assets/science.png'
+                            class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center" style="border: none;">
+                      <div class="card-footer text-center game-upload-cat__title">
                         <h3>Science</h3>
                       </div>
                     </div>
                   </div>
                   <!-- English -->
                   <div class="col-6 col-lg-2">
-                    <div class="card" style="border: none;">
+                    <div class="card borderless">
                       <div class="card-img text-center">
-                        <button onclick="selectSubStrands()" value="english" type="button"
-                          style="border: none; background-color: inherit; "><img
-                            src='https://storage.googleapis.com/kleva_assets/english.png' class='img-fluid' /></button>
+                        <button class="borderless" onclick="selectSubStrands()" value="english" type="button">
+                          <img src='https://storage.googleapis.com/kleva_assets/english.png'
+                            class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center" style="border: none;">
+                      <div class="card-footer text-center game-upload-cat__title">
                         <h3>English</h3>
                       </div>
                     </div>
                   </div>
                   <!-- Technologies -->
                   <div class="col-6 col-lg-2">
-                    <div class="card" style="border: none;">
+                    <div class="card borderless">
                       <div class="card-img text-center">
-                        <button onclick="selectSubStrands()" value="digital technologies" type="button"
-                          style="border: none; background-color: inherit; "><img
-                            src='https://storage.googleapis.com/kleva_assets/technologies.png'
+                        <button class="borderless" onclick="selectSubStrands()" value="digital technologies"
+                          type="button">
+                          <img src='https://storage.googleapis.com/kleva_assets/technologies.png'
                             class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center" style="border: none;">
+                      <div class="card-footer text-center game-upload-cat__title">
                         <h3>Technology</h3>
                       </div>
                     </div>
                   </div>
                   <!-- Arts -->
                   <div class="col-6 col-lg-2">
-                    <div class="card" style="border: none;">
+                    <div class="card borderless">
                       <div class="card-img text-center">
-                        <button onclick="selectSubStrands()" value="arts" type="button"
-                          style="border: none; background-color: inherit; "><img
-                            src='https://storage.googleapis.com/kleva_assets/theArts.png' class='img-fluid' /></button>
+                        <button class="borderless" onclick="selectSubStrands()" value="arts" type="button">
+                          <img src='https://storage.googleapis.com/kleva_assets/theArts.png'
+                            class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center" style="border: none;">
+                      <div class="card-footer text-center game-upload-cat__titles">
                         <h3>Arts</h3>
                       </div>
                     </div>
                   </div>
                   <!-- Humanities -->
                   <div class="col-6 col-lg-2">
-                    <div class="card" style="border: none;">
+                    <div class="card borderless">
                       <div class="card-img text-center">
-                        <button onclick="selectSubStrands()" value="hass" type="button"
-                          style="border: none; background-color: inherit; "><img
-                            src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png'
+                        <button class="borderless" onclick="selectSubStrands()" value="hass" type="button">
+                          <img src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png'
                             class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center" style="border: none;">
+                      <div class="card-footer text-center game-upload-cat__titles">
                         <h3>Humanities</h3>
                       </div>
                     </div>
