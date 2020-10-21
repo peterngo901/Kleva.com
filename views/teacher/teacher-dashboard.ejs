@@ -9,6 +9,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="css/creator-dashboard.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/kleva-main-theme.css" />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -86,6 +87,7 @@
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
             <button type="submit" style="border: none; background-color: inherit">
+            
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -194,8 +196,10 @@
                   <h1 class="mt-5">Class Code: </h1>
                   <p class="display-4"><%- classRoom.classCode %></p>
                 </div>
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
-                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a>
+                <!-- <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
+                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a> -->
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons visit-class"
+                  >Visit Classroom ></a>
                 <button data-toggle="modal" data-target="#<%- classRoom.classCode %>"
                   class="btn mb-4 w-100 classroomAddGameButton">
                   Create Live Game +
