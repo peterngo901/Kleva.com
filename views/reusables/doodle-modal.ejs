@@ -14,7 +14,7 @@
             <h1 class="text-center mb-5">Select One Subject</h1>
             <% if(subject === 'english') { %>
             <div class="row justify-content-center text-center subject-font">
-              <div class="col-3">
+              <div class="col-md-4">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Expressing and developing ideas"
                     value="Expressing and developing ideas">
@@ -23,7 +23,7 @@
                     and developing ideas</label>
                 </div>
               </div>
-              <div class="col-3">
+              <div class="col-md-4">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Interacting with others"
                     value="Interacting with others">
@@ -32,7 +32,7 @@
                     others</label>
                 </div>
               </div>
-              <div class="col-3">
+              <div class="col-md-4">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Language for interaction"
                     value="Language for interaction">
@@ -43,47 +43,46 @@
               </div>
             </div>
             <%} else if (subject === 'mathematics') { %>
-            <div class="row justify-content-center text-center subject-font">
-              <div class="col-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="topic" id="Shape" value="Shape">
-                  <label class="form-check-label" for="Shape"><img src="img/healthphysed.png">Shape</label>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="topic" id="Location and transformation"
-                    value="Location and transformation">
-                  <label class="form-check-label" for="Location and transformation"><img
-                      src="img/healthphysed.png">Location and
-                    transformation</label>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="topic" id="Geometric reasoning"
-                    value="Geometric reasoning">
-                  <label class="form-check-label" for="Geometric reasoning"><img src="img/healthphysed.png">Geometric
-                    reasoning</label>
-                </div>
-              </div>
-              <div class="col-3">
+            <div class="row subject-font ">
+              <div class="col-md-4">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Patterns and algebra"
                     value="Patterns and algebra">
-                  <label class="form-check-label" for="Patterns and algebra"><img src="img/healthphysed.png">Patterns
-                    and algebra</label>
+                  <label class="form-check-label" for="Patterns and algebra"><img src="img/healthphysed.png">Patterns and algebra</label>
                 </div>
               </div>
-              <div class="col-3 mt-5">
+              <div class="col-md-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="topic" id="Geometric reasoning"
+                    value="Geometric reasoning">
+                  <label class="form-check-label" for="Geometric"><img src="img/healthphysed.png">Geometric reasoning
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-4">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Pythagoras and trigonometry"
                     value="Pythagoras and trigonometry">
                   <label class="form-check-label" for="Pythagoras and trigonometry"><img
-                      src="img/healthphysed.png">Pythagoras and
-                    trigonometry</label>
+                      src="img/healthphysed.png">Pythagoras and trigonometry</label>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="topic" id="Shape" value="Shape">
+                  <label class="form-check-label form-display" for="Shape"><img src="img/healthphysed.png">Shape</label>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="topic" id="Location and transformation"
+                    value="Location and transformation">
+                  <label class="form-check-label" for="Location and transformation"><img
+                      src="img/healthphysed.png">Transformation</label>
+                </div>
+              </div>
+              
             </div>
             <%} else { %>
             <div class="row justify-content-center text-center subject-font">
