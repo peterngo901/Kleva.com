@@ -275,3 +275,32 @@ nav {
   height: 300px; 
   object-fit: cover;
 }
+
+.card {
+  background-color:#e9bede;
+}
+
+.card1 {
+  background-color: #554163;
+}
+
+.card2 {
+  background-color: #647887;
+}
+
+.card3 {
+  background-color: #85f7ff;
+}
+
+.card4 {
+  background-color: #b8ffc9;
+}
+
+.card5 {
+  background-color: #ff8c8c;
+}
+
+.card6 {
+  background-color:#ffe0a1;
+  background-color:white;
+}
