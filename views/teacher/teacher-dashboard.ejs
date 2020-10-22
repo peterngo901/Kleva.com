@@ -86,6 +86,7 @@
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
             <button type="submit" style="border: none; background-color: inherit">
+            
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -109,14 +110,7 @@
         <!-- Dashboard Pages -->
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
-          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/teacher-game-storepage/?page=1" class="side-nav__link">
-              <svg class="side-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
-              </svg>
-              <span>Add Games</span>
-            </a>
-          </li>
+ 
 
 
 
@@ -194,8 +188,10 @@
                   <h1 class="mt-5">Class Code: </h1>
                   <p class="display-4"><%- classRoom.classCode %></p>
                 </div>
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
-                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a>
+                <!-- <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
+                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a> -->
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons visit-class"
+                  >Visit Classroom ></a>
                 <button data-toggle="modal" data-target="#<%- classRoom.classCode %>"
                   class="btn mb-4 w-100 classroomAddGameButton">
                   Create Live Game +

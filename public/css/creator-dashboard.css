@@ -860,3 +860,12 @@ body {
   outline: none;
   background-color: #c9d5ff;
 }
+
+.visit-class{
+  background-color:darkkhaki !important;
+  font-size: 1.5rem !important;
+}
+
+.code-size {
+  font-size: 5rem;
+}
