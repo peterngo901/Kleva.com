@@ -215,25 +215,39 @@ exports.getClassroom = (req, res, next) => {
         where: {classCode: classCode}
       })
     .then((schedules) => {
-      ClassroomStats.findAll({
-        where: {
-          classroomClassCode: classCode,
-        },
-        include: Games,
+      const scheduleGameData = new Set();
+      for (schedule of schedules) {
+        for (game of schedule.gameList) {
+          scheduleGameData.add(game);
+        }    
+      }
+      const arrayGames = Array.from(scheduleGameData);
+      Games.findAll({
+        where : {gameID : arrayGames}
       })
-      .catch((err) => {
-        console.log(err);
-        res.sendStatus(500);
-      })
-      .then((games) => {
-        res.render('teacher/teacher-classroom', {
-          classRoom: req.session.classRoom,
-          games: games,
-          schedules: schedules,
-          name: req.session.userName,
-          path: '/teacher-dashboard',
+      .then((gamesInSchedule) => {
+        console.log(gamesInSchedule);
+        ClassroomStats.findAll({
+          where: {
+            classroomClassCode: classCode,
+          },
+          include: Games,
+        })
+        .catch((err) => {
+          console.log(err);
+          res.sendStatus(500);
+        })
+        .then((games) => {
+          res.render('teacher/teacher-classroom', {
+            classRoom: req.session.classRoom,
+            games: games,
+            schedules: schedules,
+            name: req.session.userName,
+            path: '/teacher-dashboard',
+            gamesInSchedule : gamesInSchedule,
+          });
         });
-      });
+      })
     });
   });
   } else {

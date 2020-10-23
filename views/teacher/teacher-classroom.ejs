@@ -217,7 +217,24 @@
                     </div>
                     <div id="collapse<%-schedule.id%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample<%-schedule.id%>">
                       <div class="card-body">
-                        <%-schedule.gameList%>
+                        <% //check schedule.gameList and get all games that appear in it
+                        for (game of schedule.gameList) {
+                          const id = parseInt(game);
+                          for (game of gamesInSchedule) {
+                            const gamenumb = parseInt(game.gameID);
+                            if (id == gamenumb) { %>
+                            <div class="p-2 mb-2 mt-2 bg-light border border-light rounded">
+                              <img class="dot mr-3" style="float: left;" src="<%= game.gameImageURL%>">
+                              <div>
+                                <h3><%= game.title%></h3>
+                                <p><%= game.description%></p>
+                              </div>
+                            </div>
+                            <% }
+                          }
+                        }
+
+                        %>
                       </div>
                     </div>
                   </div>

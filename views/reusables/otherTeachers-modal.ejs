@@ -9,18 +9,19 @@
         </button>
       </div>
       <div class="pb-2">
-        <div class="border rounded p-3 bg-otherTeacher text-white d-flex justify-content-between bd-highlight mb-2 mt-2">
-            <% if (otherTeachers.length > 0) {  %>
+        <% if (otherTeachers.length > 0) {  %>
                 <% for(teacher of otherTeachers) {%>
+                <div class="border rounded p-3 bg-otherTeacher text-white d-flex justify-content-between bd-highlight mb-2 mt-2">
+            
                 <h3 class="card-body"><%= teacher.firstName %> <%= teacher.lastName%></h3>
                 <div class="mr-3">
                     <button type="button" class="btn bg-primary">
                       <a class="text-white text-decoration-none" href="/otherTeachers/<%= teacher.email %>&<%= teacher.firstName %> <%= teacher.lastName%>">View Their Games</a>
                     </button>
-                </div>
-                <% } %>
-            <% }%>
-        </div>
+                </div>  
+            </div>
+          <% } %>
+        <% }%>
        </div>
     </div>
     test3
