@@ -79,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" class="user-nav__exit">
+            <button type="submit" class="user-nav__exit" style="border: none; background-color: inherit">
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -106,7 +106,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Upload</span>
+              <span class="sideBarCustom">Upload</span>
             </a>
           </li>
           <li class="<%= path === '/under-review' ? 'side-nav__item--active' : 'side-nav__item' %> ">
@@ -114,7 +114,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Under Review</span>
+              <span class="sideBarCustom">Under Review</span>
             </a>
           </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
@@ -122,7 +122,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
               </svg>
-              <span>Help</span>
+              <span class="sideBarCustom">Help</span>
             </a>
           </li>
         </ul>
@@ -137,7 +137,7 @@
           <div class="ml-5 mr-5 text-center container-md mx-auto">
             <!-- Page Heading -->
             <div class="d-flex align-items-center justify-content-between mb-4 mt-5 ">
-              <h1 class="h3 mb-0 text-gray-800 display-4 font-weight-bold">Creator Dashboard
+              <h1 class="dashboardHeaders">Creator Dashboard
               </h1>
 
             </div>
@@ -151,8 +151,8 @@
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
-                        <a href="creator-dashboard/game-upload" class="btn btn-block btn-success py-3">
-                          <h3>Upload Your
+                        <a href="creator-dashboard/game-upload" class="btn btn-block py-3">
+                          <h3 class="creatorUploadButton">Upload Your
                             Game</h3>
                         </a>
 
@@ -171,10 +171,12 @@
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1 teacherClassroomCardHeader">
+                          Tasks</div>
                         <div class="row no-gutters align-items-center">
                           <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 teacherClassroomCardHeader">50%
+                            </div>
                           </div>
                           <div class="col">
                             <div class="progress progress-sm mr-2">
@@ -198,8 +200,10 @@
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Review</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div
+                          class="text-xs font-weight-bold text-warning text-uppercase mb-1 teacherClassroomCardHeader">
+                          Pending Review</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 teacherClassroomCardHeader">18</div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -218,7 +222,7 @@
                 <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Ratings Overview</h6>
+                    <h6 class="m-0 font-weight-bold text-primary teacherClassroomCardHeader">Ratings Overview</h6>
                     <div class="dropdown no-arrow">
                       <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">

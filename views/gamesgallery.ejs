@@ -43,24 +43,24 @@ Main Navbar
           <a class="nav-link" href="/teacher-dashboard">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span
-                class="sr-only">(current)</span></button></form>
+          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit"
+              style="color: inherit;">Log Out<span class="sr-only">(current)</span></button></form>
         </li>
         <% } else if(user === 'student') { %>
         <li class="nav-item active">
           <a class="nav-link" href="/student-dashboard">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span
-                class="sr-only">(current)</span></button></form>
+          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit"
+              style="color: inherit;">Log Out<span class="sr-only">(current)</span></button></form>
         </li>
         <% } else if(user === 'creator'){ %>
         <li class="nav-item active">
           <a class="nav-link" href="/creator-dashboard">Dashboard<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit">Log Out<span
-                class="sr-only">(current)</span></button></form>
+          <form method="POST" action="/sign-out"><button class="nav-link button" type="submit"
+              style="color: inherit;">Log Out<span class="sr-only">(current)</span></button></form>
         </li>
         <% } else { %>
         <li class=" nav-item dropdown mr-3">
@@ -111,7 +111,8 @@ Main Navbar
     <div class="container">
       <!--Featured Button-->
       <div class="col-xs-1 my-2">
-        <button type="button" class="btn btn-outline-secondary btn-sm">
+        <button type="button" class="btn btn-outline-secondary btn-lg mt-3 categoryBadge"
+          style="border: none; background-color: #5f5360">
           Featured
         </button>
       </div>
@@ -119,58 +120,61 @@ Main Navbar
       <!--Game Banner-->
       <div class="row justify-content-center rounded no-margin mb-5">
         <div class="col-lg-5 align-self-center">
-          <a href="/gamepage"><img src="https://storage.googleapis.com/kleva_assets/bridgeConFeatureSplash-min.png"
-              class="img-fluid mx-auto d-block" alt="Bridge Constructor Splash" /></a>
+          <a href="/gamesgallery/?page=1"><img
+              src="https://storage.googleapis.com/kleva_assets/bridgeConFeatureSplash-min.png"
+              class="img-fluid mx-auto d-block gameGallerySplash" alt="Bridge Constructor Splash" /></a>
         </div>
         <div class="col-lg-7">
-          <h3>Bridge Constructor</h3>
-          <p>Build a bridge, get over it. Highly Educational</p>
+          <h3 class="gameFeatureTitle">Bridge Constructor</h3>
+          <p class="gamePageDescription">Build a bridge, get over it. Highly Educational</p>
           <div class="row">
             <div class="col">
-              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen1-min.png" class="img-fluid"
-                alt="Bridge Constructor 1" />
+              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen1-min.png"
+                class="img-fluid gameGallerySplash" alt="Bridge Constructor 1" />
             </div>
             <div class="col">
-              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen2-min.png" class="img-fluid"
-                alt="Bridge Constructor 2" />
+              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen2-min.png"
+                class="img-fluid gameGallerySplash" alt="Bridge Constructor 2" />
             </div>
             <div class="col">
-              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen3-min.png" class="img-fluid"
-                alt="Bridge Constructor 3" />
+              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen3-min.png"
+                class="img-fluid gameGallerySplash" alt="Bridge Constructor 3" />
             </div>
             <div class="col">
-              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen4-min.png" class="img-fluid"
-                alt="Bridge Constructor 4" />
+              <img src="https://storage.googleapis.com/kleva_assets/bridgeConScreen4-min.png"
+                class="img-fluid gameGallerySplash" alt="Bridge Constructor 4" />
             </div>
           </div>
           <div class="row mt-5 justify-content-between align-items-center">
             <div class="col-6 order-1 text-left">
-              <h5 class="h-100"><span class="badge badge-primary">Science</span></h5>
-              <h5 class="h-100"><span class="badge badge-info">Physical Sciences</span></h5>
+              <h5 class="h-100"><span class="badge subcategoryBadge">Science</span></h5>
+              <h5 class="h-100"><span class="badge subcategoryBadge">Physical Sciences</span></h5>
             </div>
             <div class="col-6 order-2 text-right align-self-end">
-              <h5 class="h-100"><span class="badge badge-secondary">ACARA Code: HLG650</span></h5>
+              <h5 class="h-100"><span class="badge subcategoryCode">ACARA Code: HLG650</span></h5>
 
             </div>
           </div>
         </div>
       </div>
 
-      <!--Game Slideshow Controls-->
+      <!-- Game Slideshow Controls
       <div class="row justify-content-center">
-        <button type="button" class="m-1 btn btn-dark btn-circle btn-sm"></button>
-        <button type="button" class="m-1 btn btn-light btn-circle btn-sm"></button>
-        <button type="button" class="m-1 btn btn-light btn-circle btn-sm"></button>
-        <button type="button" class="m-1 btn btn-light btn-circle btn-sm"></button>
-        <button type="button" class="m-1 btn btn-light btn-circle btn-sm"></button>
-      </div>
+        <button type="button" class="m-1 btn btn-dark btn-circle btn-sm" style="border: none;"></button>
+        <button type="button" class="m-1 btn btn-light btn-circle btn-sm" style="border: none;"></button>
+        <button type="button" class="m-1 btn btn-light btn-circle btn-sm" style="border: none;"></button>
+        <button type="button" class="m-1 btn btn-light btn-circle btn-sm" style="border: none;"></button>
+        <button type="button" class="m-1 btn btn-light btn-circle btn-sm" style="border: none;"></button>
+      </div> -->
 
       <!--Trending Button-->
       <div class="col-xs-1 my-2">
-        <button type="button" class="btn btn-outline-secondary btn-sm">
+        <button type="button" class="btn btn-outline-secondary btn-lg mb-2 categoryBadge"
+          style="border: none; background-color: #5f5360">
           Categories
         </button>
       </div>
+
     </div>
 
     <!-- Page Content -->
@@ -232,12 +236,21 @@ Main Navbar
       </div>
       <!-- /.col-lg-3 -->
 
-      <div class="row mt-5">
+      <!--Trending Button-->
+      <div class="col-xs-1 my-2">
+        <button type="button" class="btn btn-outline-secondary btn-lg categoryBadge"
+          style="border: none; background-color: #5f5360">
+          Games
+        </button>
+      </div>
+
+      <div class="row mt-4">
         <!-- Game Loader -->
         <% if (games.length > 0) { %> <% for (let game of games) { %>
         <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card rounded shadow">
+          <div class="card rounded" style="outline: none; border: none; background-color: transparent;">
             <a href="/gamepage/<%= game.gameID %>"><img class="card-img-top card-img-top1"
+                style=" outline: none; border-radius: 1.5rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);"
                 src="<%- game.gameImageURL %>" alt="" loading="lazy" /></a>
 
           </div>

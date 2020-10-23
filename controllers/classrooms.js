@@ -179,34 +179,32 @@ exports.getTeacherStudents = async (req, res, next) => {
 exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
-    Classroom.findOne({ where: { classCode: classCode } })
-    .then((classRoom) => {
+    Classroom.findOne({ where: { classCode: classCode } }).then((classRoom) => {
       req.session.classRoom = classRoom;
       Schedules.findAll({
-        where: {classCode: classCode}
-      })
-    .then((schedules) => {
-      ClassroomStats.findAll({
-        where: {
-          classroomClassCode: classCode,
-        },
-        include: Games,
-      })
-      .catch((err) => {
-        console.log(err);
-        res.sendStatus(500);
-      })
-      .then((games) => {
-        res.render('teacher/teacher-classroom', {
-          classRoom: req.session.classRoom,
-          games: games,
-          schedules: schedules,
-          name: req.session.userName,
-          path: '/teacher-dashboard',
-        });
+        where: { classCode: classCode },
+      }).then((schedules) => {
+        ClassroomStats.findAll({
+          where: {
+            classroomClassCode: classCode,
+          },
+          include: Games,
+        })
+          .catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+          })
+          .then((games) => {
+            res.render('teacher/teacher-classroom', {
+              classRoom: req.session.classRoom,
+              games: games,
+              schedules: schedules,
+              name: req.session.userName,
+              path: '/teacher-dashboard',
+            });
+          });
       });
     });
-  });
   } else {
     res.redirect('/');
   }
@@ -394,4 +392,10 @@ exports.getTeacherSchedule = (req, res, next) => {
       scheduleGames: [],
     });
   }
+};
+
+exports.getDrawingHistory = (req, res, next) => {
+  res.render('teacher/drawing-history', {
+    path: '/drawing-history',
+  });
 };

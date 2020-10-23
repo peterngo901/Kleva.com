@@ -138,15 +138,15 @@
               </div>
               <div class="col-10 mt-5">
                 <form action="/teacher/game-room" method="POST">
-
+                  <input type="hidden" value="<%- classCode %>" name="classCode">
                   <!-- Question 1 -->
                   <div class="input-group mb-5">
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="doodle01" style="font-size: 3rem">Doodle...</label>
                     </div>
-                    <select class="custom-select" id="doodle01" style="font-size: 3rem">
+                    <select class="custom-select" id="doodle01" style="font-size: 3rem" name="doodleOne">
                       <!-- Doodle Question Options 1 -->
-                      <option selected>hydrogen structure</option>
+                      <option value="hydrogen structure" selected>hydrogen structure</option>
                       <option value="oxygen structure">oxygen structure</option>
                       <option value="lithium structure">lithium structure</option>
                       <option value="magnesium structure">magnesium structure</option>
@@ -169,10 +169,10 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="doodle02" style="font-size: 3rem">Doodle...</label>
                     </div>
-                    <select class="custom-select" id="doodle02" style="font-size: 3rem">
+                    <select class="custom-select" id="doodle02" style="font-size: 3rem" name="doodleTwo">
                       <!-- Doodle Question Options 2 -->
-                      <option selected>hydrogen structure</option>
-                      <option value="oxygen structure">oxygen structure</option>
+                      <option value="oxygen structure" selected>oxygen structure</option>
+                      <option value="chlorine structure">chlorine structure</option>
                       <option value="lithium structure">lithium structure</option>
                       <option value="magnesium structure">magnesium structure</option>
                     </select>
@@ -188,12 +188,7 @@
               </div>
             </div>
             <div class="row mt-5 justify-content-center">
-              <div class="col-10 mt-5 text-center">
-                <h1>Share this code with your students:</h1>
-                <h1 class="badge badge-warning" style="font-size: 5rem">
-                  <%= classCode %>
-                </h1>
-              </div>
+
               <div class="col-10 mt-5 text-center">
                 <button class="btn btn-block" style="font-size: 3rem; box-shadow: none;" type="submit">
                   <img src="img/open_gameroom_bold.png" class="img-fluid" />
@@ -211,19 +206,19 @@
   function changeImage() {
     if (document.getElementById("questionButton2").src == "https://storage.googleapis.com/kleva_assets/add_question_button-min.png") {
       document.getElementById("questionButton2").src = "https://storage.googleapis.com/kleva_assets/cancel_button-min.png";
-      $('#doodle02').prop('disabled', true);
+
     } else {
       document.getElementById("questionButton2").src = "https://storage.googleapis.com/kleva_assets/add_question_button-min.png";
-      $('#doodle02').prop('disabled', false);
+
     }
   };
   function changeImage1() {
     if (document.getElementById("questionButton1").src == "https://storage.googleapis.com/kleva_assets/add_question_button-min.png") {
       document.getElementById("questionButton1").src = "https://storage.googleapis.com/kleva_assets/cancel_button-min.png";
-      $('#doodle01').prop('disabled', true);
+
     } else {
       document.getElementById("questionButton1").src = "https://storage.googleapis.com/kleva_assets/add_question_button-min.png";
-      $('#doodle01').prop('disabled', false);
+
     }
   };
 </script>

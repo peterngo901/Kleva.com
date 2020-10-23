@@ -13,18 +13,56 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
+
+var now = moment();
+var timeFormatted = now.format('ddd MMM Do YYYY');
 // Elements
 const $submitAnswer = document.querySelector('#submitAnswer');
 
+// Track students coming and going.
+function loadRealStudentNames(allStudents) {
+  var studentNames = '';
+  for (i = 0; i < allStudents.students.length; i++) {
+    studentNames +=
+      '<li class="side-nav__item"><a href="/teacher-students" class="side-nav__link"><svg class="side-nav__icon"><use xlink:href="../img/symbol-defs.svg#icon-user-check"></use></svg><span class="sideBarCustom">' +
+      allStudents.students[i].realName +
+      '</span></a></li>';
+  }
+
+  //console.log(allStudents.students[0]);
+  return studentNames;
+}
+
+// Track students coming and going.
+function loadAnonStudentNames(allStudents) {
+  var studentNames = '';
+  for (i = 0; i < allStudents.students.length; i++) {
+    studentNames +=
+      '<li class="side-nav__item"><a href="/teacher-students" class="side-nav__link"><svg class="side-nav__icon"><use xlink:href="../img/symbol-defs.svg#icon-user-check"></use></svg><span class="sideBarCustom">' +
+      allStudents.students[i].displayName +
+      '</span></a></li>';
+  }
+
+  //console.log(allStudents.students[0]);
+  return studentNames;
+}
 // socket.on('name') parameter must match the socket.emit('name') in controllers.
-socket.on('message', (message) => {
-  console.log(message);
+socket.on('leaver', (studentAnonNames) => {
+  const studentAnons = loadAnonStudentNames(studentAnonNames);
+  document.getElementById('studentAnonOutput').innerHTML = studentAnons;
+});
+
+socket.on('anonStudents', (studentAnonNames) => {
+  const studentAnons = loadAnonStudentNames(studentAnonNames);
+  document.getElementById('studentAnonOutput').innerHTML = studentAnons;
 });
 
 var timeleft = 10;
 var roomName;
 var teacherDoodleQuestion;
+var gameRoomID;
 socket.on('begin', async (data) => {
+  gameRoomID = data.uniqueGameRoomID;
   roomName = data.doodleGameRoomName;
   var timer = await setInterval(function () {
     if (timeleft < 0) {
@@ -235,8 +273,10 @@ function endPath() {
 
 // Post Drawing Data Chunks to the Database
 function saveDoodle() {
-  var ref = database.ref(`${roomName}`);
+  // Push to the classroom code + gameSession Date + the gameroom code.
+  var ref = database.ref(`${roomName}/${timeFormatted}/${gameRoomID}`);
 
+  // Add the real student names to the doodling data.
   var doodleData = {
     studentNames: 'Bobby, Joe, Craig',
     doodle: drawingStream,

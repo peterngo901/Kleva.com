@@ -28,7 +28,7 @@
         <header class="header">
             <!-- Logo -->
             <a href="/">
-            <img src="img/logo.png" alt="Kleva" class="logo">
+                <img src="img/logo.png" alt="Kleva" class="logo">
             </a>
             <!-- Search Bar -->
             <form action="/" class="search" method="POST">
@@ -103,12 +103,12 @@
                 <ul class="side-nav">
                     <!-- Active Styling with Plain JS Logic -->
                     <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                        <a href="/teacher-dashboard" class="side-nav__link">
+                        <a href="/student-dashboard" class="side-nav__link">
                             <!-- Sidebar Icon -->
                             <svg class="side-nav__icon">
                                 <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
                             </svg>
-                            <span>Classroom</span>
+                            <span class="sideBarCustom">Classroom</span>
                         </a>
                     </li>
 
@@ -117,7 +117,7 @@
                             <svg class="side-nav__icon">
                                 <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
                             </svg>
-                            <span>Help</span>
+                            <span class="sideBarCustom">Help</span>
                         </a>
                     </li>
                 </ul>
@@ -132,13 +132,14 @@
                 <div class="px-5 py-5">
                     <div class="ml-5 mr-5 container-md mx-auto ">
                         <div class="create_your_classroom">
-                            <h1 class="display-3" style="font-weight: 600;">Your Games</h1>
+                            <h1 class="dashboardHeaders">Your Games</h1>
                             <div class="row mt-5">
                                 <% if (games.length > 0) { %> <% for (let game of games) { %>
                                 <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="card rounded shadow">
+                                    <div class="card"
+                                        style="outline: none; border: none; background-color: transparent;">
                                         <a href="/gamepage/<%= game.gameID %>"><img class="card-img-top"
-                                                style="width: 100%; height: 300px; object-fit: cover;"
+                                                style="width: 100%; height: 300px; object-fit: cover; outline: none; border-radius: 1.5rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);"
                                                 src="<%- game.gameImageURL %>" alt="" /></a>
 
                                     </div>

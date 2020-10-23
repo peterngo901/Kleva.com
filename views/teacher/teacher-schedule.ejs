@@ -21,13 +21,19 @@
     crossorigin="anonymous"></script>
 
   <!-- DatePicker Scripts -->
-  <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet" href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.css" />
-    <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet" href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.date.css" />
-    <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet" href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.time.css" />
-     <script data-require="pickadate.js@*" data-semver="3.3.0" src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.js"></script>
-    <script data-require="pickadate.js@*" data-semver="3.3.0" src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.date.js"></script>
-    <script data-require="pickadate.js@*" data-semver="3.3.0" src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.time.js"></script>
-  
+  <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet"
+    href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.css" />
+  <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet"
+    href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.date.css" />
+  <link data-require="pickadate.js@*" data-semver="3.3.0" rel="stylesheet"
+    href="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/themes/default.time.css" />
+  <script data-require="pickadate.js@*" data-semver="3.3.0"
+    src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.js"></script>
+  <script data-require="pickadate.js@*" data-semver="3.3.0"
+    src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.date.js"></script>
+  <script data-require="pickadate.js@*" data-semver="3.3.0"
+    src="https://rawgithub.com/amsul/pickadate.js/cab638a5cbf6d7b959096ed346d9216370cfb543/lib/picker.time.js"></script>
+
   <title>Kleva</title>
 
 </head>
@@ -124,7 +130,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Classroom</span>
+              <span class="sideBarCustom">Classroom</span>
             </a>
           </li>
           <li class="side-nav__item">
@@ -133,7 +139,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#calendar"></use>
               </svg>
-              <span>Schedule Calendar</span>
+              <span class="sideBarCustom">Schedule Calendar</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
@@ -141,7 +147,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Students</span>
+              <span class="sideBarCustom">Students</span>
             </a>
           </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>">
@@ -161,41 +167,44 @@
       <div class="container-fluid pr-0 pl-0 py-5">
         <div class="py-5">
           <div class="ml-5 mr-5 container-md mx-auto ">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/teacher-dashboard">All Classrooms</a>
-              </li>
-              <li class="breadcrumb-item" aria-current="page">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/teacher-dashboard">All Classrooms</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">
                   <a href="/classroom/<%- classRoom.classCode; %>"> Class - <%= classRoom.title; %></a>
                 </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Schedule Games
-              </li>
-            </ol>
-          </nav>
-          <div class="col-12">
-            <form class="rounded border-primary shadow-lg bg-light col-12 p-5 text-dark" action="/game-schedule-upload" method="POST">
-              <h1>Schedule Games</h1>
-              <p>
-                <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
-              </p>
-              <h3>You can preselect games for upcoming days of the week</h3>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Pick a date:</span>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Schedule Games
+                </li>
+              </ol>
+            </nav>
+            <div class="col-12">
+              <form class="rounded border-primary shadow-lg bg-light col-12 p-5 text-dark"
+                action="/game-schedule-upload" method="POST">
+                <h1>Schedule Games</h1>
+                <p>
+                  <%= classRoom.title%> <%= classRoom.yearLevel %> <%= classRoom.subject; %>
+                </p>
+                <h3>You can preselect games for upcoming days of the week</h3>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Pick a date:</span>
+                  </div>
+                  <input type="text" id="date" name="date" data-type="date" aria-label="Date"
+                    aria-describedby="basic-addon1">
                 </div>
-                <input type="text" id="date" name="date" data-type="date" aria-label="Date" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                <button type="button" class="btn bg-primary">
-                  <a class="text-white text-decoration-none" href="/teacher-game-storepage-schedule/?page=1">Select Games to Schedule</a>
-                </button>
-              </div>
-              <div class="input-group mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
+                <div class="input-group mb-3">
+                  <button type="button" class="btn bg-primary">
+                    <a class="text-white text-decoration-none" href="/teacher-game-storepage-schedule/?page=1">Select
+                      Games to Schedule</a>
+                  </button>
+                </div>
+                <div class="input-group mb-3">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
 
               <!-- Load all the installed games  (Set the games to session so as not confuse
                 posting to the database)-->
@@ -226,16 +235,17 @@
                   <% } %> <% } %>
                 </div>
               </div>
-            <script>
+              <script>
                 $('input[data-type="date"]').pickadate();
-            </script>
-          </div>
-          <div id="events-accordion">
+              </script>
+            </div>
+            <div id="events-accordion">
+            </div>
           </div>
         </div>
       </div>
-    </div>
 </body>
 <script src="/js/calendar.js"></script>
 <script></script>
+
 </html>
