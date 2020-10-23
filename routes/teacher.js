@@ -8,6 +8,12 @@ const router = express.Router();
 
 router.get('/teacher-dashboard', classroomController.getTeacherDashboard);
 
+router.post('/games-with-array', classroomController.postGamesWithArray);
+
+router.post('/replace-classrooms', classroomController.postReplaceGames);
+
+router.get('/otherTeachers/:otherTeacherID&:teacherName', classroomController.getOtherTeacherInfo);
+
 router.get('/teacher-game-storepage/', classroomController.getTeacherGameStorepage);
 
 router.get('/teacher-game-storepage-schedule/', classroomController.getTeacherGameStorepageSchedule);

@@ -1,0 +1,32 @@
+<div class="modal" tabindex="-1" id="otherTeachers" style="background-color: rgba(0, 0, 0, 0.226);">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content add_classroom_modal">
+      <div class="modal-header ">
+        <h5 class="modal-title">Other Teachers</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          close
+        </button>
+      </div>
+      <div class="pb-2">
+        <div class="border rounded p-3 bg-otherTeacher text-white d-flex justify-content-between bd-highlight mb-2 mt-2">
+            <% if (otherTeachers.length > 0) {  %>
+                <% for(teacher of otherTeachers) {%>
+                <h3 class="card-body"><%= teacher.firstName %> <%= teacher.lastName%></h3>
+                <div class="mr-3">
+                    <button type="button" class="btn bg-primary">
+                      <a class="text-white text-decoration-none" href="/otherTeachers/<%= teacher.email %>&<%= teacher.firstName %> <%= teacher.lastName%>">View Their Games</a>
+                    </button>
+                </div>
+                <% } %>
+            <% }%>
+        </div>
+       </div>
+    </div>
+    test3
+  </div>
+  test4
+</div>
+
+
+

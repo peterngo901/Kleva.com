@@ -862,10 +862,26 @@ body {
 }
 
 .visit-class{
-  background-color:darkkhaki !important;
+  background-color: bisque;
   font-size: 1.5rem !important;
 }
 
 .code-size {
   font-size: 5rem;
+}
+
+.title-card {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.teacher-icon {
+}
+
+.orange-text{
+  color: #5e77ff;
+}
+
+.bg-otherTeacher {
+  background-color: plum;
 }

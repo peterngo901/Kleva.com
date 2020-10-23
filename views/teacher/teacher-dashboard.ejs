@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,7 +157,6 @@
       <div class="container-fluid pr-0 pl-0 py-5">
         <div class="px-5 py-5">
           <div class="ml-5 mr-5 container-md mx-auto ">
-
             <h1 class="display-3">Your Classrooms</h1>
 
             <%- include('../reusables/classroom-modal.ejs'); %>
@@ -164,7 +164,7 @@
 
             <div class="row d-flex justify-content-around p-5">
               <div class="card col-8 col-md-3 m-3 shadow-sm rounded">
-                <div class="card-title text-center mt-3">Add A Classroom</div>
+                <div class="card-title text-center mt-3 title-card">Add A Classroom</div>
                 <div class="card-body">
                   <img class="d-flex justify-content-center w-100 hover img-fluid"
                     src="https://storage.googleapis.com/kleva_assets/addClassroom.png" role="button" data-toggle="modal"
@@ -176,9 +176,9 @@
                 </button>
               </div>
               <% if (classrooms.length > 0) { %> <% for (let classRoom of
-              classrooms) { %>
+              classrooms) { %>  
               <div class="card col-8 col-md-3 m-3 shadow-sm ">
-                <div class="card-title text-center mt-3">
+                <div class="card-title text-center mt-3 title-card">
                   <%- classRoom.title %>
                 </div>
                 <div class="card-body text-center">
@@ -190,7 +190,7 @@
                 </div>
                 <!-- <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
                   style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a> -->
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons visit-class"
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons visit-class" style="background-color: bisque;"
                   >Visit Classroom ></a>
                 <button data-toggle="modal" data-target="#<%- classRoom.classCode %>"
                   class="btn mb-4 w-100 classroomAddGameButton">
@@ -200,16 +200,19 @@
               </div>
               <!-- Dynamic Doodle Questions Modal -->
 
-              <%- include('../reusables/doodle-modal.ejs', {subject:  classRoom.subject, classRoom: classRoom }) %>
-            </div>
-            <button type="submit" class="btn w-100 my-5 add_classroom_modal_button">Continue to Questions ></button>
-          </div>
-
-          </form>
+              <%- include('../reusables/doodle-modal.ejs', {subject:  classRoom.subject, classRoom: classRoom }); %>  
+          <% } %> <% } %>
         </div>
-      </div>
-    </div>
-    <% } %> <% } %>
+  <div class="card p-5 mt-5">
+    <button data-toggle="modal" data-target="#otherTeachers" type="button" class="btn mb-4 w-100 classroomAddGameButton">
+    <h1 class="card-body">
+      <svg class="side-nav__icon">
+        <use xlink:href="img/symbol-defs.svg#teacher"></use>
+      </svg>  
+      <span class="text-white">Fellow Teachers of <span class="orange-text">"<%-school%>"</span></span>
+      </h1>
+    </button>
+    <%- include('../reusables/otherTeachers-modal.ejs', {otherTeachers: otherTeachers});%>
   </div>
   </div>
   </div>

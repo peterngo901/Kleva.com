@@ -135,6 +135,8 @@ Student.belongsTo(Classroom, {
 
 Classroom.hasMany(Student);
 
+Classroom.hasMany(ClassroomStats, {foreignKey: 'classroomClassCode'});
+
 Game.hasMany(ClassroomStats, { foreignKey: 'gameID'});
 
 ClassroomStats.belongsTo(Classroom, {
