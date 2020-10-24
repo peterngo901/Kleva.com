@@ -124,31 +124,68 @@ async function queryDoodlesFromDate(btn, event) {
       document.getElementById('doodle-holder').appendChild(node);
     }
 
-    return console.log(doodleQs, studentDoodlesTracker, doodleLineDataTracker);
+    return;
 
     //drawingDataLoop(drawingQuestions);
   }
 }
 var currentDoodleLine;
 var doodleLinesRetracing;
-async function openDoodleStream(btn) {
+var sliderHistoryRange;
+function openDoodleStream(btn) {
   currentDoodleLine = [];
   doodleLinesRetracing = [];
+  sliderHistoryRange = 0;
   draw();
   setup();
   doodlePoints = btn.value;
-  console.log(doodlePoints);
+
   //console.log(doodleLineDataTracker[doodlePoints]);
+
+  if (doodleLineDataTracker[doodlePoints] === null) {
+    sliderHistoryRange = 0;
+    $('#slider').slider({
+      max: sliderHistoryRange,
+    });
+    $('#slider').slider('disable');
+  } else {
+    sliderHistoryRange = doodleLineDataTracker[doodlePoints].length;
+
+    $('#slider').slider({
+      max: sliderHistoryRange,
+    });
+    $('#slider').slider('enable');
+    $('#slider').slider('value', 0);
+  }
+
   doodleLinesRetracing = doodleLineDataTracker[doodlePoints];
 
-  console.log(doodleLinesRetracing.length);
-  for (var m = 0; m < doodleLinesRetracing.length; m++) {
-    currentDoodleLine = await doodleLinesRetracing[m];
-    for (var s = 0; s < currentDoodleLine.length; s++) {
-      newDrawing(doodleLinesRetracing[m][s]);
+  $('#slider').on('slide', function (event, ui) {
+    setup();
+    var selection = ui.value;
+
+    for (var m = 0; m < selection; m++) {
+      currentDoodleLine = doodleLinesRetracing[m];
+      for (var s = 0; s < currentDoodleLine.length; s++) {
+        newDrawing(doodleLinesRetracing[m][s]);
+      }
     }
-  }
-  return console.log(doodleLinesRetracing);
+  });
+  $('#slider').on('slidestop', function (event, ui) {});
+  // Getter
+  //var step = $('.selector').slider('option', 'step');
+
+  // Setter
+  //$('.selector').slider('option', 'step', 5);
+
+  // console.log(doodleLinesRetracing.length);
+  // for (var m = 0; m < doodleLinesRetracing.length; m++) {
+  //   currentDoodleLine = await doodleLinesRetracing[m];
+  //   for (var s = 0; s < currentDoodleLine.length; s++) {
+  //     newDrawing(doodleLinesRetracing[m][s]);
+  //   }
+  // }
+  return;
 }
 
 // function drawingDataLoop(drawingQuestions) {

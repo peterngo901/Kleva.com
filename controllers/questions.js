@@ -103,7 +103,6 @@ exports.postYearLevelSubstrand = async (req, res) => {
     });
     console.log(childrenTerms);
     var narrowTermTracker = [];
-    var broadTermLength = scotHolder.length;
 
     for (var u = 0; u < scotHolder.length; u++) {
       if (childrenTerms[u].narrowerTerms !== null) {
