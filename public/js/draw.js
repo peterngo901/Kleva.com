@@ -69,7 +69,7 @@ socket.on('begin', async (data) => {
       clearInterval(timer);
       clear();
       setup();
-
+      drawingStream = [];
       document.getElementById('gameCountdownTimerText').innerHTML =
         data.questionOne;
       document.getElementById('gameCountdownTimer').value = 0;
@@ -79,6 +79,7 @@ socket.on('begin', async (data) => {
           teacherDoodleQuestion = data.questionOne;
           // Stream to realtime database.
           saveDoodle();
+          drawingStream = [];
           document.getElementById('gameCountdownTimer').value = 0;
           clear();
           setup();
@@ -90,7 +91,7 @@ socket.on('begin', async (data) => {
             if (questionTwoTimeLeft < 0) {
               teacherDoodleQuestion = data.questionTwo;
               saveDoodle();
-
+              drawingStream = [];
               document.getElementById('gameCountdownTimer').value = 100;
               clearInterval(qTwoTimer);
               document.getElementById('gameCountdownTimerText').innerHTML =
@@ -274,15 +275,16 @@ function endPath() {
 // Post Drawing Data Chunks to the Database
 function saveDoodle() {
   // Push to the classroom code + gameSession Date + the gameroom code.
-  var ref = database.ref(`${roomName}/${timeFormatted}/${gameRoomID}`);
+  var ref = database.ref(`${roomName}/${timeFormatted}`);
 
   // Add the real student names to the doodling data.
   var doodleData = {
     studentNames: 'Bobby, Joe, Craig',
     doodle: drawingStream,
     question: teacherDoodleQuestion,
+    gameRoomID: gameRoomID,
   };
   ref.push(doodleData, (err) => {
-    console.log(err);
+    var errorTracker = err;
   });
 }

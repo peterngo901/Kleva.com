@@ -8,8 +8,9 @@
         </button>
       </div>
       <div class="modal-body mt-3 px-5">
-        <form action="/create-questions" method="POST" id="modalAddClassroom">
+        <form action="/game-staging-area" method="POST" id="modalAddClassroom">
           <div class="form-group">
+            <input type="hidden" value="<%= classRoom.yearLevel %>" name="yearLevel">
             <input type="hidden" value="<%= classRoom.classCode %>" name="classCode">
             <h1 class="text-center mb-5">Select One Subject</h1>
             <% if(subject === 'english') { %>

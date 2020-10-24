@@ -235,6 +235,9 @@ Main Navbar
 	}
 
 	// Initialize library on Game Initiation and start tracking time.
+	// Stop the timer if the student doesn't move mouse for more than 20s.
+	// Stop timer if they tab away from the page.
+	// Stop timer if no keys are fired for 20s on the page.
 	function studentTracker() {
 		TimeMe.initialize({
 			currentPageName: "game-page", // current page

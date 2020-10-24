@@ -102,6 +102,8 @@ exports.getTeacherGameroom = (req, res, next) => {
 
     // Teacher has begun the game via the Begin Game Button.
     socket.on('beginGame', () => {
+      console.log(req.session.qOne);
+      console.log(req.session.qTwo);
       const questionOne = 'Doodle the ' + req.session.qOne;
       const questionTwo = 'Doodle the ' + req.session.qTwo;
       const doodleGameRoomName = `${req.session.classCode}`;
@@ -139,6 +141,7 @@ exports.postTeacherGameroom = (req, res, next) => {
   req.session.qOne = req.body.doodleOne;
   req.session.qTwo = req.body.doodleTwo;
   // TODO: Add Questions to the Question Bank.
+
   res.redirect(`/teacher/game-room`);
 };
 
