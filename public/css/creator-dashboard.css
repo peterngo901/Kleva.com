@@ -916,3 +916,40 @@ body {
   font-weight: 700;
   margin-left: 5rem;
 }
+
+.doodleQuestionBoxText {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 700;
+  padding-left: 1.5rem;
+  background-color: white !important;
+  border-radius: 2rem 0 0 2rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  height: 7rem !important;
+}
+
+.doodleQuestionBoxPrepend {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 500;
+  padding-left: 1.5rem;
+  background-color: white !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  height: 7rem !important;
+  margin-bottom: 3rem;
+}
+
+.doodleQuestionBoxSelect {
+  font-size: 2rem;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 500;
+  padding-left: 1.5rem;
+  background-color: #bcfff454 !important;
+  border-radius: 0 2rem 2rem 0 !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  padding-left: 2rem !important;
+  height: 7rem !important;
+}

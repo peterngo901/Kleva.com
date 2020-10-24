@@ -142,10 +142,26 @@
                   <!-- Question 1 -->
                   <div class="input-group mb-5">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="doodle01" style="font-size: 3rem">Doodle...</label>
+                      <label class="input-group-text doodleQuestionBoxText" for="doodle01"
+                        style="font-size: 3rem">Doodle...</label>
+                      <select class="custom-select doodleQuestionBoxPrepend" id="doodle01" style="font-size: 3rem"
+                        name="doodleOnePreprend">
+                        <option selected>an example of</option>
+                        <option value="a diagram of">a diagram of</option>
+                        <option value="a">a</option>
+                        <option value="an">an</option>
+                        <option value="your interpretation of">your interpretation of</option>
+                        <option value="the structure of">the</option>
+                        <option value="the effect of">the effect of</option>
+                        <option value="the shape of">the shape of</option>
+                        <option value="the structure of">the structure of</option>
+
+                      </select>
                     </div>
-                    <select class="custom-select" id="doodle01" style="font-size: 3rem" name="doodleOne">
+                    <select class="custom-select doodleQuestionBoxSelect" id="doodle01" style="font-size: 3rem"
+                      name="doodleOne">
                       <!-- Doodle Question Options 1 -->
+
                       <% if (scot.length > 0) { %>
 
                       <% for (let acaraQuestions of scot) { %>
@@ -175,9 +191,22 @@
                   <!-- Question 2 -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="doodle02" style="font-size: 3rem">Doodle...</label>
+                      <label class="input-group-text doodleQuestionBoxText" for="doodle02"
+                        style="font-size: 3rem">Doodle...</label>
+                      <select class="custom-select doodleQuestionBoxPrepend" id="doodle01" style="font-size: 3rem"
+                        name="doodleTwoPreprend">
+                        <option selected>an example of</option>
+                        <option value="a diagram of">a diagram of</option>
+                        <option value="a">a</option>
+                        <option value="an">an</option>
+                        <option value="your interpretation of">your interpretation of</option>
+                        <option value="the structure of">the</option>
+                        <option value="the structure of">the structure of</option>
+                        <option value="the shape of">the shape of</option>
+                      </select>
                     </div>
-                    <select class="custom-select" id="doodle02" style="font-size: 3rem" name="doodleTwo">
+                    <select class="custom-select doodleQuestionBoxSelect" id="doodle02" style="font-size: 3rem"
+                      name="doodleTwo">
                       <!-- Doodle Question Options 2 -->
                       <% if (scot.length > 0) { %>
                       <% for (let acaraQuestions of scot) { %>

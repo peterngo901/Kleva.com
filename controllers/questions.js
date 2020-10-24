@@ -4,9 +4,9 @@ const AcaraRelations = require('../models/acaraRelations');
 const { Op } = require('sequelize');
 
 exports.postYearLevelSubstrand = async (req, res) => {
-  console.log(req.body.topic);
-  console.log(req.body.yearLevel);
-  console.log(req.body.classCode);
+  //console.log(req.body.topic);
+  //console.log(req.body.yearLevel);
+  //console.log(req.body.classCode);
   const yearLevelSubstrand = req.body.topic;
   const yearLevel = req.body.yearLevel;
   const { classCode } = req.body;
@@ -25,9 +25,9 @@ exports.postYearLevelSubstrand = async (req, res) => {
       },
     });
 
-    console.log(substrandID);
+    //console.log(substrandID);
     const childID = substrandID[0].dataValues.aboutID;
-    console.log(childID);
+    //console.log(childID);
 
     // Using that Substrand ID, return all relevant content descriptions.
     const contentDescriptions = await Curriculum.findAll({
@@ -50,7 +50,7 @@ exports.postYearLevelSubstrand = async (req, res) => {
         isChildOfOne: childID,
       },
     });
-    console.log(contentDescriptions.length);
+    //console.log(contentDescriptions.length);
     // res.render('teacher/gameStaging', {
     //   questions: {},
     //   path: '/teacher-dashboard',
@@ -91,7 +91,7 @@ exports.postYearLevelSubstrand = async (req, res) => {
         contentDescriptions: contentDescriptions,
       });
     }
-    console.log(scotHolder);
+    //console.log(scotHolder);
     // Using the terms in the scotHolder, return all the narrower terms.
     const childrenTerms = await AcaraRelations.findAll({
       raw: true,
@@ -104,14 +104,20 @@ exports.postYearLevelSubstrand = async (req, res) => {
     console.log(childrenTerms);
     var narrowTermTracker = [];
     var broadTermLength = scotHolder.length;
-    for (var u = 0; u < scotHolder.length; u++) {
-      narrowTermTracker.push(...childrenTerms[u].narrowerTerms.split(' '));
-    }
 
+    for (var u = 0; u < scotHolder.length; u++) {
+      if (childrenTerms[u].narrowerTerms !== null) {
+        narrowTermTracker.push(...childrenTerms[u].narrowerTerms.split(' '));
+      }
+    }
     console.log(narrowTermTracker);
-    console.log(scotHolder);
+    //console.log(narrowTermTracker);
+    //console.log(scotHolder);
+
     narrowTermTracker.push(...scotHolder);
-    console.log(narrowTermTracker);
+
+    console.log(narrowTermTracker.push(...scotHolder));
+    //console.log(narrowTermTracker);
     // Using the contentDescriptions, return all the terms matching the scoTerms.
     const scoTerms = await Acara.findAll({
       raw: true,
@@ -131,6 +137,13 @@ exports.postYearLevelSubstrand = async (req, res) => {
       scot: scoTerms,
     });
   } catch (err) {
-    console.log(err);
+    res.render('teacher/gameStaging', {
+      questions: {},
+      path: '/teacher-dashboard',
+      name: ' ',
+      classCode: classCode,
+      contentDescriptions: '',
+      scot: '',
+    });
   }
 };

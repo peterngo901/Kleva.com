@@ -1,3 +1,4 @@
+const QuestionBank = require('../models/questionBank');
 const Chance = require('chance');
 
 const users = [];
@@ -101,19 +102,29 @@ exports.getTeacherGameroom = (req, res, next) => {
     });
 
     // Teacher has begun the game via the Begin Game Button.
-    socket.on('beginGame', () => {
-      console.log(req.session.qOne);
-      console.log(req.session.qTwo);
-      const questionOne = 'Doodle the ' + req.session.qOne;
-      const questionTwo = 'Doodle the ' + req.session.qTwo;
-      const doodleGameRoomName = `${req.session.classCode}`;
-      const uniqueGameRoomID = 1;
-      socket.broadcast.to(`${req.session.classCode}`).emit('begin', {
-        questionOne,
-        questionTwo,
-        doodleGameRoomName,
-        uniqueGameRoomID,
-      });
+    socket.on('beginGame', async () => {
+      try {
+        const questions = await QuestionBank.findAll({
+          raw: true,
+          limit: 1,
+          where: {
+            classCode: req.session.classCode,
+          },
+          order: [['createdAt', 'DESC']],
+        });
+        const questionOne = questions[0].questions[0];
+        const questionTwo = questions[0].questions[1];
+        const doodleGameRoomName = `${req.session.classCode}`;
+        const uniqueGameRoomID = 1;
+        socket.broadcast.to(`${req.session.classCode}`).emit('begin', {
+          questionOne,
+          questionTwo,
+          doodleGameRoomName,
+          uniqueGameRoomID,
+        });
+      } catch (err) {
+        res.redirect('/game-staging-area');
+      }
     });
 
     // // Render Students in the List.
@@ -134,15 +145,37 @@ exports.getTeacherGameroom = (req, res, next) => {
     classCode: req.session.classCode,
   });
 };
-
-exports.postTeacherGameroom = (req, res, next) => {
+var gameroomQs;
+exports.postTeacherGameroom = async (req, res, next) => {
+  gameroomQs = [];
   console.log(req.body.doodleOne);
   console.log(req.body.doodleTwo);
-  req.session.qOne = req.body.doodleOne;
-  req.session.qTwo = req.body.doodleTwo;
-  // TODO: Add Questions to the Question Bank.
+  console.log(req.body.doodleOnePreprend);
+  console.log(req.body.doodleTwoPreprend);
 
-  res.redirect(`/teacher/game-room`);
+  const email = req.session.user;
+  const classCode = req.session.classCode;
+  // TODO: Add Questions to the Question Bank.
+  const {
+    doodleOne,
+    doodleTwo,
+    doodleOnePreprend,
+    doodleTwoPreprend,
+  } = req.body;
+  var gameroomQOne = 'Doodle ' + doodleOnePreprend + ' ' + doodleOne;
+  var gameroomQTwo = 'Doodle ' + doodleTwoPreprend + ' ' + doodleTwo;
+  gameroomQs.push(gameroomQOne, gameroomQTwo);
+  console.log(gameroomQs);
+  try {
+    await QuestionBank.create({
+      teacherEmail: email,
+      classCode: classCode,
+      questions: gameroomQs,
+    });
+    res.redirect(`/teacher/game-room`);
+  } catch {
+    res.redirect(`/teacher-dashboard`);
+  }
 };
 
 exports.postGameQuestion = (req, res, next) => {
