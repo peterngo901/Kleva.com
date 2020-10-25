@@ -1004,6 +1004,16 @@ body {
   color: #5e77ff;
 }
 
+.non-orange-text {
+  color:black;
+}
+
 .bg-otherTeacher {
   background-color: plum;
+}
+
+.subject-font {
+  font-size: 1.5rem !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
+  text-align: center;
 }

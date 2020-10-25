@@ -79,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit user-signout">
+            <button type="submit user-signout" style="border: none; background-color: transparent; ">
               <svg class="user-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -105,7 +105,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Classroom</span>
+              <span class="sideBarCustom">Classroom</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>">
@@ -113,7 +113,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Statistics</span>
+              <span class="sideBarCustom">Statistics</span>
             </a>
           </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>">
@@ -121,7 +121,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
               </svg>
-              <span>Help</span>
+              <span class="sideBarCustom">Help</span>
             </a>
           </li>
         </ul>

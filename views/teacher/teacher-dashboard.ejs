@@ -121,15 +121,7 @@
               <span class="sideBarCustom">Classroom</span>
             </a>
           </li>
-          <li class="side-nav__item">
-            <a href="/teacher-schedule" class="side-nav__link">
-              <!-- Sidebar Icon -->
-              <svg class="side-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#calendar"></use>
-              </svg>
-              <span>Schedule Calendar</span>
-            </a>
-          </li>
+          
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
             <a href="/teacher-students" class="side-nav__link">
               <svg class="side-nav__icon">
@@ -141,7 +133,7 @@
           <li class="<%= path === '/drawing-history' ? 'side-nav__item--active' : 'side-nav__item' %> ">
             <a href="/drawing-history" class="side-nav__link">
               <svg class="side-nav__icon">
-                <use xlink:href="img/symbol-defs.svg#icon-pencil2"></use>
+                <use xlink:href="../img/symbol-defs.svg#icon-pencil2"></use>
               </svg>
               <span class="sideBarCustom">Doodles</span>
             </a>
@@ -218,7 +210,7 @@
                   <svg class="side-nav__icon">
                     <use xlink:href="img/symbol-defs.svg#teacher"></use>
                   </svg>
-                  <span class="text-white">Fellow Teachers of <span class="orange-text">"<%-school%>"</span></span>
+                  <span class="non-orange-text">Fellow Teachers of <span class="orange-text">"<%-school%>"</span></span>
                 </h1>
               </button>
               <%- include('../reusables/otherTeachers-modal.ejs', {otherTeachers: otherTeachers});%>

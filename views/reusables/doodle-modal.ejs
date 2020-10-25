@@ -14,28 +14,29 @@
             <input type="hidden" value="<%= classRoom.classCode %>" name="classCode">
             <h1 class="text-center mb-5">Select One Subject</h1>
             <% if(subject === 'english') { %>
-            <div class="row justify-content-center text-center subject-font">
-              <div class="col-md-4">
+            <div class="row justify-content-center text-center">
+              <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Expressing and developing ideas"
                     value="Expressing and developing ideas">
-                  <label class="form-check-label" for="Expressing and developing ideas"><img
+                  <label class="form-check-label subject-font" for="Expressing and developing ideas"><img
                       src="img/healthphysed.png">Expressing
                     and developing ideas</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Creating texts" value="Creating texts">
-                  <label class="form-check-label" for="Creating texts"><img src="img/healthphysed.png">Creating
+                  <label class="form-check-label subject-font" for="Creating texts"><img
+                      src="img/healthphysed.png">Creating
                     texts</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Language for interaction"
                     value="Language for interaction">
-                  <label class="form-check-label" for="Language for interaction"><img
+                  <label class="form-check-label subject-font" for="Language for interaction"><img
                       src="img/healthphysed.png">Language for
                     interaction</label>
                 </div>
@@ -44,69 +45,74 @@
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Language variation and change"
                     value="Language variation and change">
-                  <label class="form-check-label" for="Language variation and change"><img
+                  <label class="form-check-label subject-font" for="Language variation and change"><img
                       src="img/healthphysed.png">Language variation and change</label>
                 </div>
               </div>
 
             </div>
             <%} else if (subject === 'mathematics') { %>
-            <div class="row justify-content-center text-center" style="font-size: 1.5rem;">
+            <div class="row justify-content-center text-center">
               <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Chance" value="Chance">
-                  <label class="form-check-label" for="Chance"><img src="img/mathematics.png">Chance</label>
+                  <label class="form-check-label subject-font" for="Chance"><img
+                      src="img/mathematics.png">Chance</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Patterns and algebra"
                     value="Patterns and algebra">
-                  <label class="form-check-label" for="Patterns and algebra"><img src="img/mathematics.png">Patterns
+                  <label class="form-check-label subject-font" for="Patterns and algebra"><img
+                      src="img/mathematics.png">Patterns
                     and algebra</label>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-check">
+              <div class="col-3">
+                <div class="form-check subject-font">
                   <input class="form-check-input" type="radio" name="topic" id="Real numbers" value="Real numbers">
-                  <label class="form-check-label" for="Real numbers"><img src="img/mathematics.png">Real Numbers</label>
+                  <label class="form-check-label text-center" for="Real numbers"><img src="img/mathematics.png">Real Numbers</label>
                 </div>
               </div>
               <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="Data representation and interpretation"
                     value="Data representation and interpretation">
-                  <label class="form-check-label" for="Data representation and interpretation"><img
+                  <label class="form-check-label subject-font" for="Data representation and interpretation"><img
                       src="img/mathematics.png">Data</label>
                 </div>
               </div>
 
             </div>
             <%} else { %>
-            <div class="row justify-content-center text-center subject-font">
+            <div class="row justify-content-center">
               <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="biology" value="Biological  sciences">
-                  <label class="form-check-label" for="biology"><img src="img/science.png">Biology</label>
+                  <label class="form-check-label subject-font" for="biology"><img src="img/science.png">Biology</label>
                 </div>
               </div>
               <div class="col-3">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="topic" id="chemistry" value="Chemical sciences">
-                  <label class="form-check-label" for="chemistry"><img src="img/science.png">Chemistry</label>
+                  <input class="form-check-input subject-font" type="radio" name="topic" id="chemistry"
+                    value="Chemical sciences">
+                  <label class="form-check-label subject-font" for="chemistry"><img
+                      src="img/science.png">Chemistry</label>
                 </div>
               </div>
               <div class="col-3">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="earthSpace"
                     value="Earth and space sciences">
-                  <label class="form-check-label" for="earthSpace"><img src="img/science.png">Earth & Space</label>
+                  <label class="form-check-label subject-font" for="earthSpace"><img src="img/science.png">Earth &
+                    Space</label>
                 </div>
               </div>
               <div class="col-3">
                 <div div class="form-check">
                   <input class="form-check-input" type="radio" name="topic" id="physics" value="Physical sciences">
-                  <label class="form-check-label" for="physics"><img src="img/science.png">Physics</label>
+                  <label class="form-check-label subject-font" for="physics"><img src="img/science.png">Physics</label>
                 </div>
               </div>
             </div>
