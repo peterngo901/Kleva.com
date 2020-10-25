@@ -78,10 +78,10 @@ app.set('view engine', 'ejs'); // EJS
 app.set('views', 'views'); // Views in the Views Folder
 
 // //Serve bootstrap Statically
-app.use(express.static(path.join(__dirname + 'node_modules/bootstrap/dist')));
+app.use('', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 
 // //Serve jquery Statically
-app.use(express.static(path.join(__dirname + 'node_modules/jquery/dist')));
+app.use('', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 
 // Serve CSS Statically
 app.use(express.static(path.join(__dirname, 'public')));

@@ -32,7 +32,7 @@ async function queryDoodlesFromDate(btn, event) {
   // Retrieve the date of the doodle.
   key = btn.value;
   var ref = database.ref(key);
-  console.log(key);
+  //console.log(key);
   // Retrieve all the doodles from the date.
   await ref.on('value', oneQuestionDrawing);
 
