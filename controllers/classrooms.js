@@ -104,7 +104,11 @@ exports.getTeacherStudents = async (req, res, next) => {
           games: gamesStatisticsAndDetails,
         });
       } catch (err) {
-        console.log(err);
+        res.render('teacher/teacher-students', {
+          path: '/teacher-students',
+          classrooms: '',
+          games: '',
+        });
       }
 
       // try {

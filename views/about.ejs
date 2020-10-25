@@ -4,14 +4,11 @@
 <body>
   <%- include('reusables/navbar-bootstrap.ejs', {sessionType: user});%>
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mt-5">
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">About
-      <small>KLEVA</small>
-    </h1>
 
-    <ol class="breadcrumb">
+
+    <ol class="breadcrumb aboutBread">
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
@@ -20,111 +17,37 @@
 
     <!-- Intro Content -->
     <div class="row">
-      <div class="col-lg-6">
-        <img class="img-fluid rounded mb-4" src="img/ys2.jpg" alt="">
+      <div class="col-lg-7 col-12">
+        <img class="img-fluid" src="https://storage.googleapis.com/kleva_assets/about_hero.svg" alt="">
       </div>
-      <div class="col-lg-6">
-        <h2>About KLEVA</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique?
-          Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem
-          non blanditiis ex fugiat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut
-          sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!
+      <div class="col-lg-5 col-12 align-self-center">
+        <h2 class="aboutUsText">About Us</h2>
+        <p class="aboutUsDescr">Kleva is Australia's leading educational games provider.</p>
+        <p class="aboutUsDescr">Our platform integrates the Australian Curriculum, Assessment and Reporting Authority
+          framework.
+          Allowing Australian school teachers to seamlessly integrate games into their classroom plans.</p>
+        <p class="aboutUsDescr">Games are classified according to the ACARA framework, making it the only resource
+          you'll ever need to find
+          appropriate, engaging and learning objective orientated games.
         </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa
-          voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus
-          perspiciatis quis?</p>
+      </div>
+      <div class="col-12">
+        <img class="img-fluid" src="https://storage.googleapis.com/kleva_assets/about_info.svg" alt="">
       </div>
     </div>
     <!-- /.row -->
 
-    <!-- Team Members -->
-    <h2>Our Team</h2>
 
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <img class="card-img-top" src="img/ys1.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Team Member</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#">name@example.com</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <img class="card-img-top" src="img/ys1.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Team Member</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#">name@example.com</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <img class="card-img-top" src="img/ys1.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Team Member</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum
-              ipsum fugiat odio officiis odit.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#">name@example.com</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.row -->
 
-    <!-- Our Customers -->
-    <h2>Our Customers</h2>
-    <div class="row">
-      <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="img/ys3.png" alt="">
-      </div>
-      <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="img/ys3.png" alt="">
-      </div>
-      <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="img/ys3.png" alt="">
-      </div>
-      <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="img/ys3.png" alt="">
-      </div>
-      <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="img/ys3.png" alt="">
-      </div>
-      <div class="col-lg-2 col-sm-4 mb-4">
-        <img class="img-fluid" src="img/ys3.png" alt="">
-      </div>
-    </div>
-    <!-- /.row -->
 
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </html>

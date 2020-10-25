@@ -103,12 +103,13 @@ async function queryDoodlesFromDate(btn, event) {
       var attr1 = document.createAttribute('id');
       var attr2 = document.createAttribute('onclick');
       var attr3 = document.createAttribute('value');
+      var attr4 = document.createAttribute('style');
       attr1.value = `doodle${u}`; //id=doodle0
       attr2.value = `openDoodleStream(this)`; //onclick=openDoodleStream(this)
       attr3.value = `${u}`; //value=doodleLineDataTracker[]
-
+      attr4.value = `font-size: 1.5rem; padding: 2rem 1.5rem;`;
       var node = document.createElement('BUTTON');
-      node.className = 'btn btn-success m-5';
+      node.className = 'btn doodleDrawingView m-2';
 
       var questionNode = document.createTextNode('Q: ' + doodleQs[u]);
       var studentNameNode = document.createTextNode(
@@ -120,7 +121,7 @@ async function queryDoodlesFromDate(btn, event) {
       node.setAttributeNode(attr1); //id=doodle0
       node.setAttributeNode(attr2); //onclick=openDoodleStream(this)
       node.setAttributeNode(attr3); //value=doodleLineDataTracker[]
-
+      node.setAttributeNode(attr4);
       document.getElementById('doodle-holder').appendChild(node);
     }
 
@@ -243,7 +244,7 @@ $(window).on('resize', function (e) {
 
 function setup() {
   px = $('#canvas-holder').parent().width();
-  cnv = createCanvas(px, windowHeight * 0.55);
+  cnv = createCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
   cnv.parent('canvas-holder');
   newDrawing;
@@ -252,7 +253,7 @@ function setup() {
 
 function newDrawing(data) {
   px = $('#canvas-holder').parent().width();
-  pey = windowHeight * 0.55;
+  pey = windowHeight * 0.45;
   var relativeX = data.x * (px / data.resX);
   var relativeXX = data.x2 * (px / data.resX);
   var relativeY = data.y * (pey / data.resY);
@@ -271,7 +272,7 @@ function newDrawing(data) {
 
 function windowResized() {
   px = $('#canvas-holder').parent().width();
-  resizeCanvas(px, windowHeight * 0.55);
+  resizeCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
 }
 

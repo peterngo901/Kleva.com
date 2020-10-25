@@ -344,3 +344,42 @@ nav {
   padding: 0.35rem 1rem;
   color: #5f5360;
 }
+
+.aboutBread {
+  background-color: #fcddffff;
+  font-family: 'Quicksand', serif;
+}
+
+.aboutUsText {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #5f5360;
+}
+.aboutUsDescr {
+  font-family: 'Quicksand', serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #5f5360;
+}
+
+.homeHeroInfo {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: #30a8a8;
+}
+
+.homeInfo {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #30a8a8;
+}
+
+.homeDescr {
+  font-family: 'Quicksand', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: hsl(194, 50%, 27%);
+}

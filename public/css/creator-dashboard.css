@@ -953,3 +953,33 @@ body {
   padding-left: 2rem !important;
   height: 7rem !important;
 }
+
+.doodleDateView {
+  font-size: 2rem;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 500;
+  background-color: #bdbcff54 !important;
+  border-radius: 0 2rem 2rem 0 !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  padding-left: 2rem !important;
+}
+
+.doodleDateView:hover {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDrawingView {
+  font-size: 1.6rem;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 500;
+  background-color: #bcfdff8c !important;
+  border-radius: 0 2rem 2rem 0 !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  padding-left: 2rem !important;
+}
+
+.doodleDrawingView:hover {
+  background-color: #dc85ff54 !important;
+}

@@ -123,8 +123,16 @@
               <span class="sideBarCustom">Statistics</span>
             </a>
           </li>
+          <li class="<%= path === '/drawing-history' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+            <a href="/drawing-history" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="img/symbol-defs.svg#icon-pencil2"></use>
+              </svg>
+              <span class="sideBarCustom">Doodles</span>
+            </a>
+          </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/" class="side-nav__link">
+            <a href="/help" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
               </svg>
@@ -168,7 +176,9 @@
                   <h3>Year Level: <%- classRoom.yearLevel %></h3>
 
                   <h3 style="text-transform: uppercase; font-weight: 700;"><%- classRoom.subject %></h3>
-                  <h1 class="mt-5">Class Code: </h1>
+                  <h1 class="mt-5" data-toggle="tooltip" data-placement="top"
+                    title="Students will use this code to login into their classroom.">
+                    Class Code: </h1>
                   <p class="display-4" style="font-weight: 700;"><%- classRoom.classCode %></p>
                 </div>
                 <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
