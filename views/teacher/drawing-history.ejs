@@ -195,7 +195,8 @@
 
                                                 </tr>
                                             </thead>
-                                            <% for (j=0; j <= (classroomDoodles.length/2); j += 2) { %>
+                                            
+                                            <% for (var j=0; j <= classroomDoodles.length; j += 2) { %>
 
                                             <% if (JSON.stringify(classroomDoodles[j]) == JSON.stringify(classroom.dataValues.classCode)) { %>
 
@@ -205,7 +206,7 @@
 
 
 
-                                            <% for(e=0; e < Object.keys(classroomDoodles[j+1]).length; e++) { %>
+                                            <% for(var e=0; e < Object.keys(classroomDoodles[j+1]).length; e++) { %>
 
                                             <tbody>
 
