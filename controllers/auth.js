@@ -48,7 +48,7 @@ exports.postTeacherSignup = (req, res, next) => {
         // Hash the password
         req.session.isLoggedIn = true;
         req.session.user = email; // Set session data to include the teacher email, helps us persist login state.
-        req.session.sessionType = 'teacher';
+        req.session.school = school;
         Teacher.create({
           // Create a new teacher in the teacher table.
           email: email,
@@ -114,6 +114,7 @@ exports.postTeacherSignin = async (req, res, next) => {
             req.session.isLoggedIn = true;
             req.session.user = email;
             req.session.sessionType = 'teacher';
+            req.session.school = teacher.school;
 
             res.status(202).redirect('/teacher-dashboard');
           } else {

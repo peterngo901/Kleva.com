@@ -1,0 +1,31 @@
+<div class="modal " tabindex="-1" id="chooseClassRoom" style="background-color: rgba(0, 0, 0, 0.226);">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content add_classroom_modal">
+      <div class="modal-header ">
+        <h5 class="modal-title">Which ClassRoom Do You Want To Add Games Too?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/replace-classrooms" method="POST" id="modalreplaceclassrooms" class="add_classroom_modal px-3">
+          <div class="form-group">
+            <label for="classCode" class="add_classroom_modal_label">You Classrooms</label>
+            <select class="form-control add_classroom_modal_input" id="classCode" name="classCode" required>
+              <option selected>Choose a Classroom</option>
+              <% for (cls of yourClasses) { %>
+                <% console.log(cls.title)%>
+                <option value="<%= cls.classCode%>"><%= cls.title%></option>
+              <%}%>
+            </select>
+          </div>
+          <input type="hidden" id="thisClass" name="thisClass" value="<%= thisClass%>">
+          <div class="col-12 text-center">
+            <button type="submit" class="btn add_classroom_modal_button align-self-center my-5">Add Games</button>
+          </div>
+      </div>
+
+      </form>
+    </div>
+  </div>
+</div>

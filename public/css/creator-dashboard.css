@@ -983,3 +983,27 @@ body {
 .doodleDrawingView:hover {
   background-color: #dc85ff54 !important;
 }
+.visit-class {
+  background-color: bisque;
+  font-size: 1.5rem !important;
+}
+
+.code-size {
+  font-size: 5rem;
+}
+
+.title-card {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.teacher-icon {
+}
+
+.orange-text {
+  color: #5e77ff;
+}
+
+.bg-otherTeacher {
+  background-color: plum;
+}

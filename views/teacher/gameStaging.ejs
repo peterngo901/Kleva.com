@@ -79,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button type="submit" style="border: none; background-color: inherit; ">
+            <button type="submit user-signout">
               <svg class="user-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -177,7 +177,7 @@
                     </select>
 
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn" type="button" style="font-size: 3rem; box-shadow: none;">
+                      <button class="btn questionButton" type="button">
                         <img id="questionButton1"
                           src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
                           class="img-fluid" onClick="changeImage1()" />
@@ -220,7 +220,7 @@
                       <% } %>
                     </select>
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn" type="button" style="font-size: 3rem;  box-shadow: none;">
+                      <button class="btn questionButton" type="button">
                         <img id="questionButton2"
                           src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
                           class="img-fluid" onClick="changeImage()" />
@@ -231,9 +231,8 @@
               </div>
             </div>
             <div class="row mt-5 justify-content-center">
-
               <div class="col-10 mt-5 text-center">
-                <button class="btn btn-block" style="font-size: 3rem; box-shadow: none;" type="submit">
+                <button class="btn btn-block questionButton" type="submit">
                   <img src="img/open_gameroom_bold.png" class="img-fluid" />
                 </button>
               </div>

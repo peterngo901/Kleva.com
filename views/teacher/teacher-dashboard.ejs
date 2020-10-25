@@ -80,9 +80,11 @@
         <!-- Logout Button -->
 
 
+
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
             <button type="submit" style="border: none; background-color: inherit">
+
               <svg class="user-nav__icon">
                 <use xlink:href="img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -106,6 +108,10 @@
         <!-- Dashboard Pages -->
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
+
+
+
+
           <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>">
             <a href="/teacher-dashboard" class="side-nav__link">
               <!-- Sidebar Icon -->
@@ -113,6 +119,15 @@
                 <use xlink:href="img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
               <span class="sideBarCustom">Classroom</span>
+            </a>
+          </li>
+          <li class="side-nav__item">
+            <a href="/teacher-schedule" class="side-nav__link">
+              <!-- Sidebar Icon -->
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#calendar"></use>
+              </svg>
+              <span>Schedule Calendar</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
@@ -181,8 +196,10 @@
                     Class Code: </h1>
                   <p class="display-4" style="font-weight: 700;"><%- classRoom.classCode %></p>
                 </div>
-                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
-                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a>
+                <!-- <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons"
+                  style="background-color: bisque; font-size: 1.5rem;">Visit Classroom ></a> -->
+                <a href="/classroom/<%- classRoom.classCode %>" class="btn mb-4 w-100 classroomMuttons visit-class"
+                  style="background-color: bisque;">Visit Classroom ></a>
                 <button data-toggle="modal" data-target="#<%- classRoom.classCode %>"
                   class="btn mb-4 w-100 classroomAddGameButton">
                   Create Live Game +
@@ -191,21 +208,25 @@
               </div>
               <!-- Dynamic Doodle Questions Modal -->
 
-              <%- include('../reusables/doodle-modal.ejs', {subject:  classRoom.subject, classRoom: classRoom }) %>
+              <%- include('../reusables/doodle-modal.ejs', {subject:  classRoom.subject, classRoom: classRoom }); %>
+              <% } %> <% } %>
             </div>
-            <button type="submit" class="btn w-100 my-5 add_classroom_modal_button">Continue to Questions ></button>
+            <div class="card p-5 mt-5">
+              <button data-toggle="modal" data-target="#otherTeachers" type="button"
+                class="btn mb-4 w-100 classroomAddGameButton">
+                <h1 class="card-body">
+                  <svg class="side-nav__icon">
+                    <use xlink:href="img/symbol-defs.svg#teacher"></use>
+                  </svg>
+                  <span class="text-white">Fellow Teachers of <span class="orange-text">"<%-school%>"</span></span>
+                </h1>
+              </button>
+              <%- include('../reusables/otherTeachers-modal.ejs', {otherTeachers: otherTeachers});%>
+            </div>
           </div>
-
-          </form>
         </div>
       </div>
     </div>
-    <% } %> <% } %>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
   </div>
   </div>
 </body>

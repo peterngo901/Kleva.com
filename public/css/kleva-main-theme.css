@@ -50,6 +50,36 @@
   border-radius: 0;
 }
 
+/* teacher dashboard*/
+
+.user-nav__icon-box {
+  border: none;
+  background-color: transparent;
+}
+.display-3 {
+  font-weight: 600;
+}
+.card col-8 col-md-3 m-3 shadow-sm {
+  min-height: 35rem;
+}
+.btn mb-4 w-100 {
+  background-color: #e0d9ff;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.btn mb-4 w-100 {
+  background-color: #e0d9ff;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.btn mb-4 w-100 {
+  background-color: #d9fff3;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+/* student dashboard */
+
 /* user profile */
 #picture {
 }
@@ -234,11 +264,6 @@ nav {
 
 .description {
   height: 5rem;
-  overflow: hidden;
-}
-
-.description-gamepage {
-  height: 3rem;
   overflow: hidden;
 }
 
