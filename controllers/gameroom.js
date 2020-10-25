@@ -116,11 +116,26 @@ exports.getTeacherGameroom = (req, res, next) => {
         const questionTwo = questions[0].questions[1];
         const doodleGameRoomName = `${req.session.classCode}`;
         const uniqueGameRoomID = 1;
+        var realUsers = [];
+        var uniquePenColorTracker = [];
+        // users.forEach((stud) => {
+        //   realUsers.push(stud.realName);
+        // })
+        const usersInTheRoom = getUsersInRoom(`${req.session.classCode}`);
+        usersInTheRoom.forEach((stud) => {
+          realUsers.push(stud.realName);
+          uniquePenColorTracker.push(stud.id);
+        })
+        console.log(usersInTheRoom);
+        console.log(uniquePenColorTracker);
+        console.log(realUsers);
         socket.broadcast.to(`${req.session.classCode}`).emit('begin', {
           questionOne,
           questionTwo,
           doodleGameRoomName,
           uniqueGameRoomID,
+          realUsers,
+          uniquePenColorTracker
         });
       } catch (err) {
         res.redirect('/game-staging-area');
@@ -166,6 +181,7 @@ exports.postTeacherGameroom = async (req, res, next) => {
   var gameroomQTwo = 'Doodle ' + doodleTwoPreprend + ' ' + doodleTwo;
   gameroomQs.push(gameroomQOne, gameroomQTwo);
   console.log(gameroomQs);
+  
   try {
     await QuestionBank.create({
       teacherEmail: email,

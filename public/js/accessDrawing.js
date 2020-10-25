@@ -19,6 +19,7 @@ var studentDoodlesTracker = [];
 var doodleLineDataTracker = [];
 var key;
 
+
 async function queryDoodlesFromDate(btn, event) {
   drawingQuestions = [];
   doodleQs = [];
@@ -100,29 +101,34 @@ async function queryDoodlesFromDate(btn, event) {
     }
     // Return a card depending on the length of the doodleQ's array.
     for (var u = 0; u < doodleQs.length; u++) {
+      
       var attr1 = document.createAttribute('id');
       var attr2 = document.createAttribute('onclick');
       var attr3 = document.createAttribute('value');
       var attr4 = document.createAttribute('style');
+      var attr5 = document.createAttribute('style');
       attr1.value = `doodle${u}`; //id=doodle0
       attr2.value = `openDoodleStream(this)`; //onclick=openDoodleStream(this)
       attr3.value = `${u}`; //value=doodleLineDataTracker[]
       attr4.value = `font-size: 1.5rem; padding: 2rem 1.5rem;`;
+      attr5.value = `text-transform: uppercase; font-size: 1.3rem;`;
       var node = document.createElement('BUTTON');
+      var node2 = document.createElement('H2');
       node.className = 'btn doodleDrawingView m-2';
-
+      node2.className = 'mx-2 mb-5';
       var questionNode = document.createTextNode('Q: ' + doodleQs[u]);
       var studentNameNode = document.createTextNode(
         ' By: ' + studentDoodlesTracker[u]
       );
       node.appendChild(questionNode);
-      node.appendChild(studentNameNode);
-
+      node2.appendChild(studentNameNode);
+      node2.setAttributeNode(attr5);
       node.setAttributeNode(attr1); //id=doodle0
       node.setAttributeNode(attr2); //onclick=openDoodleStream(this)
       node.setAttributeNode(attr3); //value=doodleLineDataTracker[]
       node.setAttributeNode(attr4);
       document.getElementById('doodle-holder').appendChild(node);
+      document.getElementById('doodle-holder').appendChild(node2);
     }
 
     return;
@@ -258,14 +264,15 @@ function newDrawing(data) {
   var relativeXX = data.x2 * (px / data.resX);
   var relativeY = data.y * (pey / data.resY);
   var relativeYY = data.y2 * (pey / data.resY);
-  var s0 = data.strokeColor[0];
-  var s1 = data.strokeColor[1];
-  var s2 = data.strokeColor[2];
-  var weight = data.strokeWeight;
+  // var s0 = data.strokeColor[0];
+  // var s1 = data.strokeColor[1];
+  // var s2 = data.strokeColor[2];
+  // var weight = data.strokeWeight;
   //noStroke();
-
+  var s0 = data.strokeColor;
+  var weight = data.strokeWeight;
   strokeWeight(parseInt(weight));
-  stroke(parseInt(s0), parseInt(s1), parseInt(s2));
+  stroke(s0);
   line(relativeX, relativeY, relativeXX, relativeYY);
   //ellipse(data.x, data.y, 15, 15);
 }

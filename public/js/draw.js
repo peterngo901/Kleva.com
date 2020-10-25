@@ -56,12 +56,26 @@ socket.on('anonStudents', (studentAnonNames) => {
   const studentAnons = loadAnonStudentNames(studentAnonNames);
   document.getElementById('studentAnonOutput').innerHTML = studentAnons;
 });
-
+var uniquePenColors = ['#FF0000', '#D500FF', '#FFFF00', '#1B1B0A', '#5EFFBA'];
 var timeleft = 10;
 var roomName;
 var teacherDoodleQuestion;
 var gameRoomID;
+var realStudentNames;
+var uniqueStroke;
+var assignedPenColor = '#000000';
 socket.on('begin', async (data) => {
+  //console.log(socket.id);
+  var penTrackingColor = data.uniquePenColorTracker;
+  uniqueStroke = penTrackingColor.indexOf(socket.id);
+  // const indexOfSocketID = penTrackingColor.findIndex(
+  //   (studentSocketID) => studentSocketID.id === socket.id
+  // );
+  if(uniqueStroke != -1) {
+    assignedPenColor = uniquePenColors[penTrackingColor.indexOf(socket.id)]
+  }
+  
+  realStudentNames = data.realUsers
   gameRoomID = data.uniqueGameRoomID;
   roomName = data.doodleGameRoomName;
   var timer = await setInterval(function () {
@@ -70,6 +84,7 @@ socket.on('begin', async (data) => {
       clear();
       setup();
       drawingStream = [];
+      
       document.getElementById('gameCountdownTimerText').innerHTML =
         data.questionOne;
       document.getElementById('gameCountdownTimer').value = 0;
@@ -78,18 +93,21 @@ socket.on('begin', async (data) => {
         if (questionOneTimeLeft < 0) {
           teacherDoodleQuestion = data.questionOne;
           // Stream to realtime database.
+          
           saveDoodle();
           drawingStream = [];
           document.getElementById('gameCountdownTimer').value = 0;
           clear();
           setup();
           clearInterval(qOneTimer);
+          
           document.getElementById('gameCountdownTimerText').innerHTML =
             data.questionTwo;
           var questionTwoTimeLeft = 30;
           var qTwoTimer = setInterval(function () {
             if (questionTwoTimeLeft < 0) {
               teacherDoodleQuestion = data.questionTwo;
+              
               saveDoodle();
               drawingStream = [];
               document.getElementById('gameCountdownTimer').value = 100;
@@ -122,6 +140,7 @@ socket.on('begin', async (data) => {
 var cnv;
 
 function setup() {
+  
   var px = $('#canvas-holder').parent().width();
 
   cnv = createCanvas(px, windowHeight * 0.55);
@@ -137,22 +156,27 @@ function setup() {
 }
 
 function newDrawing(data) {
+  startPath;
   var px = $('#canvas-holder').parent().width();
   var pey = windowHeight * 0.55;
   var relativeX = data.x * (px / data.resX);
   var relativeXX = data.x2 * (px / data.resX);
   var relativeY = data.y * (pey / data.resY);
   var relativeYY = data.y2 * (pey / data.resY);
-  var s0 = data.strokeColor[0];
-  var s1 = data.strokeColor[1];
-  var s2 = data.strokeColor[2];
+  //var s0 = data.strokeColor[0];
+  //var s1 = data.strokeColor[1];
+  //var s2 = data.strokeColor[2];
+  var s0 = data.strokeColor;
   var weight = data.strokeWeight;
   //noStroke();
-
+  
   strokeWeight(parseInt(weight));
-  stroke(parseInt(s0), parseInt(s1), parseInt(s2));
+  //stroke(parseInt(s0), parseInt(s1), parseInt(s2));
+  stroke(s0);
   line(relativeX, relativeY, relativeXX, relativeYY);
   //ellipse(data.x, data.y, 15, 15);
+  currentPath.push(data);
+  endPath;
 }
 
 function windowResized() {
@@ -182,23 +206,26 @@ function windowResized() {
 var penTracker = true;
 
 function chooseEraser() {
-  strokeWeight(10);
-  stroke(237, 250, 249);
+  //strokeWeight(10);
   penTracker = false;
 }
 
 function choosePen() {
   noErase();
-  strokeWeight(1);
-  stroke(202, 110, 255);
+  //strokeWeight(1);
+  //stroke(assignedPenColor);
   penTracker = true;
 }
 
+var strokeColor;
+var strokeWeightNumber;
+
 function draw() {
   if (penTracker) {
-    const strokeColor = [202, 110, 255];
-    const strokeWeight = 1;
-
+    strokeColor = assignedPenColor;
+    stroke(strokeColor);
+    strokeWeightNumber = 1;
+    strokeWeight(strokeWeightNumber);
     if (mouseIsPressed) {
       const px = $('#canvas-holder').parent().width();
       const pey = windowHeight * 0.55;
@@ -210,7 +237,7 @@ function draw() {
         y2: pmouseY,
         resX: px,
         resY: pey,
-        strokeWeight: strokeWeight,
+        strokeWeight: strokeWeightNumber,
         strokeColor: strokeColor,
       };
       // Stream the data to the realtime database in chunks
@@ -220,9 +247,11 @@ function draw() {
       line(mouseX, mouseY, pmouseX, pmouseY);
       socket.emit('mouse', data);
     }
-  } else if (!penTracker) {
-    const strokeColor = [237, 250, 249];
-    const strokeWeight = 10;
+  } else if (penTracker === false) {
+    strokeColor = '#EDFAF9';
+    stroke(strokeColor);
+    strokeWeightNumber = 10;
+    strokeWeight(strokeWeightNumber);
     if (mouseIsPressed) {
       const px = $('#canvas-holder').parent().width();
       const pey = windowHeight * 0.55;
@@ -234,7 +263,7 @@ function draw() {
         y2: pmouseY,
         resX: px,
         resY: pey,
-        strokeWeight: strokeWeight,
+        strokeWeight: strokeWeightNumber,
         strokeColor: strokeColor,
       };
       // Stream the data to the realtime database in chunks
@@ -246,7 +275,7 @@ function draw() {
     }
   } else {
     strokeWeight(1);
-    stroke(202, 110, 255);
+    stroke(assignedPenColor);
   }
 }
 
@@ -279,7 +308,7 @@ function saveDoodle() {
 
   // Add the real student names to the doodling data.
   var doodleData = {
-    studentNames: 'Bobby, Joe, Craig',
+    studentNames: realStudentNames,
     doodle: drawingStream,
     question: teacherDoodleQuestion,
     gameRoomID: gameRoomID,

@@ -156,19 +156,30 @@
 
 
                             <!-- Sketch Canvas Area -->
-                            <div class="col-12 col-md-8 mt-3">
-                                <div class="mb-2" id="slider"></div>
-                                <div id="canvas-holder">
+                        
 
+                        
+                            <div class="row container-md mx-auto mb-3">
+                                <div class="col-12 col-md-8 mt-3">
+                                    
+                                    
+                                        <div class="mb-2" id="slider"></div>
+                                        <div id="canvas-holder">
+        
+                                        </div>
+                                    
+                                </div>
+                                <div class="col-12 col-md-4 text-center mt-3" style="overflow-y:scroll; ">
+                                    <ul id="doodle-holder" style="width: 100%; height: 250px;  font-size: 5rem; ">
+                                       
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 text-center">
-
-
-                                    <ul id="doodle-holder" class="inline" style="font-size: 5rem;"></ul>
-                                </div>
-                            </div>
+                            
+                            
+                            
+                        
+                    
                             <% if(classrooms.length > 0) { %>
                             <% for (let classroom of classrooms) { %>
                             <div class="col-12 col-lg-6 mt-5">
