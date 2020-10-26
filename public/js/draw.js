@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io({transports: ['websocket']});
 var firebaseConfig = {
   apiKey: 'AIzaSyACUQI6Ub4BTlHavE9cbEhOyGTad3H01nY',
   authDomain: 'kleva-7918e.firebaseapp.com',
@@ -151,7 +151,7 @@ function setup() {
 
   background(237, 250, 249);
   cnv.parent('canvas-holder');
-  io.connect('http://localhost:3000/game-room');
+  //io.connect('http://localhost:3000/game-room');
   socket.on('mousedata', newDrawing);
 }
 
