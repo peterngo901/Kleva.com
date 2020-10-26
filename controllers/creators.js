@@ -48,6 +48,7 @@ exports.getCreatorDashboard = (req, res, next) => {
   }
 };
 
+//Gets the games uploaded to the database
 exports.getGameUpload = (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
