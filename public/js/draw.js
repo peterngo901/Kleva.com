@@ -21,16 +21,16 @@ const $submitAnswer = document.querySelector('#submitAnswer');
 
 // Track students coming and going.
 function loadRealStudentNames(allStudents) {
-  var studentNames = '';
+  var realStudentNames = '';
   for (i = 0; i < allStudents.students.length; i++) {
-    studentNames +=
+    realStudentNames +=
       '<li class="side-nav__item"><a href="/teacher-students" class="side-nav__link"><svg class="side-nav__icon"><use xlink:href="../img/symbol-defs.svg#icon-user-check"></use></svg><span class="sideBarCustom">' +
       allStudents.students[i].realName +
       '</span></a></li>';
   }
 
   //console.log(allStudents.students[0]);
-  return studentNames;
+  return realStudentNames;
 }
 
 // Track students coming and going.
