@@ -15,6 +15,9 @@ Our categories for our views, controllers and models were based around the diffe
 
 ## Firebase Authentication
 
+## Google Cloud
+We used google cloud for our file system which is better for storing images than an SQL database
+
 
 ## Heroku
 Our server is deployed on heroku which is linked to our git repo.
