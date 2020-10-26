@@ -54,6 +54,7 @@ exports.getTeacherDashboard = async (req, res, next) => {
   }
 };
 
+//Replaced games in a classroom with games list from another school teacher
 exports.postReplaceGames = (req, res, next) => {
   const targetClass = req.body.classCode;
   const fromClass = req.body.thisClass;
@@ -99,6 +100,7 @@ exports.postAddClassroom = (req, res, next) => {
     });
 };
 
+//Returns the gametime statistics for the Statistics view
 exports.getTeacherStudents = async (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
@@ -205,6 +207,7 @@ exports.getTeacherStudents = async (req, res, next) => {
   }
 };
 
+//Returns the classroom with gameslist and schedule data
 exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
@@ -255,6 +258,7 @@ exports.getClassroom = (req, res, next) => {
   }
 };
 
+//Deletes a classroom
 exports.postDeleteClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.body.classCode;
@@ -284,6 +288,7 @@ exports.postCreateQuestions = (req, res, next) => {
   });
 };
 
+//Returns a game storepage for scheduling upcoming games lists
 exports.getTeacherGameStorepage = (req, res, next) => {
   const page = req.query.page;
   if (req.session.user) {
@@ -347,6 +352,7 @@ exports.getTeacherGameStorepageSchedule = (req, res, next) => {
   }
 };
 
+//Adds a game to a teachers classroom
 exports.postAddGame = (req, res, next) => {
   const gameID = req.body.gameID;
   const classCode = req.body.classCode;
@@ -378,6 +384,7 @@ exports.postAddGameSchedule = (req, res, next) => {
   res.redirect('/');
 };
 
+//Posts a game schedule for a classroom
 exports.postGameScheduleUpload = (req, res, next) => {
   const code = req.session.classRoom.classCode;
   if (req.session.scheduleGames.length > 0) {
@@ -400,6 +407,7 @@ exports.postGameScheduleUpload = (req, res, next) => {
   }
 };
 
+//Returns the classroom information of teacher selected from the school
 exports.getOtherTeacherInfo = (req, res, next) => {
   if (req.session.user) {
     const otherTeacher = req.params.otherTeacherID;
@@ -434,12 +442,12 @@ exports.getOtherTeacherInfo = (req, res, next) => {
   }
 }
 
+//Posts games array helper method
 exports.postGamesWithArray = (req, res, next) => {
-  console.log("got here")
-  console.log(req.body);
   res.redirect('/');
 }
 
+//Returns a users profile
 exports.getUserProfile = (req, res, next) => {
   res.render('/user-profile', {
     //name of page
@@ -448,6 +456,7 @@ exports.getUserProfile = (req, res, next) => {
   });
 };
 
+//Gets a teachers schedule selection page
 exports.getTeacherSchedule = (req, res, next) => {
   if (req.session.scheduleGames) {
     const scheduleGames = req.session.scheduleGames;
