@@ -202,6 +202,37 @@ body {
   border: none;
 }
 
+.game-upload__upload-button {
+  font-size: 4rem; 
+  border-radius: 2rem;
+}
+
+.student-dashboard__game-card {
+  outline: none;
+  border: none; 
+  background-color: transparent;
+}
+
+.student-dashboard__game-image {
+  width: 100%; 
+  height: 300px; 
+  object-fit: cover; 
+  outline: none; 
+  border-radius: 1.5rem; 
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.student-dashboard__game-description {
+  height: 5rem; 
+  overflow: hidden; 
+  font-size: 1.4rem;
+}
+
+.student-dashboard__game-category {
+  background-color: #fcddffff; 
+  font-size: 1.4rem;
+}
+
 /*.basic > * {
     width: 100px;
     height: 100px;
