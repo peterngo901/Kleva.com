@@ -5,7 +5,7 @@ An educational games platform for creators, teachers and students.
 Our website was built using **node.js** and **express** and imlpemented with a MVC architecture and serverside rendering.
 
 Our categories for our views, controllers and models were based around the different users/stakeholders we had.
-|    
+|    \
 |- Teachers
 |- Students 
 |- Creators 
