@@ -145,6 +145,14 @@
   background-color: rgb(255, 255, 255) !important;
 }
 
+.category:active {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.category:focus {
+  background-color: rgb(255, 255, 255) !important;
+}
+
 nav {
   background-color: #fff3fc;
   font-weight: 600;

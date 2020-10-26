@@ -17,6 +17,7 @@ const gamesPerPage = 3;
 
 exports.getTeacherDashboard = async (req, res, next) => {
   if (req.session.user) {
+    //res.set('Cache-control', 'public, max-age=86400');
     req.session.classRoom = 'none';
     const email = req.session.user;
     const school = req.session.school;
@@ -101,6 +102,7 @@ exports.postAddClassroom = (req, res, next) => {
 
 exports.getTeacherStudents = async (req, res, next) => {
   if (req.session.user) {
+    //res.set('Cache-control', 'public, max-age=86400');
     const email = req.session.user;
     try {
       const classrooms = await Classroom.findAll({

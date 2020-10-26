@@ -771,6 +771,15 @@ body {
   display: inline-block;
 }
 
+.dotHistory {
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0rem .1rem;
+}
+
 .category {
   border: none;
   background-color: #554163;
@@ -779,6 +788,14 @@ body {
 }
 
 .category:hover {
+  background-color: #c9d5ff !important;
+}
+
+.category:focus {
+  background-color: #c9d5ff !important;
+}
+
+.category:active {
   background-color: #c9d5ff !important;
 }
 
@@ -969,6 +986,14 @@ body {
   background-color: #dc85ff54 !important;
 }
 
+.doodleDateView:active {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDateView:focus {
+  background-color: #dc85ff54 !important;
+}
+
 .doodleDrawingView {
   font-size: 1.6rem;
   font-family: 'Fredoka One', cursive;
@@ -983,6 +1008,15 @@ body {
 .doodleDrawingView:hover {
   background-color: #dc85ff54 !important;
 }
+
+.doodleDrawingView:active {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDrawingView:focus {
+  background-color: #dc85ff54 !important;
+}
+
 .visit-class {
   background-color: bisque;
   font-size: 1.5rem !important;
