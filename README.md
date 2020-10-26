@@ -11,7 +11,7 @@ Our categories for our views, controllers and models were based around the diffe
 |- Creators\
 |- Authentication\
 |- Frontpage\
-|- Gameroom\
+|- Gameroom
 
 
 
