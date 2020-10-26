@@ -13,9 +13,22 @@ Our categories for our views, controllers and models were based around the diffe
 |- Frontpage\
 |- Gameroom
 
+## Firebase Authentication
+
+
+## Heroku
+Our server is deployed on heroku which is linked to our git repo.
 
 
 ## Database
 We built our database with postgres and interacted with it using **Sequelise** an npm module to help abstract away the SQL queries.
 
+Our Database is hosted at...
+
 -> Insert Database Diagram
+
+## NPM Modules
+* Sequalise
+* Express
+* BodyParser
+* Socket.io
