@@ -8,7 +8,7 @@ Our categories for our views, controllers and models were based around the diffe
 |\
 |- Teachers\
 |- Students\
-|- Creators\ 
+|- Creators\
 |- Authentication\
 |- Frontpage\
 |- Gameroom\
