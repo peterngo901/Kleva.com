@@ -1,4 +1,4 @@
-const socket = io({transports: ['websocket']});
+const socket = io('wss://lucid-burner-290323.ts.r.appspot.com/', {transports: ['websocket']});
 var firebaseConfig = {
   apiKey: 'AIzaSyACUQI6Ub4BTlHavE9cbEhOyGTad3H01nY',
   authDomain: 'kleva-7918e.firebaseapp.com',
