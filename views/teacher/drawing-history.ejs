@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/creator-dashboard.css">
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -29,9 +30,7 @@
         <!-- Navigation Bar -->
         <header class="header">
             <!-- Logo -->
-            <a href="/">
-                <img src="img/logo.png" alt="Kleva" class="logo">
-            </a>
+            <img src="img/logo.png" alt="Kleva" class="logo">
             <!-- Search Bar -->
             <form action="/" class="search" method="POST">
                 <input type="text" class="search__input" placeholder="Search Games">
@@ -98,12 +97,12 @@
         </header>
 
 
-        <div class="content">
+        <div class="content mr-5">
             <!-- Dashboard Side Bar -->
             <nav class="side-bar">
                 <!-- Dashboard Pages -->
                 <ul class="side-nav">
-                    
+                    <!-- Active Styling with Plain JS Logic -->
                     <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
                         <a href="/teacher-dashboard" class="side-nav__link">
                             <!-- Sidebar Icon -->
@@ -113,9 +112,8 @@
                             <span class="sideBarCustom">Classroom</span>
                         </a>
                     </li>
-                    
                     <li class="<%= path === '/teacher-students' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                        <a href="/" class="side-nav__link">
+                        <a href="/teacher-students" class="side-nav__link">
                             <svg class="side-nav__icon">
                                 <use xlink:href="img/symbol-defs.svg#icon-user-check"></use>
                             </svg>
@@ -131,7 +129,7 @@
                         </a>
                     </li>
                     <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %> ">
-                        <a href="/" class="side-nav__link">
+                        <a href="/help" class="side-nav__link">
                             <svg class="side-nav__icon">
                                 <use xlink:href="img/symbol-defs.svg#icon-lifebuoy"></use>
                             </svg>
@@ -147,115 +145,158 @@
 
             <div class="container-fluid pr-0 pl-0 py-5">
                 <div class="px-5 py-5">
-                    <div class="ml-5 mr-5 container-lg mx-auto">
-                        <div class="row justify-content-center">
+                    <div class="ml-5 mr-5 container-md mx-auto">
+
+                        <div class="row justify-content-center mx-auto">
+
+
                             <div class="col-12">
-                                <h1 class="dashboardHeaders">Statistics Dashboard</h1>
+                                <h1 class="dashboardHeaders">Doodle History</h1>
                             </div>
 
-                            <!-- Statistics (Avg.Game Activity - Number of Students) -->
 
+                            <!-- Sketch Canvas Area -->
+                        
+
+                        
+                            <div class="row container-md mx-auto mb-3">
+                                <div class="col-12 col-md-8 mt-3">
+                                    
+                                    
+                                        <div class="mb-2" id="slider"></div>
+                                        <div id="canvas-holder">
+        
+                                        </div>
+                                    
+                                </div>
+                                <div class="col-12 col-md-4 text-center mt-3" style="overflow-y:scroll; ">
+                                    <ul id="doodle-holder" style="width: 100%; height: 250px;  font-size: 5rem; ">
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        
+                    
                             <% if(classrooms.length > 0) { %>
-                            <% for (let classRoom of classrooms) { %>
-                            <div class="col-12 col-lg-12 mt-5">
+                            <% for (let classroom of classrooms) { %>
+                            <div class="col-12 col-lg-6 mt-5">
                                 <div class="card shadow mb-4" style="border-radius: 3rem;">
                                     <!-- Card Header - Dropdown -->
                                     <div class=" card-header px-5 py-5 d-flex flex-row align-items-center
-                                    justify-content-between"
+                                        justify-content-between"
                                         style="border-radius: 3rem 3rem 0 0; background-color: transparent;">
                                         <h6 class="teacherClassroomCardHeader"
                                             style="font-size: 3rem; color:darkslateblue">
-                                            <%- classRoom.title %>
+                                            <%- classroom.dataValues.title %>
+
                                         </h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Generate Report</div>
-                                                <a class="dropdown-item" href="#">Mail Head of Department</a>
 
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Open Full Report</a>
-                                            </div>
-                                        </div>
                                     </div>
-
-                                    <!-- Card Body -->
                                     <div class="card-body">
                                         <table class="table table-borderless"
                                             style="overflow: hidden; table-layout:fixed;">
+                                            <!-- Card Body -->
                                             <thead class="teacherClassroomCardHeader" style="font-size:1.6rem;">
                                                 <tr>
-                                                    <th scope="col" style="width: 40%">Game Name</th>
-                                                    <th scope="col" style="white-space: nowrap" data-toggle="tooltip"
-                                                        data-placement="top" title="Tracks how long students have played the game.
-                                                        If they tab away, go idle the tracker stops.">
-                                                        Student Engagement
-                                                    </th>
-                                                    <th scope="col" style="width: 15%">Visits</th>
-                                                    <th scope="col" style="width: 15%">Category</th>
+                                                    <th scope="col" style="width: 40%">Doodle Game Date</th>
+
 
                                                 </tr>
                                             </thead>
+                                            
+                                            <% for (var j=0; j <= classroomDoodles.length; j += 2) { %>
+
+                                            <% if (JSON.stringify(classroomDoodles[j]) == JSON.stringify(classroom.dataValues.classCode)) { %>
+
+
+
+                                            <% if (Object.keys(classroomDoodles[j+1]).length > 1) { %>
+
+
+
+                                            <% for(var e=0; e < Object.keys(classroomDoodles[j+1]).length; e++) { %>
+
                                             <tbody>
 
-                                                <% if(games.length > 0) { %>
-                                                <% for (let game of games) { %>
+
+
                                                 <tr>
 
-                                                    <% if(game.dataValues.classroomClassCode === classRoom.classCode) { %>
-
-
-
                                                     <th scope="row" class="d-flex align-self-center">
-                                                        <img class="dot mr-3"
-                                                            src="<%- game.dataValues.game.gameImageURL %>" />
-                                                        <span
-                                                            class="d-flex align-self-center teacherClassroomCardHeader"
-                                                            style="font-size: 1.8rem; letter-spacing: .03rem;"><%- game.dataValues.game.title %></span>
+
+                                                        <button class="btn my-3 p-5 doodleDateView"
+                                                            onclick="queryDoodlesFromDate(this, event)"
+                                                            value="<%- classroomDoodles[j]+'/'+Object.keys(classroomDoodles[j+1])[e] %>">
+                                                            <h1>
+                                                                <%- Object.keys(classroomDoodles[j+1])[e] %></h1>
+                                                        </button>
+
                                                     </th>
-                                                    <td class="pt-4 teacherClassroomCardYear"
-                                                        style="font-size: 1.7rem; letter-spacing: .03rem; ">
-                                                        <%- Math.ceil(game.dataValues.AverageStudentActivity/60) %>
-                                                        Minutes</td>
-                                                    <td class="pt-4 teacherClassroomCardYear"
-                                                        style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
-                                                        <%- game.dataValues.studentVisits %></td>
-                                                    <td class="pt-4 teacherClassroomCardYear"
-                                                        style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
-                                                        <%- game.dataValues.game.category %></td>
+                                                    <% } %>
+                                                    <% } else { %>
+                                                    <th scope="row" class="d-flex align-self-center">
 
+                                                        <button class="btn my-3 p-5 doodleDateView"
+                                                            onclick="queryDoodlesFromDate(this, event)"
+                                                            value="<%- classroomDoodles[j]+'/'+Object.keys(classroomDoodles[j+1]) %>">
+                                                            <h1><%- Object.keys(classroomDoodles[j+1]) %>
+                                                            </h1>
+                                                        </button>
+
+                                                    </th>
                                                 </tr>
-                                                <% } %>
-
-                                                <% } %>
-                                                <% } %>
-
                                             </tbody>
+
+                                            <% } %>
                                         </table>
-                                        <!-- <div class="chart-area">
-                                                <canvas id="myAreaChart"></canvas>
-                                            </div> -->
                                     </div>
 
+                                    <% } %>
+                                    <% } %>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
+                            <% } %>
 
                             <% } %>
-                            <% }%>
-
-
                         </div>
-                    </div>
-                </div>
 
+
+                    </div>
+
+                </div>
             </div>
         </div>
+
+    </div>
+    </div>
     </div>
 </body>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script src="/js/p5.js"></script>
+<script src="/js/accessDrawing.js"></script>
 
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+</script>
 
 </html>

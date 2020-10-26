@@ -28,7 +28,7 @@
     <header class="header">
       <!-- Logo -->
       <a href="/">
-      <img src="../img/logo.png" alt="Kleva" class="logo" />
+        <img src="../img/logo.png" alt="Kleva" class="logo" />
       </a>
       <!-- Search Bar -->
       <form action="/" class="search" method="POST">
@@ -106,7 +106,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-click"></use>
               </svg>
-              <span>Add Games</span>
+              <span class="sideBarCustom">Add Games</span>
             </a>
           </li>
           <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item'; %>">
@@ -115,7 +115,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Classroom</span>
+              <span class="sideBarCustom">Classroom</span>
             </a>
           </li>
           <li class="side-nav__item">
@@ -124,7 +124,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#calendar"></use>
               </svg>
-              <span>Schedule Calendar</span>
+              <span class="sideBarCustom">Schedule Calendar</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
@@ -132,15 +132,23 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Students</span>
+              <span class="sideBarCustom">Statistics</span>
+            </a>
+          </li>
+          <li class="<%= path === '/drawing-history' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+            <a href="/drawing-history" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-pencil2"></use>
+              </svg>
+              <span class="sideBarCustom">Doodles</span>
             </a>
           </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/" class="side-nav__link">
+            <a href="/help" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
               </svg>
-              <span>Help</span>
+              <span class="sideBarCustom">Help</span>
             </a>
           </li>
         </ul>
@@ -176,46 +184,49 @@
 
               <!-- Load all the installed games -->
               <div class="card p-5 mt-5">
-              <h1>Installed Games</h1>
-              <div class="row mt-5">
+                <h1>Installed Games</h1>
+                <div class="row mt-5">
 
-                <!-- Game Loader -->
-                <% if (games.length > 0) { %> <% for (let game of games) { %>
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card h-100">
-                    <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
-                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.game.gameImageURL %>"
-                        alt="" /></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#"><%- game.game.title %></a>
-                      </h4>
-                      <p class="card-text"><%- game.game.description %></p>
+                  <!-- Game Loader -->
+                  <% if (games.length > 0) { %> <% for (let game of games) { %>
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
+                          style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.game.gameImageURL %>"
+                          alt="" /></a>
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <a href="#"><%- game.game.title %></a>
+                        </h4>
+                        <p class="card-text"><%- game.game.description %></p>
 
-                      <div id="result"></div>
-                    </div>
-                    <div class="card-footer">
-                      <small><%- game.game.category %></small>
+                        <div id="result"></div>
+                      </div>
+                      <div class="card-footer">
+                        <small><%- game.game.category %></small>
+                      </div>
                     </div>
                   </div>
+                  <% } %> <% } %>
                 </div>
-                <% } %> <% } %>
-              </div>
               </div>
               <!-- Display Scheduled Items -->
               <div class="card p-5 mt-5">
-              <h1>Scheduled Games</h1>
-              <% if (schedules != undefined) { %> <% for (let schedule of schedules) { %>
+                <h1>Scheduled Games</h1>
+                <% if (schedules != undefined) { %> <% for (let schedule of schedules) { %>
                 <div class="accordion mt-2 mb-2" id="accordionExample<%-schedule.id%>">
                   <div class="card">
                     <div class="card-header" id="headingOne">
                       <h2 class="mb-0">
-                        <button class="btn btn-link text-decoration-none" type="button" data-toggle="collapse" data-target="#collapse<%-schedule.id%>" aria-expanded="true" aria-controls="collapse<%-schedule.id%>" style="outline: none !important;box-shadow: none;">
+                        <button class="btn btn-link text-decoration-none" type="button" data-toggle="collapse"
+                          data-target="#collapse<%-schedule.id%>" aria-expanded="true"
+                          aria-controls="collapse<%-schedule.id%>" style="outline: none !important;box-shadow: none;">
                           Games Scheduled for: <%-schedule.date%>
                         </button>
                       </h2>
                     </div>
-                    <div id="collapse<%-schedule.id%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample<%-schedule.id%>">
+                    <div id="collapse<%-schedule.id%>" class="collapse" aria-labelledby="headingOne"
+                      data-parent="#accordionExample<%-schedule.id%>">
                       <div class="card-body">
                         <% //check schedule.gameList and get all games that appear in it
                         for (game of schedule.gameList) {
@@ -223,14 +234,14 @@
                           for (game of gamesInSchedule) {
                             const gamenumb = parseInt(game.gameID);
                             if (id == gamenumb) { %>
-                            <div class="p-2 mb-2 mt-2 bg-light border border-light rounded">
-                              <img class="dot mr-3" style="float: left;" src="<%= game.gameImageURL%>">
-                              <div>
-                                <h3><%= game.title%></h3>
-                                <p><%= game.description%></p>
-                              </div>
-                            </div>
-                            <% }
+                        <div class="p-2 mb-2 mt-2 bg-light border border-light rounded">
+                          <img class="dot mr-3" style="float: left;" src="<%= game.gameImageURL%>">
+                          <div>
+                            <h3><%= game.title%></h3>
+                            <p><%= game.description%></p>
+                          </div>
+                        </div>
+                        <% }
                           }
                         }
 
@@ -238,10 +249,10 @@
                       </div>
                     </div>
                   </div>
+                </div>
+                <% } %> <% } %>
               </div>
-              <% } %> <% } %>
-              </div>
-              </div>
+            </div>
 
             <!-- Delete the Classroom -->
             <div class="row d-flex justify-content-center mt-4">
@@ -282,7 +293,7 @@
     </div>
 </body>
 <script>
-  $( document ).ready(){$('.collapse').collapse()}
+  //$(document).ready(){ $('.collapse').collapse() }
 </script>
 
 </html>

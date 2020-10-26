@@ -105,23 +105,23 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Upload</span>
+              <span class="sideBarCustom">Upload</span>
             </a>
           </li>
           <li class="<%= path === '/under-review' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/" class="side-nav__link">
+            <a href="/under-review" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Under Review</span>
+              <span class="sideBarCustom">Under Review</span>
             </a>
           </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/" class="side-nav__link">
+            <a href="/help" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
               </svg>
-              <span>Help</span>
+              <span class="sideBarCustom">Help</span>
             </a>
           </li>
         </ul>
@@ -244,7 +244,7 @@
                           <img src='https://storage.googleapis.com/kleva_assets/theArts.png'
                             class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center game-upload-cat__titles">
+                      <div class="card-footer text-center game-upload-cat__title">
                         <h3>Arts</h3>
                       </div>
                     </div>
@@ -257,7 +257,7 @@
                           <img src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png'
                             class='img-fluid' /></button>
                       </div>
-                      <div class="card-footer text-center game-upload-cat__titles">
+                      <div class="card-footer text-center game-upload-cat__title">
                         <h3>Humanities</h3>
                       </div>
                     </div>
@@ -272,7 +272,7 @@
                   <div class="col-12 mb-4">
                     <h1>Sub-Categories</h1>
                   </div>
-                  <div class="form-group col-12 mb-4 pl-5" id="subcat">
+                  <div class="form-group col-12 mb-4 pl-5 creatorUploadSubCategories" id="subcat">
 
 
                   </div>
@@ -301,7 +301,7 @@
   $("button").click(function selectSubStrands() {
     var fired_button = $(this).val();
     if (fired_button === 'maths') {
-      return document.getElementById('subcat').innerHTML = '<h1>Maths</h1> \
+      return document.getElementById('subcat').innerHTML = '<h1 class="mb-3">Maths</h1> \
       <input type=\"hidden\" name=\"category\" id=\"category\" value=\"maths\">\
       <div class=\"checkbox-inline\">\
         <input class=\"form-check-input\" type=\"checkbox\" name=\"subCategories\" id=\"inlineCheckbox1\" value=\"Number and place value\">\

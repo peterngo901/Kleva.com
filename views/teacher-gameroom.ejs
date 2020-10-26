@@ -79,7 +79,7 @@
         </div>
         <div class="user-nav__icon-box">
           <form action="/sign-out" method="POST">
-            <button class="user-signout" type="submit">
+            <button class="user-signout" type="submit" style="border: none; background-color: inherit">
               <svg class="user-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-exit"></use>
               </svg>
@@ -99,21 +99,21 @@
         <!-- Dashboard Pages -->
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
-          <li class="<%= path === '/game-room' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/teacher-dashboard" class="side-nav__link">
+          <li class="side-nav__item--active">
+            <a href="/teacher/game-room" class="side-nav__link">
               <!-- Sidebar Icon -->
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Gameroom</span>
+              <span class="sideBarCustom">Gameroom</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/teacher-students" class="side-nav__link">
+            <a href="#" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Teacher</span>
+              <span class="sideBarCustom">Teacher</span>
             </a>
           </li>
 
@@ -130,6 +130,14 @@
           <div class="ml-5 mr-5 container-md mx-auto ">
             <div class="create_your_classroom">
               <div class="container-fluid">
+                <div class="row mt-5 justify-content-center">
+                  <div class="col-10 mt-5 text-center">
+                    <h1>Share this code with your students:</h1>
+                    <h1 class="badge badge-warning mt-3" style="font-size: 7rem">
+                      <%= classCode %>
+                    </h1>
+                  </div>
+                </div>
                 <div class="row justify-content-between">
                   <!-- Begin Game Button -->
                   <div class="col-3 text-center">
@@ -159,6 +167,9 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+  integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+  crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/draw.js"></script>
 <script src="/js/p5.js"></script>

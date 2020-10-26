@@ -771,6 +771,15 @@ body {
   display: inline-block;
 }
 
+.dotHistory {
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0rem .1rem;
+}
+
 .category {
   border: none;
   background-color: #554163;
@@ -782,11 +791,20 @@ body {
   background-color: #c9d5ff !important;
 }
 
+.category:focus {
+  background-color: #c9d5ff !important;
+}
+
+.category:active {
+  background-color: #c9d5ff !important;
+}
+
 .classroomMuttons {
   background-color: #554163;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
   font-size: 1.5rem;
+  font-family: 'Quicksand', cursive;
   font-weight: 600 !important;
 }
 
@@ -795,8 +813,9 @@ body {
 }
 
 .classroomAddClassroomButton {
+  font-family: 'Quicksand', cursive;
   background-color: #ff8abb !important;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
   font-size: 1.5rem !important;
   font-weight: 600 !important;
@@ -807,8 +826,9 @@ body {
 }
 
 .classroomAddGameButton {
-  background-color: #f5adff !important;
-  border-radius: 1rem;
+  font-family: 'Quicksand', cursive;
+  background-color: #d2fffb !important;
+  border-radius: 1.5rem;
   box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
   font-size: 1.5rem !important;
   font-weight: 600 !important;
@@ -861,7 +881,143 @@ body {
   background-color: #c9d5ff;
 }
 
-.visit-class{
+.teacherDashboardCards {
+  outline: none !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+}
+
+.dashboardHeaders {
+  font-size: 6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 700;
+}
+
+.teacherClassroomCardHeader {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 700;
+}
+
+.teacherClassroomCardYear {
+  font-size: 1.2rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 400;
+}
+
+.sideBarCustom {
+  font-size: 1.35rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 700;
+}
+
+.creatorUploadButton {
+  outline: none !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  background-color: #5f82ff;
+  font-size: 3.5rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 500;
+  padding: 2rem 3rem;
+  color: white;
+}
+
+.creatorUploadButton:hover {
+  background-color: #4f75ff;
+}
+
+.creatorUploadSubCategories {
+  font-size: 2.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 700;
+  margin-left: 5rem;
+}
+
+.doodleQuestionBoxText {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 700;
+  padding-left: 1.5rem;
+  background-color: white !important;
+  border-radius: 2rem 0 0 2rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  height: 7rem !important;
+}
+
+.doodleQuestionBoxPrepend {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 500;
+  padding-left: 1.5rem;
+  background-color: white !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  height: 7rem !important;
+  margin-bottom: 3rem;
+}
+
+.doodleQuestionBoxSelect {
+  font-size: 2rem;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 500;
+  padding-left: 1.5rem;
+  background-color: #bcfff454 !important;
+  border-radius: 0 2rem 2rem 0 !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  padding-left: 2rem !important;
+  height: 7rem !important;
+}
+
+.doodleDateView {
+  font-size: 2rem;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 500;
+  background-color: #bdbcff54 !important;
+  border-radius: 0 2rem 2rem 0 !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  padding-left: 2rem !important;
+}
+
+.doodleDateView:hover {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDateView:active {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDateView:focus {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDrawingView {
+  font-size: 1.6rem;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 500;
+  background-color: #bcfdff8c !important;
+  border-radius: 0 2rem 2rem 0 !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  padding-left: 2rem !important;
+}
+
+.doodleDrawingView:hover {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDrawingView:active {
+  background-color: #dc85ff54 !important;
+}
+
+.doodleDrawingView:focus {
+  background-color: #dc85ff54 !important;
+}
+
+.visit-class {
   background-color: bisque;
   font-size: 1.5rem !important;
 }
@@ -878,10 +1034,20 @@ body {
 .teacher-icon {
 }
 
-.orange-text{
+.orange-text {
   color: #5e77ff;
+}
+
+.non-orange-text {
+  color:black;
 }
 
 .bg-otherTeacher {
   background-color: plum;
+}
+
+.subject-font {
+  font-size: 1.5rem !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
+  text-align: center;
 }

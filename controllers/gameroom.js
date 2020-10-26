@@ -1,9 +1,10 @@
+const QuestionBank = require('../models/questionBank');
 const Chance = require('chance');
 
 const users = [];
 
-exports.getGameroom = (req, res, next) => {
-  if (req.session.user && req.session.type == 'student') {
+exports.getGameroom = async (req, res, next) => {
+  if (req.session.user && req.session.sessionType === 'student') {
     let socket_id = [];
     const io = req.app.get('socketio');
 
@@ -26,7 +27,11 @@ exports.getGameroom = (req, res, next) => {
       // Student will join the waiting room with unique name = classCode.
       socket.join(`${req.session.classCode}`);
       // Render Students in the List.
-      io.to(`${req.session.classCode}`).emit('studentsList', {
+      io.to(`${req.session.classCode}`).emit('anonStudents', {
+        room: student.room,
+        students: users,
+      });
+      io.to(`${req.session.classCode}`).emit('anonTeacherRoomStudents', {
         room: student.room,
         students: users,
       });
@@ -53,10 +58,17 @@ exports.getGameroom = (req, res, next) => {
         socket.broadcast.to(`${req.session.classCode}`).emit('displayQOne');
       });
       socket.on('disconnect', () => {
-        io.emit('message', 'A student has left the room!');
+        removeUser(socket.id);
+        io.emit('leaver', {
+          room: student.room,
+          students: users,
+        });
+        io.emit('teacherLeaver', {
+          room: student.room,
+          students: users,
+        });
       });
     });
-
     res.render('gameroom', {
       pageTitle: 'Kleva',
       path: '/game-room',
@@ -64,7 +76,7 @@ exports.getGameroom = (req, res, next) => {
     });
   } else {
     // TODO: Render student-signin with validation error.
-    res.redirect('/student-signin');
+    res.status(500).redirect('/quick-join');
   }
 };
 
@@ -90,13 +102,44 @@ exports.getTeacherGameroom = (req, res, next) => {
     });
 
     // Teacher has begun the game via the Begin Game Button.
-    socket.on('beginGame', () => {
-      const questionOne = 'Doodle the structure of Hydrogen';
-      const questionTwo = 'Doodle the structure of Oxygen';
-      const doodleGameRoomName = `${req.session.classCode}`;
-      socket.broadcast
-        .to(`${req.session.classCode}`)
-        .emit('begin', { questionOne, questionTwo, doodleGameRoomName });
+    socket.on('beginGame', async () => {
+      try {
+        const questions = await QuestionBank.findAll({
+          raw: true,
+          limit: 1,
+          where: {
+            classCode: req.session.classCode,
+          },
+          order: [['createdAt', 'DESC']],
+        });
+        const questionOne = questions[0].questions[0];
+        const questionTwo = questions[0].questions[1];
+        const doodleGameRoomName = `${req.session.classCode}`;
+        const uniqueGameRoomID = 1;
+        var realUsers = [];
+        var uniquePenColorTracker = [];
+        // users.forEach((stud) => {
+        //   realUsers.push(stud.realName);
+        // })
+        const usersInTheRoom = getUsersInRoom(`${req.session.classCode}`);
+        usersInTheRoom.forEach((stud) => {
+          realUsers.push(stud.realName);
+          uniquePenColorTracker.push(stud.id);
+        })
+        console.log(usersInTheRoom);
+        console.log(uniquePenColorTracker);
+        console.log(realUsers);
+        socket.broadcast.to(`${req.session.classCode}`).emit('begin', {
+          questionOne,
+          questionTwo,
+          doodleGameRoomName,
+          uniqueGameRoomID,
+          realUsers,
+          uniquePenColorTracker
+        });
+      } catch (err) {
+        res.redirect('/game-staging-area');
+      }
     });
 
     // // Render Students in the List.
@@ -114,13 +157,41 @@ exports.getTeacherGameroom = (req, res, next) => {
     pageTitle: 'Kleva',
     path: '/teacher-gameroom',
     name: '',
+    classCode: req.session.classCode,
   });
 };
+var gameroomQs;
+exports.postTeacherGameroom = async (req, res, next) => {
+  gameroomQs = [];
+  console.log(req.body.doodleOne);
+  console.log(req.body.doodleTwo);
+  console.log(req.body.doodleOnePreprend);
+  console.log(req.body.doodleTwoPreprend);
 
-exports.postTeacherGameroom = (req, res, next) => {
-  // TODO: Validate Questions.
+  const email = req.session.user;
+  const classCode = req.session.classCode;
   // TODO: Add Questions to the Question Bank.
-  res.redirect('/teacher/game-room');
+  const {
+    doodleOne,
+    doodleTwo,
+    doodleOnePreprend,
+    doodleTwoPreprend,
+  } = req.body;
+  var gameroomQOne = 'Doodle ' + doodleOnePreprend + ' ' + doodleOne;
+  var gameroomQTwo = 'Doodle ' + doodleTwoPreprend + ' ' + doodleTwo;
+  gameroomQs.push(gameroomQOne, gameroomQTwo);
+  console.log(gameroomQs);
+  
+  try {
+    await QuestionBank.create({
+      teacherEmail: email,
+      classCode: classCode,
+      questions: gameroomQs,
+    });
+    res.redirect(`/teacher/game-room`);
+  } catch {
+    res.redirect(`/teacher-dashboard`);
+  }
 };
 
 exports.postGameQuestion = (req, res, next) => {
@@ -161,8 +232,19 @@ const addUser = ({ id, firstName, lastName, room }) => {
 
   const penColor = greenPen;
 
+  var numberOfMatchingStudents = 1;
+  // Assign the uniqueGameRoomID
+  // 1. Check all the users in a specific room.
+  users.forEach((studentUser) => {
+    if (studentUser.room === room) {
+      numberOfMatchingStudents += 1;
+    }
+  });
+  // 3 Students Per Room
+  const uniqueGameRoomID = Math.ceil(numberOfMatchingStudents / 3);
+
   // Define all the student properties.
-  const user = { id, realName, displayName, penColor, room };
+  const user = { id, realName, displayName, penColor, room, uniqueGameRoomID };
   // Store the student.
   users.push(user);
   return users;
@@ -170,9 +252,9 @@ const addUser = ({ id, firstName, lastName, room }) => {
 
 // Remove Student from the List
 const removeUser = (id) => {
-  const indexOfStudent = users.findIndex(() => {
-    return user.id === id;
-  });
+  const indexOfStudent = users.findIndex(
+    (studentTracking) => studentTracking.id === id
+  );
 
   if (indexOfStudent !== -1) {
     return users.splice(indexOfStudent, 1)[0];

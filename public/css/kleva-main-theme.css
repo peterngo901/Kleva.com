@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 .footer {
   margin: 0 !important;
 }
@@ -52,35 +52,33 @@
 
 /* teacher dashboard*/
 
-
-.user-nav__icon-box{
-  border: none; 
+.user-nav__icon-box {
+  border: none;
   background-color: transparent;
 }
-.display-3{
+.display-3 {
   font-weight: 600;
 }
-.card col-8 col-md-3 m-3 shadow-sm{
+.card col-8 col-md-3 m-3 shadow-sm {
   min-height: 35rem;
 }
-.btn mb-4 w-100{
+.btn mb-4 w-100 {
   background-color: #e0d9ff;
   font-size: 1.7rem;
   font-weight: 500;
 }
-.btn mb-4 w-100{
+.btn mb-4 w-100 {
   background-color: #e0d9ff;
   font-size: 1.7rem;
   font-weight: 500;
 }
-.btn mb-4 w-100{
+.btn mb-4 w-100 {
   background-color: #d9fff3;
   font-size: 1.7rem;
   font-weight: 500;
 }
 
 /* student dashboard */
-
 
 /* user profile */
 #picture {
@@ -147,58 +145,90 @@
   background-color: rgb(255, 255, 255) !important;
 }
 
+.category:active {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.category:focus {
+  background-color: rgb(255, 255, 255) !important;
+}
+
 nav {
-  background-color: #FFF3FC; 
+  background-color: #fff3fc;
   font-weight: 600;
   z-index: 10000;
 }
 
 .button {
-  outline: none; 
-  border: none; 
-  background-color: transparent; 
-  font-weight: 600; 
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
   color: inherit;
 }
 
 .dropdown-menu {
-  background-color: #C9D5FF; 
-  border: none; 
+  background-color: #c9d5ff;
+  border: none;
   font-weight: 600;
 }
 
 .carousel-item {
-  background-image: url('https://storage.googleapis.com/kleva_assets/home-banner-min.png'); 
+  background-image: url('https://storage.googleapis.com/kleva_assets/home-banner-min.png');
   background-color: #252525;
 }
 
 .carousel-item1 {
-  background-image: url('https://storage.googleapis.com/kleva_assets/home-banner2-min.png'); 
+  background-image: url('https://storage.googleapis.com/kleva_assets/home-banner2-min.png');
   background-color: #252525;
 }
 
 .btn {
   background-color: #d659d6;
-  color: white
+  color: white;
 }
 
 .card {
-  background-color:white;
+  background-color: #e9bede;
+}
+
+.card1 {
+  background-color: #554163;
+}
+
+.card2 {
+  background-color: #647887;
+}
+
+.card3 {
+  background-color: #85f7ff;
+}
+
+.card4 {
+  background-color: #b8ffc9;
+}
+
+.card5 {
+  background-color: #ff8c8c;
+}
+
+.card6 {
+  background-color: #ffe0a1;
 }
 
 .navbar {
-  background-color: #FFF3FC; 
+  background-color: #fff3fc;
   font-weight: 600;
 }
 
 .img-fluid1 {
-  width: 128px; 
+  width: 128px;
   height: 128px;
 }
 .card-footer {
-  border: none; 
-  background-color: transparent; 
-  font-size: 1.8rem; 
+  border: none;
+  background-color: transparent;
+  font-size: 1.8rem;
   font-family: 'Fredoka One', cursive;
 }
 
@@ -207,7 +237,7 @@ nav {
 }
 
 .card-footer2 {
-  color:#333333;
+  color: #333333;
 }
 
 .card-footer3 {
@@ -232,12 +262,12 @@ nav {
 
 .card-img-top1 {
   width: 100%;
-  height: 300px; 
+  height: 300px;
   object-fit: cover;
 }
 
 .game-title {
-  color: #5F5360;
+  color: #5f5360;
 }
 
 .description {
@@ -246,7 +276,7 @@ nav {
 }
 
 .game-description {
-  color: #7E6E80;
+  color: #7e6e80;
 }
 
 .game-category {
@@ -258,48 +288,131 @@ nav {
 }
 
 .login-selection {
-  z-index: 10000; 
+  z-index: 10000;
   margin-top: 5rem;
 }
 
 .gamepage-back {
-  background-color: #FFF3FC;
+  background-color: #fff3fc;
 }
 
 .gameLoader {
   z-index: 25000;
+  font-family: 'Quicksand', serif;
+  font-weight: 500;
+  letter-spacing: 0.02rem;
+  border-radius: 2rem;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
 }
 
-.card-img-top1{
-  width: 100%; 
-  height: 300px; 
-  object-fit: cover;
+.gameLoader:hover {
+  background-color: #f28fff;
 }
 
-.card {
-  background-color:#e9bede;
+.gameGalleryCards {
+  outline: none !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
 }
 
-.card1 {
-  background-color: #554163;
+.gameGallerySplash {
+  outline: none !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
 }
 
-.card2 {
-  background-color: #647887;
+.gamePageTitle {
+  font-family: 'Fredoka One', serif;
+  font-size: 4.5rem;
+  margin-top: 2rem;
+  color: #5f5360;
 }
 
-.card3 {
-  background-color: #85f7ff;
+.gamePageDescription {
+  color: #7e6e80;
+  font-family: 'Quicksand', serif;
+  font-size: 1.2rem;
 }
 
-.card4 {
-  background-color: #b8ffc9;
+.gamePageCurriculum {
+  background-color: #fcddffff;
+  font-family: 'Quicksand', serif;
+  font-size: 0.9rem;
 }
 
-.card5 {
-  background-color: #ff8c8c;
+.gamePageReturn {
+  background-color: #5f5360;
+  font-family: 'Quicksand', serif;
+  font-size: 0.7rem;
+  padding: 0.6rem 1rem;
 }
 
-.card6 {
-  background-color:#ffe0a1;
+.gameFeatureTitle {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #5f5360;
+}
+
+.categoryBadge {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.subcategoryBadge {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  background-color: #fad0ff;
+  padding: 0.35rem 1rem;
+  color: #5f5360;
+}
+
+.subcategoryCode {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  background-color: #d0fdff;
+  padding: 0.35rem 1rem;
+  color: #5f5360;
+}
+
+.aboutBread {
+  background-color: #fcddffff;
+  font-family: 'Quicksand', serif;
+}
+
+.aboutUsText {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #5f5360;
+}
+.aboutUsDescr {
+  font-family: 'Quicksand', serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #5f5360;
+}
+
+.homeHeroInfo {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: #30a8a8;
+}
+
+.homeInfo {
+  font-family: 'Quicksand', serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #30a8a8;
+}
+
+.homeDescr {
+  font-family: 'Quicksand', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: hsl(194, 50%, 27%);
 }

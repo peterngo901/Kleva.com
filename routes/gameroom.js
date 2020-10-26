@@ -7,6 +7,7 @@ const authController = require('../controllers/auth');
 const router = express.Router();
 
 router.get('/quick-join', authController.getStudentGameSignin);
+
 router.post('/quick-join', authController.postStudentGameSignin);
 
 router.get('/game-room', gameroomController.getGameroom);

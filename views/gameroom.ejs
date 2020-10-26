@@ -100,38 +100,15 @@
         <ul class="side-nav">
           <!-- Active Styling with Plain JS Logic -->
           <li class="<%= path === '/game-room' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/teacher-dashboard" class="side-nav__link">
+            <a href="#" class="side-nav__link">
               <!-- Sidebar Icon -->
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Gameroom</span>
+              <span class="sideBarCustom">Gameroom</span>
             </a>
           </li>
-          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/teacher-students" class="side-nav__link">
-              <svg class="side-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
-              </svg>
-              <span>Student 1</span>
-            </a>
-          </li>
-          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/teacher-students" class="side-nav__link">
-              <svg class="side-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
-              </svg>
-              <span>Student 2</span>
-            </a>
-          </li>
-          <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item' %>">
-            <a href="/teacher-students" class="side-nav__link">
-              <svg class="side-nav__icon">
-                <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
-              </svg>
-              <span>Student 3</span>
-            </a>
-          </li>
+          <div id="studentAnonOutput"></div>
         </ul>
         <!-- Legal Text -->
         <div class="legal">&copy; 2020 by Kleva Pty. Ltd.</div>
@@ -154,7 +131,8 @@
                   <p id="gameCountdownTimerText" style="font-size: 3rem" ></p>
                 </div>
                 <div class="col-12 text-center">
-                  <progress id="gameCountdownTimer" value="0" max="10" class="progress-bar-success"></progress>
+                  <progress id="gameCountdownTimer" value="0" max="10" class="progress-bar-success w-100"
+                    style="height:2rem;"></progress>
                 </div>
               </div>
             </div>
@@ -178,6 +156,9 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+  integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+  crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/draw.js"></script>
 <script src="/js/p5.js"></script>

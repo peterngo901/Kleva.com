@@ -17,6 +17,7 @@ const gamesPerPage = 3;
 
 exports.getTeacherDashboard = async (req, res, next) => {
   if (req.session.user) {
+    //res.set('Cache-control', 'public, max-age=86400');
     req.session.classRoom = 'none';
     const email = req.session.user;
     const school = req.session.school;
@@ -103,6 +104,7 @@ exports.postAddClassroom = (req, res, next) => {
 //Returns the gametime statistics for the Statistics view
 exports.getTeacherStudents = async (req, res, next) => {
   if (req.session.user) {
+    //res.set('Cache-control', 'public, max-age=86400');
     const email = req.session.user;
     try {
       const classrooms = await Classroom.findAll({
@@ -135,7 +137,11 @@ exports.getTeacherStudents = async (req, res, next) => {
           games: gamesStatisticsAndDetails,
         });
       } catch (err) {
-        console.log(err);
+        res.render('teacher/teacher-students', {
+          path: '/teacher-students',
+          classrooms: '',
+          games: '',
+        });
       }
 
       // try {
@@ -211,8 +217,7 @@ exports.getTeacherStudents = async (req, res, next) => {
 exports.getClassroom = (req, res, next) => {
   if (req.session.user) {
     const classCode = req.params.classroomCode;
-    Classroom.findOne({ where: { classCode: classCode } })
-    .then((classRoom) => {
+    Classroom.findOne({ where: { classCode: classCode } }).then((classRoom) => {
       req.session.classRoom = classRoom;
       Schedules.findAll({
         where: {classCode: classCode}
@@ -252,7 +257,7 @@ exports.getClassroom = (req, res, next) => {
         });
       })
     });
-  });
+  })
   } else {
     res.redirect('/');
   }
@@ -485,5 +490,80 @@ exports.getTeacherSchedule = (req, res, next) => {
       games: {},
       scheduleGames: [],
     });
+  }
+};
+
+// env
+require('dotenv').config();
+
+var admin = require('firebase-admin');
+var serviceAccount = require('../firebase/kleva-7918e-firebase-adminsdk-14tp5-703b1cef16.json');
+const realTime = admin.initializeApp({
+  // credentials: {
+  //   project_id: process.env.FIREBASE_PROJECT_ID,
+  //   private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  //   client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  //   private_key: process.env.FIREBASE_PRIVATE_KEY,
+  //   client_id: process.env.FIREBASE_CLIENT_ID,
+  //   auth_uri: process.env.FIREBASE_AUTH_URI,
+  //   token_uri: process.env.FIREBASE_TOKEN_URI,
+  //   auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+  //   client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL,
+  // },
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://kleva-7918e.firebaseio.com',
+});
+
+exports.getDrawingHistory = async (req, res, next) => {
+  try {
+    // Return all the classroom codes from Realtime Database.
+    var db = realTime.database();
+    //var ref = db.ref(`${classroomCode}`);
+    var classroomHierachy = db.ref();
+    classroomHierachy.on(
+      'value',
+      async (snapshot) => {
+        var doodles = snapshot.val();
+        var classroomsWithDoodles = Object.keys(doodles);
+        console.log(classroomsWithDoodles);
+        try {
+          // Return all the classroom codes belonging to the teacher and that contain doodles.
+          const classroomCodes = await Classroom.findAll({
+            where: {
+              teacherID: req.session.user,
+              classCode: {
+                [Op.like]: { [Op.any]: classroomsWithDoodles },
+              },
+            },
+            attributes: ['classCode', 'title'],
+          });
+          var classroomDoodleHistory = [];
+          if (classroomCodes) {
+            classroomCodes.forEach((crCode) => {
+              var dateHierachy = db.ref(`${crCode.classCode}`);
+              dateHierachy.on('value', async (snapshot) => {
+                classroomDoodleHistory.push(
+                  `${crCode.classCode}`,
+                  snapshot.val()
+                );
+              });
+            });
+            console.log(classroomDoodleHistory);
+            res.render('teacher/drawing-history', {
+              path: '/drawing-history',
+              classrooms: classroomCodes,
+              classroomDoodles: classroomDoodleHistory,
+            });
+          }
+        } catch (err) {
+          res.redirect('/teacher-dashboard');
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  } catch (err) {
+    console.log(err);
   }
 };

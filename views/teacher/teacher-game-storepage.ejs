@@ -1,6 +1,7 @@
 <!-- Author: Gabriel -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -168,7 +169,7 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-box-remove"></use>
               </svg>
-              <span>Classroom</span>
+              <span class="sideBarCustom">Classroom</span>
             </a>
           </li>
           <li class="<%= path === '/your-apps' ? 'side-nav__item--active' : 'side-nav__item'; %>">
@@ -176,15 +177,23 @@
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-user-check"></use>
               </svg>
-              <span>Students</span>
+              <span class="sideBarCustom">Statistics</span>
+            </a>
+          </li>
+          <li class="<%= path === '/drawing-history' ? 'side-nav__item--active' : 'side-nav__item' %> ">
+            <a href="/drawing-history" class="side-nav__link">
+              <svg class="side-nav__icon">
+                <use xlink:href="../img/symbol-defs.svg#icon-pencil2"></use>
+              </svg>
+              <span class="sideBarCustom">Doodles</span>
             </a>
           </li>
           <li class="<%= path === '/help' ? 'side-nav__item--active' : 'side-nav__item'; %>">
-            <a href="/" class="side-nav__link">
+            <a href="/help" class="side-nav__link">
               <svg class="side-nav__icon">
                 <use xlink:href="../img/symbol-defs.svg#icon-lifebuoy"></use>
               </svg>
-              <span>Help</span>
+              <span class="sideBarCustom">Help</span>
             </a>
           </li>
         </ul>

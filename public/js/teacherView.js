@@ -5,16 +5,18 @@ socket.on('studentsList', (allStudents) => {
   //console.log(allStudents);
   //   console.log(allStudents);
   //   html = '<h1>' + allStudents.realName + '</h1>';
-  var studentNames = '';
-  for (i = 0; i < allStudents.students.length; i++) {
-    studentNames +=
-      '<li class="side-nav__item"><a href="/teacher-students" class="side-nav__link"><svg class="side-nav__icon"><use xlink:href="../img/symbol-defs.svg#icon-user-check"></use></svg><span>' +
-      allStudents.students[i].realName +
-      '</span></a></li>';
-  }
+  const studentNameTags = loadRealStudentNames(allStudents);
+  document.getElementById('studentOutput').innerHTML = studentNameTags;
+});
 
-  //console.log(allStudents.students[0]);
-  document.getElementById('studentOutput').innerHTML = studentNames;
+socket.on('anonTeacherRoomStudents', (allStudents) => {
+  const studentNameTags = loadRealStudentNames(allStudents);
+  document.getElementById('studentOutput').innerHTML = studentNameTags;
+});
+
+socket.on('teacherLeaver', (remainingStudents) => {
+  const remainingStudentsInRoom = loadRealStudentNames(remainingStudents);
+  document.getElementById('studentOutput').innerHTML = remainingStudentsInRoom;
 });
 
 var gameStarted = false;
@@ -29,7 +31,7 @@ var questionTimeTracker = 0;
 function watchQuestions() {
   if (gameStarted) {
     setInterval(function () {
-      console.log(questionTimeTracker);
+      //console.log(questionTimeTracker);
       questionTimeTracker += 1;
       if (questionTimeTracker === 12) {
         clear();

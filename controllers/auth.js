@@ -16,7 +16,7 @@ const Classroom = require('../models/classroom');
 exports.getTeacherSignup = (req, res, next) => {
   res.render('teacher/teacher-signup', {
     // Teacher Signup Page.
-    error: '',
+    error: 'Please try again!',
     path: '/teacher-signup',
     pageTitle: 'Sign Up',
   });
@@ -64,15 +64,23 @@ exports.postTeacherSignup = (req, res, next) => {
           })
           .catch((err) => {
             // Error when inserting the teacher in the database.
-            console.log(err);
-            res.redirect('/');
+            res.render('teacher/teacher-signup', {
+              // Teacher Signup Page.
+              error: 'Sorry please try to sign up again!',
+              path: '/teacher-signup',
+              pageTitle: 'Sign Up',
+            });
           });
       });
     })
     .catch((err) => {
       // Error when trying to find the email in the database.
-      console.log(err);
-      res.redirect('/');
+      res.render('teacher/teacher-signup', {
+        // Teacher Signup Page.
+        error: 'Sorry please try to sign up again!',
+        path: '/teacher-signup',
+        pageTitle: 'Sign Up',
+      });
     });
 };
 
@@ -85,18 +93,20 @@ exports.getTeacherSignin = (req, res, next) => {
   });
 };
 
-exports.postTeacherSignin = (req, res, next) => {
+exports.postTeacherSignin = async (req, res, next) => {
   const email = req.body.username;
   const password = req.body.password;
-  Teacher.findOne({ where: { email: email } }) // Check to see if the email exists in the teacher table.
+  // Check to see if the email exists in the teacher table.
+  await Teacher.findOne({ where: { email: email } })
     .then((teacher) => {
       if (!teacher) {
         // Email does not exist.
         return res.redirect('/teacher-signin');
       }
       // Email does exist.
+      // Compare the password entered in the form with our database hashed password.
       bcrypt
-        .compare(password, teacher.password) // Compare the password entered in the form with our database hashed password.
+        .compare(password, teacher.password)
         .then((passwordMatch) => {
           if (passwordMatch) {
             // Correct Password
@@ -109,12 +119,30 @@ exports.postTeacherSignin = (req, res, next) => {
             res.status(202).redirect('/teacher-dashboard');
           } else {
             // Incorrect Password
-            return res.redirect('/teacher-signin'); // Redirect to the signin page.
+            res.render('teacher/teacher-signin', {
+              // Teacher Signin Page.
+              error: 'Sorry, please try to sign in again!',
+              path: '/teacher-signin',
+              pageTitle: 'Sign In',
+            });
           }
         })
         .catch((err) => {
-          return res.redirect('/teacher-signin'); // Redirect to the signin page.
+          res.render('teacher/teacher-signin', {
+            // Teacher Signin Page.
+            error: 'Sorry, please try to sign in again!',
+            path: '/teacher-signin',
+            pageTitle: 'Sign In',
+          });
         });
+    })
+    .catch((err) => {
+      res.render('teacher/teacher-signin', {
+        // Teacher Signin Page.
+        error: 'Sorry, please try to sign in again!',
+        path: '/teacher-signin',
+        pageTitle: 'Sign In',
+      });
     });
 };
 
@@ -131,7 +159,7 @@ exports.getCreatorSignup = (req, res, next) => {
   });
 };
 
-exports.postCreatorSignup = (req, res, next) => {
+exports.postCreatorSignup = async (req, res, next) => {
   const email = req.body.username;
   const companyName = req.body.companyName;
   const password = req.body.password;
@@ -139,7 +167,7 @@ exports.postCreatorSignup = (req, res, next) => {
   // Form Validation errors defined in (../routes/authenticated) router.postTeacherSignup().
   const errors = validationResult(req);
 
-  const existingCreator = Creator.findOne({ where: { email: email } }) // Check if email exists in database, Teacher table.
+  const existingCreator = await Creator.findOne({ where: { email: email } }) // Check if email exists in database, Teacher table.
     .then((existingCreator) => {
       if (existingCreator) {
         // Email already exists.
@@ -166,14 +194,24 @@ exports.postCreatorSignup = (req, res, next) => {
             res.status(202).redirect('/creator-dashboard');
           })
           .catch((err) => {
-            // Error when inserting the teacher in the database.
-            res.redirect('/');
+            // Error when inserting the creator in the database.
+            res.render('creator/creator-signup', {
+              // Creator Signup Page.
+              error: 'Sorry, please try to sign up again!',
+              path: '/creator-signup',
+              pageTitle: 'Sign Up',
+            });
           });
       });
     })
     .catch((err) => {
       // Error when trying to find the email in the database.
-      res.redirect('/');
+      res.render('creator/creator-signup', {
+        // Creator Signup Page.
+        error: 'Sorry, please try to sign up again!',
+        path: '/creator-signup',
+        pageTitle: 'Sign Up',
+      });
     });
 };
 
@@ -186,14 +224,19 @@ exports.getCreatorSignin = (req, res, next) => {
   });
 };
 
-exports.postCreatorSignin = (req, res, next) => {
+exports.postCreatorSignin = async (req, res, next) => {
   const email = req.body.username;
   const password = req.body.password;
-  Creator.findOne({ where: { email: email } }) // Check to see if the email exists in the teacher table.
+  await Creator.findOne({ where: { email: email } }) // Check to see if the email exists in the teacher table.
     .then((creator) => {
       if (!creator) {
         // Email does not exist.
-        return res.redirect('/creator-signin');
+        res.render('creator/creator-signin', {
+          // Creator Signin Page.
+          error: 'Sorry, please try to sign in again!',
+          path: '/creator-signin',
+          pageTitle: 'Sign In',
+        });
       }
       // Email does exist.
       bcrypt
@@ -205,13 +248,24 @@ exports.postCreatorSignin = (req, res, next) => {
             req.session.isLoggedIn = true;
             req.session.user = email;
             req.session.sessionType = 'creator';
-            return res.redirect('/creator-dashboard');
+            res.redirect('/creator-dashboard');
+          } else {
+            // Incorrect Password
+            res.render('creator/creator-signin', {
+              // Creator Signin Page.
+              error: 'Sorry, please try to sign in again!',
+              path: '/creator-signin',
+              pageTitle: 'Sign In',
+            });
           }
-          // Incorrect Password
-          return res.redirect('/creator-signin'); // Redirect to the signin page.
         })
         .catch((err) => {
-          return res.redirect('/creator-signin'); // Redirect to the signin page.
+          res.render('creator/creator-signin', {
+            // Creator Signin Page.
+            error: 'Sorry, please try to sign in again!',
+            path: '/creator-signin',
+            pageTitle: 'Sign In',
+          });
         });
     });
 };
@@ -260,68 +314,91 @@ exports.postStudentSignin = (req, res, next) => {
           res.redirect(`/student-dashboard`);
         });
       } else {
-        return res.redirect('/student-signin');
+        res.render('student-signin', {
+          // Creator Signin Page.
+          error: 'Sorry, please try to sign in again!',
+          path: '/student-signin',
+          pageTitle: 'Sign In',
+        });
       }
     })
     .catch((err) => {
       // Wrong ClassCode Entered.
-      res.render('/student-signin', {
-        error: 'Please enter a valid class code.',
+      res.render('student-signin', {
+        // Creator Signin Page.
+        error: 'Sorry, please try to sign in again!',
+        path: '/student-signin',
+        pageTitle: 'Sign In',
       });
     });
 };
 
 exports.getStudentGameSignin = (req, res, next) => {
-  res.render('quickjoin', {
-    // Creator Signin Page.
-    error: '',
-    path: '/quickjoin',
-    pageTitle: 'Sign In',
-  });
+  console.log(req.headers);
+  if (req.headers.statusCode === 500) {
+    res.render('quickjoin', {
+      // Creator Signin Page.
+      error: 'Please try to join the game again!',
+      path: '/quick-join',
+      pageTitle: 'Sign In',
+    });
+  } else {
+    res.render('quickjoin', {
+      // Creator Signin Page.
+      error: '',
+      path: '/quick-join',
+      pageTitle: 'Sign In',
+    });
+  }
 };
 
-exports.postStudentGameSignin = (req, res, next) => {
+exports.postStudentGameSignin = async (req, res, next) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const classCode = req.body.classCode;
 
-  // Search the Classroom Table for Class Signon Code
-  Classroom.findOne({
-    where: { classCode: classCode },
-  })
-    .then((existingClassroom) => {
-      if (existingClassroom) {
-        // Classroom Exists
-        // Add them to the Student Table with firstName, lastName and classCode
-        Student.create({
+  try {
+    const existingClassroom = await Classroom.findOne({
+      where: { classCode: classCode },
+    });
+    if (existingClassroom) {
+      try {
+        const student = await Student.create({
           // Create a new student in the student table.
           firstName: firstName,
           lastName: lastName,
           classroomClassCode: classCode,
-        }).then((student) => {
-          console.log(student.studentID);
-          req.session.user = student.studentID;
-          req.session.type = 'student';
-          req.session.classCode = classCode; // easily track all students belonging to a classroom
-          req.session.firstName = firstName;
-          req.session.lastName = lastName;
-          req.session.sessionType = 'student';
-          res.redirect(`/game-room`);
         });
-      } else {
+        req.session.classCode = classCode; // easily track all students belonging to a classroom
+        req.session.firstName = firstName;
+        req.session.lastName = lastName;
+        req.session.sessionType = 'student';
+        req.session.type = 'student';
+        req.session.user = student.studentID;
+        console.log(req.session.type);
+        console.log(req.session.user);
+        res.redirect(`/game-room`);
+      } catch (err) {
         res.render('quickjoin', {
-          error: 'Please enter a valid class code.',
+          error: 'Sorry, please try joining again!',
+          path: '/quickjoin',
           pageTitle: 'Join Game',
         });
       }
-    })
-    .catch((err) => {
-      // Wrong ClassCode Entered.
+    } else {
       res.render('quickjoin', {
-        error: 'Please enter a valid class code.',
+        error: 'Sorry, please try joining again!',
+        path: '/quickjoin',
         pageTitle: 'Join Game',
       });
+    }
+  } catch (err) {
+    res.render('quickjoin', {
+      error: 'Sorry, please try joining again!',
+      path: '/quickjoin',
+      pageTitle: 'Join Game',
     });
+  }
 };
 
 ////////////////////////////////////////////////////////////////////////
