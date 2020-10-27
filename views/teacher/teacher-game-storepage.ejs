@@ -91,7 +91,7 @@
       <!-- Logo -->
       <a href="/">
         <img src="../img/logo.png" alt="Kleva" class="logo" />
-      </a> 
+      </a>
       <!-- Search Bar -->
       <form action="/" class="search" method="POST">
         <input type="text" class="search__input" placeholder="Search classRoom" />
@@ -204,7 +204,7 @@
       <!-- Main Content Area -->
       <div class="container-fluid pr-0 pl-0 py-5">
         <div class="px-5 py-5">
-          <div class="ml-5 mr-5 container-xl mx-auto ">
+          <div class="ml-5 mr-5 container-md mx-auto ">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -219,47 +219,8 @@
               </ol>
             </nav>
 
-            <!--Featured Button-->
-            <div class="col-xs-1 my-2">
-              <button type="button" class="btn btn-secondary btn-sm">
-                Game of the Month
-              </button>
-            </div>
-            <!--Game Banner-->
-            <div class="row justify-content-center rounded no-margin">
-              <div class="col-lg-5">
-                <a href="/gamepage"><img src="../img/bridgeConFeatureSplash.png" class="img-fluid mx-auto d-block"
-                    alt="Bridge Constructor Splash" /></a>
-              </div>
-              <div class="col-lg-7">
-                <h3>Bridge Constructor</h3>
-                <p>Build a bridge, get over it. Highly Educational</p>
-                <div class="row">
-                  <div class="col">
-                    <img src="../img/bridgeConScreen1.png" class="img-fluid" alt="Bridge Constructor 1" />
-                  </div>
-                  <div class="col">
-                    <img src="../img/bridgeConScreen2.png" class="img-fluid" alt="Bridge Constructor 2" />
-                  </div>
-                  <div class="col">
-                    <img src="../img/bridgeConScreen3.png" class="img-fluid" alt="Bridge Constructor 3" />
-                  </div>
-                  <div class="col">
-                    <img src="../img/bridgeConScreen4.png" class="img-fluid" alt="Bridge Constructor 4" />
-                  </div>
-                </div>
-                <div class="row mt-5  justify-content-between align-items-center">
-                  <div class="col-6 order-1 text-left">
-                    <h2 class="h-100"><span class="badge badge-primary">Science</span></h2>
-                    <h3 class="h-100"><span class="badge badge-info">Physical Sciences</span></h3>
-                  </div>
-                  <div class="col-6 order-2 text-right">
-                    <h5 class=" "><span class="badge badge-secondary">ACARA Code: HLG650</span></h5>
 
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <!-- Category Filter -->
             <div class="col-6 order-1 text-left">
               <!-- <h5 class="h-100"><span class="badge badge-primary">Science</span></h5>
@@ -272,10 +233,10 @@
               <h5 class="h-100"><span class="badge badge-primary">English</span></h5>
               <h5 class="h-100"><span class="badge badge-info">Math</span></h5>
               <h5 class="h-100"><span class="badge badge-info">Sciences</span></h5> -->
-              <!-- <a href="#" class="list-group-item">English</a>
+            <!-- <a href="#" class="list-group-item">English</a>
               <a href="#" class="list-group-item">Maths</a>
               <a href="#" class="list-group-item">Science</a> -->
-            </div>
+
 
             <div class="col-12">
               <div class="row mt-5">
@@ -284,15 +245,17 @@
                     <%- (classRoom.subject).charAt(0).toUpperCase() + (classRoom.subject).slice(1) %> Teachers Like You
                   </h1>
                   <h4>Teachers similar to you are adding these games.</h4>
-                  <button class="btn btn-primary btn-lg my-2 px-5">View All</button>
+                  <a href="/teacher-game-storepage-recommendation/?recommendation=teacher&category=<%- classRoom.subject %>"
+                    style="text-decoration: none;"><button class="btn btn-lg my-2 px-5 addGameTeacherPage">View
+                      All</button></a>
                 </div>
                 <!-- Teacher Games Recommendation Algorithm Game Loader -->
                 <% if (games.length > 0) { %> <% for (let game of games) { %>
                 <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card round shadow">
+                  <div class="card" style="background-color: transparent; border: none;">
                     <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
-                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
-                        alt="" /></a>
+                        style="width: 100%; height: 300px; object-fit: cover; outline: none; border-radius: 3.5rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);"
+                        src="<%- game.gameImageURL %>" alt="" /></a>
                   </div>
                   <div class="container-fluid my-auto">
                     <div class="d-flex justify-content-between mt-3">
@@ -307,16 +270,29 @@
 
 
                     <div style="height: 6.5rem; overflow: hidden; ">
-                      <p style=" color: #7E6E80; font-size: 1.25rem;"><%- game.description %></p>
+                      <p style=" color: #000000; font-size: 1.25rem;"><%- game.description %></p>
                     </div>
-
-
                     <!-- Add game -->
                     <form class="testButton mt-3">
                       <input type="hidden" name="gameID" value="<%- game.gameID%>" />
                       <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
-                      <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                      <button type="submit" class="addgame btn btn-block justify-content-center addGameTeacherPage">Add
+                        Game
+                        +</button>
                     </form>
+                    <div class="card-footer" style="margin-top: auto;">
+                      <div class="row mx-auto"><small class="text-right badge badge-pill"
+                          style="background-color: rgb(136, 207, 255); font-size: 1.5rem; margin-left: -4.3rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);">ACARA
+                          Descriptions:</small>
+                      </div>
+                      <% var acaraDescription = game.subCategory.split(',') %>
+                      <% for (let acaradescr of acaraDescription) { %>
+                      <small class="text-right badge badge-pill my-3"
+                        style="background-color: rgb(170, 242, 255); font-size: 1.3rem;"><%- acaradescr %></small>
+                      <% } %>
+                    </div>
+
+
 
                     <div id="result"></div>
 
@@ -333,15 +309,18 @@
                     Games
                   </h1>
                   <h4>Australian Curriculum Based Educational Games</h4>
-                  <button class="btn btn-primary btn-lg my-2 px-5">View All</button>
+                  <a
+                    href="/teacher-game-storepage-recommendation/?recommendation=all&category=<%- classRoom.subject %>"><button
+                      class="btn btn-lg my-2 px-5 addGameTeacherPage">View
+                      All</button></a>
                 </div>
                 <!-- 'Popular with Year X Students' Games Recommendation Algorithm Game Loader -->
                 <% if (games.length > 0) { %> <% for (let game of games) { %>
                 <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card round shadow">
+                  <div class="card" style="background-color: transparent; border: none;">
                     <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
-                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
-                        alt="" /></a>
+                        style="width: 100%; height: 300px; object-fit: cover; outline: none; border-radius: 3.5rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);"
+                        src="<%- game.gameImageURL %>" alt="" /></a>
                   </div>
                   <div class="container-fluid my-auto">
                     <div class="d-flex justify-content-between mt-3">
@@ -356,16 +335,28 @@
 
 
                     <div style="height: 6.5rem; overflow: hidden; ">
-                      <p style=" color: #7E6E80; font-size: 1.25rem;"><%- game.description %></p>
+                      <p style=" color: #000000; font-size: 1.25rem;"><%- game.description %></p>
                     </div>
-
-
                     <!-- Add game -->
                     <form class="testButton mt-3">
                       <input type="hidden" name="gameID" value="<%- game.gameID%>" />
                       <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
-                      <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                      <button type="submit" class="addgame btn btn-block justify-content-center addGameTeacherPage">Add
+                        Game
+                        +</button>
                     </form>
+                    <div class="card-footer" style="margin-top: auto;">
+                      <div class="row mx-auto"><small class="text-right badge badge-pill"
+                          style="background-color: rgb(136, 207, 255); font-size: 1.5rem; margin-left: -4.3rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);">ACARA
+                          Descriptions:</small>
+                      </div>
+                      <% var acaraDescription = game.subCategory.split(',') %>
+                      <% for (let acaradescr of acaraDescription) { %>
+                      <small class="text-right badge badge-pill my-3"
+                        style="background-color: rgb(170, 242, 255); font-size: 1.3rem;"><%- acaradescr %></small>
+                      <% } %>
+                    </div>
+
 
                     <div id="result"></div>
 
@@ -379,15 +370,18 @@
                     Popular with Year <%- (classRoom.yearLevel) %> Students
                   </h1>
                   <h4>Explore the games students are engaging with.</h4>
-                  <button class="btn btn-primary btn-lg my-2 px-5">View All</button>
+                  <a
+                    href="/teacher-game-storepage-recommendation/?recommendation=student&category=<%- classRoom.subject %>"><button
+                      class="btn btn-lg my-2 px-5 addGameTeacherPage">View
+                      All</button></a>
                 </div>
                 <!-- 'Popular with Year X Students' Games Recommendation Algorithm Game Loader -->
                 <% if (games.length > 0) { %> <% for (let game of games) { %>
                 <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card round shadow">
+                  <div class="card" style="background-color: transparent; border: none;">
                     <a href="../gamepage/<%= game.gameID %>"><img class="card-img-top"
-                        style="width: 100%; height: 300px; object-fit: cover;" src="<%- game.gameImageURL %>"
-                        alt="" /></a>
+                        style="width: 100%; height: 300px; object-fit: cover; outline: none; border-radius: 3.5rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);"
+                        src="<%- game.gameImageURL %>" alt="" /></a>
                   </div>
                   <div class="container-fluid my-auto">
                     <div class="d-flex justify-content-between mt-3">
@@ -402,16 +396,29 @@
 
 
                     <div style="height: 6.5rem; overflow: hidden; ">
-                      <p style=" color: #7E6E80; font-size: 1.25rem;"><%- game.description %></p>
+                      <p style=" color: #000000; font-size: 1.25rem;"><%- game.description %></p>
                     </div>
-
-
                     <!-- Add game -->
                     <form class="testButton mt-3">
                       <input type="hidden" name="gameID" value="<%- game.gameID%>" />
                       <input type="hidden" name="classCode" value="<%- classRoom.classCode; %>" />
-                      <button type="submit" class="addgame btn btn-success justify-content-center">Add Game +</button>
+                      <button type="submit" class="addgame btn btn-block justify-content-center addGameTeacherPage">Add
+                        Game
+                        +</button>
                     </form>
+                    <div class="card-footer" style="margin-top: auto;">
+                      <div class="row mx-auto"><small class="text-right badge badge-pill"
+                          style="background-color: rgb(136, 207, 255); font-size: 1.5rem; margin-left: -4.3rem; box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);">ACARA
+                          Descriptions:</small>
+                      </div>
+                      <% var acaraDescription = game.subCategory.split(',') %>
+                      <% for (let acaradescr of acaraDescription) { %>
+                      <small class="text-right badge badge-pill my-3"
+                        style="background-color: rgb(170, 242, 255); font-size: 1.3rem;"><%- acaradescr %></small>
+                      <% } %>
+                    </div>
+
+
 
                     <div id="result"></div>
 
@@ -457,8 +464,13 @@
     $.post("/add-game",
       $(this).serialize(),
       function (data, status) {
-        console.log("Data: " + data + "\nStatus: " + status);
-      });
+        //console.log("Data: " + data + "\nStatus: " + status);
+
+        alert('Success! Your game has been added to your classroom.')
+
+
+      })
+      .fail(function (err) { alert('Sorry! The game already exists in your classroom.') });
   });
 </script>
 

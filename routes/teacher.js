@@ -57,4 +57,9 @@ router.get('/user-profile', classroomController.getUserProfile);
 
 router.get('/drawing-history', classroomController.getDrawingHistory);
 
+router.get(
+  '/teacher-game-storepage-recommendation',
+  classroomController.getTeacherRecommendationGames
+);
+
 module.exports = router;
