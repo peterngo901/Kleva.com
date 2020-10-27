@@ -89,6 +89,8 @@ exports.postYearLevelSubstrand = async (req, res) => {
         name: ' ',
         classCode: classCode,
         contentDescriptions: contentDescriptions,
+        substrand: yearLevelSubstrand,
+        yearLevel: yearLevel
       });
     }
     //console.log(scotHolder);
@@ -134,6 +136,8 @@ exports.postYearLevelSubstrand = async (req, res) => {
       classCode: classCode,
       contentDescriptions: contentDescriptions,
       scot: scoTerms,
+      substrand: yearLevelSubstrand,
+      yearLevel: yearLevel
     });
   } catch (err) {
     res.render('teacher/gameStaging', {
@@ -143,6 +147,8 @@ exports.postYearLevelSubstrand = async (req, res) => {
       classCode: classCode,
       contentDescriptions: '',
       scot: '',
+      substrand: yearLevelSubstrand,
+      yearLevel: yearLevel
     });
   }
 };

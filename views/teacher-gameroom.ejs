@@ -15,6 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
@@ -139,31 +140,46 @@
                     </h1>
                   </div>
                 </div>
-                <div class="row justify-content-between">
-                  <!-- Begin Game Button -->
-                  <div class="col-3 text-center">
-                    <button id="send-question" class="btn-lg btn-success my-5" onclick="beginGame()">
-                      Begin Game
-                    </button>
-                  </div>
-                  <!-- End Game Button -->
-                  <div class="col-3 text-center">
-                    <button id="send-question" class="btn-lg btn-danger my-5 text-center">
-                      End Game
-                    </button>
+                <div class="container-xl">
+                  <div class="row justify-content-center mb-5 mt-3 mx-auto no-gutters">
+                    <div class="col-12 text-center">
+                      <p id="gameQuestionDisplay" style="font-size: 3rem; font-family: 'Quicksand', sans-serif;"></p>
+                    </div>
+                    <div class="col-12 text-center">
+                      <p id="gameCountdownTimerText" style="font-size: 3rem; font-family: 'Quicksand', sans-serif;"></p>
+                    </div>
+                    <div class="col-12 text-center">
+                      <progress id="gameCountdownTimer" value="0" max="10" class="progress-bar-success w-100"
+                        style="height:2rem;"></progress>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div class="row">
-                <!-- Sketch Canvas Area -->
-                <div class="col-12" id="canvas-holder"></div>
+              <div class="row justify-content-between">
+                <!-- Begin Game Button -->
+                <div class="col-3 text-center">
+                  <button id="send-question" class="btn-lg btn-success my-5" onclick="beginGame()">
+                    Begin Game
+                  </button>
+                </div>
+                <!-- End Game Button -->
+                <div class="col-3 text-center">
+                  <button id="send-question" class="btn-lg btn-danger my-5 text-center">
+                    End Game
+                  </button>
+                </div>
               </div>
+            </div>
+
+            <div class="row mx-auto text-center no-gutters">
+              <!-- Sketch Canvas Area -->
+              <div class="col-12 " id="canvas-holder"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>

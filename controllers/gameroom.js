@@ -125,7 +125,7 @@ exports.getTeacherGameroom = (req, res, next) => {
         usersInTheRoom.forEach((stud) => {
           realUsers.push(stud.realName);
           uniquePenColorTracker.push(stud.id);
-        })
+        });
         console.log(usersInTheRoom);
         console.log(uniquePenColorTracker);
         console.log(realUsers);
@@ -135,7 +135,15 @@ exports.getTeacherGameroom = (req, res, next) => {
           doodleGameRoomName,
           uniqueGameRoomID,
           realUsers,
-          uniquePenColorTracker
+          uniquePenColorTracker,
+        });
+        io.to(`${req.session.classCode}`).emit('teacherMasterView', {
+          questionOne,
+          questionTwo,
+          doodleGameRoomName,
+          uniqueGameRoomID,
+          realUsers,
+          uniquePenColorTracker,
         });
       } catch (err) {
         res.redirect('/game-staging-area');
@@ -181,7 +189,7 @@ exports.postTeacherGameroom = async (req, res, next) => {
   var gameroomQTwo = 'Doodle ' + doodleTwoPreprend + ' ' + doodleTwo;
   gameroomQs.push(gameroomQOne, gameroomQTwo);
   console.log(gameroomQs);
-  
+
   try {
     await QuestionBank.create({
       teacherEmail: email,

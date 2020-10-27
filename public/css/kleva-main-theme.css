@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 .footer {
   margin: 0 !important;
+  font-family: 'Quicksand', cursive;
 }
 
 .logo {
@@ -289,7 +290,7 @@ nav {
 
 .login-selection {
   z-index: 10000;
-  margin-top: 5rem;
+  margin-top: -3rem;
 }
 
 .gamepage-back {
@@ -415,4 +416,20 @@ nav {
   font-weight: 600;
   font-size: 1.25rem;
   color: hsl(194, 50%, 27%);
+}
+
+.homeScreenCards {
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+}
+
+.homeScreenBackground {
+  background-image: url('/img/wave.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.homeScreenFooterBackground {
+  background-image: url('/img/bottom-wave.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

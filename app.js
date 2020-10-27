@@ -17,6 +17,8 @@ const teacherRoutes = require('./routes/teacher');
 const creatorRoutes = require('./routes/creator');
 const studentRoutes = require('./routes/student');
 const gameroomRoutes = require('./routes/gameroom');
+// Not for Production (OpenAI - GPT3)
+// const aiRoutes = require('./routes/ai');
 
 // Controllers
 const notFoundController = require('./controllers/404');
@@ -78,7 +80,10 @@ app.set('view engine', 'ejs'); // EJS
 app.set('views', 'views'); // Views in the Views Folder
 
 // //Serve bootstrap Statically
-app.use('', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
+app.use(
+  '',
+  express.static(path.join(__dirname, '/node_modules/bootstrap/dist'))
+);
 
 // //Serve jquery Statically
 app.use('', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
@@ -102,6 +107,7 @@ app.use(authenticatedRoutes); // Mount the authenticated routes on the app.
 app.use('/creator-dashboard', creatorRoutes);
 app.use(studentRoutes);
 app.use(gameroomRoutes);
+//app.use(aiRoutes);
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -135,9 +141,9 @@ Student.belongsTo(Classroom, {
 
 Classroom.hasMany(Student);
 
-Classroom.hasMany(ClassroomStats, {foreignKey: 'classroomClassCode'});
+Classroom.hasMany(ClassroomStats, { foreignKey: 'classroomClassCode' });
 
-Game.hasMany(ClassroomStats, { foreignKey: 'gameID'});
+Game.hasMany(ClassroomStats, { foreignKey: 'gameID' });
 
 ClassroomStats.belongsTo(Classroom, {
   foreignKey: 'classroomClassCode',

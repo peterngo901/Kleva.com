@@ -103,7 +103,7 @@
             <nav class="side-bar">
                 <!-- Dashboard Pages -->
                 <ul class="side-nav">
-                    
+
                     <li class="<%= path === '/teacher-dashboard' ? 'side-nav__item--active' : 'side-nav__item' %> ">
                         <a href="/teacher-dashboard" class="side-nav__link">
                             <!-- Sidebar Icon -->
@@ -113,7 +113,7 @@
                             <span class="sideBarCustom">Classroom</span>
                         </a>
                     </li>
-                    
+
                     <li class="<%= path === '/teacher-students' ? 'side-nav__item--active' : 'side-nav__item' %> ">
                         <a href="/" class="side-nav__link">
                             <svg class="side-nav__icon">
@@ -196,7 +196,8 @@
                                                         Student Engagement
                                                     </th>
                                                     <th scope="col" style="width: 15%">Visits</th>
-                                                    <th scope="col" style="width: 15%">Category</th>
+                                                    <th scope="col" class="d-none d-lg-flex" style="width: 15%">
+                                                        Category</th>
 
                                                 </tr>
                                             </thead>
@@ -224,7 +225,7 @@
                                                     <td class="pt-4 teacherClassroomCardYear"
                                                         style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
                                                         <%- game.dataValues.studentVisits %></td>
-                                                    <td class="pt-4 teacherClassroomCardYear"
+                                                    <td class="pt-4 teacherClassroomCardYear d-none d-lg-table-cell"
                                                         style="font-size: 1.7rem; letter-spacing: .03rem; width: 100%; ">
                                                         <%- game.dataValues.game.category %></td>
 

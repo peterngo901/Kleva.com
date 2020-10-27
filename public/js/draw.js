@@ -1,4 +1,7 @@
-const socket = io('wss://lucid-burner-290323.ts.r.appspot.com/', {transports: ['websocket']});
+const socket = io('wss://lucid-burner-290323.ts.r.appspot.com/', {
+  transports: ['websocket'],
+}); // Production Environment
+//const socket = io({ transports: ['websocket'] }); // Dev Environment
 var firebaseConfig = {
   apiKey: 'AIzaSyACUQI6Ub4BTlHavE9cbEhOyGTad3H01nY',
   authDomain: 'kleva-7918e.firebaseapp.com',
@@ -71,45 +74,55 @@ socket.on('begin', async (data) => {
   // const indexOfSocketID = penTrackingColor.findIndex(
   //   (studentSocketID) => studentSocketID.id === socket.id
   // );
-  if(uniqueStroke != -1) {
-    assignedPenColor = uniquePenColors[penTrackingColor.indexOf(socket.id)]
+  if (uniqueStroke != -1) {
+    assignedPenColor = uniquePenColors[penTrackingColor.indexOf(socket.id)];
   }
-  
-  realStudentNames = data.realUsers
+
+  realStudentNames = data.realUsers;
   gameRoomID = data.uniqueGameRoomID;
   roomName = data.doodleGameRoomName;
   var timer = await setInterval(function () {
-    if (timeleft < 0) {
+    if (timeleft <= 0) {
       clearInterval(timer);
       clear();
       setup();
       drawingStream = [];
-      
-      document.getElementById('gameCountdownTimerText').innerHTML =
-        data.questionOne;
+      memoryDrawingStream = [];
+      $('#gameCountdownTimerText').animate({ opacity: 0 }, 400, function () {
+        var doodleQuestionOne = data.questionOne;
+        $(this).text(`${doodleQuestionOne}`).animate({ opacity: 1 }, 400);
+      });
       document.getElementById('gameCountdownTimer').value = 0;
       var questionOneTimeLeft = 30;
       var qOneTimer = setInterval(function () {
         if (questionOneTimeLeft < 0) {
           teacherDoodleQuestion = data.questionOne;
           // Stream to realtime database.
-          
+
           saveDoodle();
           drawingStream = [];
+          memoryDrawingStream = [];
           document.getElementById('gameCountdownTimer').value = 0;
           clear();
           setup();
           clearInterval(qOneTimer);
-          
-          document.getElementById('gameCountdownTimerText').innerHTML =
-            data.questionTwo;
+
+          $('#gameCountdownTimerText').animate(
+            { opacity: 0 },
+            400,
+            function () {
+              var doodleQuestionTwo = data.questionTwo;
+              $(this).text(`${doodleQuestionTwo}`).animate({ opacity: 1 }, 400);
+            }
+          );
           var questionTwoTimeLeft = 30;
           var qTwoTimer = setInterval(function () {
             if (questionTwoTimeLeft < 0) {
               teacherDoodleQuestion = data.questionTwo;
-              
+
               saveDoodle();
               drawingStream = [];
+              memoryDrawingStream = [];
               document.getElementById('gameCountdownTimer').value = 100;
               clearInterval(qTwoTimer);
               document.getElementById('gameCountdownTimerText').innerHTML =
@@ -129,8 +142,10 @@ socket.on('begin', async (data) => {
         }
       }, 1000);
     } else {
-      document.getElementById('gameCountdownTimerText').innerHTML =
-        'Game Beginning in ....' + timeleft;
+      $('#gameCountdownTimerText').animate({ opacity: 0 }, 400, function () {
+        var timeLeftToQuestion = 'Game Beginning in ....' + timeleft;
+        $(this).text(`${timeLeftToQuestion}`).animate({ opacity: 1 }, 400);
+      });
       document.getElementById('gameCountdownTimer').value = 10 - timeleft;
       timeleft -= 1;
     }
@@ -138,10 +153,11 @@ socket.on('begin', async (data) => {
 });
 
 var cnv;
+var px;
+var pey;
 
 function setup() {
-  
-  var px = $('#canvas-holder').parent().width();
+  px = $('#canvas-holder').parent().width() * 0.95;
 
   cnv = createCanvas(px, windowHeight * 0.55);
 
@@ -151,69 +167,44 @@ function setup() {
 
   background(237, 250, 249);
   cnv.parent('canvas-holder');
-  //io.connect('http://localhost:3000/game-room');
   socket.on('mousedata', newDrawing);
 }
 
 function newDrawing(data) {
   startPath;
-  var px = $('#canvas-holder').parent().width();
-  var pey = windowHeight * 0.55;
+  px = $('#canvas-holder').parent().width() * 0.95;
+  pey = windowHeight * 0.55;
   var relativeX = data.x * (px / data.resX);
   var relativeXX = data.x2 * (px / data.resX);
   var relativeY = data.y * (pey / data.resY);
   var relativeYY = data.y2 * (pey / data.resY);
-  //var s0 = data.strokeColor[0];
-  //var s1 = data.strokeColor[1];
-  //var s2 = data.strokeColor[2];
   var s0 = data.strokeColor;
   var weight = data.strokeWeight;
-  //noStroke();
-  
+
   strokeWeight(parseInt(weight));
-  //stroke(parseInt(s0), parseInt(s1), parseInt(s2));
   stroke(s0);
   line(relativeX, relativeY, relativeXX, relativeYY);
-  //ellipse(data.x, data.y, 15, 15);
+
   currentPath.push(data);
+  memoryDrawingStream.push(data);
   endPath;
 }
 
 function windowResized() {
-  var px = $('#canvas-holder').parent().width();
-  resizeCanvas(px, windowHeight * 0.55);
+  px = $('#canvas-holder').parent().width() * 0.95;
+  resizeCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
+  redrawAfterResizing(memoryDrawingStream);
 }
-
-// function mouseIsPressed() {
-//   const px = $('#canvas-holder').parent().width();
-//   const pey = windowHeight * 0.55;
-//   var data = {
-//     x: mouseX,
-//     y: mouseY,
-//     x2: pmouseX,
-//     y2: pmouseY,
-//     resX: px,
-//     resY: pey,
-//     strokeWeight: strokeWeight,
-//     strokeColor: strokeColor,
-//   };
-
-//   stroke(202, 110, 255);
-//   line(mouseX, mouseY, pmouseX, pmouseY);
-// }
 
 var penTracker = true;
 
 function chooseEraser() {
-  //strokeWeight(10);
   penTracker = false;
 }
 
 function choosePen() {
   noErase();
-  //strokeWeight(1);
-  //stroke(assignedPenColor);
   penTracker = true;
 }
 
@@ -227,8 +218,8 @@ function draw() {
     strokeWeightNumber = 1;
     strokeWeight(strokeWeightNumber);
     if (mouseIsPressed) {
-      const px = $('#canvas-holder').parent().width();
-      const pey = windowHeight * 0.55;
+      px = $('#canvas-holder').parent().width() * 0.95;
+      pey = windowHeight * 0.55;
 
       var data = {
         x: mouseX,
@@ -243,7 +234,7 @@ function draw() {
       // Stream the data to the realtime database in chunks
       // makes it more efficient.
       currentPath.push(data);
-
+      memoryDrawingStream.push(data);
       line(mouseX, mouseY, pmouseX, pmouseY);
       socket.emit('mouse', data);
     }
@@ -253,8 +244,8 @@ function draw() {
     strokeWeightNumber = 10;
     strokeWeight(strokeWeightNumber);
     if (mouseIsPressed) {
-      const px = $('#canvas-holder').parent().width();
-      const pey = windowHeight * 0.55;
+      px = $('#canvas-holder').parent().width() * 0.95;
+      pey = windowHeight * 0.55;
 
       var data = {
         x: mouseX,
@@ -269,7 +260,7 @@ function draw() {
       // Stream the data to the realtime database in chunks
       // makes it more efficient.
       currentPath.push(data);
-
+      memoryDrawingStream.push(data);
       line(mouseX, mouseY, pmouseX, pmouseY);
       socket.emit('mouse', data);
     }
@@ -279,16 +270,30 @@ function draw() {
   }
 }
 
-// // Teacher submits the question to the classroom.
-// document.querySelector('#send-question').addEventListener('click', () => {
-//   socket.emit('sendQuestion', message, (msg) => {
-//     console.log('The question will be delivered.', msg);
-//   });
-// });
+// In memory storage to retrace sudden network dropouts or screen tabbing.
+function redrawAfterResizing(memoryDrawingStream) {
+  px = $('#canvas-holder').parent().width() * 0.95;
+  pey = windowHeight * 0.55;
+  for (var retracer = 0; retracer < memoryDrawingStream.length; retracer++) {
+    var retraceData = memoryDrawingStream[retracer];
+    var relativeX = retraceData.x * (px / retraceData.resX);
+    var relativeXX = retraceData.x2 * (px / retraceData.resX);
+    var relativeY = retraceData.y * (pey / retraceData.resY);
+    var relativeYY = retraceData.y2 * (pey / retraceData.resY);
+    var s0 = retraceData.strokeColor;
+    var weight = retraceData.strokeWeight;
+
+    strokeWeight(parseInt(weight));
+
+    stroke(s0);
+    line(relativeX, relativeY, relativeXX, relativeYY);
+  }
+}
 
 // Stream the Drawing Data to the Realtime Database.
 var drawingStream = [];
 var currentPath = [];
+var memoryDrawingStream = [];
 
 // Start drawing on mouse press.
 function startPath() {
@@ -301,7 +306,7 @@ function endPath() {
   drawingStream.push(currentPath);
 }
 
-// Post Drawing Data Chunks to the Database
+// Post Drawing Data Chunks to the Database for Rehydration
 function saveDoodle() {
   // Push to the classroom code + gameSession Date + the gameroom code.
   var ref = database.ref(`${roomName}/${timeFormatted}`);
@@ -317,3 +322,8 @@ function saveDoodle() {
     var errorTracker = err;
   });
 }
+
+$(window).on('resize', function (e) {
+  px = $('#canvas-holder').parent().width() * 0.95;
+  windowResized();
+});

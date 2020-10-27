@@ -31,9 +31,9 @@ exports.getTeacherDashboard = async (req, res, next) => {
       .then((classrooms) => {
         Teacher.findOne({ where: { email: email } })
           .then((teacher) => {
-            Teacher.findAll({ where : {school: school, email: {[Op.not]: email}, }
-          })
-            .then((otherTeachers) => {
+            Teacher.findAll({
+              where: { school: school, email: { [Op.not]: email } },
+            }).then((otherTeachers) => {
               req.session.classrooms1 = classrooms;
               req.session.userName = teacher.firstName; //Set name in session
               res.render('teacher/teacher-dashboard', {
@@ -58,23 +58,22 @@ exports.getTeacherDashboard = async (req, res, next) => {
 exports.postReplaceGames = (req, res, next) => {
   const targetClass = req.body.classCode;
   const fromClass = req.body.thisClass;
-  ClassroomStats.destroy({ where: { classroomClassCode: targetClass }
-  })
-  .then(() => {
-    ClassroomStats.findAll({
-      where : {classroomClassCode : fromClass},
-      attributes: ['gameID'],
-    })
-    .then((games) => {
-      const data = [];
-      for (game of games) {
-        data.push({gameID: game.gameID, classroomClassCode: targetClass})
-      }
-      ClassroomStats.bulkCreate(data);
-      res.redirect('/teacher-dashboard');
-    })
-  })
-}
+  ClassroomStats.destroy({ where: { classroomClassCode: targetClass } }).then(
+    () => {
+      ClassroomStats.findAll({
+        where: { classroomClassCode: fromClass },
+        attributes: ['gameID'],
+      }).then((games) => {
+        const data = [];
+        for (game of games) {
+          data.push({ gameID: game.gameID, classroomClassCode: targetClass });
+        }
+        ClassroomStats.bulkCreate(data);
+        res.redirect('/teacher-dashboard');
+      });
+    }
+  );
+};
 
 exports.postAddClassroom = (req, res, next) => {
   const className = req.body.className;
@@ -217,44 +216,42 @@ exports.getClassroom = (req, res, next) => {
     Classroom.findOne({ where: { classCode: classCode } }).then((classRoom) => {
       req.session.classRoom = classRoom;
       Schedules.findAll({
-        where: {classCode: classCode}
-      })
-    .then((schedules) => {
-      const scheduleGameData = new Set();
-      for (schedule of schedules) {
-        for (game of schedule.gameList) {
-          scheduleGameData.add(game);
-        }    
-      }
-      const arrayGames = Array.from(scheduleGameData);
-      Games.findAll({
-        where : {gameID : arrayGames}
-      })
-      .then((gamesInSchedule) => {
-        console.log(gamesInSchedule);
-        ClassroomStats.findAll({
-          where: {
-            classroomClassCode: classCode,
-          },
-          include: Games,
-        })
-        .catch((err) => {
-          console.log(err);
-          res.sendStatus(500);
-        })
-        .then((games) => {
-          res.render('teacher/teacher-classroom', {
-            classRoom: req.session.classRoom,
-            games: games,
-            schedules: schedules,
-            name: req.session.userName,
-            path: '/teacher-dashboard',
-            gamesInSchedule : gamesInSchedule,
-          });
+        where: { classCode: classCode },
+      }).then((schedules) => {
+        const scheduleGameData = new Set();
+        for (schedule of schedules) {
+          for (game of schedule.gameList) {
+            scheduleGameData.add(game);
+          }
+        }
+        const arrayGames = Array.from(scheduleGameData);
+        Games.findAll({
+          where: { gameID: arrayGames },
+        }).then((gamesInSchedule) => {
+          console.log(gamesInSchedule);
+          ClassroomStats.findAll({
+            where: {
+              classroomClassCode: classCode,
+            },
+            include: Games,
+          })
+            .catch((err) => {
+              console.log(err);
+              res.sendStatus(500);
+            })
+            .then((games) => {
+              res.render('teacher/teacher-classroom', {
+                classRoom: req.session.classRoom,
+                games: games,
+                schedules: schedules,
+                name: req.session.userName,
+                path: '/teacher-dashboard',
+                gamesInSchedule: gamesInSchedule,
+              });
+            });
         });
-      })
+      });
     });
-  })
   } else {
     res.redirect('/');
   }
@@ -409,41 +406,47 @@ exports.getOtherTeacherInfo = (req, res, next) => {
   if (req.session.user) {
     const otherTeacher = req.params.otherTeacherID;
     const teacherName = req.params.teacherName;
-    console.log("otherTeacher = "+otherTeacher);
+    console.log('otherTeacher = ' + otherTeacher);
     //Get the teachers classrooms
     Classroom.findOne({
-      where: { teacherID : otherTeacher},
+      where: { teacherID: otherTeacher },
     })
-    .then((classroom) => {
-      ClassroomStats.findAll({
-        where: {classroomClassCode : classroom.classCode},
-        include: Games,
-      })
-      .then((games) => {
-        console.log(req.session.classrooms1)
-        res.render('teacher/otherTeachers', {
-            pageTitle: 'otherTeacher',
-            name: req.session.userName,
-            classRoom: req.session.classRoom,
-            otherTeacher: otherTeacher,
-            teacherName: teacherName,
-            classrooms1: req.session.classrooms1,
-            path: '/otherTeachers',
-            classroom: classroom,
-            games: games,
+      .then((classroom) => {
+        ClassroomStats.findAll({
+          where: { classroomClassCode: classroom.classCode },
+          include: Games,
+        })
+          .then((games) => {
+            console.log(req.session.classrooms1);
+            res.render('teacher/otherTeachers', {
+              pageTitle: 'otherTeacher',
+              name: req.session.userName,
+              classRoom: req.session.classRoom,
+              otherTeacher: otherTeacher,
+              teacherName: teacherName,
+              classrooms1: req.session.classrooms1,
+              path: '/otherTeachers',
+              classroom: classroom,
+              games: games,
+            });
+          })
+          .catch((err) => {
+            res.redirect('/teacher-dashboard');
           });
       })
-    })
+      .catch((err) => {
+        res.redirect('/teacher-dashboard');
+      });
   } else {
-    res.redirect('/');
+    res.redirect('/teacher-signin');
   }
-}
+};
 
 exports.postGamesWithArray = (req, res, next) => {
-  console.log("got here")
+  console.log('got here');
   console.log(req.body);
   res.redirect('/');
-}
+};
 
 exports.getUserProfile = (req, res, next) => {
   res.render('/user-profile', {

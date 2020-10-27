@@ -777,7 +777,7 @@ body {
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
-  margin: 0rem .1rem;
+  margin: 0rem 0.1rem;
 }
 
 .category {
@@ -958,6 +958,19 @@ body {
   margin-bottom: 3rem;
 }
 
+.aidoodleQuestionBox {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', cursive;
+  font-weight: 500;
+  padding-left: 1.5rem;
+  background-color: white !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  height: 7rem !important;
+  margin-bottom: 3rem;
+  border-radius: 2rem;
+}
+
 .doodleQuestionBoxSelect {
   font-size: 2rem;
   font-family: 'Fredoka One', cursive;
@@ -1039,7 +1052,7 @@ body {
 }
 
 .non-orange-text {
-  color:black;
+  color: black;
 }
 
 .bg-otherTeacher {
@@ -1050,4 +1063,19 @@ body {
   font-size: 1.5rem !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
   text-align: center;
+}
+
+.doodleAddQuestionButton {
+  font-family: 'Quicksand', cursive;
+  background-color: #d2fffb !important;
+  border-radius: 3.5rem !important;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+  font-size: 3rem !important;
+  font-weight: 600 !important;
+
+  padding: 3rem 3rem !important;
+}
+
+.doodleAddQuestionButton:hover {
+  background-color: #f1cdff !important;
 }

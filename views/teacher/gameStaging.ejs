@@ -12,12 +12,15 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
+
   <title>Kleva</title>
 </head>
 
@@ -133,9 +136,60 @@
         <div class="px-5 py-5">
           <div class="ml-5 mr-5 container-md mx-auto ">
             <div class="row justify-content-center">
-              <div class="col-12 mt-5 text-center">
+              <div class="col-12 mt-5 text-center mb-5">
                 <img src="img/kleva_doodles_bw.png" class="img-fluid" height="180px" width="300px" />
               </div>
+              <!-- OPENAI GPT-3 Question Generation -->
+              <!-- <div class="row mt-3 justify-content-around mb-5">
+
+
+
+                <div class="col-6 col-md-3">
+
+
+                  <label for="qGeneratorSubject" style="font-size: 2rem;">Substrand</label>
+                  <input id="qGeneratorSubject" type='text' value="<%- substrand %>" name="qGeneratorSubject"
+                    class="doodleQuestionBoxPrepend w-100">
+                </div>
+
+
+                <div class="col-5 col-md-3">
+                  <label for="qGeneratorYearLevel" style="display: block; font-size: 2rem;">Year</label>
+                  <input id="qGeneratorYearLevel" type='text' value="<%- yearLevel %>" name="qGeneratorYearLevel"
+                    class="doodleQuestionBoxPrepend w-100" style="margin: none;">
+                </div> -->
+
+              <!-- <% if (scot.length > 0) { %>
+                <div class="col-12 col-md-6">
+
+                  <label for="qGeneratorTerm" style="font-size: 2rem;">Topic: Example 'Molecules'</label>
+                  <select class="custom-select doodleQuestionBoxPrepend w-100" id="qGeneratorTerm"
+                    style="font-size: 2.2rem" name="qGeneratorTerm">
+                    <% for (let acaraQuestions of scot) { %>
+                    <option value="<%- acaraQuestions.term %>"><%- acaraQuestions.term %></option>
+
+                    <% } %>
+                  </select>
+                </div>
+                <% } else { %>
+                <div class="col-12 col-md-6">
+                  <label for="qGeneratorTerm" style="font-size: 1.5rem;">Term</label>
+                  <input id="qGeneratorTerm" type='text' placeholder="Example: Molecules" name="qGeneratorTerm"
+                    class="doodleQuestionBoxPrepend">
+                </div>
+                <% } %>
+              </div>
+              <div class="col-12 mb-5 mx-0" style="padding: 0rem;">
+                <input id="AIGENERATED" class="aidoodleQuestionBox w-100" placeholder="Doodle the... (Powered by AI)"
+                  style="font-size: 2.2rem;">
+              </div>
+              <div class="col-12 text-center mb-5">
+                <button class="btn mb-5 doodleAddQuestionButton btn-lg" style="font-size: 5rem"
+                  onclick="questionGenerator()">Create an AI Generated
+                  Question</button>
+                <hr>
+              </div> -->
+
               <div class="col-10 mt-5">
                 <form action="/teacher/game-room" method="POST">
                   <input type="hidden" value="<%- classCode %>" name="classCode">
@@ -264,5 +318,6 @@
     }
   };
 </script>
+<script src="/js/ai.js"></script>
 
 </html>
