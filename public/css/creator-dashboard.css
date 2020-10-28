@@ -53,9 +53,6 @@
   border-radius: 0;
 }
 
-/* user profile */
-#picture {
-}
 .profile-container {
   background-color: wheat;
   display: list-item;
@@ -1042,9 +1039,6 @@ body {
 .title-card {
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.teacher-icon {
 }
 
 .orange-text {

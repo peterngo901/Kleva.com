@@ -1,7 +1,5 @@
-// Form Validation
+// Dependencies
 const { validationResult } = require('express-validator');
-
-// Password Encryption/Decryption
 const bcrypt = require('bcryptjs');
 
 // Models
@@ -9,10 +7,8 @@ const Teacher = require('../models/teacher');
 const Creator = require('../models/creator');
 const Student = require('../models/student');
 const Classroom = require('../models/classroom');
-/////////////////////////////////////////////////////////////////////////
 
-// Teacher Authentication
-
+// Return the teacher signup page.
 exports.getTeacherSignup = (req, res, next) => {
   res.render('teacher/teacher-signup', {
     // Teacher Signup Page.
@@ -22,6 +18,7 @@ exports.getTeacherSignup = (req, res, next) => {
   });
 };
 
+// Create a new unique teacher.
 exports.postTeacherSignup = (req, res, next) => {
   const email = req.body.username;
   const school = req.body.school;
@@ -29,11 +26,10 @@ exports.postTeacherSignup = (req, res, next) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const postcode = req.body.postcode;
-
-  // Form Validation errors defined in (../routes/authenticated) router.postTeacherSignup().
+  // Validate all signup details for errors.
   const errors = validationResult(req);
-
-  const existingTeacher = Teacher.findOne({ where: { email: email } }) // Check if email exists in database, Teacher table.
+  // Check if email exists in database, Teacher table.
+  const existingTeacher = Teacher.findOne({ where: { email: email } })
     .then((existingTeacher) => {
       if (existingTeacher) {
         // Email already exists.
@@ -84,6 +80,13 @@ exports.postTeacherSignup = (req, res, next) => {
     });
 };
 
+// Return the teacher's student profile.
+exports.getProfile = async (req, res, next) => {
+  res.locals.user = req.session.sessionType;
+  res.redirect('/teacher-students');
+};
+
+// Return the teacher sign-in page.
 exports.getTeacherSignin = (req, res, next) => {
   res.render('teacher/teacher-signin', {
     // Teacher Signin Page.
@@ -93,6 +96,7 @@ exports.getTeacherSignin = (req, res, next) => {
   });
 };
 
+// Sign the teacher in.
 exports.postTeacherSignin = async (req, res, next) => {
   const email = req.body.username;
   const password = req.body.password;
@@ -146,10 +150,7 @@ exports.postTeacherSignin = async (req, res, next) => {
     });
 };
 
-/////////////////////////////////////////////////////////////////////////
-
-// Creator Authentication
-
+// Return the creator signup page.
 exports.getCreatorSignup = (req, res, next) => {
   res.render('creator/creator-signup', {
     // Creator Signup Page.
@@ -159,6 +160,7 @@ exports.getCreatorSignup = (req, res, next) => {
   });
 };
 
+// Sign-up the unique game creator.
 exports.postCreatorSignup = async (req, res, next) => {
   const email = req.body.username;
   const companyName = req.body.companyName;
@@ -215,6 +217,7 @@ exports.postCreatorSignup = async (req, res, next) => {
     });
 };
 
+// Return the creator signin page.
 exports.getCreatorSignin = (req, res, next) => {
   res.render('creator/creator-signin', {
     // Creator Signin Page.
@@ -224,6 +227,7 @@ exports.getCreatorSignin = (req, res, next) => {
   });
 };
 
+// Sign the game-creator in.
 exports.postCreatorSignin = async (req, res, next) => {
   const email = req.body.username;
   const password = req.body.password;
@@ -270,12 +274,7 @@ exports.postCreatorSignin = async (req, res, next) => {
     });
 };
 
-/////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////
-
-// Student Authentication
-
+// Return the student sign-in page.
 exports.getStudentSignin = (req, res, next) => {
   res.render('student-signin', {
     // Creator Signin Page.
@@ -285,6 +284,7 @@ exports.getStudentSignin = (req, res, next) => {
   });
 };
 
+// Sign the student in.
 exports.postStudentSignin = (req, res, next) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -333,6 +333,7 @@ exports.postStudentSignin = (req, res, next) => {
     });
 };
 
+// Return the quick-join game sign-in.
 exports.getStudentGameSignin = (req, res, next) => {
   console.log(req.headers);
   if (req.headers.statusCode === 500) {
@@ -352,6 +353,7 @@ exports.getStudentGameSignin = (req, res, next) => {
   }
 };
 
+// Check that the classroom exists and that it has a current game session.
 exports.postStudentGameSignin = async (req, res, next) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -369,7 +371,7 @@ exports.postStudentGameSignin = async (req, res, next) => {
           lastName: lastName,
           classroomClassCode: classCode,
         });
-        req.session.classCode = classCode; // easily track all students belonging to a classroom
+        req.session.classCode = classCode;
         req.session.firstName = firstName;
         req.session.lastName = lastName;
         req.session.sessionType = 'student';
@@ -401,17 +403,9 @@ exports.postStudentGameSignin = async (req, res, next) => {
   }
 };
 
-////////////////////////////////////////////////////////////////////////
+// Sign the user out and destroy the session in the session store.
 exports.postSignout = (req, res, next) => {
   req.session.destroy((err) => {
     res.redirect('/');
   });
-};
-
-exports.getProfile = async (req, res, next) => {
-  res.locals.user = req.session.sessionType;
-  res.redirect('/teacher-students');
-  // res.render('user-profile', {
-  //   pageTitle: 'Your Profile',
-  // });
 };

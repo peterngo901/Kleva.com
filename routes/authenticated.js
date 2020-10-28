@@ -1,15 +1,11 @@
 const express = require('express');
 
-// Form Validation
+// Dependencies
 const { check } = require('express-validator');
 
 // Controllers
 const authController = require('../controllers/auth');
 
-// Models
-const Teacher = require('../models/teacher');
-
-///////////////////////////////////////////////////////////
 const router = express.Router();
 
 // Teacher Authentication

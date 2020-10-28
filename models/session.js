@@ -1,8 +1,9 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
-const Session = sequelize.define("Session", {
+// Session Storage
+const Session = sequelize.define('Session', {
   sid: {
     type: Sequelize.STRING,
     primaryKey: true,

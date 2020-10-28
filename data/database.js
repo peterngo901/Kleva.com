@@ -1,9 +1,8 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
-// environment variables for production.
 require('dotenv').config();
 
-// Production DB
+// Deployed DB for Production.
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USER,
@@ -14,7 +13,7 @@ const sequelize = new Sequelize(
   }
 );
 
-// Local Development DB
+// DB for Local Development
 // const sequelize = new Sequelize('Kleva', 'postgres', 'royalelephants', {
 //   dialect: 'postgres',
 //   host: 'localhost',

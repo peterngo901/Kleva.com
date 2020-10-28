@@ -5,11 +5,6 @@
 
 <body>
   <%- include('reusables/navbar-bootstrap.ejs', {sessionType: user});%>
-
-  <!-- Bootstrap core JavaScript -->
-
-  <!-- Optional JavaScript -->
-  <%- include('reusables/scripts-bootstrap.ejs');%>
   <div class="profile-container">
     <div id="picture">
       <img src="img/ys2.jpg" width="700" height="300">
@@ -48,8 +43,6 @@
 
     <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
   </div>
-
-  <!-- /.container -->
 </footer>
 
 <script src="/socket.io/socket.io.js"></script>

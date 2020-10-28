@@ -1,7 +1,8 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
+// Classroom Statistics Model
 const ClassroomStats = sequelize.define('classroomStats', {
   gameID: {
     //gameID and classroomClassCode make a composite primary key

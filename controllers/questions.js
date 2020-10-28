@@ -1,18 +1,19 @@
-const Curriculum = require('../models/curriculum');
+// Models
 const Acara = require('../models/acara');
 const AcaraRelations = require('../models/acaraRelations');
+const Curriculum = require('../models/curriculum');
+
+// Dependencies
 const { Op } = require('sequelize');
 
+// Return Curriculum Specific words to be used by teachers to create doodle questions.
 exports.postYearLevelSubstrand = async (req, res) => {
-  //console.log(req.body.topic);
-  //console.log(req.body.yearLevel);
-  //console.log(req.body.classCode);
   const yearLevelSubstrand = req.body.topic;
   const yearLevel = req.body.yearLevel;
   const { classCode } = req.body;
   req.session.classCode = classCode;
   try {
-    // Return the ID for the Substrand
+    // Return the uid for the given year-level-substrand.
     const substrandID = await Curriculum.findAll({
       attributes: ['aboutID'],
       where: {
@@ -25,11 +26,11 @@ exports.postYearLevelSubstrand = async (req, res) => {
       },
     });
 
-    //console.log(substrandID);
+    // Return all the children of the given curriculum sub-strand.
     const childID = substrandID[0].dataValues.aboutID;
-    //console.log(childID);
 
-    // Using that Substrand ID, return all relevant content descriptions.
+    // Using that Substrand ID, return all relevant content descriptions,
+    // and all uid dictionary terms from Acaras table.
     const contentDescriptions = await Curriculum.findAll({
       attributes: [
         'strand',
@@ -50,14 +51,8 @@ exports.postYearLevelSubstrand = async (req, res) => {
         isChildOfOne: childID,
       },
     });
-    //console.log(contentDescriptions.length);
-    // res.render('teacher/gameStaging', {
-    //   questions: {},
-    //   path: '/teacher-dashboard',
-    //   name: ' ',
-    //   classCode: classCode,
-    //   contentDescriptions: contentDescriptions,
-    // });
+
+    // Return all non-null uid dictionary terms.
     var scotHolder = [];
     if (contentDescriptions.length >= 1) {
       for (var g = 0; g < contentDescriptions.length; g++) {
@@ -90,11 +85,12 @@ exports.postYearLevelSubstrand = async (req, res) => {
         classCode: classCode,
         contentDescriptions: contentDescriptions,
         substrand: yearLevelSubstrand,
-        yearLevel: yearLevel
+        yearLevel: yearLevel,
       });
     }
-    //console.log(scotHolder);
-    // Using the terms in the scotHolder, return all the narrower terms.
+
+    // For the given sub-strand of a subject, return all it's children
+    // terms and the children of the children terms.
     const childrenTerms = await AcaraRelations.findAll({
       raw: true,
       where: {
@@ -103,22 +99,17 @@ exports.postYearLevelSubstrand = async (req, res) => {
         },
       },
     });
-    console.log(childrenTerms);
-    var narrowTermTracker = [];
 
+    var narrowTermTracker = [];
     for (var u = 0; u < scotHolder.length; u++) {
       if (childrenTerms[u].narrowerTerms !== null) {
         narrowTermTracker.push(...childrenTerms[u].narrowerTerms.split(' '));
       }
     }
-    console.log(narrowTermTracker);
-    //console.log(narrowTermTracker);
-    //console.log(scotHolder);
 
+    // Push all broad and narrow terms into a single array.
     narrowTermTracker.push(...scotHolder);
 
-    console.log(narrowTermTracker.push(...scotHolder));
-    //console.log(narrowTermTracker);
     // Using the contentDescriptions, return all the terms matching the scoTerms.
     const scoTerms = await Acara.findAll({
       raw: true,
@@ -128,7 +119,6 @@ exports.postYearLevelSubstrand = async (req, res) => {
         },
       },
     });
-    console.log(scoTerms);
     res.render('teacher/gameStaging', {
       questions: {},
       path: '/teacher-dashboard',
@@ -137,9 +127,12 @@ exports.postYearLevelSubstrand = async (req, res) => {
       contentDescriptions: contentDescriptions,
       scot: scoTerms,
       substrand: yearLevelSubstrand,
-      yearLevel: yearLevel
+      yearLevel: yearLevel,
     });
   } catch (err) {
+    // No terms have been found for the given content description.
+    // Common for ARTs and Humanities subjects as they are not well
+    // documented by ACARA (Australian Curriculum).
     res.render('teacher/gameStaging', {
       questions: {},
       path: '/teacher-dashboard',
@@ -148,7 +141,7 @@ exports.postYearLevelSubstrand = async (req, res) => {
       contentDescriptions: '',
       scot: '',
       substrand: yearLevelSubstrand,
-      yearLevel: yearLevel
+      yearLevel: yearLevel,
     });
   }
 };

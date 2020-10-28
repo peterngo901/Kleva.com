@@ -1,9 +1,8 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
-// New Model define()
-
+// Detailed Australian Curriculum Model
 const Curriculum = sequelize.define(
   'curriculum',
   {

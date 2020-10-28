@@ -3,9 +3,9 @@ const express = require('express');
 // Controllers
 const classroomController = require('../controllers/classrooms');
 
-////////////////////////////////////////////////////////////////////
 const router = express.Router();
 
+// Teacher Routes
 router.get('/teacher-dashboard', classroomController.getTeacherDashboard);
 
 router.post('/games-with-array', classroomController.postGamesWithArray);

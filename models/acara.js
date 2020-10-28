@@ -1,9 +1,9 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
-// New Model define()
-
+// ACARA unique id and it's corresponding EN term.
+// E.G. 100, Molecules
 const Acara = sequelize.define(
   'acara',
   {

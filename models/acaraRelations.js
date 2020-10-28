@@ -1,9 +1,8 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
-// New Model define()
-
+// The ACARA term ID and the id's of it's parents and children.
 const AcaraRelations = sequelize.define(
   'acara_relations',
   {

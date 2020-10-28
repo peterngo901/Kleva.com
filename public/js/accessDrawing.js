@@ -20,6 +20,8 @@ var doodleLineDataTracker = [];
 var key;
 var uPenColors = ['#FF0000', '#D500FF', '#FFFF00', '#1B1B0A', '#5EFFBA'];
 
+// Return the students, the student's pen color
+// and the question for each doodle from a selected date.
 async function queryDoodlesFromDate(btn, event) {
   drawingQuestions = [];
   doodleQs = [];
@@ -65,18 +67,6 @@ async function queryDoodlesFromDate(btn, event) {
         if (doodleQuestions !== null) {
           doodleQs.push(doodleQuestions);
         }
-
-        // var node = document.createElement('BUTTON');
-        // node.className = 'btn btn-success mx-5';
-        // var textnode = document.createTextNode(doodleQuestions);
-        // var attr = document.createAttribute('onclick');
-        // var attr2 = document.createAttribute('value');
-        // attr.value = 'retrieveDoodle(this)';
-        // attr2.value = `${key}/${drawingQuestions[p]}/studentNames`;
-        // node.appendChild(textnode);
-        // node.setAttributeNode(attr);
-        // node.setAttributeNode(attr2);
-        // document.getElementById('doodle-holder').appendChild(node);
       }
       studentsRef.on('value', studentDoodleData);
       function studentDoodleData(data) {
@@ -90,13 +80,6 @@ async function queryDoodlesFromDate(btn, event) {
       function doodleLineData(data) {
         var doodleLines = data.val();
         doodleLineDataTracker.push(doodleLines);
-        // console.log(doodleLines.length);
-        // for (var m = 0; m < doodleLines.length; m++) {
-        //   var currentDoodleLine = doodleLines[m];
-        //   for (var s = 0; s < currentDoodleLine.length; s++) {
-        //     newDrawing(doodleLines[m][s]);
-        //   }
-        // }
       }
     }
     // Return a card depending on the length of the doodleQ's array.
@@ -114,14 +97,14 @@ async function queryDoodlesFromDate(btn, event) {
       attr5.value = `font-size: 1.5rem; font-family: 'Quicksand', cursive;`;
       var node = document.createElement('BUTTON');
       var node2 = document.createElement('H2');
-      //var divNode = document.createElement('div');
+
       node.className = 'btn doodleDrawingView m-2';
       node2.className = 'ml-2 text-left my-2';
       var questionNode = document.createTextNode('Q: ' + doodleQs[u]);
       var studentNameNode = document.createTextNode('Created By: ');
       node.appendChild(questionNode);
       node2.appendChild(studentNameNode);
-      //divNode.appendChild()
+
       node2.setAttributeNode(attr5);
       node.setAttributeNode(attr1); //id=doodle0
       node.setAttributeNode(attr2); //onclick=openDoodleStream(this)
@@ -129,7 +112,7 @@ async function queryDoodlesFromDate(btn, event) {
       node.setAttributeNode(attr4);
       document.getElementById('doodle-holder').appendChild(node);
       document.getElementById('doodle-holder').appendChild(node2);
-      //console.log(studentDoodlesTracker[u].length);
+
       for (var rt = 0; rt < studentDoodlesTracker[u].length; rt++) {
         var node3 = document.createElement('img');
         var node4 = document.createElement('h5');
@@ -138,7 +121,7 @@ async function queryDoodlesFromDate(btn, event) {
           studentDoodlesTracker[u][rt]
         );
         node4.appendChild(studentColorName);
-        //console.log(studentDoodlesTracker[u][rt]);
+
         var penColorIdentifier = uPenColors[rt];
         var attr6 = document.createAttribute('style');
         attr6.value = `background-color: ${penColorIdentifier};`;
@@ -151,18 +134,17 @@ async function queryDoodlesFromDate(btn, event) {
         node5.appendChild(node3);
         node5.appendChild(node4);
         document.getElementById('doodle-holder').appendChild(node5);
-        //document.getElementById('doodle-holder').appendChild(node4);
       }
     }
 
     return;
-
-    //drawingDataLoop(drawingQuestions);
   }
 }
 var currentDoodleLine;
 var doodleLinesRetracing;
 var sliderHistoryRange;
+
+// Draw the doodle data based upon the value of the slider.
 function openDoodleStream(btn) {
   currentDoodleLine = [];
   doodleLinesRetracing = [];
@@ -170,8 +152,6 @@ function openDoodleStream(btn) {
   draw();
   setup();
   doodlePoints = btn.value;
-
-  //console.log(doodleLineDataTracker[doodlePoints]);
 
   if (doodleLineDataTracker[doodlePoints] === null) {
     sliderHistoryRange = 0;
@@ -203,75 +183,20 @@ function openDoodleStream(btn) {
     }
   });
   $('#slider').on('slidestop', function (event, ui) {});
-  // Getter
-  //var step = $('.selector').slider('option', 'step');
-
-  // Setter
-  //$('.selector').slider('option', 'step', 5);
-
-  // console.log(doodleLinesRetracing.length);
-  // for (var m = 0; m < doodleLinesRetracing.length; m++) {
-  //   currentDoodleLine = await doodleLinesRetracing[m];
-  //   for (var s = 0; s < currentDoodleLine.length; s++) {
-  //     newDrawing(doodleLinesRetracing[m][s]);
-  //   }
-  // }
   return;
 }
-
-// function drawingDataLoop(drawingQuestions) {
-//   for (var p = 0; p < drawingQuestions.length; p++) {
-//     // Return the Doodle Question
-//     var questionRef = database.ref(key + `/${drawingQuestions[p]}/question`);
-//     // Return the Drawing Line Data
-//     var doodleDataRef = database.ref(key + `/${drawingQuestions[p]}/doodle`);
-//     // Return the Students For Each Doodle
-//     var studentsRef = database.ref(
-//       key + `/${drawingQuestions[p]}/studentNames`
-//     );
-//     questionRef.on('value', oneQuestionDoodle);
-//     doodleDataRef.on('value', doodleLineData);
-//     studentsRef.on('value', studentDoodleData);
-//     async function oneQuestionDoodle(data) {
-//       var doodleQuestions = await data.val();
-//       console.log(doodleQuestions);
-//       //newDrawing(doodleLines);
-//       var node = document.createElement('LI');
-//       var textnode = document.createTextNode(doodleQuestions);
-//       node.appendChild(textnode);
-//       document.getElementById('doodle-holder').appendChild(node);
-//     }
-//     async function studentDoodleData(data) {
-//       var studentDoodles = await data.val();
-//       console.log(studentDoodles);
-//     }
-//     function doodleLineData(data) {
-//       data.forEach((doodleStreams) => {
-//         doodleStreams.forEach((dData) => {
-//           newDrawing(dData.val());
-//         });
-//       });
-//       // var doodleLines = data.val();
-//       // console.log(doodleLines.length);
-//       // for (var m = 0; m < doodleLines.length; m++) {
-//       //   var currentDoodleLine = doodleLines[m];
-//       //   for (var s = 0; s < currentDoodleLine.length; s++) {
-//       //     //newDrawing(doodleLines[m][s]);
-//       //   }
-//       // }
-//     }
-//   }
-// }
 
 var cnv;
 var px;
 var pey;
 
+// Resize the canvas when the user resizes their window.
 $(window).on('resize', function (e) {
   px = $('#canvas-holder').parent().width() * 0.95;
   windowResized();
 });
 
+// Setup the drawing canvas.
 function setup() {
   px = $('#canvas-holder').parent().width() * 0.95;
   cnv = createCanvas(px, windowHeight * 0.45);
@@ -281,6 +206,7 @@ function setup() {
   noLoop();
 }
 
+// Rehydrate the doodle from the selected doodle.
 function newDrawing(data) {
   px = $('#canvas-holder').parent().width() * 0.95;
   pey = windowHeight * 0.45;
@@ -288,17 +214,11 @@ function newDrawing(data) {
   var relativeXX = data.x2 * (px / data.resX);
   var relativeY = data.y * (pey / data.resY);
   var relativeYY = data.y2 * (pey / data.resY);
-  // var s0 = data.strokeColor[0];
-  // var s1 = data.strokeColor[1];
-  // var s2 = data.strokeColor[2];
-  // var weight = data.strokeWeight;
-  //noStroke();
   var s0 = data.strokeColor;
   var weight = data.strokeWeight;
   strokeWeight(parseInt(weight));
   stroke(s0);
   line(relativeX, relativeY, relativeXX, relativeYY);
-  //ellipse(data.x, data.y, 15, 15);
 }
 
 function windowResized() {

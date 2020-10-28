@@ -17,7 +17,7 @@ const teacherRoutes = require('./routes/teacher');
 const creatorRoutes = require('./routes/creator');
 const studentRoutes = require('./routes/student');
 const gameroomRoutes = require('./routes/gameroom');
-// Not for Production (OpenAI - GPT3)
+// Not for Production
 // const aiRoutes = require('./routes/ai');
 
 // Controllers
@@ -107,6 +107,7 @@ app.use(authenticatedRoutes); // Mount the authenticated routes on the app.
 app.use('/creator-dashboard', creatorRoutes);
 app.use(studentRoutes);
 app.use(gameroomRoutes);
+// Not for Production
 //app.use(aiRoutes);
 
 ////////////////////////////////////////////////////////////////////////////
@@ -116,47 +117,56 @@ app.use(notFoundController.get404);
 
 ////////////////////////////////////////////////////////////////////////////
 
-// Relations for Postgres using Sequelize
+// Database Relations
 
+// Each Game belongs to a Creator.
 // Game.belongsTo(Creator, {
-//   // Each Game belongs to a Creator.
 //   constraints: true,
 //   onDelete: 'CASCADE',
 // });
 
-//Creator.hasMany(Game); // Each Creator has many Games.
+// Each Creator has many Games.
+// Creator.hasMany(Game);
 
+// Each Classroom belongs to a Teacher.
 Classroom.belongsTo(Teacher, {
-  // Each Classroom belongs to a Teacher.
   constraints: true,
   onDelete: 'CASCADE',
 });
 
-Teacher.hasMany(Classroom); // Each Teacher has many Classrooms.
+// Each Teacher has many Classrooms.
+Teacher.hasMany(Classroom);
 
+// Each Student belongs to a Classroom.
 Student.belongsTo(Classroom, {
   constraints: true,
   onDelete: 'CASCADE',
 });
 
+// Each Classroom has many Students.
 Classroom.hasMany(Student);
 
+// Each Classroom has many Classroom Statistics.
 Classroom.hasMany(ClassroomStats, { foreignKey: 'classroomClassCode' });
 
+// Each Game has many Classroom Statistics.
 Game.hasMany(ClassroomStats, { foreignKey: 'gameID' });
 
+// Each ClassroomStats row belongs to a Classroom.
 ClassroomStats.belongsTo(Classroom, {
   foreignKey: 'classroomClassCode',
   constraints: true,
   onDelete: 'CASCADE',
 });
 
+// Each ClassroomStats row belongs to a Game.
 ClassroomStats.belongsTo(Game, {
   foreignKey: 'gameID',
   constraints: true,
   onDelete: 'CASCADE',
 });
 
+// Each Schedule row belongs to a Classroom.
 Schedules.belongsTo(Classroom, {
   foreignKey: 'classroomClassCode',
   constraints: true,
@@ -165,7 +175,7 @@ Schedules.belongsTo(Classroom, {
 
 ////////////////////////////////////////////////////////////////////////////
 
-// Sync the Tables/Models and Relations
+// Synchronise the tables before listening.
 sequelize
   .sync({ force: false })
   .then((result) => {

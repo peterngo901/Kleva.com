@@ -1,14 +1,9 @@
-// Models
-const Creator = require('../models/creator');
-const Games = require('../models/game');
-
+// Globals
 const fs = require('fs');
 const path = require('path');
 
-// env
+// Dependencies
 require('dotenv').config();
-
-// Google Cloud Storage
 const { Storage } = require('@google-cloud/storage');
 const storage = new Storage({
   projectId: process.env.GCLOUD_PROJECT,
@@ -18,11 +13,13 @@ const storage = new Storage({
   },
 });
 const bucket = storage.bucket(process.env.GCS_BUCKET);
-
-// Unique File Names
 const uuid = require('uuid');
 const uuidv1 = uuid.v1;
 
+// Models
+const Games = require('../models/game');
+
+// Return the game creator dashboard.
 exports.getCreatorDashboard = (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
@@ -44,10 +41,12 @@ exports.getCreatorDashboard = (req, res, next) => {
         });
       });
   } else {
-    res.redirect('/');
+    // Session expired or invalid.
+    res.status(401).redirect('/creator-signin');
   }
 };
 
+// Return the game upload page.
 exports.getGameUpload = (req, res, next) => {
   if (req.session.user) {
     const email = req.session.user;
@@ -68,7 +67,8 @@ exports.getGameUpload = (req, res, next) => {
         });
       });
   } else {
-    res.redirect('/');
+    // Session expired or invalid.
+    res.status(401).redirect('/creator-signin');
   }
 };
 
@@ -79,30 +79,33 @@ exports.postUploadGame = async (req, res, next) => {
   const { subCategories } = req.body;
   var subCategory = [];
 
+  // Reshape game subcategories for storage into the database.
   if (Array.isArray(subCategories) && subCategories.length > 1) {
     subCategories.forEach((subcategory) => subCategory.push(subcategory));
   } else {
     subCategory.push(subCategories);
   }
 
-  // Store Files on Firebase Storage + gameID
-  const newImageName = uuidv1() + '.png';
-  const blob = bucket.file(newImageName); // Store the image in the bucket with the uuid name.
+  // Store game assets in the GCS bucket.
+  const newImageName = uuidv1() + '.png'; // Ensure no duplicate namespaces exist for game assets.
+  const blob = bucket.file(newImageName);
   const blobStream = blob.createWriteStream({
     resumable: false,
   });
 
-  blobStream.on('error', (err) => console.log(err));
+  blobStream.on('error', (err) =>
+    res.status(500).redirect('/creator-dashboard')
+  );
+  // Return the next available gameID primary key.
   var { count } = await Games.findAndCountAll({});
-
   var gameID = parseInt(count) + 2;
 
+  // On completion of game asset upload post the game asset urls and game details to the database.
   blobStream.on('finish', async () => {
     const imageURL = `https://storage.googleapis.com/${process.env.GCS_BUCKET}/${blob.name}`;
-    // .index html file from Unity Web Games and HTML5 Games.
+    // .index html file from Unity Web Games and HTML5 Games. (Placeholder for demonstration purposes)
     const gameHTML = '//v6p9d9t4.ssl.hwcdn.net/html/2655271/index.html';
 
-    console.log(subCategory);
     await Games.create({
       gameID: gameID,
       title: title,
@@ -111,24 +114,14 @@ exports.postUploadGame = async (req, res, next) => {
       description: description,
       gameFileURL: gameHTML,
       gameImageURL: imageURL,
-    }).then(() => {
-      //console.log('Success')
-      res.redirect('/creator-dashboard');
-    });
+    })
+      .then(() => {
+        res.status(200).redirect('/creator-dashboard');
+      })
+      .catch((err) => {
+        res.status(500).redirect('/creator-dashboard');
+      });
   });
 
   blobStream.end(req.files['gameImage'][0].buffer);
-
-  // Retrieve path url to images
-
-  // Store fields and gameImage url path and gameFile url path to Firebase
-
-  // Games.create({
-  //     title: fields.title,
-  //     category: fields.category,
-  //     description: fields.description,
-  //     gameFile: files.gameFile,
-  //     gameImage: files.gameImage
-  // })
-  //console.log(res.json({ fields, files }));
 };

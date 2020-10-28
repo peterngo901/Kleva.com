@@ -1,7 +1,8 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
+// Question Bank Model
 const questionBank = sequelize.define('questionBank', {
   teacherEmail: {
     type: Sequelize.STRING,

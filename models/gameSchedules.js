@@ -1,7 +1,8 @@
+// Dependencies
 const Sequelize = require('sequelize');
-
 const sequelize = require('../data/database');
 
+// Game Schedule Model
 const gameSchedule = sequelize.define('gameSchedule', {
   id: {
     type: Sequelize.UUID,
@@ -19,7 +20,7 @@ const gameSchedule = sequelize.define('gameSchedule', {
   date: {
     type: Sequelize.DATEONLY,
     allowNull: false,
-  }
+  },
 });
 
 module.exports = gameSchedule;

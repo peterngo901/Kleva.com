@@ -1,7 +1,7 @@
+// Production Environment, let the server decide the path.
 const socket = io({
   transports: ['websocket'],
-}); // Production Environment
-//const socket = io({ transports: ['websocket'] }); // Dev Environment
+});
 
 // on reconnection, reset the transports option, as the Websocket
 // connection may have failed (caused by proxy, firewall, browser, ...)
@@ -9,6 +9,10 @@ socket.on('reconnect_attempt', () => {
   socket.io.opts.transports = ['polling', 'websocket'];
 });
 
+// Dev Environment
+// const socket = io();
+
+// Firebase
 var firebaseConfig = {
   apiKey: 'AIzaSyACUQI6Ub4BTlHavE9cbEhOyGTad3H01nY',
   authDomain: 'kleva-7918e.firebaseapp.com',
@@ -21,15 +25,38 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 var database = firebase.database();
 
+// Moment.JS
 var now = moment();
 var timeFormatted = now.format('ddd MMM Do YYYY');
+
 // Elements
 const $submitAnswer = document.querySelector('#submitAnswer');
 
-// Track students coming and going.
+// Gameroom Variables
+var uniquePenColors = ['#FF0000', '#D500FF', '#FFFF00', '#1B1B0A', '#5EFFBA'];
+var timeleft = 10;
+var roomName;
+var teacherDoodleQuestion;
+var gameRoomID;
+var realStudentNames;
+var uniqueStroke;
+var assignedPenColor = '#000000';
+var studentAnons;
+var cnv;
+var px;
+var pey;
+var penTracker = true;
+var strokeColor;
+var strokeWeightNumber;
+
+// Stream the Drawing Data to the Realtime Database in Chunks.
+var drawingStream = [];
+var currentPath = [];
+var memoryDrawingStream = [];
+
+// Track the real student names.
 function loadRealStudentNames(allStudents) {
   var realStudentNames = '';
   for (i = 0; i < allStudents.students.length; i++) {
@@ -38,12 +65,10 @@ function loadRealStudentNames(allStudents) {
       allStudents.students[i].realName +
       '</span></a></li>';
   }
-
-  //console.log(allStudents.students[0]);
   return realStudentNames;
 }
 
-// Track students coming and going.
+// Track anonymous student names.
 function loadAnonStudentNames(allStudents) {
   var studentNames = '';
   for (i = 0; i < allStudents.students.length; i++) {
@@ -53,11 +78,9 @@ function loadAnonStudentNames(allStudents) {
       '</span></a></li>';
   }
   document.getElementById('studentAnonOutput').innerHTML = '';
-  //console.log(allStudents.students[0]);
   return studentNames;
 }
-var studentAnons;
-// socket.on('name') parameter must match the socket.emit('name') in controllers.
+
 socket.on('leaver', (studentAnonNames) => {
   studentAnons = [];
   studentAnons = loadAnonStudentNames(studentAnonNames);
@@ -69,21 +92,12 @@ socket.on('anonStudents', (studentAnonNames) => {
   studentAnons = loadAnonStudentNames(studentAnonNames);
   document.getElementById('studentAnonOutput').innerHTML = studentAnons;
 });
-var uniquePenColors = ['#FF0000', '#D500FF', '#FFFF00', '#1B1B0A', '#5EFFBA'];
-var timeleft = 10;
-var roomName;
-var teacherDoodleQuestion;
-var gameRoomID;
-var realStudentNames;
-var uniqueStroke;
-var assignedPenColor = '#000000';
+
 socket.on('begin', async (data) => {
-  //console.log(socket.id);
+  // Dynamically assign students a unique pen color based on their socket id.
   var penTrackingColor = data.uniquePenColorTracker;
   uniqueStroke = penTrackingColor.indexOf(socket.id);
-  // const indexOfSocketID = penTrackingColor.findIndex(
-  //   (studentSocketID) => studentSocketID.id === socket.id
-  // );
+
   if (uniqueStroke != -1) {
     assignedPenColor = uniquePenColors[penTrackingColor.indexOf(socket.id)];
   }
@@ -94,6 +108,7 @@ socket.on('begin', async (data) => {
   var timer = await setInterval(function () {
     if (timeleft <= 0) {
       clearInterval(timer);
+      // Reset the canvas
       clear();
       setup();
       drawingStream = [];
@@ -107,8 +122,7 @@ socket.on('begin', async (data) => {
       var qOneTimer = setInterval(function () {
         if (questionOneTimeLeft < 0) {
           teacherDoodleQuestion = data.questionOne;
-          // Stream to realtime database.
-
+          // Stream the doodle data to the database.
           saveDoodle();
           drawingStream = [];
           memoryDrawingStream = [];
@@ -162,24 +176,19 @@ socket.on('begin', async (data) => {
   }, 1000);
 });
 
-var cnv;
-var px;
-var pey;
-
+// Setup the canvas and emit the student's doodle data.
 function setup() {
   px = $('#canvas-holder').parent().width() * 0.95;
-
   cnv = createCanvas(px, windowHeight * 0.55);
-
   // Optimise the streaming of the drawing data.
   cnv.mousePressed(startPath);
   cnv.mouseReleased(endPath);
-
   background(237, 250, 249);
   cnv.parent('canvas-holder');
   socket.on('mousedata', newDrawing);
 }
 
+// Draw the data received from the other students in the room.
 function newDrawing(data) {
   startPath;
   px = $('#canvas-holder').parent().width() * 0.95;
@@ -190,16 +199,16 @@ function newDrawing(data) {
   var relativeYY = data.y2 * (pey / data.resY);
   var s0 = data.strokeColor;
   var weight = data.strokeWeight;
-
   strokeWeight(parseInt(weight));
   stroke(s0);
   line(relativeX, relativeY, relativeXX, relativeYY);
-
   currentPath.push(data);
   memoryDrawingStream.push(data);
   endPath;
 }
 
+// Resize the canvas when the window resizes.
+// Redraw the current game session drawing.
 function windowResized() {
   px = $('#canvas-holder').parent().width() * 0.95;
   resizeCanvas(px, windowHeight * 0.45);
@@ -207,20 +216,18 @@ function windowResized() {
   redrawAfterResizing(memoryDrawingStream);
 }
 
-var penTracker = true;
-
+// User has selected an eraser.
 function chooseEraser() {
   penTracker = false;
 }
 
+// User has selected a pen.
 function choosePen() {
   noErase();
   penTracker = true;
 }
 
-var strokeColor;
-var strokeWeightNumber;
-
+// Draw on the canvas.
 function draw() {
   if (penTracker) {
     strokeColor = assignedPenColor;
@@ -242,8 +249,9 @@ function draw() {
         strokeColor: strokeColor,
       };
       // Stream the data to the realtime database in chunks
-      // makes it more efficient.
       currentPath.push(data);
+      // Stream the data to the in memory array for redrawing
+      // on disconnects, refresh and canvas resizing.
       memoryDrawingStream.push(data);
       line(mouseX, mouseY, pmouseX, pmouseY);
       socket.emit('mouse', data);
@@ -267,8 +275,6 @@ function draw() {
         strokeWeight: strokeWeightNumber,
         strokeColor: strokeColor,
       };
-      // Stream the data to the realtime database in chunks
-      // makes it more efficient.
       currentPath.push(data);
       memoryDrawingStream.push(data);
       line(mouseX, mouseY, pmouseX, pmouseY);
@@ -292,25 +298,18 @@ function redrawAfterResizing(memoryDrawingStream) {
     var relativeYY = retraceData.y2 * (pey / retraceData.resY);
     var s0 = retraceData.strokeColor;
     var weight = retraceData.strokeWeight;
-
     strokeWeight(parseInt(weight));
-
     stroke(s0);
     line(relativeX, relativeY, relativeXX, relativeYY);
   }
 }
-
-// Stream the Drawing Data to the Realtime Database.
-var drawingStream = [];
-var currentPath = [];
-var memoryDrawingStream = [];
 
 // Start drawing on mouse press.
 function startPath() {
   currentPath = [];
 }
 
-// End drawing on mouse release.
+// End drawing path on mouse release.
 function endPath() {
   // Once the mouse is released add the array of points to the drawing array.
   drawingStream.push(currentPath);
@@ -333,6 +332,7 @@ function saveDoodle() {
   });
 }
 
+// Resize the canvas on resizing the window.
 $(window).on('resize', function (e) {
   px = $('#canvas-holder').parent().width() * 0.95;
   windowResized();

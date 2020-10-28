@@ -1,5 +1,7 @@
+// Models
 const Game = require('../models/game');
 
+// Return the game upload page.
 exports.getUploadGames = (req, res, next) => {
   res.render('creator/game_submission', {
     pageTtitle: 'Submission Page',
@@ -7,12 +9,14 @@ exports.getUploadGames = (req, res, next) => {
   });
 };
 
+// Return the uploaded games.
 exports.postUploadGames = (req, res, next) => {
   const game = new Game(req.title, req.price, req.description);
   game.upload();
   res.render('home');
 };
 
+// Return all games in the database.
 exports.getGames = (req, res, next) => {
   const games = Game.fetchAll((games) => {
     res.render('home', { games: games });
@@ -24,6 +28,7 @@ exports.getGame = (req, res, next) => {
   const gameID = req.params.gameID; // gameID is from the dynamic route
 };
 
+// Return the game page for a given gameID.
 exports.getGamepageGameID = async (req, res, next) => {
   res.locals.user = req.session.sessionType;
   const gameID = req.params.gameID;
@@ -33,7 +38,6 @@ exports.getGamepageGameID = async (req, res, next) => {
         gameID: gameID,
       },
     });
-
     res.render('gamepage', {
       game: game,
     });

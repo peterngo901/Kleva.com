@@ -1,19 +1,9 @@
-// socket.on('studentsList', (allStudents) => {
-//   //   allStudents.students.foreach((student) => {
-//   //     console.log(student.realName);
-//   //   });
-//   //console.log(allStudents);
-//   //   console.log(allStudents);
-//   //   html = '<h1>' + allStudents.realName + '</h1>';
-//   const studentNameTags = loadRealStudentNames(allStudents);
-//   document.getElementById('studentOutput').innerHTML = studentNameTags;
-// });
-
 socket.on('anonTeacherRoomStudents', (allStudents) => {
   const studentNameTags = loadRealStudentNames(allStudents);
   document.getElementById('studentOutput').innerHTML = studentNameTags;
 });
 
+// Render the real student names.
 socket.on('teacherLeaver', (remainingStudents) => {
   const remainingStudentsInRoom = loadRealStudentNames(remainingStudents);
   document.getElementById('studentOutput').innerHTML = remainingStudentsInRoom;
@@ -21,14 +11,14 @@ socket.on('teacherLeaver', (remainingStudents) => {
 
 var gameStarted = false;
 
+// Begin the game for the given gameroom.
 function beginGame() {
   gameStarted = true;
   socket.emit('beginGame');
-  console.log(gameStarted);
   return;
-  //watchQuestions();
 }
 
+// Allow the teacher to view the timer remaining and the current doodle question.
 socket.on('teacherMasterView', async (data) => {
   var timer = await setInterval(function () {
     if (timeleft <= 0) {
@@ -41,8 +31,6 @@ socket.on('teacherMasterView', async (data) => {
         $(this).text(`${doodleQuestionOne}`).animate({ opacity: 1 }, 400);
       });
 
-      // document.getElementById('gameCountdownTimerText').innerHTML =
-      //   data.questionOne;
       document.getElementById('gameCountdownTimer').value = 0;
       var questionOneTimeLeft = 30;
       var qOneTimer = setInterval(function () {
@@ -61,8 +49,7 @@ socket.on('teacherMasterView', async (data) => {
               $(this).text(`${doodleQuestionTwo}`).animate({ opacity: 1 }, 400);
             }
           );
-          // document.getElementById('gameCountdownTimerText').innerHTML =
-          //   data.questionTwo;
+
           var questionTwoTimeLeft = 30;
           var qTwoTimer = setInterval(function () {
             if (questionTwoTimeLeft < 0) {
@@ -95,25 +82,3 @@ socket.on('teacherMasterView', async (data) => {
     }
   }, 1000);
 });
-// var questionTimeTracker = 0;
-// function watchQuestions() {
-//   if (gameStarted) {
-//     setInterval(function () {
-//       //console.log(questionTimeTracker);
-//       questionTimeTracker += 1;
-//       if (questionTimeTracker === 12) {
-//         clear();
-//         setup();
-//       }
-//       if (questionTimeTracker === 45) {
-//         clear();
-//         setup();
-//       }
-//       if (questionTimeTracker === 77) {
-//         clearInterval();
-//         //TODO REDIRECT TO STATISTICS DASHBOARD TO VIEW ALL DRAWINGS
-//         return (window.location.href = '/teacher-students');
-//       }
-//     }, 1000);
-//   }
-// }
