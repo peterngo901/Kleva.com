@@ -1,4 +1,4 @@
-# Kleva -
+# Kleva
 
 Kleva is an educational games platform designed for Australian teachers and school students from Years 7 - 9.
 
