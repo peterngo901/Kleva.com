@@ -72,6 +72,7 @@ exports.getGameUpload = (req, res, next) => {
   }
 };
 
+// Add the game file and image assets to Google Cloud Storage and store the GCS url and Game Descriptions to the DB.
 exports.postUploadGame = async (req, res, next) => {
   const title = req.body.title;
   const description = req.body.description;
