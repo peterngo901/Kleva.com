@@ -1,13 +1,15 @@
-// Production Environment, let the server decide the path.
-const socket = io({
-  transports: ['websocket'],
-});
+// Heroku Production Environment, let the server decide the path.
+const socket = io();
 
+// GCP Production Environment, let the server decide the path.
+// const socket = io({
+//   transports: ['websocket'],
+// });
 // on reconnection, reset the transports option, as the Websocket
 // connection may have failed (caused by proxy, firewall, browser, ...)
-socket.on('reconnect_attempt', () => {
-  socket.io.opts.transports = ['polling', 'websocket'];
-});
+// socket.on('reconnect_attempt', () => {
+//   socket.io.opts.transports = ['polling', 'websocket'];
+// });
 
 // Dev Environment
 // const socket = io();
