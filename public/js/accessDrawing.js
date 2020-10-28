@@ -192,13 +192,13 @@ var pey;
 
 // Resize the canvas when the user resizes their window.
 $(window).on('resize', function (e) {
-  px = $('#canvas-holder').parent().width() * 0.95;
+  px = $('#canvas-holder').parent().width();
   windowResized();
 });
 
 // Setup the drawing canvas.
 function setup() {
-  px = $('#canvas-holder').parent().width() * 0.95;
+  px = $('#canvas-holder').parent().width();
   cnv = createCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
   cnv.parent('canvas-holder');
@@ -208,7 +208,7 @@ function setup() {
 
 // Rehydrate the doodle from the selected doodle.
 function newDrawing(data) {
-  px = $('#canvas-holder').parent().width() * 0.95;
+  px = $('#canvas-holder').parent().width();
   pey = windowHeight * 0.45;
   var relativeX = data.x * (px / data.resX);
   var relativeXX = data.x2 * (px / data.resX);
@@ -222,7 +222,7 @@ function newDrawing(data) {
 }
 
 function windowResized() {
-  px = $('#canvas-holder').parent().width() * 0.95;
+  px = $('#canvas-holder').parent().width();
   resizeCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
 }
