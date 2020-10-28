@@ -1,7 +1,14 @@
-const socket = io('wss://lucid-burner-290323.ts.r.appspot.com/', {
+const socket = io({
   transports: ['websocket'],
 }); // Production Environment
 //const socket = io({ transports: ['websocket'] }); // Dev Environment
+
+// on reconnection, reset the transports option, as the Websocket
+// connection may have failed (caused by proxy, firewall, browser, ...)
+socket.on('reconnect_attempt', () => {
+  socket.io.opts.transports = ['polling', 'websocket'];
+});
+
 var firebaseConfig = {
   apiKey: 'AIzaSyACUQI6Ub4BTlHavE9cbEhOyGTad3H01nY',
   authDomain: 'kleva-7918e.firebaseapp.com',
@@ -45,18 +52,21 @@ function loadAnonStudentNames(allStudents) {
       allStudents.students[i].displayName +
       '</span></a></li>';
   }
-
+  document.getElementById('studentAnonOutput').innerHTML = '';
   //console.log(allStudents.students[0]);
   return studentNames;
 }
+var studentAnons;
 // socket.on('name') parameter must match the socket.emit('name') in controllers.
 socket.on('leaver', (studentAnonNames) => {
-  const studentAnons = loadAnonStudentNames(studentAnonNames);
+  studentAnons = [];
+  studentAnons = loadAnonStudentNames(studentAnonNames);
   document.getElementById('studentAnonOutput').innerHTML = studentAnons;
 });
 
 socket.on('anonStudents', (studentAnonNames) => {
-  const studentAnons = loadAnonStudentNames(studentAnonNames);
+  studentAnons = [];
+  studentAnons = loadAnonStudentNames(studentAnonNames);
   document.getElementById('studentAnonOutput').innerHTML = studentAnons;
 });
 var uniquePenColors = ['#FF0000', '#D500FF', '#FFFF00', '#1B1B0A', '#5EFFBA'];

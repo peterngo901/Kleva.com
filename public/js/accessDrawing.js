@@ -101,13 +101,12 @@ async function queryDoodlesFromDate(btn, event) {
     }
     // Return a card depending on the length of the doodleQ's array.
     for (var u = 0; u < doodleQs.length; u++) {
-      
       var attr1 = document.createAttribute('id');
       var attr2 = document.createAttribute('onclick');
       var attr3 = document.createAttribute('value');
       var attr4 = document.createAttribute('style');
       var attr5 = document.createAttribute('style');
-      
+
       attr1.value = `doodle${u}`; //id=doodle0
       attr2.value = `openDoodleStream(this)`; //onclick=openDoodleStream(this)
       attr3.value = `${u}`; //value=doodleLineDataTracker[]
@@ -119,8 +118,7 @@ async function queryDoodlesFromDate(btn, event) {
       node.className = 'btn doodleDrawingView m-2';
       node2.className = 'ml-2 text-left my-2';
       var questionNode = document.createTextNode('Q: ' + doodleQs[u]);
-      var studentNameNode = document.createTextNode('Created By: ' 
-      );
+      var studentNameNode = document.createTextNode('Created By: ');
       node.appendChild(questionNode);
       node2.appendChild(studentNameNode);
       //divNode.appendChild()
@@ -132,11 +130,13 @@ async function queryDoodlesFromDate(btn, event) {
       document.getElementById('doodle-holder').appendChild(node);
       document.getElementById('doodle-holder').appendChild(node2);
       //console.log(studentDoodlesTracker[u].length);
-      for(var rt = 0; rt < studentDoodlesTracker[u].length; rt++) {
+      for (var rt = 0; rt < studentDoodlesTracker[u].length; rt++) {
         var node3 = document.createElement('img');
         var node4 = document.createElement('h5');
         var node5 = document.createElement('div');
-        var studentColorName = document.createTextNode(studentDoodlesTracker[u][rt]);
+        var studentColorName = document.createTextNode(
+          studentDoodlesTracker[u][rt]
+        );
         node4.appendChild(studentColorName);
         //console.log(studentDoodlesTracker[u][rt]);
         var penColorIdentifier = uPenColors[rt];
@@ -144,7 +144,7 @@ async function queryDoodlesFromDate(btn, event) {
         attr6.value = `background-color: ${penColorIdentifier};`;
         var attr7 = document.createAttribute('style');
         attr7.value = `text-transform: uppercase; font-size: 1.3rem; font-family: 'Quicksand', cursive; color: ${penColorIdentifier};`;
-        node5.className = 'row d-flex justify-content-start ml-2 my-2'
+        node5.className = 'row d-flex justify-content-start ml-2 my-2';
         node4.setAttributeNode(attr7);
         node3.className = `dotHistory`;
         node3.setAttributeNode(attr6);
@@ -153,7 +153,6 @@ async function queryDoodlesFromDate(btn, event) {
         document.getElementById('doodle-holder').appendChild(node5);
         //document.getElementById('doodle-holder').appendChild(node4);
       }
-      
     }
 
     return;
@@ -269,12 +268,12 @@ var px;
 var pey;
 
 $(window).on('resize', function (e) {
-  px = $('#canvas-holder').parent().width();
+  px = $('#canvas-holder').parent().width() * 0.95;
   windowResized();
 });
 
 function setup() {
-  px = $('#canvas-holder').parent().width();
+  px = $('#canvas-holder').parent().width() * 0.95;
   cnv = createCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
   cnv.parent('canvas-holder');
@@ -283,7 +282,7 @@ function setup() {
 }
 
 function newDrawing(data) {
-  px = $('#canvas-holder').parent().width();
+  px = $('#canvas-holder').parent().width() * 0.95;
   pey = windowHeight * 0.45;
   var relativeX = data.x * (px / data.resX);
   var relativeXX = data.x2 * (px / data.resX);
@@ -303,7 +302,7 @@ function newDrawing(data) {
 }
 
 function windowResized() {
-  px = $('#canvas-holder').parent().width();
+  px = $('#canvas-holder').parent().width() * 0.95;
   resizeCanvas(px, windowHeight * 0.45);
   background(237, 250, 249);
 }

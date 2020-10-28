@@ -9,11 +9,13 @@ exports.getGameroom = async (req, res, next) => {
     const io = req.app.get('socketio');
 
     io.on('connection', (socket) => {
-      // Removes any socket id duplications when client refreshes.
       socket_id.push(socket.id);
+      console.log(socket_id);
+      // Removes any socket id duplications when client refreshes.
+      // socket_id.push(socket.id);
       if (socket_id[0] === socket.id) {
-        // remove the connection listener for any subsequent
-        // connections with the same ID
+        //   // remove the connection listener for any subsequent
+        //   // connections with the same ID
         io.removeAllListeners('connection');
       }
       // Add the user to the global users variable.
@@ -26,15 +28,20 @@ exports.getGameroom = async (req, res, next) => {
       //console.log(student);
       // Student will join the waiting room with unique name = classCode.
       socket.join(`${req.session.classCode}`);
+      // Get all the users in the room not every student who has joined a gameroom.
+      const studentUsersInTheRoom = getUsersInRoom(`${req.session.classCode}`);
+      console.log(studentUsersInTheRoom);
       // Render Students in the List.
       io.to(`${req.session.classCode}`).emit('anonStudents', {
         room: student.room,
-        students: users,
+        students: studentUsersInTheRoom,
       });
-      io.to(`${req.session.classCode}`).emit('anonTeacherRoomStudents', {
-        room: student.room,
-        students: users,
-      });
+      socket.broadcast
+        .to(`${req.session.classCode}`)
+        .emit('anonTeacherRoomStudents', {
+          room: student.room,
+          students: studentUsersInTheRoom,
+        });
       // Check how many students are in the waiting room to assign breakout rooms.
       var room = io.sockets.adapter.rooms[`${req.session.classCode}`];
       console.log(room.length);
@@ -57,8 +64,12 @@ exports.getGameroom = async (req, res, next) => {
       socket.on('beginQuestions', () => {
         socket.broadcast.to(`${req.session.classCode}`).emit('displayQOne');
       });
-      socket.on('disconnect', () => {
+      socket.on('disconnect', async () => {
         removeUser(socket.id);
+        var removeSocketID = await socket_id.indexOf(socket.id);
+        await socket_id.splice(removeSocketID, 1);
+        console.log(socket_id.splice(removeSocketID, 1));
+        console.log(users);
         io.emit('leaver', {
           room: student.room,
           students: users,
@@ -87,19 +98,21 @@ exports.getTeacherGameroom = (req, res, next) => {
 
   io.on('connection', (socket) => {
     // Removes any socket id duplications when client refreshes.
-    teacher_socket_id.push(teacher_socket_id);
-    if (teacher_socket_id[0] === teacher_socket_id) {
-      // remove the connection listener for any subsequent
-      // connections with the same ID
+    // teacher_socket_id.push(teacher_socket_id);
+    teacher_socket_id.push(socket.id);
+    if (teacher_socket_id[0] === socket.id) {
+      //   // remove the connection listener for any subsequent
+      //   // connections with the same ID
       io.removeAllListeners('connection');
     }
 
-    // Teacher will join the waiting room with unique name = classCode.
-    socket.join(`${req.session.classCode}`, () => {
-      io.to(`${req.session.classCode}`).emit('studentsList', {
-        students: users,
-      });
+    socket.on('disconnect', () => {
+      var removeTeacherSocketID = teacher_socket_id.indexOf(socket.id);
+      teacher_socket_id.splice(removeTeacherSocketID, 1);
     });
+
+    // Teacher will join the waiting room with unique name = classCode.
+    socket.join(`${req.session.classCode}`, () => {});
 
     // Teacher has begun the game via the Begin Game Button.
     socket.on('beginGame', async () => {

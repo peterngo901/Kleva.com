@@ -101,7 +101,6 @@ exports.postAddClassroom = (req, res, next) => {
 
 exports.getTeacherStudents = async (req, res, next) => {
   if (req.session.user) {
-    //res.set('Cache-control', 'public, max-age=86400');
     const email = req.session.user;
     try {
       const classrooms = await Classroom.findAll({
@@ -110,13 +109,11 @@ exports.getTeacherStudents = async (req, res, next) => {
         },
         attributes: ['classCode', 'yearLevel', 'title', 'subject'],
       });
-
-      // Return all the classroom classcodes.
+      // Track all classroom codes belonging to teacher.
       var classcodeTracker = [];
       for (let i = 0; i < classrooms.length; i++) {
         classcodeTracker.push(classrooms[i].classCode);
       }
-
       try {
         const gamesStatisticsAndDetails = await ClassroomStats.findAll({
           where: {
@@ -140,68 +137,6 @@ exports.getTeacherStudents = async (req, res, next) => {
           games: '',
         });
       }
-
-      // try {
-      //   var classroomGameDetailTracker = [];
-      //   classrooms.forEach(async (classroom) => {
-      //     // Return all the games and statistics for the given classCode.
-      //     const gameDetails = await ClassroomStats.findAll({
-      //       where: {
-      //         classroomClassCode: classroom.classCode,
-      //       },
-      //       attributes: ['gameID', 'AverageStudentActivity'],
-      //     });
-      //     console.log(gameDetails);
-      //     console.log(classroomGameDetailTracker);
-      //     return classroomGameDetailTracker.concat(gameDetails.dataValues);
-      //   });
-
-      //   res.render('teacher/teacher-students', {
-      //     path: '/teacher-students',
-      //     classrooms: classrooms,
-      //   });
-      // } catch (err) {
-      //   res.redirect('/teacher-dashboard');
-      // }
-
-      // try {
-      //   // If more than one classroom is returned.
-
-      //   classrooms.forEach((classroom) => {
-      //     const classroomGames = ClassroomStats.findAll({
-      //       where: {
-      //         classroomClassCode: classroom.classCode,
-      //       },
-      //       attributes: ['gameID', 'AverageStudentActivity'],
-      //     });
-      //     classroomGames.map(() => classroom.classCode,dataValues);
-      //   });
-      //   try {
-      //     // Do an full join to retrieve matching ACARA codes and game titles.
-      //     classroomTracker.map(async (classroomGame) => {
-      //       const classroomGameDetails = await Games.findAll({
-      //         where: {
-      //           gameID: classroomGame.gameID,
-      //         },
-      //         attributes: ['title', 'category'],
-      //       });
-      //       classroomGameDetailTracker.push(classroomGameDetails);
-      //       console.log(classroomGameDetails);
-      //     });
-      //     const croomTracker = classroomTracker;
-      //     const croomDetailTracker = classroomGameDetailTracker;
-      //     res.render('teacher/teacher-students', {
-      //       path: '/teacher-students',
-      //       classrooms: classrooms,
-      //       classroomTracker: cd,
-      //       classroomDetails: croomDetailTracker,
-      //     });
-      //   } catch (err) {
-      //     res.redirect('/teacher-dashboard');
-      //   }
-      // } catch (err) {
-      //   res.redirect('/teacher-dashboard');
-      // }
     } catch (err) {
       res.redirect('/');
     }

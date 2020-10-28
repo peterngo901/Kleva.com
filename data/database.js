@@ -1,19 +1,9 @@
-// const { Pool } = require('pg')
-
-// const pool = new Pool({
-//     user: 'postgres',
-//     host: 'localhost',
-//     port: 5432,
-//     database: 'postgres',
-//     password: 'royalelephants'
-// })
-
-// module.exports = pool;
-
-require('dotenv').config();
-
 const Sequelize = require('sequelize');
 
+// environment variables for production.
+require('dotenv').config();
+
+// Production DB
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USER,
@@ -23,6 +13,8 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
   }
 );
+
+// Local Development DB
 // const sequelize = new Sequelize('Kleva', 'postgres', 'royalelephants', {
 //   dialect: 'postgres',
 //   host: 'localhost',

@@ -116,101 +116,107 @@ Main Navbar
 		<body onload=studentTracker()></body>
 		<% } %>
 		<!-- Page Content -->
-		<div class="container">
 
-			<!-- Game Container -->
-			<div class="container-xl">
-				<button class="btn btn-sm my-2 mx-0 gamePageReturn" onclick=rewind() style="border: none;">
-					Back to Game Gallery</button>
-				<hr>
-				<h1 class="gamePageTitle"><%- game.title %></h1>
-				<p class="gamePageDescription"><%- game.description %></p>
-				<h3 class="badge badge-pill gamePageCurriculum"><%- game.category %></h3>
-				<div class="row d-flex text-center my-5 gamepage-back">
-					<div class="col-12 justify-content-center">
-						<button type="submit" class="btn btn-lg text-center px-5 my-5 gameLoader" style="border: none;"
-							id="gameLoader" onclick=loader()>Play Game
-						</button>
-						<div>
-							<div class="embed-responsive embed-responsive-16by9" id="gameHolder">
+
+		<!-- Game Container -->
+		<div class="container-xl">
+			<button class="btn btn-sm my-2 mx-0 gamePageReturn" onclick=rewind() style="border: none;">
+				Back to Game Gallery</button>
+			<hr>
+			<h1 class="gamePageTitle"><%- game.title %></h1>
+			<p class="gamePageDescription"><%- game.description %></p>
+			<h3 class="badge badge-pill gamePageCurriculum"><%- game.category %></h3>
+		</div>
+		<div class="container-fluid">
+			<div class="row d-flex text-center my-5 gamepage-back justify-content-center">
+				<div class="col-12 justify-content-center">
+					<button type="submit" class="btn btn-lg text-center px-5 my-5 gameLoader" style="border: none;"
+						id="gameLoader" onclick=loader()>Play Game
+					</button>
+					<div class="row justify-content-center mx-auto text-center">
+
+						<div class="col-sm-8" style="overflow: visible;">
+
+							<div id="gameHolder" class="embed-responsive embed-responsive-16by9">
 
 							</div>
-						</div>
 
-					</div>
-
-				</div>
-			</div>
-
-			<!-- Category Badges -->
-			<div class="container">
-				<!-- Category Badges -->
-				<div class="row text-center mt-3 mb-5">
-					<div class="col-lg-4 mb-5">
-						<div class="card p-3 category">
-							<a href="/gamesgallery/?page=1&gameCategory=English"><img
-									src='https://storage.googleapis.com/kleva_assets/english.png'
-									class="img-fluid img-fluid1" /></a>
-							<div class="card-footer card-footer1">
-								ENGLISH
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mb-5">
-						<div class="card p-3 category card2">
-							<a href="/gamesgallery/?page=1&gameCategory=Maths"><img
-									src='https://storage.googleapis.com/kleva_assets/mathematics.png'
-									class="img-fluid img-fluid1" /></a>
-							<div class="card-footer card-footer2">
-								MATHS</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mb-5">
-						<div class="card p-3 category card3">
-							<a href="/gamesgallery/?page=1&gameCategory=Technology"><img
-									src='https://storage.googleapis.com/kleva_assets/technologies.png'
-									class="img-fluid img-fluid1" /></a>
-							<div class="card-footer card-footer3">
-								TECH
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mb-5">
-						<div class="card p-3 category card4">
-							<a href="/gamesgallery/?page=1&gameCategory=Arts"><img
-									src='https://storage.googleapis.com/kleva_assets/theArts.png'
-									class="img-fluid img-fluid1" /></a>
-							<div class="card-footer card-footer4">
-								ARTS</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mb-5">
-						<div class="card p-3 category card5">
-							<a href="/gamesgallery/?page=1&gameCategory=Science"><img
-									src='https://storage.googleapis.com/kleva_assets/science.png'
-									class="img-fluid img-fluid1" /></a>
-							<div class="card-footer card-footer5">
-								SCIENCE</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mb-5">
-						<div class="card p-3 category card6">
-							<a href="/gamesgallery/?page=1&gameCategory=Humanities"><img
-									src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png'
-									class="img-fluid img-fluid1" /></a>
-							<div class="card-footer card-footer6">
-								HUMANITIES
-							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /.col-lg-3 -->
 
-
-
-				<!-- /.container -->
 			</div>
 		</div>
+
+
+		<!-- Category Badges -->
+		<div class="container">
+			<!-- Category Badges -->
+			<div class="row text-center mt-3 mb-5">
+				<div class="col-lg-4 mb-5">
+					<div class="card p-3 category">
+						<a href="/gamesgallery/?page=1&gameCategory=English"><img
+								src='https://storage.googleapis.com/kleva_assets/english.png'
+								class="img-fluid img-fluid1" /></a>
+						<div class="card-footer card-footer1">
+							ENGLISH
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-5">
+					<div class="card p-3 category card2">
+						<a href="/gamesgallery/?page=1&gameCategory=Maths"><img
+								src='https://storage.googleapis.com/kleva_assets/mathematics.png'
+								class="img-fluid img-fluid1" /></a>
+						<div class="card-footer card-footer2">
+							MATHS</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-5">
+					<div class="card p-3 category card3">
+						<a href="/gamesgallery/?page=1&gameCategory=Technology"><img
+								src='https://storage.googleapis.com/kleva_assets/technologies.png'
+								class="img-fluid img-fluid1" /></a>
+						<div class="card-footer card-footer3">
+							TECH
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-5">
+					<div class="card p-3 category card4">
+						<a href="/gamesgallery/?page=1&gameCategory=Arts"><img
+								src='https://storage.googleapis.com/kleva_assets/theArts.png'
+								class="img-fluid img-fluid1" /></a>
+						<div class="card-footer card-footer4">
+							ARTS</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-5">
+					<div class="card p-3 category card5">
+						<a href="/gamesgallery/?page=1&gameCategory=Science"><img
+								src='https://storage.googleapis.com/kleva_assets/science.png'
+								class="img-fluid img-fluid1" /></a>
+						<div class="card-footer card-footer5">
+							SCIENCE</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-5">
+					<div class="card p-3 category card6">
+						<a href="/gamesgallery/?page=1&gameCategory=Humanities"><img
+								src='https://storage.googleapis.com/kleva_assets/humanitiessocialSciences.png'
+								class="img-fluid img-fluid1" /></a>
+						<div class="card-footer card-footer6">
+							HUMANITIES
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.col-lg-3 -->
+
+
+			<!-- /.container -->
+		</div>
+
 
 </body>
 <!-- Footer -->
@@ -227,7 +233,7 @@ Main Navbar
 
 	function loader() {
 		document.getElementById("gameLoader").innerHTML = 'Refresh Game'
-		document.getElementById("gameHolder").innerHTML = "<iframe class=\"embed-responsive-item\" id=\"gameIframe\" src=\"<%- game.gameFileURL %>\"></iframe>";
+		document.getElementById("gameHolder").innerHTML = "<iframe scrolling=\"no\" class=\"embed-responsive-item\" id=\"gameIframe\" src=\"<%- game.gameFileURL %>\" allowfullscreen frameborder=\"0\" allowtransparency=\"true\"></iframe>";
 	}
 
 	function rewind() {
@@ -246,10 +252,11 @@ Main Navbar
 	}
 
 
-	// Post the time to the classroomStats table.
+	// For the video demo.
 	function checkTimeSpent() {
 		console.log(TimeMe.getTimeOnCurrentPageInSeconds())
-
+		var timeSpent = TimeMe.getTimeOnCurrentPageInSeconds();
+		document.getElementById('featuredemo').innerHTML = "Student has spent " + timeSpent + ' seconds on the page.';
 	}
 
 	//AJAX post for Tracking Student Activity

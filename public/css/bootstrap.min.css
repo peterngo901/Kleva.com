@@ -3687,7 +3687,7 @@ input[type='submit'].btn-block {
   appearance: none;
 }
 .custom-select-font {
-  font-size:1.75rem;
+  font-size: 1.75rem;
 }
 .custom-select:focus {
   border-color: #80bdff;

@@ -1,13 +1,13 @@
-socket.on('studentsList', (allStudents) => {
-  //   allStudents.students.foreach((student) => {
-  //     console.log(student.realName);
-  //   });
-  //console.log(allStudents);
-  //   console.log(allStudents);
-  //   html = '<h1>' + allStudents.realName + '</h1>';
-  const studentNameTags = loadRealStudentNames(allStudents);
-  document.getElementById('studentOutput').innerHTML = studentNameTags;
-});
+// socket.on('studentsList', (allStudents) => {
+//   //   allStudents.students.foreach((student) => {
+//   //     console.log(student.realName);
+//   //   });
+//   //console.log(allStudents);
+//   //   console.log(allStudents);
+//   //   html = '<h1>' + allStudents.realName + '</h1>';
+//   const studentNameTags = loadRealStudentNames(allStudents);
+//   document.getElementById('studentOutput').innerHTML = studentNameTags;
+// });
 
 socket.on('anonTeacherRoomStudents', (allStudents) => {
   const studentNameTags = loadRealStudentNames(allStudents);
