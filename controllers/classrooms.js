@@ -6,15 +6,15 @@ const Schedules = require('../models/gameSchedules');
 const Teacher = require('../models/teacher');
 
 // Dependencies
+require('dotenv').config();
 const { Op } = require('sequelize');
 var admin = require('firebase-admin');
+var serviceAccount = require('../firebase/kleva-7918e-firebase-adminsdk-14tp5-703b1cef16.json');
 const realTime = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://kleva-7918e.firebaseio.com',
 });
 const generate = require('nanoid-generate');
-var serviceAccount = require('../firebase/kleva-7918e-firebase-adminsdk-14tp5-703b1cef16.json');
-require('dotenv').config();
 
 // Return the teacher, their classrooms and school.
 exports.getTeacherDashboard = async (req, res, next) => {
