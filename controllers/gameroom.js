@@ -179,7 +179,7 @@ exports.getTeacherGameroom = (req, res, next) => {
       .to(`${req.session.classCode}`)
       .emit('message', 'A teacher has joined the room!');
 
-    socket.on('join');
+    socket.on('join', () => {});
   });
   res.render('teacher-gameroom', {
     pageTitle: 'Kleva',
@@ -246,6 +246,7 @@ const addUser = ({ id, firstName, lastName, room }) => {
   const chance = new Chance();
   const anonName = chance.animal();
   const displayName = 'Kleva ' + anonName;
+
   // Assign the uniqueGameRoomID based on given room capacity.
   var numberOfMatchingStudents = 1;
   users.forEach((studentUser) => {
@@ -256,7 +257,7 @@ const addUser = ({ id, firstName, lastName, room }) => {
   // 6 Students Per Room
   const uniqueGameRoomID = Math.ceil(numberOfMatchingStudents / 6);
   // Define all the student properties.
-  const user = { id, realName, displayName, penColor, room, uniqueGameRoomID };
+  const user = { id, realName, displayName, room, uniqueGameRoomID };
   // Store the student.
   users.push(user);
   return users;

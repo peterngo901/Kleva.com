@@ -119,13 +119,17 @@ exports.postYearLevelSubstrand = async (req, res) => {
         },
       },
     });
+
+    var finalQuestionTerms = scoTerms.map((englishTerm) => englishTerm.term);
+    var ascendingTerms = finalQuestionTerms.sort();
+
     res.render('teacher/gameStaging', {
       questions: {},
       path: '/teacher-dashboard',
       name: ' ',
       classCode: classCode,
       contentDescriptions: contentDescriptions,
-      scot: scoTerms,
+      scot: ascendingTerms,
       substrand: yearLevelSubstrand,
       yearLevel: yearLevel,
     });

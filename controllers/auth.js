@@ -55,8 +55,10 @@ exports.postTeacherSignup = (req, res, next) => {
           postcode: postcode,
         })
           .then(() => {
-            // Render the teacher dashboard.
-            res.status(202).redirect('/teacher-dashboard');
+            // Redirect to the teacher dashboard.
+            req.session.save(() => {
+              res.status(202).redirect('/teacher-dashboard');
+            });
           })
           .catch((err) => {
             // Error when inserting the teacher in the database.
@@ -119,8 +121,10 @@ exports.postTeacherSignin = async (req, res, next) => {
             req.session.user = email;
             req.session.sessionType = 'teacher';
             req.session.school = teacher.school;
-
-            res.status(202).redirect('/teacher-dashboard');
+            // Redirect to the teacher dashboard.
+            req.session.save(() => {
+              res.status(202).redirect('/teacher-dashboard');
+            });
           } else {
             // Incorrect Password
             res.render('teacher/teacher-signin', {
@@ -192,8 +196,10 @@ exports.postCreatorSignup = async (req, res, next) => {
           password: hashedPassword,
         })
           .then(() => {
-            // Render the teacher dashboard.
-            res.status(202).redirect('/creator-dashboard');
+            // Redirect to the creator dashboard.
+            req.session.save(() => {
+              res.status(202).redirect('/creator-dashboard');
+            });
           })
           .catch((err) => {
             // Error when inserting the creator in the database.
@@ -252,7 +258,10 @@ exports.postCreatorSignin = async (req, res, next) => {
             req.session.isLoggedIn = true;
             req.session.user = email;
             req.session.sessionType = 'creator';
-            res.redirect('/creator-dashboard');
+            // Redirect to the creator dashboard.
+            req.session.save(() => {
+              res.status(202).redirect('/creator-dashboard');
+            });
           } else {
             // Incorrect Password
             res.render('creator/creator-signin', {
@@ -311,7 +320,10 @@ exports.postStudentSignin = (req, res, next) => {
           req.session.firstName = firstName;
           req.session.lastName = lastName;
           req.session.sessionType = 'student';
-          res.redirect(`/student-dashboard`);
+          // Redirect to the student dashboard.
+          req.session.save(() => {
+            res.status(202).redirect(`/student-dashboard`);
+          });
         });
       } else {
         res.render('student-signin', {
@@ -377,9 +389,10 @@ exports.postStudentGameSignin = async (req, res, next) => {
         req.session.sessionType = 'student';
         req.session.type = 'student';
         req.session.user = student.studentID;
-        console.log(req.session.type);
-        console.log(req.session.user);
-        res.redirect(`/game-room`);
+        // Redirect to the student gameroom.
+        req.session.save(() => {
+          res.status(202).redirect(`/game-room`);
+        });
       } catch (err) {
         res.render('quickjoin', {
           error: 'Sorry, please try joining again!',

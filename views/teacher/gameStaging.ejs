@@ -164,7 +164,7 @@
                   <select class="custom-select doodleQuestionBoxPrepend w-100" id="qGeneratorTerm"
                     style="font-size: 2.2rem" name="qGeneratorTerm">
                     <% for (let acaraQuestions of scot) { %>
-                    <option value="<%- acaraQuestions.term %>"><%- acaraQuestions.term %></option>
+                    <option value="<%- acaraQuestions %>"><%- acaraQuestions %></option>
 
                     <% } %>
                   </select>
@@ -194,9 +194,9 @@
                   <!-- Question 1 -->
                   <div class="input-group mb-5">
                     <div class="input-group-prepend">
-                      <label class="input-group-text doodleQuestionBoxText" for="doodle01"
+                      <label class="input-group-text doodleQuestionBoxText" for="doodle01a"
                         style="font-size: 3rem">Doodle...</label>
-                      <select class="custom-select doodleQuestionBoxPrepend" id="doodle01" style="font-size: 3rem"
+                      <select class="custom-select doodleQuestionBoxPrepend" id="doodle01a" style="font-size: 3rem"
                         name="doodleOnePreprend">
                         <option selected>an example of</option>
                         <option value="a diagram of">a diagram of</option>
@@ -210,14 +210,14 @@
 
                       </select>
                     </div>
-                    <select class="custom-select doodleQuestionBoxSelect" id="doodle01" style="font-size: 3rem"
+                    <select class="custom-select doodleQuestionBoxSelect" id="doodle01b" style="font-size: 3rem"
                       name="doodleOne">
                       <!-- Doodle Question Options 1 -->
 
                       <% if (scot.length > 0) { %>
 
                       <% for (let acaraQuestions of scot) { %>
-                      <option value="<%- acaraQuestions.term %>"><%- acaraQuestions.term %></option>
+                      <option value="<%- acaraQuestions %>"><%- acaraQuestions %></option>
                       <% } %>
                       <% } else { %>
                       <option selected>hydrogen structure</option>
@@ -229,10 +229,10 @@
                     </select>
 
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn questionButton" type="button">
+                      <button class="questionButton" type="button" style="background-color: transparent;">
                         <img id="questionButton1"
                           src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
-                          class="img-fluid" onClick="changeImage1()" />
+                          class="img-fluid" onClick="changeImage1()" style="background-color: transparent;" />
                       </button>
                     </div>
 
@@ -243,9 +243,9 @@
                   <!-- Question 2 -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text doodleQuestionBoxText" for="doodle02"
+                      <label class="input-group-text doodleQuestionBoxText" for="doodle02a"
                         style="font-size: 3rem">Doodle...</label>
-                      <select class="custom-select doodleQuestionBoxPrepend" id="doodle01" style="font-size: 3rem"
+                      <select class="custom-select doodleQuestionBoxPrepend" id="doodle02a" style="font-size: 3rem"
                         name="doodleTwoPreprend">
                         <option selected>an example of</option>
                         <option value="a diagram of">a diagram of</option>
@@ -257,12 +257,12 @@
                         <option value="the shape of">the shape of</option>
                       </select>
                     </div>
-                    <select class="custom-select doodleQuestionBoxSelect" id="doodle02" style="font-size: 3rem"
+                    <select class="custom-select doodleQuestionBoxSelect" id="doodle02b" style="font-size: 3rem"
                       name="doodleTwo">
                       <!-- Doodle Question Options 2 -->
                       <% if (scot.length > 0) { %>
                       <% for (let acaraQuestions of scot) { %>
-                      <option value="<%- acaraQuestions.term %>"><%- acaraQuestions.term %></option>
+                      <option value="<%- acaraQuestions %>"><%- acaraQuestions %></option>
                       <% } %>
                       <% } else { %>
                       <option selected>hydrogen structure</option>
@@ -272,10 +272,10 @@
                       <% } %>
                     </select>
                     <div class="input-group col-12 justify-content-center mt-3">
-                      <button class="btn questionButton" type="button">
+                      <button class="questionButton" type="button" style="background-color: transparent;">
                         <img id="questionButton2"
                           src="https://storage.googleapis.com/kleva_assets/add_question_button-min.png"
-                          class="img-fluid" onClick="changeImage()" />
+                          class="img-fluid" onClick="changeImage()" style="background-color: transparent;" />
 
                       </button>
                     </div>
@@ -284,8 +284,8 @@
             </div>
             <div class="row mt-5 justify-content-center">
               <div class="col-10 mt-5 text-center">
-                <button class="btn btn-block questionButton" type="submit">
-                  <img src="img/open_gameroom_bold.png" class="img-fluid" />
+                <button class="btn-block questionButton" type="submit" style="background-color: transparent;">
+                  <img src="img/open_gameroom_bold.png" class="img-fluid" style="background-color: transparent;" />
                 </button>
               </div>
             </div>
